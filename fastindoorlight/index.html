@@ -1,1 +1,928 @@
-Hello World, fast indoor lighting awesomeness!
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Supplementary material</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="./css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/portfolio-item.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Supplementary material</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#scenes">Evaluation dataset</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#results">Comparison with Gardner et al.</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#barron">Comparison with Barron et al.</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#demo">Demo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#videos">Videos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#fail">Failure cases</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Portfolio Item Heading -->
+      <h1 class="my-4" style="text-align:center">Fast Spatially-Varying Indoor Lighting Estimation <br> <center>(paper ID:4701)</center></h1>
+
+      <!-- Portfolio Item Row -->
+      <div class="row">
+
+          <p>This document completes the paper Fast Spatially-Varying Indoor Lighting Estimation. We provide the evaluation dataset from sec. 5.2, the renders of the comparison with Gardner et al.(fig. 6), the renders of the comparison with Barron et al. (fig. 7), the full demo video of fig. 9, a supplementary demo of various synthetic/real scenes and more failure cases (fig. 8).</p>
+      </div>
+
+      <div class="row">
+          <h3 class="my-3">Table of contents</h3>
+      </div>
+      <div class="row">
+          <ul>
+            <li>
+              <a href="#scenes">Evaluation dataset: backgrounds and probes (classified as center and off-center) from sec. 5.2</a>
+            </li>
+            <li>
+              <a href="#results">Comparison with Gardner et al. (complement to fig. 6)</a>
+            </li>
+            <li>
+              <a href="#barron">Comparison with Barron et al. (complement to fig. 7)</a>
+            </li>
+            <li>
+              <a href="#demo">Demo (complement to fig. 9)</a>
+            </li>
+            <li>
+              <a href="#videos">Videos</a>
+            </li>
+            <li>
+              <a href="#fail">Failure cases (complement to fig. 8)</a>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <br>
+      
+      <!-- /.row -->
+    
+      <!-- Related Projects Row -->
+    <section class="jumbotron text-left bg-light" id="scenes">
+      <div class="container">
+
+      <h3 class="my-3">Evaluation dataset: backgrounds and probes</h3>
+      <div class="text-muted"> 
+      Scenes used for the quantitative and user study evaluation (see section 5.2 in the main paper). 
+      <br>
+      <ul>
+        <li>
+          Hover the image to see the probes, <i>center</i> probes are  <font color="green">green</font> and <i>off-center</i> probes are  <font color="red">red</font>.
+        </li>
+        <li>
+          Click to enlarge the image. 
+        </li>
+        <li>
+          <strong>Note that the <i>center</i> probes (<font color="green">green</font>) are selected empirically by determining which probes reflect the best the average lighting in the room.</strong>
+        </li>
+      </ul>
+      </div>
+      <br>
+
+      <div class="row">
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene00.jpg"> <img class="img-fluid" src="image/backgrounds/scene00.jpg" onmouseover="this.src='image/probes/scene00.jpg'" onmouseout="this.src='image/backgrounds/scene00.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene01.jpg"> <img class="img-fluid" src="image/backgrounds/scene01.jpg" onmouseover="this.src='image/probes/scene01.jpg'" onmouseout="this.src='image/backgrounds/scene01.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene02.jpg"> <img class="img-fluid" src="image/backgrounds/scene02.jpg" onmouseover="this.src='image/probes/scene02.jpg'" onmouseout="this.src='image/backgrounds/scene02.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene03.jpg"> <img class="img-fluid" src="image/backgrounds/scene03.jpg" onmouseover="this.src='image/probes/scene03.jpg'" onmouseout="this.src='image/backgrounds/scene03.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene04.jpg"> <img class="img-fluid" src="image/backgrounds/scene04.jpg" onmouseover="this.src='image/probes/scene04.jpg'" onmouseout="this.src='image/backgrounds/scene04.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene05.jpg"> <img class="img-fluid" src="image/backgrounds/scene05.jpg" onmouseover="this.src='image/probes/scene05.jpg'" onmouseout="this.src='image/backgrounds/scene05.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene07.jpg"> <img class="img-fluid" src="image/backgrounds/scene07.jpg" onmouseover="this.src='image/probes/scene07.jpg'" onmouseout="this.src='image/backgrounds/scene07.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene08.jpg"> <img class="img-fluid" src="image/backgrounds/scene08.jpg" onmouseover="this.src='image/probes/scene08.jpg'" onmouseout="this.src='image/backgrounds/scene08.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene09.jpg"> <img class="img-fluid" src="image/backgrounds/scene09.jpg" onmouseover="this.src='image/probes/scene09.jpg'" onmouseout="this.src='image/backgrounds/scene09.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene10.jpg"> <img class="img-fluid" src="image/backgrounds/scene10.jpg" onmouseover="this.src='image/probes/scene10.jpg'" onmouseout="this.src='image/backgrounds/scene10.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene11.jpg"> <img class="img-fluid" src="image/backgrounds/scene11.jpg" onmouseover="this.src='image/probes/scene11.jpg'" onmouseout="this.src='image/backgrounds/scene11.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene12.jpg"> <img class="img-fluid" src="image/backgrounds/scene12.jpg" onmouseover="this.src='image/probes/scene12.jpg'" onmouseout="this.src='image/backgrounds/scene12.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene13.jpg"> <img class="img-fluid" src="image/backgrounds/scene13.jpg" onmouseover="this.src='image/probes/scene13.jpg'" onmouseout="this.src='image/backgrounds/scene13.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene14.jpg"> <img class="img-fluid" src="image/backgrounds/scene14.jpg" onmouseover="this.src='image/probes/scene14.jpg'" onmouseout="this.src='image/backgrounds/scene14.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene15.jpg"> <img class="img-fluid" src="image/backgrounds/scene15.jpg" onmouseover="this.src='image/probes/scene15.jpg'" onmouseout="this.src='image/backgrounds/scene15.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene16.jpg"> <img class="img-fluid" src="image/backgrounds/scene16.jpg" onmouseover="this.src='image/probes/scene16.jpg'" onmouseout="this.src='image/backgrounds/scene16.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene17.jpg"> <img class="img-fluid" src="image/backgrounds/scene17.jpg" onmouseover="this.src='image/probes/scene17.jpg'" onmouseout="this.src='image/backgrounds/scene17.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene18.jpg"> <img class="img-fluid" src="image/backgrounds/scene18.jpg" onmouseover="this.src='image/probes/scene18.jpg'" onmouseout="this.src='image/backgrounds/scene18.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene19.jpg"> <img class="img-fluid" src="image/backgrounds/scene19.jpg" onmouseover="this.src='image/probes/scene19.jpg'" onmouseout="this.src='image/backgrounds/scene19.jpg'"></a>
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="image/probes/scene20.jpg"> <img class="img-fluid" src="image/backgrounds/scene20.jpg" onmouseover="this.src='image/probes/scene20.jpg'" onmouseout="this.src='image/backgrounds/scene20.jpg'"></a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="jumbotron text-left bg-white" id="results">
+      <div class="container">
+
+      <h3 class="my-3">Comparison with Gardner et al. 2017</h3>
+      <div class="text-muted"> Render of a diffuse object using the estimation of each methods (complement to fig. 6).
+      <ul>
+        <li>
+          Hover the ground truth image to see the virtual object mask.
+        </li>
+        <li>
+          Click to enlarge the image.
+        </li>
+      </ul>
+      </div>
+      <br>
+
+
+      <div class="row">
+
+      <div class="col-md-3 col-sm-6 mb-4" style="text-align:center">
+          <strong>Ground truth</strong>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4" style="text-align:center">
+          <strong>Ours</strong>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4" style="text-align:center">
+          <strong>Gardner et al. Local</strong>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4" style="text-align:center">
+          <strong>Gardner et al. Global</strong>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene00.jpg"><img class="img-fluid" src="image/results/gt/scene00.jpg" onmouseover="this.src='image/masks/scene00.jpg'" onmouseout="this.src='image/results/gt/scene00.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene00.jpg"><img class="img-fluid" src="image/results/ours/scene00.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene00.jpg"><img class="img-fluid" src="image/results/mag_l/scene00.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene00.jpg"><img class="img-fluid" src="image/results/mag_g/scene00.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene01.jpg"><img class="img-fluid" src="image/results/gt/scene01.jpg" onmouseover="this.src='image/masks/scene01.jpg'" onmouseout="this.src='image/results/gt/scene01.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene01.jpg"><img class="img-fluid" src="image/results/ours/scene01.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene01.jpg"><img class="img-fluid" src="image/results/mag_l/scene01.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene01.jpg"><img class="img-fluid" src="image/results/mag_g/scene01.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene02.jpg"><img class="img-fluid" src="image/results/gt/scene02.jpg" onmouseover="this.src='image/masks/scene02.jpg'" onmouseout="this.src='image/results/gt/scene02.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene02.jpg"><img class="img-fluid" src="image/results/ours/scene02.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene02.jpg"><img class="img-fluid" src="image/results/mag_l/scene02.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene02.jpg"><img class="img-fluid" src="image/results/mag_g/scene02.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene03.jpg"><img class="img-fluid" src="image/results/gt/scene03.jpg" onmouseover="this.src='image/masks/scene03.jpg'" onmouseout="this.src='image/results/gt/scene03.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene03.jpg"><img class="img-fluid" src="image/results/ours/scene03.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene03.jpg"><img class="img-fluid" src="image/results/mag_l/scene03.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene03.jpg"><img class="img-fluid" src="image/results/mag_g/scene03.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene04.jpg"><img class="img-fluid" src="image/results/gt/scene04.jpg" onmouseover="this.src='image/masks/scene04.jpg'" onmouseout="this.src='image/results/gt/scene04.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene04.jpg"><img class="img-fluid" src="image/results/ours/scene04.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene04.jpg"><img class="img-fluid" src="image/results/mag_l/scene04.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene04.jpg"><img class="img-fluid" src="image/results/mag_g/scene04.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene05.jpg"><img class="img-fluid" src="image/results/gt/scene05.jpg" onmouseover="this.src='image/masks/scene05.jpg'" onmouseout="this.src='image/results/gt/scene05.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene05.jpg"><img class="img-fluid" src="image/results/ours/scene05.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene05.jpg"><img class="img-fluid" src="image/results/mag_l/scene05.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene05.jpg"><img class="img-fluid" src="image/results/mag_g/scene05.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene07.jpg"><img class="img-fluid" src="image/results/gt/scene07.jpg" onmouseover="this.src='image/masks/scene07.jpg'" onmouseout="this.src='image/results/gt/scene07.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene07.jpg"><img class="img-fluid" src="image/results/ours/scene07.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene07.jpg"><img class="img-fluid" src="image/results/mag_l/scene07.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene07.jpg"><img class="img-fluid" src="image/results/mag_g/scene07.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene08.jpg"><img class="img-fluid" src="image/results/gt/scene08.jpg" onmouseover="this.src='image/masks/scene08.jpg'" onmouseout="this.src='image/results/gt/scene08.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene08.jpg"><img class="img-fluid" src="image/results/ours/scene08.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene08.jpg"><img class="img-fluid" src="image/results/mag_l/scene08.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene08.jpg"><img class="img-fluid" src="image/results/mag_g/scene08.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene09.jpg"><img class="img-fluid" src="image/results/gt/scene09.jpg" onmouseover="this.src='image/masks/scene09.jpg'" onmouseout="this.src='image/results/gt/scene09.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene09.jpg"><img class="img-fluid" src="image/results/ours/scene09.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene09.jpg"><img class="img-fluid" src="image/results/mag_l/scene09.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene09.jpg"><img class="img-fluid" src="image/results/mag_g/scene09.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene10.jpg"><img class="img-fluid" src="image/results/gt/scene10.jpg" onmouseover="this.src='image/masks/scene10.jpg'" onmouseout="this.src='image/results/gt/scene10.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene10.jpg"><img class="img-fluid" src="image/results/ours/scene10.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene10.jpg"><img class="img-fluid" src="image/results/mag_l/scene10.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene10.jpg"><img class="img-fluid" src="image/results/mag_g/scene10.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene11.jpg"><img class="img-fluid" src="image/results/gt/scene11.jpg" onmouseover="this.src='image/masks/scene11.jpg'" onmouseout="this.src='image/results/gt/scene11.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene11.jpg"><img class="img-fluid" src="image/results/ours/scene11.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene11.jpg"><img class="img-fluid" src="image/results/mag_l/scene11.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene11.jpg"><img class="img-fluid" src="image/results/mag_g/scene11.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene12.jpg"><img class="img-fluid" src="image/results/gt/scene12.jpg" onmouseover="this.src='image/masks/scene12.jpg'" onmouseout="this.src='image/results/gt/scene12.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene12.jpg"><img class="img-fluid" src="image/results/ours/scene12.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene12.jpg"><img class="img-fluid" src="image/results/mag_l/scene12.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene12.jpg"><img class="img-fluid" src="image/results/mag_g/scene12.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene13.jpg"><img class="img-fluid" src="image/results/gt/scene13.jpg" onmouseover="this.src='image/masks/scene13.jpg'" onmouseout="this.src='image/results/gt/scene13.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene13.jpg"><img class="img-fluid" src="image/results/ours/scene13.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene13.jpg"><img class="img-fluid" src="image/results/mag_l/scene13.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene13.jpg"><img class="img-fluid" src="image/results/mag_g/scene13.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene14.jpg"><img class="img-fluid" src="image/results/gt/scene14.jpg" onmouseover="this.src='image/masks/scene14.jpg'" onmouseout="this.src='image/results/gt/scene14.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene14.jpg"><img class="img-fluid" src="image/results/ours/scene14.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene14.jpg"><img class="img-fluid" src="image/results/mag_l/scene14.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene14.jpg"><img class="img-fluid" src="image/results/mag_g/scene14.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene15.jpg"><img class="img-fluid" src="image/results/gt/scene15.jpg" onmouseover="this.src='image/masks/scene15.jpg'" onmouseout="this.src='image/results/gt/scene15.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene15.jpg"><img class="img-fluid" src="image/results/ours/scene15.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene15.jpg"><img class="img-fluid" src="image/results/mag_l/scene15.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene15.jpg"><img class="img-fluid" src="image/results/mag_g/scene15.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene16.jpg"><img class="img-fluid" src="image/results/gt/scene16.jpg" onmouseover="this.src='image/masks/scene16.jpg'" onmouseout="this.src='image/results/gt/scene16.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene16.jpg"><img class="img-fluid" src="image/results/ours/scene16.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene16.jpg"><img class="img-fluid" src="image/results/mag_l/scene16.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene16.jpg"><img class="img-fluid" src="image/results/mag_g/scene16.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene17.jpg"><img class="img-fluid" src="image/results/gt/scene17.jpg" onmouseover="this.src='image/masks/scene17.jpg'" onmouseout="this.src='image/results/gt/scene17.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene17.jpg"><img class="img-fluid" src="image/results/ours/scene17.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene17.jpg"><img class="img-fluid" src="image/results/mag_l/scene17.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene17.jpg"><img class="img-fluid" src="image/results/mag_g/scene17.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene18.jpg"><img class="img-fluid" src="image/results/gt/scene18.jpg" onmouseover="this.src='image/masks/scene18.jpg'" onmouseout="this.src='image/results/gt/scene18.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene18.jpg"><img class="img-fluid" src="image/results/ours/scene18.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene18.jpg"><img class="img-fluid" src="image/results/mag_l/scene18.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene18.jpg"><img class="img-fluid" src="image/results/mag_g/scene18.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene19.jpg"><img class="img-fluid" src="image/results/gt/scene19.jpg" onmouseover="this.src='image/masks/scene19.jpg'" onmouseout="this.src='image/results/gt/scene19.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene19.jpg"><img class="img-fluid" src="image/results/ours/scene19.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene19.jpg"><img class="img-fluid" src="image/results/mag_l/scene19.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene19.jpg"><img class="img-fluid" src="image/results/mag_g/scene19.jpg"></a>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/gt/scene20.jpg"><img class="img-fluid" src="image/results/gt/scene20.jpg" onmouseover="this.src='image/masks/scene20.jpg'" onmouseout="this.src='image/results/gt/scene20.jpg'"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/ours/scene20.jpg"><img class="img-fluid" src="image/results/ours/scene20.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_l/scene20.jpg"><img class="img-fluid" src="image/results/mag_l/scene20.jpg"></a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+          <a href="image/results/mag_g/scene20.jpg"><img class="img-fluid" src="image/results/mag_g/scene20.jpg"></a>
+      </div>
+
+
+
+      </div>
+    </section>
+
+    <!-- Comparison With Barron -->
+
+    <section class="jumbotron text-left bg-light" id="barron">
+      <div class="container">
+
+      <h3 class="my-3">Comparison with Barron et al. (complement to fig. 7)</h3>
+      <!--<div class="text-muted"> Render of each methods. Hover image to see the virtual object mask </div> -->
+      <br>
+
+      <div class="row">
+        <div class="column2" style="text-align:center">
+          <strong>Barron et al.</strong>
+        </div>
+        <div class="column2" style="text-align:center">
+          <strong>Ours</strong>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column2">
+            <img src="image/barron/01-them.jpg" style="width:100%">
+        </div>
+        <div class="column2">
+            <img src="image/barron/01-us.jpg" style="width:100%">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column2">
+            <img src="image/barron/02-them.jpg" style="width:100%">
+        </div>
+        <div class="column2">
+            <img src="image/barron/02-us.jpg" style="width:100%">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column2">
+            <img src="image/barron/04-them.jpg" style="width:100%">
+        </div>
+        <div class="column2">
+            <img src="image/barron/04-us.jpg" style="width:100%">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column2">
+            <img src="image/barron/06-them.jpg" style="width:100%">
+        </div>
+        <div class="column2">
+            <img src="image/barron/06-us.jpg" style="width:100%">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column2">
+            <img src="image/barron/12-them.jpg" style="width:100%">
+        </div>
+        <div class="column2">
+            <img src="image/barron/12-us.jpg" style="width:100%">
+        </div>
+      </div>
+
+      </div>
+    </section>
+
+        <!-- Videos -->
+
+    <section class="jumbotron text-left bg-white" id="demo">
+      <div class="container">
+
+        <h3 class="my-3">Demo</h3>
+        <p class="text-muted">Interactive demo captured with a Kinect V2 where the illumination is computed in real-time (complement to fig. 9).</p>
+        <ul>
+          <li>
+             <p class="text-muted"><strong>The depth is only used to scale the virtual object,</strong> the network only sees the RGB image to estimate the lighting.</p>
+          </li>
+          <li>
+             <p class="text-muted">Note that in this demo the shadows are not composited onto the surfaces.</p>
+          </li>
+        </ul>
+        <!--<div class="text-muted"> Render of each methods. Hover image to see the virtual object mask </div> -->
+        <br>
+
+        <p><strong>Moving the object in the scene:</strong></p>
+        <br>
+        <div class="row">
+          <div class="column">
+            <video poster="" controls="" width="100%">
+              <source src="videos/demo/demo_00_1.mp4" type="video/mp4">
+              Your browser does not support the video tag. 
+            </video>
+          </div>
+        </div>
+        <br>
+        <p><strong>Moving the light source:</strong></p>
+        <br>
+        <div class="row">
+          <div class="column">
+            <video poster="" controls="" width="100%">
+              <source src="videos/demo/demo_00_2.mp4" type="video/mp4">
+              Your browser does not support the video tag. 
+            </video>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="column">
+            <video poster="" controls="" width="100%">
+              <source src="videos/demo/demo_01.mp4" type="video/mp4">
+              Your browser does not support the video tag. 
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="jumbotron text-left bg-white" id="videos">
+      <div class="container">
+
+      <h3 class="my-3">Videos</h3>
+      <h4 class="my-3">Synthetic scenes</h4>
+
+      <p class="text-muted">Several videos from the synthetic test set. The illumination is updated interactively, the depth is used to scale the object.</p>
+      <ul>
+          <li>
+             <p class="text-muted"><strong>The depth is only used to scale the virtual object,</strong> the network only sees the RGB image to estimate the lighting.</p>
+          </li>
+          <li>
+             <p class="text-muted">Note that in this demo the shadows are not composited onto the surfaces.</p>
+          </li>
+        </ul>
+      </p>
+      <br>
+      <div class="row">
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/synthetic/synth_00.mp4" type="video/mp4" alt="test test">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/synthetic/synth_01.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/synthetic/synth_02.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/synthetic/synth_03.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/synthetic/synth_04.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/synthetic/synth_05.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/synthetic/synth_06.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/synthetic/synth_07.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/synthetic/synth_08.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+      </div>
+
+      <br>
+
+       <h4 class="my-3">Real scenes</h4>
+       <p class="text-muted">Several videos on real images. The illumination is computed interactively. A plane was fitted to simulate depth on most images.
+       <br>
+        <a href="videos/real/source.txt">[image source]</a>
+       </p>
+      <br>
+      <div class="row">
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/real/real_00.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/real/real_01.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/real/real_02.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/real/real_03.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/real/real_04.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/real/real_05.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/real/real_06.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/real/real_07.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/real/real_08.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+      </div>
+      </div>
+    </section>
+
+
+    <!-- Failure cases -->
+
+
+    <section class="jumbotron text-left bg-white" id="fail">
+      <div class="container">
+
+      <h3 class="my-3">Failure cases (complement to fig. 8)</h3>
+      <br>
+      <a href="videos/fails/source.txt">[image source]</a>
+      </p>
+      <!--<
+      <video poster="index_files/images/wateringcan.jpg" controls="" width="100%" height="225">
+        <source src="http://rachmaninoff.gel.ulaval.ca/static/6dofobjecttracking/videos/wateringcan.mp4" type="video/mp4">
+        Your browser does not support the video tag. 
+      </video> -->
+      <div class="row">
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/fails/fail_00.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/fails/fail_01.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+        <div class="column3">
+          <video poster="" controls="" width="100%">
+            <source src="videos/fails/fail_02.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <!--<p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>-->
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>
