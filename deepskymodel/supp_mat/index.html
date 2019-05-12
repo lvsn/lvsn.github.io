@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./favicon.ico">
+
+    <title>Deep Sky Modeling for Single Image Outdoor Lighting Estimation &mdash; Supplementary Material</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Supplementary Material</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-expanded="false" aria-controls="navbarCollapse" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <!-- <a class="navbar-brand" href="#">Sticky footer</a> -->
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#evaluation_dataset">Panorama Evaluation Dataset</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#lighting_estimation">Lighting Estimation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#study">User Study Images</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#sky_in_filling">Sky In-Filling</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#umap">Semantic Mapping</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <div class="container">
+      <div class="mt-1">
+        <h1>Deep Sky Modeling for Single Image Outdoor Lighting Estimation &mdash; Supplementary Material</h1>
+      </div>
+      <p class="lead">
+        The purpose of this document is to extend the dataset and results presented in the main paper and provide additional analysis of our proposed model. Specifically, examples of our panorama dataset as well as more results on lighting estimation insertion are provided. Furthermore, we provide the images used for our user study. Lastly, we analyze our model by showing two experiments to demonstrate the generalization capabilities of our proposed model, first on sky in-filling and then semantic mapping.
+      </p>
+
+      <div style="clear:both; height:2em;"></div>
+      <h3>Table of Contents</h3>
+      <p>
+      <ol>
+        <li>
+          <a href="#evaluation_dataset">Evaluation dataset (complements sec. 6.1)</span></a>
+        </li>
+        <li>
+          <a href="#lighting_estimation">Supplementary lighting estimation results (extends fig. 7)</a>
+        </li>
+        <li>
+          <a href="#study">User Study Images (complements table 2)</a>
+        </li>
+        <li>
+          <a href="#sky_in_filling">Sky In-Filling</a>
+        </li>
+        <li>
+          <a href="#umap">Semantic Mapping</a>
+        </li>
+      </ol>
+      </p>
+
+      <a class="anchor" name="evaluation_dataset"></a>
+      <div style="clear:both; height:4em;"></div>
+      <h2>1. Evaluation dataset</h2>
+
+      <p>In this section, we present some panoramas from our evaluation dataset presented in sec. 6.1.</p>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <img src="figures/evaluation_dataset_excerpt.jpg"/><br/>
+          Figure 1.1: Subset of our 206-panorama evaluation dataset. Each panorama was tonemapped using the Reinhard tonemapping operator with a gamma for display.
+        </div>
+      </div>
+
+      <a class="anchor" name="lighting_estimation"></a>
+      <div style="clear:both; height:4em;"></div>
+      <h2>2. Lighting estimations</h2>
+
+      <p>This section presents additional lighting estimations, extending the results shown in fig. 7.</p>
+
+      <div class="row" style="padding-left:300px;">
+        <span style="width:20px;">&nbsp;</span><span style="width:213px; text-align:center;">image</span><span style="width:128px; text-align:center;">GT</span><span style="width:128px; text-align:center;">ours</span><span style="width:128px; text-align:left; padding-top: 0.4em; font-size:0.7em;">Hold-Geoffroy et al'17</span><br/>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A5764 Panorama_hdr_5.png"/><img style="width:128px;" src="figures/light_est/9C4A5764 Panorama_hdr_5_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A5764 Panorama_hdr_5_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A5764 Panorama_hdr_5_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A5764 Panorama_hdr_5_render_gt.png"/><img src="figures/light_est/9C4A5764 Panorama_hdr_5_render_ours_0.1301_0.0555.png"/><img src="figures/light_est/9C4A5764 Panorama_hdr_5_render_cvpr17_2.5027_0.2012.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A1994 Panorama_hdr_1.png"/><img style="width:128px;" src="figures/light_est/9C4A1994 Panorama_hdr_1_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A1994 Panorama_hdr_1_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A1994 Panorama_hdr_1_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A1994 Panorama_hdr_1_render_gt.png"/><img src="figures/light_est/9C4A1994 Panorama_hdr_1_render_ours_0.0716_0.0700.png"/><img src="figures/light_est/9C4A1994 Panorama_hdr_1_render_cvpr17_2.2700_0.1062.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A8410 Panorama_hdr_3.png"/><img style="width:128px;" src="figures/light_est/9C4A8410 Panorama_hdr_3_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A8410 Panorama_hdr_3_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A8410 Panorama_hdr_3_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A8410 Panorama_hdr_3_render_gt.png"/><img src="figures/light_est/9C4A8410 Panorama_hdr_3_render_ours_0.0612_0.0294.png"/><img src="figures/light_est/9C4A8410 Panorama_hdr_3_render_cvpr17_1.1360_0.0802.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A5638 Panorama_hdr_6.png"/><img style="width:128px;" src="figures/light_est/9C4A5638 Panorama_hdr_6_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A5638 Panorama_hdr_6_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A5638 Panorama_hdr_6_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A5638 Panorama_hdr_6_render_gt.png"/><img src="figures/light_est/9C4A5638 Panorama_hdr_6_render_ours_0.1274_0.0467.png"/><img src="figures/light_est/9C4A5638 Panorama_hdr_6_render_cvpr17_3.6886_0.1666.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A1322 Panorama_hdr_2.png"/><img style="width:128px;" src="figures/light_est/9C4A1322 Panorama_hdr_2_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A1322 Panorama_hdr_2_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A1322 Panorama_hdr_2_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A1322 Panorama_hdr_2_render_gt.png"/><img src="figures/light_est/9C4A1322 Panorama_hdr_2_render_ours_0.2610_0.1323.png"/><img src="figures/light_est/9C4A1322 Panorama_hdr_2_render_cvpr17_0.7312_0.1378.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A6275 Panorama_hdr_3.png"/><img style="width:128px;" src="figures/light_est/9C4A6275 Panorama_hdr_3_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A6275 Panorama_hdr_3_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A6275 Panorama_hdr_3_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A6275 Panorama_hdr_3_render_gt.png"/><img src="figures/light_est/9C4A6275 Panorama_hdr_3_render_ours_0.1763_0.0590.png"/><img src="figures/light_est/9C4A6275 Panorama_hdr_3_render_cvpr17_1.6469_0.2143.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A8885 Panorama_hdr_3.png"/><img style="width:128px;" src="figures/light_est/9C4A8885 Panorama_hdr_3_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A8885 Panorama_hdr_3_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A8885 Panorama_hdr_3_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A8885 Panorama_hdr_3_render_gt.png"/><img src="figures/light_est/9C4A8885 Panorama_hdr_3_render_ours_0.1631_0.0956.png"/><img src="figures/light_est/9C4A8885 Panorama_hdr_3_render_cvpr17_2.3441_0.0965.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A6275 Panorama_hdr_4.png"/><img style="width:128px;" src="figures/light_est/9C4A6275 Panorama_hdr_4_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A6275 Panorama_hdr_4_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A6275 Panorama_hdr_4_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A6275 Panorama_hdr_4_render_gt.png"/><img src="figures/light_est/9C4A6275 Panorama_hdr_4_render_ours_0.0620_0.0613.png"/><img src="figures/light_est/9C4A6275 Panorama_hdr_4_render_cvpr17_2.1768_0.2104.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A0964 Panorama_hdr_3.png"/><img style="width:128px;" src="figures/light_est/9C4A0964 Panorama_hdr_3_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A0964 Panorama_hdr_3_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A0964 Panorama_hdr_3_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A0964 Panorama_hdr_3_render_gt.png"/><img src="figures/light_est/9C4A0964 Panorama_hdr_3_render_ours_0.1193_0.0344.png"/><img src="figures/light_est/9C4A0964 Panorama_hdr_3_render_cvpr17_0.8099_0.1379.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A9837 Panorama_hdr_0.png"/><img style="width:128px;" src="figures/light_est/9C4A9837 Panorama_hdr_0_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A9837 Panorama_hdr_0_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A9837 Panorama_hdr_0_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A9837 Panorama_hdr_0_render_gt.png"/><img src="figures/light_est/9C4A9837 Panorama_hdr_0_render_ours_0.3311_0.0686.png"/><img src="figures/light_est/9C4A9837 Panorama_hdr_0_render_cvpr17_2.3892_0.1809.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A9711 Panorama_hdr_5.png"/><img style="width:128px;" src="figures/light_est/9C4A9711 Panorama_hdr_5_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A9711 Panorama_hdr_5_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A9711 Panorama_hdr_5_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A9711 Panorama_hdr_5_render_gt.png"/><img src="figures/light_est/9C4A9711 Panorama_hdr_5_render_ours_0.1269_0.0555.png"/><img src="figures/light_est/9C4A9711 Panorama_hdr_5_render_cvpr17_3.2884_0.1358.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A5421 Panorama_hdr_3.png"/><img style="width:128px;" src="figures/light_est/9C4A5421 Panorama_hdr_3_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A5421 Panorama_hdr_3_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A5421 Panorama_hdr_3_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A5421 Panorama_hdr_3_render_gt.png"/><img src="figures/light_est/9C4A5421 Panorama_hdr_3_render_ours_0.1908_0.0354.png"/><img src="figures/light_est/9C4A5421 Panorama_hdr_3_render_cvpr17_3.1030_0.1409.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A9109 Panorama_hdr_1.png"/><img style="width:128px;" src="figures/light_est/9C4A9109 Panorama_hdr_1_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A9109 Panorama_hdr_1_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A9109 Panorama_hdr_1_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A9109 Panorama_hdr_1_render_gt.png"/><img src="figures/light_est/9C4A9109 Panorama_hdr_1_render_ours_0.3265_0.0950.png"/><img src="figures/light_est/9C4A9109 Panorama_hdr_1_render_cvpr17_2.9984_0.0607.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A3958 Panorama_hdr_3.png"/><img style="width:128px;" src="figures/light_est/9C4A3958 Panorama_hdr_3_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A3958 Panorama_hdr_3_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A3958 Panorama_hdr_3_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A3958 Panorama_hdr_3_render_gt.png"/><img src="figures/light_est/9C4A3958 Panorama_hdr_3_render_ours_0.3691_0.0543.png"/><img src="figures/light_est/9C4A3958 Panorama_hdr_3_render_cvpr17_1.4234_0.0770.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A7584 Panorama_hdr_1.png"/><img style="width:128px;" src="figures/light_est/9C4A7584 Panorama_hdr_1_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A7584 Panorama_hdr_1_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A7584 Panorama_hdr_1_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A7584 Panorama_hdr_1_render_gt.png"/><img src="figures/light_est/9C4A7584 Panorama_hdr_1_render_ours_0.1477_0.1262.png"/><img src="figures/light_est/9C4A7584 Panorama_hdr_1_render_cvpr17_2.0041_0.1319.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A0531 Panorama_hdr_6.png"/><img style="width:128px;" src="figures/light_est/9C4A0531 Panorama_hdr_6_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A0531 Panorama_hdr_6_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A0531 Panorama_hdr_6_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A0531 Panorama_hdr_6_render_gt.png"/><img src="figures/light_est/9C4A0531 Panorama_hdr_6_render_ours_0.3030_0.1509.png"/><img src="figures/light_est/9C4A0531 Panorama_hdr_6_render_cvpr17_2.1819_0.1943.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A1784 Panorama_hdr_6.png"/><img style="width:128px;" src="figures/light_est/9C4A1784 Panorama_hdr_6_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A1784 Panorama_hdr_6_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A1784 Panorama_hdr_6_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A1784 Panorama_hdr_6_render_gt.png"/><img src="figures/light_est/9C4A1784 Panorama_hdr_6_render_ours_0.5284_0.0334.png"/><img src="figures/light_est/9C4A1784 Panorama_hdr_6_render_cvpr17_3.2846_0.1108.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A8843 Panorama_hdr_1.png"/><img style="width:128px;" src="figures/light_est/9C4A8843 Panorama_hdr_1_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A8843 Panorama_hdr_1_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A8843 Panorama_hdr_1_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A8843 Panorama_hdr_1_render_gt.png"/><img src="figures/light_est/9C4A8843 Panorama_hdr_1_render_ours_0.1135_0.0702.png"/><img src="figures/light_est/9C4A8843 Panorama_hdr_1_render_cvpr17_1.8544_0.0940.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A9403 Panorama_hdr_2.png"/><img style="width:128px;" src="figures/light_est/9C4A9403 Panorama_hdr_2_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A9403 Panorama_hdr_2_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A9403 Panorama_hdr_2_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A9403 Panorama_hdr_2_render_gt.png"/><img src="figures/light_est/9C4A9403 Panorama_hdr_2_render_ours_0.2243_0.0606.png"/><img src="figures/light_est/9C4A9403 Panorama_hdr_2_render_cvpr17_3.3574_0.1195.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A6772 Panorama_hdr_1.png"/><img style="width:128px;" src="figures/light_est/9C4A6772 Panorama_hdr_1_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A6772 Panorama_hdr_1_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A6772 Panorama_hdr_1_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A6772 Panorama_hdr_1_render_gt.png"/><img src="figures/light_est/9C4A6772 Panorama_hdr_1_render_ours_0.1494_0.0789.png"/><img src="figures/light_est/9C4A6772 Panorama_hdr_1_render_cvpr17_2.0446_0.1747.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A8130 Panorama_hdr_4.png"/><img style="width:128px;" src="figures/light_est/9C4A8130 Panorama_hdr_4_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A8130 Panorama_hdr_4_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A8130 Panorama_hdr_4_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A8130 Panorama_hdr_4_render_gt.png"/><img src="figures/light_est/9C4A8130 Panorama_hdr_4_render_ours_0.1444_0.1444.png"/><img src="figures/light_est/9C4A8130 Panorama_hdr_4_render_cvpr17_1.0072_0.1265.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A4287 Panorama_hdr_3.png"/><img style="width:128px;" src="figures/light_est/9C4A4287 Panorama_hdr_3_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A4287 Panorama_hdr_3_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A4287 Panorama_hdr_3_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A4287 Panorama_hdr_3_render_gt.png"/><img src="figures/light_est/9C4A4287 Panorama_hdr_3_render_ours_0.2617_0.0382.png"/><img src="figures/light_est/9C4A4287 Panorama_hdr_3_render_cvpr17_2.6277_0.1414.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A9445 Panorama_hdr_0.png"/><img style="width:128px;" src="figures/light_est/9C4A9445 Panorama_hdr_0_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A9445 Panorama_hdr_0_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A9445 Panorama_hdr_0_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A9445 Panorama_hdr_0_render_gt.png"/><img src="figures/light_est/9C4A9445 Panorama_hdr_0_render_ours_0.1294_0.1253.png"/><img src="figures/light_est/9C4A9445 Panorama_hdr_0_render_cvpr17_2.3158_0.1560.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A9361 Panorama_hdr_6.png"/><img style="width:128px;" src="figures/light_est/9C4A9361 Panorama_hdr_6_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A9361 Panorama_hdr_6_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A9361 Panorama_hdr_6_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A9361 Panorama_hdr_6_render_gt.png"/><img src="figures/light_est/9C4A9361 Panorama_hdr_6_render_ours_0.0759_0.0738.png"/><img src="figures/light_est/9C4A9361 Panorama_hdr_6_render_cvpr17_2.8824_0.1391.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A1140 Panorama_hdr_4.png"/><img style="width:128px;" src="figures/light_est/9C4A1140 Panorama_hdr_4_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A1140 Panorama_hdr_4_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A1140 Panorama_hdr_4_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A1140 Panorama_hdr_4_render_gt.png"/><img src="figures/light_est/9C4A1140 Panorama_hdr_4_render_ours_0.1290_0.0808.png"/><img src="figures/light_est/9C4A1140 Panorama_hdr_4_render_cvpr17_1.6091_0.1223.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A7829 Panorama_hdr_6.png"/><img style="width:128px;" src="figures/light_est/9C4A7829 Panorama_hdr_6_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A7829 Panorama_hdr_6_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A7829 Panorama_hdr_6_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A7829 Panorama_hdr_6_render_gt.png"/><img src="figures/light_est/9C4A7829 Panorama_hdr_6_render_ours_0.1317_0.0948.png"/><img src="figures/light_est/9C4A7829 Panorama_hdr_6_render_cvpr17_1.0312_0.1028.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A1364 Panorama_hdr_1.png"/><img style="width:128px;" src="figures/light_est/9C4A1364 Panorama_hdr_1_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A1364 Panorama_hdr_1_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A1364 Panorama_hdr_1_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A1364 Panorama_hdr_1_render_gt.png"/><img src="figures/light_est/9C4A1364 Panorama_hdr_1_render_ours_0.3271_0.0623.png"/><img src="figures/light_est/9C4A1364 Panorama_hdr_1_render_cvpr17_2.8828_0.1174.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A9837 Panorama_hdr_1.png"/><img style="width:128px;" src="figures/light_est/9C4A9837 Panorama_hdr_1_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A9837 Panorama_hdr_1_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A9837 Panorama_hdr_1_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A9837 Panorama_hdr_1_render_gt.png"/><img src="figures/light_est/9C4A9837 Panorama_hdr_1_render_ours_0.0764_0.0719.png"/><img src="figures/light_est/9C4A9837 Panorama_hdr_1_render_cvpr17_3.1160_0.1586.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A5113 Panorama_hdr_4.png"/><img style="width:128px;" src="figures/light_est/9C4A5113 Panorama_hdr_4_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A5113 Panorama_hdr_4_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A5113 Panorama_hdr_4_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A5113 Panorama_hdr_4_render_gt.png"/><img src="figures/light_est/9C4A5113 Panorama_hdr_4_render_ours_0.1729_0.0968.png"/><img src="figures/light_est/9C4A5113 Panorama_hdr_4_render_cvpr17_1.8975_0.2087.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A1826 Panorama_hdr_1.png"/><img style="width:128px;" src="figures/light_est/9C4A1826 Panorama_hdr_1_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A1826 Panorama_hdr_1_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A1826 Panorama_hdr_1_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A1826 Panorama_hdr_1_render_gt.png"/><img src="figures/light_est/9C4A1826 Panorama_hdr_1_render_ours_0.1008_0.0556.png"/><img src="figures/light_est/9C4A1826 Panorama_hdr_1_render_cvpr17_1.6978_0.1239.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A6646 Panorama_hdr_6.png"/><img style="width:128px;" src="figures/light_est/9C4A6646 Panorama_hdr_6_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A6646 Panorama_hdr_6_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A6646 Panorama_hdr_6_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A6646 Panorama_hdr_6_render_gt.png"/><img src="figures/light_est/9C4A6646 Panorama_hdr_6_render_ours_0.3361_0.1214.png"/><img src="figures/light_est/9C4A6646 Panorama_hdr_6_render_cvpr17_3.4371_0.0885.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A2036 Panorama_hdr_5.png"/><img style="width:128px;" src="figures/light_est/9C4A2036 Panorama_hdr_5_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A2036 Panorama_hdr_5_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A2036 Panorama_hdr_5_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A2036 Panorama_hdr_5_render_gt.png"/><img src="figures/light_est/9C4A2036 Panorama_hdr_5_render_ours_0.2189_0.1596.png"/><img src="figures/light_est/9C4A2036 Panorama_hdr_5_render_cvpr17_3.8339_0.1803.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A5512 Panorama_hdr_2.png"/><img style="width:128px;" src="figures/light_est/9C4A5512 Panorama_hdr_2_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A5512 Panorama_hdr_2_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A5512 Panorama_hdr_2_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A5512 Panorama_hdr_2_render_gt.png"/><img src="figures/light_est/9C4A5512 Panorama_hdr_2_render_ours_0.4858_0.0405.png"/><img src="figures/light_est/9C4A5512 Panorama_hdr_2_render_cvpr17_1.3856_0.2798.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A8515 Panorama_hdr_4.png"/><img style="width:128px;" src="figures/light_est/9C4A8515 Panorama_hdr_4_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A8515 Panorama_hdr_4_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A8515 Panorama_hdr_4_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A8515 Panorama_hdr_4_render_gt.png"/><img src="figures/light_est/9C4A8515 Panorama_hdr_4_render_ours_0.1218_0.1215.png"/><img src="figures/light_est/9C4A8515 Panorama_hdr_4_render_cvpr17_1.8434_0.0359.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A9410 Panorama_hdr_3.png"/><img style="width:128px;" src="figures/light_est/9C4A9410 Panorama_hdr_3_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A9410 Panorama_hdr_3_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A9410 Panorama_hdr_3_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A9410 Panorama_hdr_3_render_gt.png"/><img src="figures/light_est/9C4A9410 Panorama_hdr_3_render_ours_0.1405_0.0994.png"/><img src="figures/light_est/9C4A9410 Panorama_hdr_3_render_cvpr17_2.8671_0.1173.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A1189 Panorama_hdr_5.png"/><img style="width:128px;" src="figures/light_est/9C4A1189 Panorama_hdr_5_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A1189 Panorama_hdr_5_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A1189 Panorama_hdr_5_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A1189 Panorama_hdr_5_render_gt.png"/><img src="figures/light_est/9C4A1189 Panorama_hdr_5_render_ours_0.2342_0.1004.png"/><img src="figures/light_est/9C4A1189 Panorama_hdr_5_render_cvpr17_2.7829_0.1304.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A9452 Panorama_hdr_5.png"/><img style="width:128px;" src="figures/light_est/9C4A9452 Panorama_hdr_5_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A9452 Panorama_hdr_5_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A9452 Panorama_hdr_5_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A9452 Panorama_hdr_5_render_gt.png"/><img src="figures/light_est/9C4A9452 Panorama_hdr_5_render_ours_0.1697_0.0461.png"/><img src="figures/light_est/9C4A9452 Panorama_hdr_5_render_cvpr17_2.8436_0.1398.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A4833 Panorama_hdr_5.png"/><img style="width:128px;" src="figures/light_est/9C4A4833 Panorama_hdr_5_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A4833 Panorama_hdr_5_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A4833 Panorama_hdr_5_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A4833 Panorama_hdr_5_render_gt.png"/><img src="figures/light_est/9C4A4833 Panorama_hdr_5_render_ours_0.2050_0.1111.png"/><img src="figures/light_est/9C4A4833 Panorama_hdr_5_render_cvpr17_2.1808_0.1494.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A9235 Panorama_hdr_6.png"/><img style="width:128px;" src="figures/light_est/9C4A9235 Panorama_hdr_6_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A9235 Panorama_hdr_6_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A9235 Panorama_hdr_6_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A9235 Panorama_hdr_6_render_gt.png"/><img src="figures/light_est/9C4A9235 Panorama_hdr_6_render_ours_0.3364_0.0894.png"/><img src="figures/light_est/9C4A9235 Panorama_hdr_6_render_cvpr17_2.4594_0.1291.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A9760 Panorama_hdr_1.png"/><img style="width:128px;" src="figures/light_est/9C4A9760 Panorama_hdr_1_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A9760 Panorama_hdr_1_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A9760 Panorama_hdr_1_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A9760 Panorama_hdr_1_render_gt.png"/><img src="figures/light_est/9C4A9760 Panorama_hdr_1_render_ours_0.2017_0.0935.png"/><img src="figures/light_est/9C4A9760 Panorama_hdr_1_render_cvpr17_1.1043_0.1435.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A3916 Panorama_hdr_4.png"/><img style="width:128px;" src="figures/light_est/9C4A3916 Panorama_hdr_4_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A3916 Panorama_hdr_4_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A3916 Panorama_hdr_4_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A3916 Panorama_hdr_4_render_gt.png"/><img src="figures/light_est/9C4A3916 Panorama_hdr_4_render_ours_0.6904_0.0497.png"/><img src="figures/light_est/9C4A3916 Panorama_hdr_4_render_cvpr17_3.1720_0.1267.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A4700Panorama_hdr_3.png"/><img style="width:128px;" src="figures/light_est/9C4A4700Panorama_hdr_3_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A4700Panorama_hdr_3_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A4700Panorama_hdr_3_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A4700Panorama_hdr_3_render_gt.png"/><img src="figures/light_est/9C4A4700Panorama_hdr_3_render_ours_0.2042_0.0311.png"/><img src="figures/light_est/9C4A4700Panorama_hdr_3_render_cvpr17_2.3408_0.1235.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A6772 Panorama_hdr_0.png"/><img style="width:128px;" src="figures/light_est/9C4A6772 Panorama_hdr_0_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A6772 Panorama_hdr_0_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A6772 Panorama_hdr_0_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A6772 Panorama_hdr_0_render_gt.png"/><img src="figures/light_est/9C4A6772 Panorama_hdr_0_render_ours_0.1736_0.0668.png"/><img src="figures/light_est/9C4A6772 Panorama_hdr_0_render_cvpr17_1.9995_0.1657.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A0741 Panorama_hdr_0.png"/><img style="width:128px;" src="figures/light_est/9C4A0741 Panorama_hdr_0_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A0741 Panorama_hdr_0_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A0741 Panorama_hdr_0_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A0741 Panorama_hdr_0_render_gt.png"/><img src="figures/light_est/9C4A0741 Panorama_hdr_0_render_ours_0.2260_0.1091.png"/><img src="figures/light_est/9C4A0741 Panorama_hdr_0_render_cvpr17_3.9665_0.0567.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A8172 Panorama_hdr_4.png"/><img style="width:128px;" src="figures/light_est/9C4A8172 Panorama_hdr_4_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A8172 Panorama_hdr_4_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A8172 Panorama_hdr_4_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A8172 Panorama_hdr_4_render_gt.png"/><img src="figures/light_est/9C4A8172 Panorama_hdr_4_render_ours_0.1093_0.0768.png"/><img src="figures/light_est/9C4A8172 Panorama_hdr_4_render_cvpr17_1.9054_0.0599.png"/><div style="clear:both;"></div></div>
+<div class="col-md-12" style="text-align:left;width:600px;"><img style="height:160px;float:left;" src="figures/light_est/9C4A5722 Panorama_hdr_6.png"/><img style="width:128px;" src="figures/light_est/9C4A5722 Panorama_hdr_6_envmap_gt.png"/><img style="width:128px;" src="figures/light_est/9C4A5722 Panorama_hdr_6_envmap_ours.png"/><img style="width:128px;" src="figures/light_est/9C4A5722 Panorama_hdr_6_envmap_cvpr17.png"/><br/><img src="figures/light_est/9C4A5722 Panorama_hdr_6_render_gt.png"/><img src="figures/light_est/9C4A5722 Panorama_hdr_6_render_ours_0.1380_0.0284.png"/><img src="figures/light_est/9C4A5722 Panorama_hdr_6_render_cvpr17_2.3697_0.2103.png"/><div style="clear:both;"></div></div>
+      Figure 2.1: Additional lighting estimations from a single image taken from our evaluation panorama dataset, extending fig. 7.
+      </div>
+
+      <a class="anchor" name="study"></a>
+      <div style="clear:both; height:4em;"></div>
+      <h2>3. User study images</h2>
+
+      <p>We now present the images used for our user study (sec. 6.4). The bird inserted using the lighting estimated by our method is highlighted in green.</p>
+
+      <div class="row">
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/0_A.png"/>
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/0_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/1_A.png"/>
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/1_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/2_A.png"/>
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/2_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/3_A.png"/>
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/3_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/4_A.png"/>
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/4_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/5_A.png"/>
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/5_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/6_A.png"/>
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/6_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/7_A.png"/>
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/7_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/8_A.png"/>
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/8_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/9_A.png"/>
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/9_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/10_A.png"/>
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/10_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/11_A.png"/>
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/11_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/12_A.png"/>
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/12_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/13_A.png"/>
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/13_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/14_A.png"/>
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/14_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/15_A.png"/>
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/15_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/16_A.png"/>
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/16_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/17_A.png"/>
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/17_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/18_A.png"/>
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/18_B.png"/>
+        </div>
+        <div class="col-md-12 text-center" style="text-align:center;">
+          <img style="border:3px solid #0F0;width:300px;" src="figures/user_study/19_A.png"/>
+          <img style="border:3px solid white;width:300px;" src="figures/user_study/19_B.png"/>
+        </div>
+        
+      </div>
+
+      <a class="anchor" name="sky_in_filling"></a>
+      <div style="clear:both; height:4em;"></div>
+      <h2>4. Sky In-Filling</h2>
+
+      <p>To ensure the robustness of our learned sky model to buildings and other sky occluders, we ask our sky model to reconstruct the sky appearance over the whole sky hemisphere during training, even when the input pixels are masked. We are now interested in our model's capability to extrapolate plausible lighting distributions in regions missing from the input panorama, effectively performing sky in-filling. From partially visible skies (fig. 4.1, left), we observe that our reconstruction yields plausible skies (right), suggesting our sky model understands plausible sky appearance.</p>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <img style="width:500px" src="figures/infilling.jpg"/><br/>
+          Figure 4.1: Sky In-Filling examples. Given a sky with masked regions (left), our sky model fills the missing pixels and provides a plausible reconstruction of the entire sky with respect to the visible context. Panoramas were tonemapped for display.
+        </div>
+      </div>
+
+      <a class="anchor" name="umap"></a>
+      <div style="clear:both; height:4em;"></div>
+      <h2>5. Semantic Mapping</h2>
+
+      <p>We further analyze our sky model by applying <a href="https://github.com/lmcinnes/umap">UMAP</a> to the sky parameters <span style="font-weight:bold">z</span> from our test set and show the reconstructed skies on the resulting coordinates on fig. 5.1. This mapping suggests that our sky model understands some high-level semantics about the sky as we see some clear trends such as sun elevation and intensity.</p>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <img style="width:100%" src="figures/umap.png"/><br/>
+          Figure 5.1: Diverse sky reconstructions shown in function of the sky latent representation <span style="font-weight:bold">z</span> of our proposed method using <a href="https://github.com/lmcinnes/umap">UMAP</a> to reduce dimensionality from 64 to 2. This map suggests our sky model understands high-level semantics about the lighting like sun elevation (vertical axis) and cloudiness (horizontal axis).
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="footer navbar-fixed-bottom">
+      <div class="container">
+        <span class="text-muted">Deep Sky Modeling for Single Image Outdoor Lighting Estimation &mdash; Supplementary Material &mdash; CVPR 2019</span>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./js/lightbox-plus-jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+  </body>
+</html>
