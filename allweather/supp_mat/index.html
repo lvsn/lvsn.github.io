@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./favicon.ico">
+
+    <title>All-Weather Deep Outdoor Lighting Estimation, Supplementary Material</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/lightbox.min.css" rel="stylesheet">
+    <link href="./css/extra.css" rel="stylesheet">
+    <link href="./css/cell.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="pos-f-t">
+      <!-- <div class="collapse" id="navbar-header">
+        <div class="container bg-inverse p-1">
+          <h3>Collapsed content</h3>
+          <p>Toggleable via the navbar brand.</p>
+        </div>
+      </div> -->
+      <nav class="navbar navbar-light navbar-static-top bg-faded">
+        <div class="container">
+          <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-expanded="false" aria-controls="exCollapsingNavbar2" aria-label="Toggle navigation"></button>
+          <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+            <!-- <a class="navbar-brand" href="#">Sticky footer</a> -->
+            <ul class="nav navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="#title">Table of Contents</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="#panonet">PanoNet</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#cropnet-examples">CropNet</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#viewpoints">Different viewpoints</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#editing">Light editing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#relight">Relighting examples</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#gradcam">Grad-CAM</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Begin page content -->
+    <div class="container">
+      <a class="anchor" name="title"></a>
+      <div class="mt-1">
+        <h1>All-Weather Deep Outdoor Lighting Estimation &mdash; Supplementary Material</h1>
+      </div>
+      <p class="lead">
+       This document is an extension of the explanations, results and analysis presented in the main paper.
+       More <a class="nav-link" href="#panonet-qualitative">qualitative</a> and <a class="nav-link" href="#panonet-quantitative">quantitative</a> results are provided for PanoNet. 
+       More qualitative predictions on the CropNet are provided on two datasets (<a href="#cropnet-outdoor">HDR outdoor panorama</a>  and <a href="#cropnet-sun360">SUN360</a>) compared with the state-of-the-art approach.
+
+       In addition, we show the lighting estimation for different viewpoints in a panorama (<a class="nav-link" href="#viewpoints">here</a>) and the ability of changing the predicted lighting (<a class="nav-link" href="#editing">here</a>). All the images used in this file are from our test dataset, our networks (PanoNet and CropNet) never saw these images in the training stage.
+      </p>
+
+      <h3>Table of Contents</h3>
+      <p>
+      <ol>
+        <li>
+        <a href="#panonet">Lighting estimation for panoramas (PanoNet qualitative evaluation, extends fig. 5)</a>
+        </li>
+        <li>
+          <a href="#cropnet-examples">Lighting estimation for limited field of view images (CropNet evaluation)</a>
+          <ol>
+            <li><a href="#cropnet-outdoor">On HDR panoramas(extends fig. 6)</a></li>
+            <li><a href="#cropnet-sun360">On SUN360 panoramas (extends fig. 8)</a></li>
+          </ol>
+        </li>
+        <li>
+          <a href="#viewpoints">Lighting estimation for different viewpoints</a>
+        </li>
+        <li>
+          <a href="#editing">Editing light estimation</a>
+        </li>
+        <li>
+          <a href="#relight">Relighting examples</a>
+        </li>
+        <li>
+          <a href="#gradcam">Visualizing the cues for lighting estimation with Grad-CAM</a>
+        </li>
+      </ol>
+      </p>
+<!-- 
+  Panonet examples </br><font size="13" color="red">TODO: work on the text!</font>
+ -->
+      <a class="anchor" name="panonet"></a>
+      <a class="anchor" name="panonet-qualitative"></a>
+      <h2>1. Lighting estimation for panoramas (PanoNet evaluation)</h2>
+      <div style="clear:both"></div>
+      <!-- <h3>1.1 Qualitative results</h3> -->
+      <p>We estimate outdoor lighting parameters from panoramas, and compare our PanoNet method with the state-of-the-art approaches ([Hold-Geoffroy et al.'17], and [Zhang and Lalonde '17]), extending the results for fig. 5 in the paper.
+      Each row shows a different example. 
+      The first column shows the input panorama. The second column is the estimated HW sky and LM sky from [Hold-Geoffroy et al.'17](top) and PanoNet (bottom). The renders from left to right are generated with the lighting from [Hold-Geoffroy et al.'17], [Zhang and Lalonde '17], PanoNet and ground truth HDR. 
+      Quantitative results can be found in fig. 4 of the main paper.
+      </p>
+
+      <div class="row">
+        <div class="col-md-3"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;">Input panorama </h6> </div>
+
+        <div class="col-md-3"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;">HW sky and LM sky </h6></div>
+
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-3"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;">[HG et al.'17]</h6></div>
+            <div class="col-md-3"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;">[Zhang and Lalonde '17]</h6></div>
+            <div class="col-md-3"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;">Ours (PanoNet)</h6></div>
+            <div class="col-md-3"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;">Ground truth</h6></div>
+        </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/01.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/01__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/01__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/01__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/01__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/01__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/02.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/02__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/02__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/02__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/02__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/02__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/03.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/03__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/03__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/03__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/03__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/03__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/04.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/04__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/04__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/04__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/04__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/04__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/05.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/05__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/05__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/05__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/05__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/05__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/06.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/06__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/06__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/06__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/06__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/06__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/07.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/07__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/07__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/07__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/07__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/07__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/08.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/08__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/08__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/08__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/08__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/08__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/09.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/09__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/09__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/09__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/09__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/09__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/10.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/10__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/10__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/10__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/10__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/10__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/11.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/11__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/11__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/11__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/11__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/11__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/12.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/12__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/12__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/12__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/12__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/12__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/13.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/13__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/13__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/13__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/13__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/13__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/14.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/14__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/14__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/14__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/14__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/14__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/15.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/15__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/15__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/15__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/15__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/15__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/16.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/16__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/16__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/16__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/16__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/16__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/17__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/17__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/17__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/17__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/17__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/18.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/18__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/18__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/18__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/18__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/18__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/19.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/19__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/19__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/19__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/19__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/19__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/20.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/20__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/20__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/20__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/20__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/20__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/21.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/21__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/21__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/21__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/21__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/21__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/22.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/22__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/22__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/22__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/22__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/22__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/23.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/23__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/23__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/23__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/23__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/23__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/24.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/24__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/24__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/24__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/24__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/24__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/25.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/25__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/25__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/25__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/25__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/25__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/26.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/26__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/26__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/26__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/26__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/26__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/27.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/27__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/27__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/27__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/27__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/27__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/28.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/28__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/28__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/28__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/28__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/28__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/29.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/29__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/29__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/29__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/29__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/29__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/30.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/30__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/30__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/30__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/30__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/30__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/31.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/31__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/31__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/31__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/31__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/31__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/32.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/32__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/32__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/32__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/32__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/32__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-3"><img src="panonet/33.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-3"><img src="panonet/33__HW_LM_sky.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-6"><div class="row">
+            <div class="col-md-3"><img src="panonet/33__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/33__iccv17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/33__panonet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-3"><img src="panonet/33__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+<!-- 
+  Cropnet examples outdoor pano
+ -->
+
+      <a class="anchor" name="cropnet-examples"></a>
+      <h2>2. Lighting estimation for limited field of view images (CropNet evaluation)</h2>
+      <p>We estimate lighting from a single limited field of view image.
+      Each row shows a different example. </p>
+      
+      <a class="anchor" name="cropnet-outdoor"></a>
+      <h3>2.1. Crop from HDR panoramas</h3>
+      <p>In this section, the input images (first column) are cropped from HDR panoramas, then we estimate lighting parameters with [Hold-Geoffroy et al.'17] and our CropNet. The renders from each approach and the ground truth render from the HDR panorama are shown in different columns. Our approach is able to estimate reliable lighting condition in the cropped image. These results extend fig. 6 in the main paper.
+      </p>
+      
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;">Input </h6> </div>
+
+        <div class="col-md-7">
+          <div class="row">
+            <div class="col-md-4"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;">[HG et al.'17]</h6></div>
+            <div class="col-md-4"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;">Ours (CropNet)</h6></div>
+            <div class="col-md-4"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;">Ground truth</h6></div>
+        </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/01.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/01__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/01__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/01__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/02.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/02__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/02__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/02__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/03.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/03__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/03__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/03__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/04.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/04__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/04__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/04__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/05.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/05__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/05__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/05__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/06.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/06__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/06__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/06__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/07.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/07__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/07__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/07__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/08.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/08__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/08__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/08__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/09.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/09__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/09__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/09__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/10.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/10__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/10__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/10__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/11.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/11__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/11__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/11__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/12.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/12__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/12__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/12__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/13.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/13__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/13__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/13__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/14.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/14__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/14__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/14__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/15.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/15__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/15__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/15__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/16.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/16__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/16__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/16__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/17__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/17__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/17__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/18.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/18__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/18__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/18__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/19.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/19__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/19__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/19__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/20.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/20__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/20__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/20__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/21.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/21__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/21__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/21__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/22.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/22__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/22__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/22__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/23.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/23__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/23__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/23__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/24.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/24__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/24__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/24__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/25.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/25__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/25__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/25__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/26.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/26__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/26__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/26__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/27.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/27__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/27__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/27__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/28.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/28__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/28__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/28__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/29.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/29__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/29__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/29__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/30.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/30__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/30__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/30__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/31.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/31__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/31__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/31__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/32.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/32__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/32__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/32__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/33.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/33__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/33__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/33__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/34.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/34__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/34__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/34__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/35.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/35__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/35__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/35__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/36.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/36__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/36__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/36__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/37.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/37__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/37__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/37__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/38.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/38__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/38__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/38__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/39.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/39__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/39__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/39__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/40.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/40__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/40__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/40__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/41.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/41__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/41__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/41__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/outdoor/42.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/outdoor/42__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/42__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/outdoor/42__gt.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+        <div class="col-md-1"><h6 style="text-align:center; font-size:1em; display: block; height: 2em;"></h6> </div>
+      </div>
+    
+
+      <div style="clear:both"></div>
+
+<!-- 
+  Cropnet examples sun360
+ -->
+
+      <a class="anchor" name="cropnet-sun360"></a>
+      <h3>2.2. Crop from SUN360 panoramas</h2>
+      <div style="clear:both"></div>
+      <p>We estimate the lighting from real images that do not have ground truth, we compare the renders obtained from [Hold-Geoffroy et al.'17] and our CropNet.</p>
+      
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;">Input </h6> </div>
+
+        <div class="col-md-7">
+          <div class="row">
+            <div class="col-md-4"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;">[HG et al.'17]</h6></div>
+            <div class="col-md-4"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;">Ours (CropNet)</h6></div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/01.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/01__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/01__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/02.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/02__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/02__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/03.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/03__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/03__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/04.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/04__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/04__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/05.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/05__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/05__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/06.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/06__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/06__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/07.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/07__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/07__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/08.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/08__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/08__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/09.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/09__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/09__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/10.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/10__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/10__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/11.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/11__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/11__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/12.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/12__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/12__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/13.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/13__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/13__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/14.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/14__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/14__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/15.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/15__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/15__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/16.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/16__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/16__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/17__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/17__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/18.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/18__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/18__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/19.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/19__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/19__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/20.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/20__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/20__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/21.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/21__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/21__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/22.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/22__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/22__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/23.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/23__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/23__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/24.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/24__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/24__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/25.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/25__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/25__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/26.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/26__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/26__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/27.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/27__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/27__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/28.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/28__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/28__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/29.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/29__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/29__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/30.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/30__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/30__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/31.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/31__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/31__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/32.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/32__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/32__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/33.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/33__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/33__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/34.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/34__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/34__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/35.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/35__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/35__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/36.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/36__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/36__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/37.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/37__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/37__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/38.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/38__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/38__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/39.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/39__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/39__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"><h6 style="text-align:center; font-size:1em; display: block; height: 1em;"></h6> </div>
+        <div class="col-md-3"><img src="cropnet/sun360/40.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          <div class="col-md-7"><div class="row">
+            <div class="col-md-4"><img src="cropnet/sun360/40__cvpr17.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+            <div class="col-md-4"><img src="cropnet/sun360/40__cropnet.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+          </div>
+        </div>
+      </div>
+    
+      <div style="clear:both"></div>
+
+
+<!-- 
+  different viewpoints
+ -->
+
+      <a class="anchor" name="viewpoints"></a>
+      <h2>3. Lighting estimation for different viewpoints</h2>
+
+      <p>Estimating lighting for different viewpoints extracted from the same panorama. The top row of each video shows the panorama and the cropped region of the input image (bottom left). The cropped image is then used to estimate lighting parameters from the CropNet, the render from the estimated lighting is shown in the bottom right.</p>
+
+      <div class="row">
+        <div class="col-md-6">
+        <video poster="" controls="" width="100%"> <source src="cropnet/viewpoints/9C4A7115.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+        <div class="col-md-6">
+        <video poster="" controls="" width="100%"> <source src="cropnet/viewpoints/9C4A5680.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>  
+        <div class="col-md-6">
+        <video poster="" controls="" width="100%"> <source src="cropnet/viewpoints/9C4A0531.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>  
+        <div class="col-md-6">
+        <video poster="" controls="" width="100%"> <source src="cropnet/viewpoints/9C4A5554.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>  
+        <div class="col-md-6">
+        <video poster="" controls="" width="100%"> <source src="cropnet/viewpoints/9C4A1952.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>  
+        <div class="col-md-6">
+        <video poster="" controls="" width="100%"> <source src="cropnet/viewpoints/9C4A4602.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>  
+        <div class="col-md-6">
+        <video poster="" controls="" width="100%"> <source src="cropnet/viewpoints/9C4A0922.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>  
+        <div class="col-md-6">
+        <video poster="" controls="" width="100%"> <source src="cropnet/viewpoints/9C4A9795.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>  
+        <div class="col-md-6">
+        <video poster="" controls="" width="100%"> <source src="cropnet/viewpoints/9C4A0657.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>  
+        <div class="col-md-6">
+        <video poster="" controls="" width="100%"> <source src="cropnet/viewpoints/9C4A7584.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>  
+      </div>
+
+      <div style="clear:both"></div>
+
+
+<!-- 
+  Editing
+ -->
+
+      <a class="anchor" name="editing"></a>
+      <h2>4. Lighting edit</h2>
+
+      <p>We show that with the flexibility of the underlying LM sky model, a user can easily modify the estimated lighting in order to experiment with different lighting effects.</p>
+      <div class="row">
+        <div class="col-md-1">        </div>
+        <div class="col-md-10">
+        <video poster="" controls="" width="100%"> <source src="cropnet/lighting-edit.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+        <div class="col-md-1">        </div>
+      </div>
+
+      <div style="clear:both"></div>
+
+
+
+      <a class="anchor" name="relight"></a>
+      <h2>5. Relighting examples</h2>
+      <a class="anchor" name="cars"></a> 
+      <p> In this section, we estimate lighting from single input image, then we use the predicted lighting to composite a virtual object into the image. </p>
+      <h3>5.1 Relight cars</h3>
+      <p>The following images show different rendering results of a car model under different weather conditions. </p>
+
+      <div class="row">
+        <div class="col-md-4">
+        <h6 style="text-align:center; font-size:1em; display: block; height: 2em;">Background<br/>&nbsp;</h6>
+          <img src="cropnet/car/1_bg.png" width="100%" rel="lightbox[car1]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/car/2_bg.png" width="100%" rel="lightbox[car2]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/car/3_bg.png" width="100%" rel="lightbox[car3]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/car/4_bg.png" width="100%" rel="lightbox[car4]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/car/5_bg.png" width="100%" rel="lightbox[car5]" style="padding-bottom: 1em;"/>
+        </div>
+        <div class="col-md-4">
+        <h6 style="text-align:center; font-size:1em; display: block; height: 2em;">Render with CropNet estimation <br/>(mouse hover for [HG et al.'17])</h6>
+          <img src="cropnet/car/1_cropnet.png" onmouseover="this.src='cropnet/car/1_cvpr17.png'" onmouseout="this.src='cropnet/car/1_cropnet.png'" onclick="this.src='cropnet/car/1_cropnet.png'" width="100%" rel="lightbox[car1]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/car/2_cropnet.png" onmouseover="this.src='cropnet/car/2_cvpr17.png'" onmouseout="this.src='cropnet/car/2_cropnet.png'" onclick="this.src='cropnet/car/2_cropnet.png'" width="100%" rel="lightbox[car2]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/car/3_cropnet.png" onmouseover="this.src='cropnet/car/3_cvpr17.png'" onmouseout="this.src='cropnet/car/3_cropnet.png'" onclick="this.src='cropnet/car/3_cropnet.png'" width="100%" rel="lightbox[car3]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/car/4_cropnet.png" onmouseover="this.src='cropnet/car/4_cvpr17.png'" onmouseout="this.src='cropnet/car/4_cropnet.png'" onclick="this.src='cropnet/car/4_cropnet.png'" width="100%" rel="lightbox[car4]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/car/5_cropnet.png" onmouseover="this.src='cropnet/car/5_cvpr17.png'" onmouseout="this.src='cropnet/car/5_cropnet.png'" onclick="this.src='cropnet/car/5_cropnet.png'" width="100%" rel="lightbox[car5]" style="padding-bottom: 1em;"/>
+        </div>
+        <div class="col-md-4">
+        <h6 style="text-align:center; font-size:1em; display: block; height: 2em;">Render with [HG et al.'17]<br/>(mouse hover for CropNet)</h6>
+          <img src="cropnet/car/1_cvpr17.png" onmouseover="this.src='cropnet/car/1_cropnet.png'" onmouseout="this.src='cropnet/car/1_cvpr17.png'" onclick="this.src='cropnet/car/1_cvpr17.png'" width="100%" rel="lightbox[car1]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/car/2_cvpr17.png" onmouseover="this.src='cropnet/car/2_cropnet.png'" onmouseout="this.src='cropnet/car/2_cvpr17.png'" onclick="this.src='cropnet/car/2_cvpr17.png'" width="100%" rel="lightbox[car2]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/car/3_cvpr17.png" onmouseover="this.src='cropnet/car/3_cropnet.png'" onmouseout="this.src='cropnet/car/3_cvpr17.png'" onclick="this.src='cropnet/car/3_cvpr17.png'" width="100%" rel="lightbox[car3]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/car/4_cvpr17.png" onmouseover="this.src='cropnet/car/4_cropnet.png'" onmouseout="this.src='cropnet/car/4_cvpr17.png'" onclick="this.src='cropnet/car/4_cvpr17.png'" width="100%" rel="lightbox[car4]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/car/5_cvpr17.png" onmouseover="this.src='cropnet/car/5_cropnet.png'" onmouseout="this.src='cropnet/car/5_cvpr17.png'" onclick="this.src='cropnet/car/5_cvpr17.png'" width="100%" rel="lightbox[car5]" style="padding-bottom: 1em;"/>
+        </div>
+      </div>
+      <h3>5.1 Relight statues</h3>
+      <p>The following images show different rendering results of various statues under different weather conditions. </p>
+
+      <div class="row">
+        <div class="col-md-4">
+        <h6 style="text-align:center; font-size:1em; display: block; height: 2em;">Background<br/>&nbsp;</h6>
+          <img src="cropnet/statues/1_bg.png" width="100%" rel="lightbox[statue1]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/statues/2_bg.png" width="100%" rel="lightbox[statue2]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/statues/3_bg.png" width="100%" rel="lightbox[statue3]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/statues/5_bg.png" width="100%" rel="lightbox[statue5]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/statues/4_bg.png" width="100%" rel="lightbox[statue4]" style="padding-bottom: 1em;"/>
+        </div>
+        <div class="col-md-4">
+        <h6 style="text-align:center; font-size:1em; display: block; height: 2em;">Render with CropNet estimation <br/>(mouse hover for [HG et al.'17])</h6>
+          <img src="cropnet/statues/1_cropnet.png" onmouseover="this.src='cropnet/statues/1_cvpr17.png'" onmouseout="this.src='cropnet/statues/1_cropnet.png'" onclick="this.src='cropnet/statues/1_cropnet.png'" width="100%" rel="lightbox[statue1]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/statues/2_cropnet.png" onmouseover="this.src='cropnet/statues/2_cvpr17.png'" onmouseout="this.src='cropnet/statues/2_cropnet.png'" onclick="this.src='cropnet/statues/2_cropnet.png'" width="100%" rel="lightbox[statue2]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/statues/3_cropnet.png" onmouseover="this.src='cropnet/statues/3_cvpr17.png'" onmouseout="this.src='cropnet/statues/3_cropnet.png'" onclick="this.src='cropnet/statues/3_cropnet.png'" width="100%" rel="lightbox[statue3]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/statues/5_cropnet.png" onmouseover="this.src='cropnet/statues/5_cvpr17.png'" onmouseout="this.src='cropnet/statues/5_cropnet.png'" onclick="this.src='cropnet/statues/5_cropnet.png'" width="100%" rel="lightbox[statue5]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/statues/4_cropnet.png" onmouseover="this.src='cropnet/statues/4_cvpr17.png'" onmouseout="this.src='cropnet/statues/4_cropnet.png'" onclick="this.src='cropnet/statues/4_cropnet.png'" width="100%" rel="lightbox[statue4]" style="padding-bottom: 1em;"/>
+        </div>
+        <div class="col-md-4">
+        <h6 style="text-align:center; font-size:1em; display: block; height: 2em;">Render with [HG et al.'17]<br/>(mouse hover for CropNet)</h6>
+          <img src="cropnet/statues/1_cvpr17.png" onmouseover="this.src='cropnet/statues/1_cropnet.png'" onmouseout="this.src='cropnet/statues/1_cvpr17.png'" onclick="this.src='cropnet/statues/1_cvpr17.png'" width="100%" rel="lightbox[statue1]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/statues/2_cvpr17.png" onmouseover="this.src='cropnet/statues/2_cropnet.png'" onmouseout="this.src='cropnet/statues/2_cvpr17.png'" onclick="this.src='cropnet/statues/2_cvpr17.png'" width="100%" rel="lightbox[statue2]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/statues/3_cvpr17.png" onmouseover="this.src='cropnet/statues/3_cropnet.png'" onmouseout="this.src='cropnet/statues/3_cvpr17.png'" onclick="this.src='cropnet/statues/3_cvpr17.png'" width="100%" rel="lightbox[statue3]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/statues/5_cvpr17.png" onmouseover="this.src='cropnet/statues/5_cropnet.png'" onmouseout="this.src='cropnet/statues/5_cvpr17.png'" onclick="this.src='cropnet/statues/5_cvpr17.png'" width="100%" rel="lightbox[statue5]" style="padding-bottom: 1em;"/>
+          <img src="cropnet/statues/4_cvpr17.png" onmouseover="this.src='cropnet/statues/4_cropnet.png'" onmouseout="this.src='cropnet/statues/4_cvpr17.png'" onclick="this.src='cropnet/statues/4_cvpr17.png'" width="100%" rel="lightbox[statue4]" style="padding-bottom: 1em;"/>
+        </div>
+      </div>
+
+
+
+      <a class="anchor" name="gradcam"></a>
+      <h2>6. Visualizing the cues for lighting estimation</h2>
+      <p> We used guided backpropagation to validate that both PanoNet and CropNet do indeed exploit non-sky regions for their predictions. Our PanoNet thus improves on [H-G'17] which fits the HW model on the sky pixels only. Our approach learns to leverage scene appearance which is an important cue for lighting estimation.</p> 
+
+      <div class="row" align="center">
+        <div class="col-md-12">Low<img src="cam-grad/jet.png" width="30%" style="padding-bottom: 1em;" />High</br></div>
+      </div>  
+      <p align="center"> Colormap used in the Grad-CAM. </p>
+      <h3>6.1 PanoNet</h3>
+
+
+      <div class="row">
+        <div class="col-md-6"><img src="cam-grad/pano1.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-6"><img src="cam-grad/pano2.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-6"><img src="cam-grad/pano3.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-6"><img src="cam-grad/pano4.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-6"><img src="cam-grad/pano5.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-6"><img src="cam-grad/pano6.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+      </div>  
+      <h3>6.2 CropNet</h3>
+
+      <div class="row">
+        <div class="col-md-6"><img src="cam-grad/crop1.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-6"><img src="cam-grad/crop2.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-6"><img src="cam-grad/crop3.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+        <div class="col-md-6"><img src="cam-grad/crop4.png" width="100%" style="padding-bottom: 1em;" /></br></div>
+      </div>  
+
+    <footer class="footer navbar-fixed-bottom">
+      <div class="container">
+        <span class="text-muted">All-Weather Deep Outdoor Lighting Estimation, Supplementary Material &mdash; CVPR 2019</span>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./js/jquery-3.1.1.min.js"></script>
+    <script src="./js/tether.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/lightbox.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/JavaScript">
+    $(".nav a").on("click", function(){
+       $(".nav").find(".active").removeClass("active");
+       $(this).parent().addClass("active");
+    });
+    </script>
+  </body>
+</html>
