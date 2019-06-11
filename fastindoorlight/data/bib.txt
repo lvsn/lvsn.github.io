@@ -1,0 +1,7 @@
+@InProceedings{Garon_2019_CVPR,
+author = {Garon, Mathieu and Sunkavalli, Kalyan and Hadap, Sunil and Carr, Nathan and Lalonde, Jean-Francois},
+title = {Fast Spatially-Varying Indoor Lighting Estimation},
+booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+month = {June},
+year = {2019}
+} 
