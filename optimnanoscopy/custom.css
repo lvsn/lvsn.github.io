@@ -1,0 +1,94 @@
+.container {
+  max-width: 960px;
+}
+
+/*
+ * Custom translucent site header
+ */
+
+.site-header {
+  background-color: rgba(0, 0, 0, .85);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+.site-header a {
+  color: #999;
+  transition: ease-in-out color .15s;
+}
+.site-header a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/*
+ * Dummy devices (replace them with your own or something else entirely!)
+ */
+
+.imbg1 {
+  position: absolute;
+  right: 0%;
+  top:5%;
+  width: 300px;
+  height: 300px;
+  background-image:url(pic/bg1.png);
+  background-size:cover
+}
+
+.imbg2 {
+  position: absolute;
+  left: 6%;
+  top:0%;
+  width: 300px;
+  height: 300px;
+  background-image:url(pic/bg3.png);
+  background-size:cover
+}
+
+.imbg3 {
+  position: absolute;
+  left: 0%;
+  top:20%;
+  width: 300px;
+  height: 300px;
+  background-image:url(pic/bg2.png);
+  background-size:cover
+}
+
+.imbg4 {
+  position: absolute;
+  right: 6%;
+  top:28%;
+  width: 300px;
+  height: 300px;
+  background-image:url(pic/bg6.png);
+  background-size:cover
+}
+
+.imbottom {
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 1450px;
+  height: 135px;
+  background-image:url(pic/img2.png);
+  background-size:cover
+}
+
+
+/*
+ * Extra utilities
+ */
+
+.flex-equal > * {
+  -ms-flex: 1;
+  flex: 1;
+}
+@media (min-width: 768px) {
+  .flex-md-equal > * {
+    -ms-flex: 1;
+    flex: 1;
+  }
+}
+
+.overflow-hidden { overflow: hidden; }
