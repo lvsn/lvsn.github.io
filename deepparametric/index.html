@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Deep Parametric Indoor Lighting project web page">
+    <meta name="author" content="Marc-Andre Gardner">
+
+
+    <title>Deep Parametric Indoor Lighting Estimation</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="data/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="data/album.css" rel="stylesheet">
+    <link href="supplementary/css/portfolio-item.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <img src="data/ulaval-logo-white.png" align="left">
+            <div class="container d-flex justify-content-between">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <h1 class="jumbotron-heading">Deep Parametric Indoor Lighting Estimation</h1>
+                </a>
+            </div>
+            <img src="data/adobe.png" align="right" width="7%">
+        </div>
+    </header>
+
+    <main role="main">
+
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 figure-caption" style="text-align:center">
+                <h3><a href="http://vision.gel.ulaval.ca/~jflalonde/projects/deepIndoorLight/index.html">Gardner et al. 17</a></h3>
+            </div>
+
+            <div class="col-md-6 figure-caption" style="text-align:center">
+                <h3>Ours</h3>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-6" style="text-align:center">
+                <a href="data/teaser-them.jpg"><img class="img-fluid" src="data/teaser-them.jpg" width="100%"></a>
+            </div>
+            <div class="col-md-6" style="text-align:center">
+                <a href="data/teaser-us.jpg"><img class="img-fluid" src="data/teaser-us.jpg" width="100%"></a>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+    <div class="container">
+        <p class="lead text-muted text-center">We present a method to estimate lighting from a single image of an indoor scene. Previous work has used an environment map representation that does not account for the localized nature of indoor lighting. Instead, we represent lighting as a set of discrete 3D lights with geometric and photometric parameters. We train a deep neural network to regress these parameters from a single image, on a dataset of environment maps annotated with depth. We propose a differentiable layer to convert these parameters to an environment map to compute our loss; this bypasses the challenge of establishing correspondences between estimated and ground truth lights. We demonstrate, via quantitative and qualitative evaluations, that our representation and training scheme lead to more accurate results compared to previous work, while allowing for more realistic 3D object compositing with spatially-varying lighting.</p>
+    </div>
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <h2 class="section-heading">Paper</h2>
+                
+                Marc-André Gardner, <a href="http://yannickhold.com/">Yannick Hold-Geoffroy</a>, <a href="http://www.kalyans.org/">Kalyan Sunkavalli</a>, <a href="http://vision.gel.ulaval.ca/~cgagne/">Christian Gagné</a>, and <a href="http://www.jflalonde.ca/">Jean-François Lalonde</a>
+                <br>
+                Deep Parametric Indoor Lighting Estimation
+                <br>
+                International Conference on Computer Vision (ICCV), 2019
+                <br>
+                [<a href="#">arXiv:1906.03799 pre-print</a>]
+                [<a href="#">CVF</a>]
+                [<a href="#">BibTeX</a>]
+                <br><br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <h2 class="section-heading">Dataset</h2>
+                <br>
+                The dataset used is the <a href="http://indoor.hdrdb.com/">Laval Indoor HDR Database</a>. We processed around 1600 panoramas using Envydepth in order to obtain panoramic depth images. These depth images (PFM format) can be downloaded <a href="http://indoordepth.hdrdb.com/">here</a>. The depth dataset is provided free of charge, but notice you still need a valid license to use the Laval Indoor HDR Database (see <a href="http://indoor.hdrdb.com/#commercial">this page for more details</a>).
+            </div>
+            <div class="col-md-5">
+                [Coming soon]
+                <!--<a href="http://indoorsv.hdrdb.com/"><img class="img-fluid" src="data/dataset.png"></a>-->
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-md-5">
+                <h2 class="section-heading">Poster</h2>
+            </div>
+            <div class="col-md-5">
+                <a href="poster_iccv.pdf"><img class="img-fluid" src="data/poster.jpg"></a>
+            </div>
+        </div>
+        <br><br>
+        
+    </div>
+
+
+    <br><br>
+
+    <div class="album py-5 bg-light">
+    <div class="container">
+        <h5 class="jumbotron-heading">For more results check out the [<a href="supplementary/index.html">Supplementary material</a>]</h5>
+
+        <h2 class="section-heading">Video</h2>
+        Video outlining the benefits of the proposed methods in terms of spatially-varying lighting support and user editable properties.
+        <br><br>
+
+        <div class="row">
+            <div class="column2">
+                <video poster="" controls="" width="100%">
+                  <source src="supplementary/ICCV19_supp_mat.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        <br><br>
+
+        <h2 class="section-heading">Results on stock photos</h2>
+        Click on any image to enlarge.
+        <br><br>
+
+        <div class="row">
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="supplementary/img/stockphotos/A_bg.jpg"><img class="img-fluid" src="supplementary/img/stockphotos/A_bg.jpg"></a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="supplementary/img/stockphotos/A.jpg"><img class="img-fluid" src="supplementary/img/stockphotos/A.jpg"></a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="supplementary/img/stockphotos/B_bg.jpg"><img class="img-fluid" src="supplementary/img/stockphotos/B_bg.jpg"></a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="supplementary/img/stockphotos/B.jpg"><img class="img-fluid" src="supplementary/img/stockphotos/B.jpg"></a>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="supplementary/img/stockphotos/C_bg.jpg"><img class="img-fluid" src="supplementary/img/stockphotos/C_bg.jpg"></a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="supplementary/img/stockphotos/C.jpg"><img class="img-fluid" src="supplementary/img/stockphotos/C.jpg"></a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="supplementary/img/stockphotos/D_bg.jpg"><img class="img-fluid" src="supplementary/img/stockphotos/D_bg.jpg"></a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="supplementary/img/stockphotos/D.jpg"><img class="img-fluid" src="supplementary/img/stockphotos/D.jpg"></a>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="supplementary/img/stockphotos/G_bg.jpg"><img class="img-fluid" src="supplementary/img/stockphotos/G_bg.jpg"></a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="supplementary/img/stockphotos/G.jpg"><img class="img-fluid" src="supplementary/img/stockphotos/G.jpg"></a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="supplementary/img/stockphotos/F_bg.jpg"><img class="img-fluid" src="supplementary/img/stockphotos/F_bg.jpg"></a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="supplementary/img/stockphotos/F.jpg"><img class="img-fluid" src="supplementary/img/stockphotos/F.jpg"></a>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="supplementary/img/stockphotos/E_bg.jpg"><img class="img-fluid" src="supplementary/img/stockphotos/E_bg.jpg"></a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="supplementary/img/stockphotos/E.jpg"><img class="img-fluid" src="supplementary/img/stockphotos/E.jpg"></a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="supplementary/img/stockphotos/H_bg.jpg"><img class="img-fluid" src="supplementary/img/stockphotos/H_bg.jpg"></a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="supplementary/img/stockphotos/H.jpg"><img class="img-fluid" src="supplementary/img/stockphotos/H.jpg"></a>
+            </div>
+        </div>
+
+
+        <div class="card mb-4 shadow-sm text-center">
+        <h3 class="text-muted">Acknowledgements </h3>
+        <div style="margin-left: auto; margin-right: auto; text-align: left;">
+        <ul class="list-unstyled text-muted">
+        <li type="square">Adobe System inc with generous gift funding;</li>
+        <li type="square">NSERC Discovery Grant RGPIN-2014-05314;</li>
+        <li type="square">NVIDIA Corporation with the donation of the Tesla K40 and Titan X GPUs used for this research;</li>
+        <li type="square">MITACS, Prompt-Québec and E Machine Learning.</li>
+        </ul>
+        </div>
+        </div>
+        </div>
+    </div>
+</main>
+
+<footer class="text-muted">
+    <div class="container">
+        <p>The documents contained in these directories are included by
+        the contributing authors as a means to ensure timely dissemination of
+        scholarly and technical work on a non-commercial basis. Copyright and
+        all rights therein are maintained by the authors or by other copyright
+        holders, notwithstanding that they have offered their works here
+        electronically. It is understood that all persons copying this
+        information will adhere to the terms and constraints invoked by each
+        author's copyright. These works may not be reposted without the explicit
+        permission of the copyright holder, except when identified by Creative
+        Commons License 2.0, in which case the license applies to both the
+        original and modified versions of the images. </p>
+        <p class="float-right">
+            <a href="#">Back to top</a>
+        </p>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="The%20Laval%206%20DOF%20Object%20Tracking%20Dataset_files/jquery-3.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="The%20Laval%206%20DOF%20Object%20Tracking%20Dataset_files/popper.js"></script>
+<script src="The%20Laval%206%20DOF%20Object%20Tracking%20Dataset_files/bootstrap.js"></script>
+<script src="The%20Laval%206%20DOF%20Object%20Tracking%20Dataset_files/holder.js"></script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1001390-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+  
+
+<svg xmlns="http://www.w3.org/2000/svg" width="348" height="225" viewBox="0 0 348 225" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs><style type="text/css"></style></defs><text x="0" y="17" style="font-weight:bold;font-size:17pt;font-family:Arial, Helvetica, Open Sans, sans-serif">Thumbnail</text></svg><svg xmlns="http://www.w3.org/2000/svg" width="348" height="225" viewBox="0 0 348 225" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs><style type="text/css"></style></defs><text x="0" y="17" style="font-weight:bold;font-size:17pt;font-family:Arial, Helvetica, Open Sans, sans-serif">Thumbnail</text></svg><svg xmlns="http://www.w3.org/2000/svg" width="348" height="225" viewBox="0 0 348 225" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs><style type="text/css"></style></defs><text x="0" y="17" style="font-weight:bold;font-size:17pt;font-family:Arial, Helvetica, Open Sans, sans-serif">Thumbnail</text></svg>
+</body></html>
