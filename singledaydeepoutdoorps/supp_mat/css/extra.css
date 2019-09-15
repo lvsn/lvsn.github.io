@@ -1,0 +1,62 @@
+body {
+  min-width: 1170px;
+}
+
+a.anchor {
+    display: block;
+    position: relative;
+    top: -35px;
+    visibility: hidden;
+}
+
+h2 {
+	padding-top: 2em;
+}
+
+h5 {
+	padding-top: 1em;
+}
+
+.resultable {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+figurecaption {
+	font-size: 0.8em;
+	display: block;
+	text-align: center;
+}
+
+.spacer {
+    display: inline-block;
+}
+
+.inputday {
+    width: 270px;
+}
+
+.traininput {
+    width: 119px;
+}
+
+.inputim {
+    width: 135px;
+}
+
+.result {
+    width: 180px;
+}
+
+.sec1res {
+    display: inline-block;
+    width: 180px;
+}
+
+h6.sec1res {
+    padding-top: 2em;
+}
+
+div.sec1res img {
+    height: 150px;
+}

@@ -1,0 +1,1975 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1170">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./favicon.ico">
+
+    <title>Single Day Outdoor Photometric Stereo &mdash; Supplementary Material</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/lightbox.min.css" rel="stylesheet">
+    <link href="./css/extra.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="pos-f-t">
+      <!-- <div class="collapse" id="navbar-header">
+        <div class="container bg-inverse p-1">
+          <h3>Collapsed content</h3>
+          <p>Toggleable via the navbar brand.</p>
+        </div>
+      </div> -->
+      <nav class="navbar navbar-light navbar-static-top bg-faded">
+        <div class="container">
+          <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-expanded="false" aria-controls="exCollapsingNavbar2" aria-label="Toggle navigation"></button>
+          <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+            <!-- <a class="navbar-brand" href="#">Sticky footer</a> -->
+            <ul class="nav navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="#extraresults">Additional Results &mdash; day #1</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#extraresultsd2">day #2</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#trainingrenders">Training dataset</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#partially_cloudy">Partially cloudy</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Begin page content -->
+    <div class="container">
+      <div class="mt-1">
+        <h1>Single Day Outdoor Photometric Stereo &mdash; Supplementary Material</h1>
+      </div>
+      <p class="lead" style="padding-top: 1em;">
+        In this document, we show additional qualitative results to extend fig. 12, examples from our training dataset and additional results on partially a cloudy day.
+      </p>
+
+      <h3>Table of Contents</h3>
+      <p>
+      <ol>
+        <li>
+          <a href="#extraresults">Additional qualitative results (extends fig. 12)</a>
+        </li>
+        <ul>
+          <li><a href="#extraresultsd2">Day #1</a></li>
+          <li><a href="#extraresultsd2">Day #2</a></li>
+        </ul>
+        <li>
+          <a href="#trainingrenders">Example renderings from the training dataset</span></a>
+        </li>
+        <li>
+          <a href="#partially_cloudy">Results on a partially cloudy day</span></a>
+        </li>
+      </ol>
+      </p>
+
+
+      <div style="clear:both"></div>
+      <a class="anchor" name="extraresults"></a>
+      <h2>1. Additional qualitative results</h2>
+
+      <p>In this section, we present additional qualitative results, extending fig. 12.</p>
+
+      <p>These conditions are typical sunny days in which PS is expected to be unstable or break, which explains the high amount of errors in the results. In comparison to prior work, our network models prior knowledge on those specific cases and thus outputs state of the art results.</p>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align: center;">
+
+<h5>Day #1</h5><br/>
+<img class="inputday" src="semisynthetic/20150514/094109.png"/>
+<img class="inputday" src="semisynthetic/20150514/103709.png"/>
+<img class="inputday" src="semisynthetic/20150514/113309.png"/>
+<img class="inputday" src="semisynthetic/20150514/122909.png"/>
+<br/><br/>
+<img class="inputday" src="semisynthetic/20150514/132509.png"/>
+<img class="inputday" src="semisynthetic/20150514/142109.png"/>
+<img class="inputday" src="semisynthetic/20150514/151709.png"/>
+<img class="inputday" src="semisynthetic/20150514/161309.png"/>
+<br/>
+<h5>Object #0</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20150514_inputs/0_0.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/0_1.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/0_2.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/0_3.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/0_4.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/0_5.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/0_6.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/0_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20150514_0_gt.png"/>
+<img class="result output" src="semisynthetic/20150514_0_ours_out.png"/>
+<img class="result output" src="semisynthetic/20150514_0_yu_out.png"/>
+<img class="result output" src="semisynthetic/20150514_0_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20150514_0_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20150514_0_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20150514_0_ours_err.png"/>
+<img class="result error" src="semisynthetic/20150514_0_yu_err.png"/>
+<img class="result error" src="semisynthetic/20150514_0_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20150514_0_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20150514_0_ef_err.png"/>
+<br/><hr/>
+<h5>Object #1</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20150514_inputs/1_0.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/1_1.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/1_2.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/1_3.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/1_4.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/1_5.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/1_6.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/1_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20150514_1_gt.png"/>
+<img class="result output" src="semisynthetic/20150514_1_ours_out.png"/>
+<img class="result output" src="semisynthetic/20150514_1_yu_out.png"/>
+<img class="result output" src="semisynthetic/20150514_1_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20150514_1_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20150514_1_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20150514_1_ours_err.png"/>
+<img class="result error" src="semisynthetic/20150514_1_yu_err.png"/>
+<img class="result error" src="semisynthetic/20150514_1_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20150514_1_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20150514_1_ef_err.png"/>
+<br/><hr/>
+<h5>Object #13</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20150514_inputs/13_0.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/13_1.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/13_2.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/13_3.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/13_4.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/13_5.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/13_6.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/13_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20150514_13_gt.png"/>
+<img class="result output" src="semisynthetic/20150514_13_ours_out.png"/>
+<img class="result output" src="semisynthetic/20150514_13_yu_out.png"/>
+<img class="result output" src="semisynthetic/20150514_13_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20150514_13_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20150514_13_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20150514_13_ours_err.png"/>
+<img class="result error" src="semisynthetic/20150514_13_yu_err.png"/>
+<img class="result error" src="semisynthetic/20150514_13_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20150514_13_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20150514_13_ef_err.png"/>
+<br/><hr/>
+<h5>Object #14</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20150514_inputs/14_0.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/14_1.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/14_2.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/14_3.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/14_4.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/14_5.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/14_6.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/14_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20150514_14_gt.png"/>
+<img class="result output" src="semisynthetic/20150514_14_ours_out.png"/>
+<img class="result output" src="semisynthetic/20150514_14_yu_out.png"/>
+<img class="result output" src="semisynthetic/20150514_14_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20150514_14_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20150514_14_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20150514_14_ours_err.png"/>
+<img class="result error" src="semisynthetic/20150514_14_yu_err.png"/>
+<img class="result error" src="semisynthetic/20150514_14_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20150514_14_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20150514_14_ef_err.png"/>
+<br/><hr/>
+<h5>Object #15</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20150514_inputs/15_0.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/15_1.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/15_2.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/15_3.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/15_4.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/15_5.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/15_6.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/15_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20150514_15_gt.png"/>
+<img class="result output" src="semisynthetic/20150514_15_ours_out.png"/>
+<img class="result output" src="semisynthetic/20150514_15_yu_out.png"/>
+<img class="result output" src="semisynthetic/20150514_15_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20150514_15_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20150514_15_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20150514_15_ours_err.png"/>
+<img class="result error" src="semisynthetic/20150514_15_yu_err.png"/>
+<img class="result error" src="semisynthetic/20150514_15_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20150514_15_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20150514_15_ef_err.png"/>
+<br/><hr/>
+<h5>Object #16</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20150514_inputs/16_0.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/16_1.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/16_2.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/16_3.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/16_4.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/16_5.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/16_6.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/16_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20150514_16_gt.png"/>
+<img class="result output" src="semisynthetic/20150514_16_ours_out.png"/>
+<img class="result output" src="semisynthetic/20150514_16_yu_out.png"/>
+<img class="result output" src="semisynthetic/20150514_16_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20150514_16_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20150514_16_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20150514_16_ours_err.png"/>
+<img class="result error" src="semisynthetic/20150514_16_yu_err.png"/>
+<img class="result error" src="semisynthetic/20150514_16_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20150514_16_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20150514_16_ef_err.png"/>
+<br/><hr/>
+<h5>Object #17</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20150514_inputs/17_0.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/17_1.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/17_2.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/17_3.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/17_4.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/17_5.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/17_6.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/17_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20150514_17_gt.png"/>
+<img class="result output" src="semisynthetic/20150514_17_ours_out.png"/>
+<img class="result output" src="semisynthetic/20150514_17_yu_out.png"/>
+<img class="result output" src="semisynthetic/20150514_17_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20150514_17_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20150514_17_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20150514_17_ours_err.png"/>
+<img class="result error" src="semisynthetic/20150514_17_yu_err.png"/>
+<img class="result error" src="semisynthetic/20150514_17_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20150514_17_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20150514_17_ef_err.png"/>
+<br/><hr/>
+<h5>Object #18</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20150514_inputs/18_0.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/18_1.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/18_2.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/18_3.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/18_4.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/18_5.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/18_6.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/18_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20150514_18_gt.png"/>
+<img class="result output" src="semisynthetic/20150514_18_ours_out.png"/>
+<img class="result output" src="semisynthetic/20150514_18_yu_out.png"/>
+<img class="result output" src="semisynthetic/20150514_18_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20150514_18_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20150514_18_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20150514_18_ours_err.png"/>
+<img class="result error" src="semisynthetic/20150514_18_yu_err.png"/>
+<img class="result error" src="semisynthetic/20150514_18_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20150514_18_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20150514_18_ef_err.png"/>
+<br/><hr/>
+<h5>Object #19</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20150514_inputs/19_0.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/19_1.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/19_2.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/19_3.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/19_4.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/19_5.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/19_6.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/19_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20150514_19_gt.png"/>
+<img class="result output" src="semisynthetic/20150514_19_ours_out.png"/>
+<img class="result output" src="semisynthetic/20150514_19_yu_out.png"/>
+<img class="result output" src="semisynthetic/20150514_19_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20150514_19_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20150514_19_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20150514_19_ours_err.png"/>
+<img class="result error" src="semisynthetic/20150514_19_yu_err.png"/>
+<img class="result error" src="semisynthetic/20150514_19_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20150514_19_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20150514_19_ef_err.png"/>
+<br/><hr/>
+<h5>Object #20</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20150514_inputs/20_0.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/20_1.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/20_2.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/20_3.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/20_4.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/20_5.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/20_6.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/20_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20150514_20_gt.png"/>
+<img class="result output" src="semisynthetic/20150514_20_ours_out.png"/>
+<img class="result output" src="semisynthetic/20150514_20_yu_out.png"/>
+<img class="result output" src="semisynthetic/20150514_20_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20150514_20_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20150514_20_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20150514_20_ours_err.png"/>
+<img class="result error" src="semisynthetic/20150514_20_yu_err.png"/>
+<img class="result error" src="semisynthetic/20150514_20_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20150514_20_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20150514_20_ef_err.png"/>
+<br/><hr/>
+<h5>Object #21</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20150514_inputs/21_0.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/21_1.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/21_2.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/21_3.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/21_4.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/21_5.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/21_6.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/21_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20150514_21_gt.png"/>
+<img class="result output" src="semisynthetic/20150514_21_ours_out.png"/>
+<img class="result output" src="semisynthetic/20150514_21_yu_out.png"/>
+<img class="result output" src="semisynthetic/20150514_21_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20150514_21_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20150514_21_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20150514_21_ours_err.png"/>
+<img class="result error" src="semisynthetic/20150514_21_yu_err.png"/>
+<img class="result error" src="semisynthetic/20150514_21_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20150514_21_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20150514_21_ef_err.png"/>
+<br/><hr/>
+<h5>Object #22</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20150514_inputs/22_0.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/22_1.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/22_2.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/22_3.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/22_4.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/22_5.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/22_6.png"/>
+<img class="inputim" src="semisynthetic/20150514_inputs/22_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20150514_22_gt.png"/>
+<img class="result output" src="semisynthetic/20150514_22_ours_out.png"/>
+<img class="result output" src="semisynthetic/20150514_22_yu_out.png"/>
+<img class="result output" src="semisynthetic/20150514_22_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20150514_22_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20150514_22_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20150514_22_ours_err.png"/>
+<img class="result error" src="semisynthetic/20150514_22_yu_err.png"/>
+<img class="result error" src="semisynthetic/20150514_22_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20150514_22_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20150514_22_ef_err.png"/>
+<br/><hr/>
+<a class="anchor" name="extraresultsd2"></a>
+<h5>Day #2</h5><br/>
+<img class="inputday" src="semisynthetic/20160617/094515.png"/>
+<img class="inputday" src="semisynthetic/20160617/104118.png"/>
+<img class="inputday" src="semisynthetic/20160617/113719.png"/>
+<img class="inputday" src="semisynthetic/20160617/123326.png"/>
+<br/><br/>
+<img class="inputday" src="semisynthetic/20160617/132927.png"/>
+<img class="inputday" src="semisynthetic/20160617/142534.png"/>
+<img class="inputday" src="semisynthetic/20160617/152137.png"/>
+<img class="inputday" src="semisynthetic/20160617/161740.png"/>
+<br/>
+<h5>Object #0</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20160617_inputs/0_0.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/0_1.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/0_2.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/0_3.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/0_4.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/0_5.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/0_6.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/0_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20160617_0_gt.png"/>
+<img class="result output" src="semisynthetic/20160617_0_ours_out.png"/>
+<img class="result output" src="semisynthetic/20160617_0_yu_out.png"/>
+<img class="result output" src="semisynthetic/20160617_0_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20160617_0_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20160617_0_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20160617_0_ours_err.png"/>
+<img class="result error" src="semisynthetic/20160617_0_yu_err.png"/>
+<img class="result error" src="semisynthetic/20160617_0_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20160617_0_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20160617_0_ef_err.png"/>
+<br/><hr/>
+<h5>Object #1</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20160617_inputs/1_0.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/1_1.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/1_2.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/1_3.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/1_4.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/1_5.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/1_6.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/1_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20160617_1_gt.png"/>
+<img class="result output" src="semisynthetic/20160617_1_ours_out.png"/>
+<img class="result output" src="semisynthetic/20160617_1_yu_out.png"/>
+<img class="result output" src="semisynthetic/20160617_1_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20160617_1_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20160617_1_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20160617_1_ours_err.png"/>
+<img class="result error" src="semisynthetic/20160617_1_yu_err.png"/>
+<img class="result error" src="semisynthetic/20160617_1_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20160617_1_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20160617_1_ef_err.png"/>
+<br/><hr/>
+<h5>Object #13</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20160617_inputs/13_0.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/13_1.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/13_2.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/13_3.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/13_4.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/13_5.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/13_6.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/13_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20160617_13_gt.png"/>
+<img class="result output" src="semisynthetic/20160617_13_ours_out.png"/>
+<img class="result output" src="semisynthetic/20160617_13_yu_out.png"/>
+<img class="result output" src="semisynthetic/20160617_13_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20160617_13_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20160617_13_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20160617_13_ours_err.png"/>
+<img class="result error" src="semisynthetic/20160617_13_yu_err.png"/>
+<img class="result error" src="semisynthetic/20160617_13_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20160617_13_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20160617_13_ef_err.png"/>
+<br/><hr/>
+<h5>Object #14</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20160617_inputs/14_0.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/14_1.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/14_2.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/14_3.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/14_4.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/14_5.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/14_6.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/14_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20160617_14_gt.png"/>
+<img class="result output" src="semisynthetic/20160617_14_ours_out.png"/>
+<img class="result output" src="semisynthetic/20160617_14_yu_out.png"/>
+<img class="result output" src="semisynthetic/20160617_14_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20160617_14_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20160617_14_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20160617_14_ours_err.png"/>
+<img class="result error" src="semisynthetic/20160617_14_yu_err.png"/>
+<img class="result error" src="semisynthetic/20160617_14_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20160617_14_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20160617_14_ef_err.png"/>
+<br/><hr/>
+<h5>Object #15</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20160617_inputs/15_0.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/15_1.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/15_2.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/15_3.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/15_4.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/15_5.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/15_6.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/15_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20160617_15_gt.png"/>
+<img class="result output" src="semisynthetic/20160617_15_ours_out.png"/>
+<img class="result output" src="semisynthetic/20160617_15_yu_out.png"/>
+<img class="result output" src="semisynthetic/20160617_15_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20160617_15_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20160617_15_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20160617_15_ours_err.png"/>
+<img class="result error" src="semisynthetic/20160617_15_yu_err.png"/>
+<img class="result error" src="semisynthetic/20160617_15_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20160617_15_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20160617_15_ef_err.png"/>
+<br/><hr/>
+<h5>Object #16</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20160617_inputs/16_0.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/16_1.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/16_2.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/16_3.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/16_4.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/16_5.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/16_6.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/16_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20160617_16_gt.png"/>
+<img class="result output" src="semisynthetic/20160617_16_ours_out.png"/>
+<img class="result output" src="semisynthetic/20160617_16_yu_out.png"/>
+<img class="result output" src="semisynthetic/20160617_16_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20160617_16_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20160617_16_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20160617_16_ours_err.png"/>
+<img class="result error" src="semisynthetic/20160617_16_yu_err.png"/>
+<img class="result error" src="semisynthetic/20160617_16_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20160617_16_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20160617_16_ef_err.png"/>
+<br/><hr/>
+<h5>Object #17</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20160617_inputs/17_0.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/17_1.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/17_2.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/17_3.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/17_4.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/17_5.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/17_6.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/17_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20160617_17_gt.png"/>
+<img class="result output" src="semisynthetic/20160617_17_ours_out.png"/>
+<img class="result output" src="semisynthetic/20160617_17_yu_out.png"/>
+<img class="result output" src="semisynthetic/20160617_17_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20160617_17_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20160617_17_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20160617_17_ours_err.png"/>
+<img class="result error" src="semisynthetic/20160617_17_yu_err.png"/>
+<img class="result error" src="semisynthetic/20160617_17_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20160617_17_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20160617_17_ef_err.png"/>
+<br/><hr/>
+<h5>Object #18</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20160617_inputs/18_0.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/18_1.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/18_2.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/18_3.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/18_4.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/18_5.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/18_6.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/18_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20160617_18_gt.png"/>
+<img class="result output" src="semisynthetic/20160617_18_ours_out.png"/>
+<img class="result output" src="semisynthetic/20160617_18_yu_out.png"/>
+<img class="result output" src="semisynthetic/20160617_18_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20160617_18_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20160617_18_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20160617_18_ours_err.png"/>
+<img class="result error" src="semisynthetic/20160617_18_yu_err.png"/>
+<img class="result error" src="semisynthetic/20160617_18_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20160617_18_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20160617_18_ef_err.png"/>
+<br/><hr/>
+<h5>Object #19</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20160617_inputs/19_0.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/19_1.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/19_2.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/19_3.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/19_4.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/19_5.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/19_6.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/19_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20160617_19_gt.png"/>
+<img class="result output" src="semisynthetic/20160617_19_ours_out.png"/>
+<img class="result output" src="semisynthetic/20160617_19_yu_out.png"/>
+<img class="result output" src="semisynthetic/20160617_19_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20160617_19_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20160617_19_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20160617_19_ours_err.png"/>
+<img class="result error" src="semisynthetic/20160617_19_yu_err.png"/>
+<img class="result error" src="semisynthetic/20160617_19_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20160617_19_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20160617_19_ef_err.png"/>
+<br/><hr/>
+<h5>Object #20</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20160617_inputs/20_0.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/20_1.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/20_2.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/20_3.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/20_4.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/20_5.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/20_6.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/20_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20160617_20_gt.png"/>
+<img class="result output" src="semisynthetic/20160617_20_ours_out.png"/>
+<img class="result output" src="semisynthetic/20160617_20_yu_out.png"/>
+<img class="result output" src="semisynthetic/20160617_20_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20160617_20_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20160617_20_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20160617_20_ours_err.png"/>
+<img class="result error" src="semisynthetic/20160617_20_yu_err.png"/>
+<img class="result error" src="semisynthetic/20160617_20_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20160617_20_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20160617_20_ef_err.png"/>
+<br/><hr/>
+<h5>Object #21</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20160617_inputs/21_0.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/21_1.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/21_2.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/21_3.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/21_4.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/21_5.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/21_6.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/21_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20160617_21_gt.png"/>
+<img class="result output" src="semisynthetic/20160617_21_ours_out.png"/>
+<img class="result output" src="semisynthetic/20160617_21_yu_out.png"/>
+<img class="result output" src="semisynthetic/20160617_21_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20160617_21_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20160617_21_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20160617_21_ours_err.png"/>
+<img class="result error" src="semisynthetic/20160617_21_yu_err.png"/>
+<img class="result error" src="semisynthetic/20160617_21_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20160617_21_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20160617_21_ef_err.png"/>
+<br/><hr/>
+<h5>Object #22</h5><br/>
+<h6>input images</h6><br/>
+<img class="inputim" src="semisynthetic/20160617_inputs/22_0.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/22_1.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/22_2.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/22_3.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/22_4.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/22_5.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/22_6.png"/>
+<img class="inputim" src="semisynthetic/20160617_inputs/22_7.png"/>
+<br/>
+<h6 class="sec1res">ground truth</h6>
+<h6 class="sec1res">ours</h6>
+<h6 class="sec1res">Yu et al.&nbsp;[13]</h6>
+<h6 class="sec1res">DPSN&nbsp;[22]</h6>
+<h6 class="sec1res">MarrNet&nbsp;[27]</h6>
+<h6 class="sec1res">Eigen-Fergus&nbsp;[25]</h6>
+<br/>
+<img class="result output" src="semisynthetic/20160617_22_gt.png"/>
+<img class="result output" src="semisynthetic/20160617_22_ours_out.png"/>
+<img class="result output" src="semisynthetic/20160617_22_yu_out.png"/>
+<img class="result output" src="semisynthetic/20160617_22_dpsn_out.png"/>
+<img class="result output" src="semisynthetic/20160617_22_marrnet_out.png"/>
+<img class="result output" src="semisynthetic/20160617_22_ef_out.png"/>
+<br/>
+<div class="sec1res"><img src="semisynthetic/colorbar_error_vertical.png"/></div>
+<img class="result error" src="semisynthetic/20160617_22_ours_err.png"/>
+<img class="result error" src="semisynthetic/20160617_22_yu_err.png"/>
+<img class="result error" src="semisynthetic/20160617_22_dpsn_err.png"/>
+<img class="result error" src="semisynthetic/20160617_22_marrnet_err.png"/>
+<img class="result error" src="semisynthetic/20160617_22_ef_err.png"/>
+<br/><hr/>
+        </div>
+      </div>
+
+      <a class="anchor" name="trainingrenders"></a>
+      <div style="clear:both"></div>
+      <h2>2. Example Renderings from the Training Dataset</h2>
+
+      <p>In this section, we present a random subset of 100 groups of 8 input images from the training dataset.</p>
+
+      <p>Note that those images are not fed directly to our CNN. Non-empty patches of 16x16 pixels are extracted from those images for training.</p>
+
+      <p>&nbsp;</p>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+<div class="traininput" style="display: inline-block;">ground truth</div>
+<div class="traininput" style="display: inline-block;" src="training/0_0.png">9:00</div>
+<div class="traininput" style="display: inline-block;" src="training/0_1.png">10:00</div>
+<div class="traininput" style="display: inline-block;" src="training/0_2.png">11:00</div>
+<div class="traininput" style="display: inline-block;" src="training/0_3.png">12:00</div>
+<div class="traininput" style="display: inline-block;" src="training/0_4.png">13:00</div>
+<div class="traininput" style="display: inline-block;" src="training/0_5.png">14:00</div>
+<div class="traininput" style="display: inline-block;" src="training/0_6.png">15:00</div>
+<div class="traininput" style="display: inline-block;" src="training/0_7.png">16:00</div>
+<br/>
+<img class="traininput" src="training/0_gt.png"/>
+<img class="traininput" src="training/0_0.png"/>
+<img class="traininput" src="training/0_1.png"/>
+<img class="traininput" src="training/0_2.png"/>
+<img class="traininput" src="training/0_3.png"/>
+<img class="traininput" src="training/0_4.png"/>
+<img class="traininput" src="training/0_5.png"/>
+<img class="traininput" src="training/0_6.png"/>
+<img class="traininput" src="training/0_7.png"/>
+<br/>
+<img class="traininput" src="training/1_gt.png"/>
+<img class="traininput" src="training/1_0.png"/>
+<img class="traininput" src="training/1_1.png"/>
+<img class="traininput" src="training/1_2.png"/>
+<img class="traininput" src="training/1_3.png"/>
+<img class="traininput" src="training/1_4.png"/>
+<img class="traininput" src="training/1_5.png"/>
+<img class="traininput" src="training/1_6.png"/>
+<img class="traininput" src="training/1_7.png"/>
+<br/>
+<img class="traininput" src="training/2_gt.png"/>
+<img class="traininput" src="training/2_0.png"/>
+<img class="traininput" src="training/2_1.png"/>
+<img class="traininput" src="training/2_2.png"/>
+<img class="traininput" src="training/2_3.png"/>
+<img class="traininput" src="training/2_4.png"/>
+<img class="traininput" src="training/2_5.png"/>
+<img class="traininput" src="training/2_6.png"/>
+<img class="traininput" src="training/2_7.png"/>
+<br/>
+<img class="traininput" src="training/3_gt.png"/>
+<img class="traininput" src="training/3_0.png"/>
+<img class="traininput" src="training/3_1.png"/>
+<img class="traininput" src="training/3_2.png"/>
+<img class="traininput" src="training/3_3.png"/>
+<img class="traininput" src="training/3_4.png"/>
+<img class="traininput" src="training/3_5.png"/>
+<img class="traininput" src="training/3_6.png"/>
+<img class="traininput" src="training/3_7.png"/>
+<br/>
+<img class="traininput" src="training/4_gt.png"/>
+<img class="traininput" src="training/4_0.png"/>
+<img class="traininput" src="training/4_1.png"/>
+<img class="traininput" src="training/4_2.png"/>
+<img class="traininput" src="training/4_3.png"/>
+<img class="traininput" src="training/4_4.png"/>
+<img class="traininput" src="training/4_5.png"/>
+<img class="traininput" src="training/4_6.png"/>
+<img class="traininput" src="training/4_7.png"/>
+<br/>
+<img class="traininput" src="training/5_gt.png"/>
+<img class="traininput" src="training/5_0.png"/>
+<img class="traininput" src="training/5_1.png"/>
+<img class="traininput" src="training/5_2.png"/>
+<img class="traininput" src="training/5_3.png"/>
+<img class="traininput" src="training/5_4.png"/>
+<img class="traininput" src="training/5_5.png"/>
+<img class="traininput" src="training/5_6.png"/>
+<img class="traininput" src="training/5_7.png"/>
+<br/>
+<img class="traininput" src="training/6_gt.png"/>
+<img class="traininput" src="training/6_0.png"/>
+<img class="traininput" src="training/6_1.png"/>
+<img class="traininput" src="training/6_2.png"/>
+<img class="traininput" src="training/6_3.png"/>
+<img class="traininput" src="training/6_4.png"/>
+<img class="traininput" src="training/6_5.png"/>
+<img class="traininput" src="training/6_6.png"/>
+<img class="traininput" src="training/6_7.png"/>
+<br/>
+<img class="traininput" src="training/7_gt.png"/>
+<img class="traininput" src="training/7_0.png"/>
+<img class="traininput" src="training/7_1.png"/>
+<img class="traininput" src="training/7_2.png"/>
+<img class="traininput" src="training/7_3.png"/>
+<img class="traininput" src="training/7_4.png"/>
+<img class="traininput" src="training/7_5.png"/>
+<img class="traininput" src="training/7_6.png"/>
+<img class="traininput" src="training/7_7.png"/>
+<br/>
+<img class="traininput" src="training/8_gt.png"/>
+<img class="traininput" src="training/8_0.png"/>
+<img class="traininput" src="training/8_1.png"/>
+<img class="traininput" src="training/8_2.png"/>
+<img class="traininput" src="training/8_3.png"/>
+<img class="traininput" src="training/8_4.png"/>
+<img class="traininput" src="training/8_5.png"/>
+<img class="traininput" src="training/8_6.png"/>
+<img class="traininput" src="training/8_7.png"/>
+<br/>
+<img class="traininput" src="training/9_gt.png"/>
+<img class="traininput" src="training/9_0.png"/>
+<img class="traininput" src="training/9_1.png"/>
+<img class="traininput" src="training/9_2.png"/>
+<img class="traininput" src="training/9_3.png"/>
+<img class="traininput" src="training/9_4.png"/>
+<img class="traininput" src="training/9_5.png"/>
+<img class="traininput" src="training/9_6.png"/>
+<img class="traininput" src="training/9_7.png"/>
+<br/>
+<img class="traininput" src="training/10_gt.png"/>
+<img class="traininput" src="training/10_0.png"/>
+<img class="traininput" src="training/10_1.png"/>
+<img class="traininput" src="training/10_2.png"/>
+<img class="traininput" src="training/10_3.png"/>
+<img class="traininput" src="training/10_4.png"/>
+<img class="traininput" src="training/10_5.png"/>
+<img class="traininput" src="training/10_6.png"/>
+<img class="traininput" src="training/10_7.png"/>
+<br/>
+<img class="traininput" src="training/11_gt.png"/>
+<img class="traininput" src="training/11_0.png"/>
+<img class="traininput" src="training/11_1.png"/>
+<img class="traininput" src="training/11_2.png"/>
+<img class="traininput" src="training/11_3.png"/>
+<img class="traininput" src="training/11_4.png"/>
+<img class="traininput" src="training/11_5.png"/>
+<img class="traininput" src="training/11_6.png"/>
+<img class="traininput" src="training/11_7.png"/>
+<br/>
+<img class="traininput" src="training/12_gt.png"/>
+<img class="traininput" src="training/12_0.png"/>
+<img class="traininput" src="training/12_1.png"/>
+<img class="traininput" src="training/12_2.png"/>
+<img class="traininput" src="training/12_3.png"/>
+<img class="traininput" src="training/12_4.png"/>
+<img class="traininput" src="training/12_5.png"/>
+<img class="traininput" src="training/12_6.png"/>
+<img class="traininput" src="training/12_7.png"/>
+<br/>
+<img class="traininput" src="training/13_gt.png"/>
+<img class="traininput" src="training/13_0.png"/>
+<img class="traininput" src="training/13_1.png"/>
+<img class="traininput" src="training/13_2.png"/>
+<img class="traininput" src="training/13_3.png"/>
+<img class="traininput" src="training/13_4.png"/>
+<img class="traininput" src="training/13_5.png"/>
+<img class="traininput" src="training/13_6.png"/>
+<img class="traininput" src="training/13_7.png"/>
+<br/>
+<img class="traininput" src="training/14_gt.png"/>
+<img class="traininput" src="training/14_0.png"/>
+<img class="traininput" src="training/14_1.png"/>
+<img class="traininput" src="training/14_2.png"/>
+<img class="traininput" src="training/14_3.png"/>
+<img class="traininput" src="training/14_4.png"/>
+<img class="traininput" src="training/14_5.png"/>
+<img class="traininput" src="training/14_6.png"/>
+<img class="traininput" src="training/14_7.png"/>
+<br/>
+<img class="traininput" src="training/15_gt.png"/>
+<img class="traininput" src="training/15_0.png"/>
+<img class="traininput" src="training/15_1.png"/>
+<img class="traininput" src="training/15_2.png"/>
+<img class="traininput" src="training/15_3.png"/>
+<img class="traininput" src="training/15_4.png"/>
+<img class="traininput" src="training/15_5.png"/>
+<img class="traininput" src="training/15_6.png"/>
+<img class="traininput" src="training/15_7.png"/>
+<br/>
+<img class="traininput" src="training/16_gt.png"/>
+<img class="traininput" src="training/16_0.png"/>
+<img class="traininput" src="training/16_1.png"/>
+<img class="traininput" src="training/16_2.png"/>
+<img class="traininput" src="training/16_3.png"/>
+<img class="traininput" src="training/16_4.png"/>
+<img class="traininput" src="training/16_5.png"/>
+<img class="traininput" src="training/16_6.png"/>
+<img class="traininput" src="training/16_7.png"/>
+<br/>
+<img class="traininput" src="training/17_gt.png"/>
+<img class="traininput" src="training/17_0.png"/>
+<img class="traininput" src="training/17_1.png"/>
+<img class="traininput" src="training/17_2.png"/>
+<img class="traininput" src="training/17_3.png"/>
+<img class="traininput" src="training/17_4.png"/>
+<img class="traininput" src="training/17_5.png"/>
+<img class="traininput" src="training/17_6.png"/>
+<img class="traininput" src="training/17_7.png"/>
+<br/>
+<img class="traininput" src="training/18_gt.png"/>
+<img class="traininput" src="training/18_0.png"/>
+<img class="traininput" src="training/18_1.png"/>
+<img class="traininput" src="training/18_2.png"/>
+<img class="traininput" src="training/18_3.png"/>
+<img class="traininput" src="training/18_4.png"/>
+<img class="traininput" src="training/18_5.png"/>
+<img class="traininput" src="training/18_6.png"/>
+<img class="traininput" src="training/18_7.png"/>
+<br/>
+<img class="traininput" src="training/19_gt.png"/>
+<img class="traininput" src="training/19_0.png"/>
+<img class="traininput" src="training/19_1.png"/>
+<img class="traininput" src="training/19_2.png"/>
+<img class="traininput" src="training/19_3.png"/>
+<img class="traininput" src="training/19_4.png"/>
+<img class="traininput" src="training/19_5.png"/>
+<img class="traininput" src="training/19_6.png"/>
+<img class="traininput" src="training/19_7.png"/>
+<br/>
+<img class="traininput" src="training/20_gt.png"/>
+<img class="traininput" src="training/20_0.png"/>
+<img class="traininput" src="training/20_1.png"/>
+<img class="traininput" src="training/20_2.png"/>
+<img class="traininput" src="training/20_3.png"/>
+<img class="traininput" src="training/20_4.png"/>
+<img class="traininput" src="training/20_5.png"/>
+<img class="traininput" src="training/20_6.png"/>
+<img class="traininput" src="training/20_7.png"/>
+<br/>
+<img class="traininput" src="training/21_gt.png"/>
+<img class="traininput" src="training/21_0.png"/>
+<img class="traininput" src="training/21_1.png"/>
+<img class="traininput" src="training/21_2.png"/>
+<img class="traininput" src="training/21_3.png"/>
+<img class="traininput" src="training/21_4.png"/>
+<img class="traininput" src="training/21_5.png"/>
+<img class="traininput" src="training/21_6.png"/>
+<img class="traininput" src="training/21_7.png"/>
+<br/>
+<img class="traininput" src="training/22_gt.png"/>
+<img class="traininput" src="training/22_0.png"/>
+<img class="traininput" src="training/22_1.png"/>
+<img class="traininput" src="training/22_2.png"/>
+<img class="traininput" src="training/22_3.png"/>
+<img class="traininput" src="training/22_4.png"/>
+<img class="traininput" src="training/22_5.png"/>
+<img class="traininput" src="training/22_6.png"/>
+<img class="traininput" src="training/22_7.png"/>
+<br/>
+<img class="traininput" src="training/23_gt.png"/>
+<img class="traininput" src="training/23_0.png"/>
+<img class="traininput" src="training/23_1.png"/>
+<img class="traininput" src="training/23_2.png"/>
+<img class="traininput" src="training/23_3.png"/>
+<img class="traininput" src="training/23_4.png"/>
+<img class="traininput" src="training/23_5.png"/>
+<img class="traininput" src="training/23_6.png"/>
+<img class="traininput" src="training/23_7.png"/>
+<br/>
+<img class="traininput" src="training/24_gt.png"/>
+<img class="traininput" src="training/24_0.png"/>
+<img class="traininput" src="training/24_1.png"/>
+<img class="traininput" src="training/24_2.png"/>
+<img class="traininput" src="training/24_3.png"/>
+<img class="traininput" src="training/24_4.png"/>
+<img class="traininput" src="training/24_5.png"/>
+<img class="traininput" src="training/24_6.png"/>
+<img class="traininput" src="training/24_7.png"/>
+<br/>
+<img class="traininput" src="training/25_gt.png"/>
+<img class="traininput" src="training/25_0.png"/>
+<img class="traininput" src="training/25_1.png"/>
+<img class="traininput" src="training/25_2.png"/>
+<img class="traininput" src="training/25_3.png"/>
+<img class="traininput" src="training/25_4.png"/>
+<img class="traininput" src="training/25_5.png"/>
+<img class="traininput" src="training/25_6.png"/>
+<img class="traininput" src="training/25_7.png"/>
+<br/>
+<img class="traininput" src="training/26_gt.png"/>
+<img class="traininput" src="training/26_0.png"/>
+<img class="traininput" src="training/26_1.png"/>
+<img class="traininput" src="training/26_2.png"/>
+<img class="traininput" src="training/26_3.png"/>
+<img class="traininput" src="training/26_4.png"/>
+<img class="traininput" src="training/26_5.png"/>
+<img class="traininput" src="training/26_6.png"/>
+<img class="traininput" src="training/26_7.png"/>
+<br/>
+<img class="traininput" src="training/27_gt.png"/>
+<img class="traininput" src="training/27_0.png"/>
+<img class="traininput" src="training/27_1.png"/>
+<img class="traininput" src="training/27_2.png"/>
+<img class="traininput" src="training/27_3.png"/>
+<img class="traininput" src="training/27_4.png"/>
+<img class="traininput" src="training/27_5.png"/>
+<img class="traininput" src="training/27_6.png"/>
+<img class="traininput" src="training/27_7.png"/>
+<br/>
+<img class="traininput" src="training/28_gt.png"/>
+<img class="traininput" src="training/28_0.png"/>
+<img class="traininput" src="training/28_1.png"/>
+<img class="traininput" src="training/28_2.png"/>
+<img class="traininput" src="training/28_3.png"/>
+<img class="traininput" src="training/28_4.png"/>
+<img class="traininput" src="training/28_5.png"/>
+<img class="traininput" src="training/28_6.png"/>
+<img class="traininput" src="training/28_7.png"/>
+<br/>
+<img class="traininput" src="training/29_gt.png"/>
+<img class="traininput" src="training/29_0.png"/>
+<img class="traininput" src="training/29_1.png"/>
+<img class="traininput" src="training/29_2.png"/>
+<img class="traininput" src="training/29_3.png"/>
+<img class="traininput" src="training/29_4.png"/>
+<img class="traininput" src="training/29_5.png"/>
+<img class="traininput" src="training/29_6.png"/>
+<img class="traininput" src="training/29_7.png"/>
+<br/>
+<img class="traininput" src="training/30_gt.png"/>
+<img class="traininput" src="training/30_0.png"/>
+<img class="traininput" src="training/30_1.png"/>
+<img class="traininput" src="training/30_2.png"/>
+<img class="traininput" src="training/30_3.png"/>
+<img class="traininput" src="training/30_4.png"/>
+<img class="traininput" src="training/30_5.png"/>
+<img class="traininput" src="training/30_6.png"/>
+<img class="traininput" src="training/30_7.png"/>
+<br/>
+<img class="traininput" src="training/31_gt.png"/>
+<img class="traininput" src="training/31_0.png"/>
+<img class="traininput" src="training/31_1.png"/>
+<img class="traininput" src="training/31_2.png"/>
+<img class="traininput" src="training/31_3.png"/>
+<img class="traininput" src="training/31_4.png"/>
+<img class="traininput" src="training/31_5.png"/>
+<img class="traininput" src="training/31_6.png"/>
+<img class="traininput" src="training/31_7.png"/>
+<br/>
+<img class="traininput" src="training/32_gt.png"/>
+<img class="traininput" src="training/32_0.png"/>
+<img class="traininput" src="training/32_1.png"/>
+<img class="traininput" src="training/32_2.png"/>
+<img class="traininput" src="training/32_3.png"/>
+<img class="traininput" src="training/32_4.png"/>
+<img class="traininput" src="training/32_5.png"/>
+<img class="traininput" src="training/32_6.png"/>
+<img class="traininput" src="training/32_7.png"/>
+<br/>
+<img class="traininput" src="training/33_gt.png"/>
+<img class="traininput" src="training/33_0.png"/>
+<img class="traininput" src="training/33_1.png"/>
+<img class="traininput" src="training/33_2.png"/>
+<img class="traininput" src="training/33_3.png"/>
+<img class="traininput" src="training/33_4.png"/>
+<img class="traininput" src="training/33_5.png"/>
+<img class="traininput" src="training/33_6.png"/>
+<img class="traininput" src="training/33_7.png"/>
+<br/>
+<img class="traininput" src="training/34_gt.png"/>
+<img class="traininput" src="training/34_0.png"/>
+<img class="traininput" src="training/34_1.png"/>
+<img class="traininput" src="training/34_2.png"/>
+<img class="traininput" src="training/34_3.png"/>
+<img class="traininput" src="training/34_4.png"/>
+<img class="traininput" src="training/34_5.png"/>
+<img class="traininput" src="training/34_6.png"/>
+<img class="traininput" src="training/34_7.png"/>
+<br/>
+<img class="traininput" src="training/35_gt.png"/>
+<img class="traininput" src="training/35_0.png"/>
+<img class="traininput" src="training/35_1.png"/>
+<img class="traininput" src="training/35_2.png"/>
+<img class="traininput" src="training/35_3.png"/>
+<img class="traininput" src="training/35_4.png"/>
+<img class="traininput" src="training/35_5.png"/>
+<img class="traininput" src="training/35_6.png"/>
+<img class="traininput" src="training/35_7.png"/>
+<br/>
+<img class="traininput" src="training/36_gt.png"/>
+<img class="traininput" src="training/36_0.png"/>
+<img class="traininput" src="training/36_1.png"/>
+<img class="traininput" src="training/36_2.png"/>
+<img class="traininput" src="training/36_3.png"/>
+<img class="traininput" src="training/36_4.png"/>
+<img class="traininput" src="training/36_5.png"/>
+<img class="traininput" src="training/36_6.png"/>
+<img class="traininput" src="training/36_7.png"/>
+<br/>
+<img class="traininput" src="training/37_gt.png"/>
+<img class="traininput" src="training/37_0.png"/>
+<img class="traininput" src="training/37_1.png"/>
+<img class="traininput" src="training/37_2.png"/>
+<img class="traininput" src="training/37_3.png"/>
+<img class="traininput" src="training/37_4.png"/>
+<img class="traininput" src="training/37_5.png"/>
+<img class="traininput" src="training/37_6.png"/>
+<img class="traininput" src="training/37_7.png"/>
+<br/>
+<img class="traininput" src="training/38_gt.png"/>
+<img class="traininput" src="training/38_0.png"/>
+<img class="traininput" src="training/38_1.png"/>
+<img class="traininput" src="training/38_2.png"/>
+<img class="traininput" src="training/38_3.png"/>
+<img class="traininput" src="training/38_4.png"/>
+<img class="traininput" src="training/38_5.png"/>
+<img class="traininput" src="training/38_6.png"/>
+<img class="traininput" src="training/38_7.png"/>
+<br/>
+<img class="traininput" src="training/39_gt.png"/>
+<img class="traininput" src="training/39_0.png"/>
+<img class="traininput" src="training/39_1.png"/>
+<img class="traininput" src="training/39_2.png"/>
+<img class="traininput" src="training/39_3.png"/>
+<img class="traininput" src="training/39_4.png"/>
+<img class="traininput" src="training/39_5.png"/>
+<img class="traininput" src="training/39_6.png"/>
+<img class="traininput" src="training/39_7.png"/>
+<br/>
+<img class="traininput" src="training/40_gt.png"/>
+<img class="traininput" src="training/40_0.png"/>
+<img class="traininput" src="training/40_1.png"/>
+<img class="traininput" src="training/40_2.png"/>
+<img class="traininput" src="training/40_3.png"/>
+<img class="traininput" src="training/40_4.png"/>
+<img class="traininput" src="training/40_5.png"/>
+<img class="traininput" src="training/40_6.png"/>
+<img class="traininput" src="training/40_7.png"/>
+<br/>
+<img class="traininput" src="training/41_gt.png"/>
+<img class="traininput" src="training/41_0.png"/>
+<img class="traininput" src="training/41_1.png"/>
+<img class="traininput" src="training/41_2.png"/>
+<img class="traininput" src="training/41_3.png"/>
+<img class="traininput" src="training/41_4.png"/>
+<img class="traininput" src="training/41_5.png"/>
+<img class="traininput" src="training/41_6.png"/>
+<img class="traininput" src="training/41_7.png"/>
+<br/>
+<img class="traininput" src="training/42_gt.png"/>
+<img class="traininput" src="training/42_0.png"/>
+<img class="traininput" src="training/42_1.png"/>
+<img class="traininput" src="training/42_2.png"/>
+<img class="traininput" src="training/42_3.png"/>
+<img class="traininput" src="training/42_4.png"/>
+<img class="traininput" src="training/42_5.png"/>
+<img class="traininput" src="training/42_6.png"/>
+<img class="traininput" src="training/42_7.png"/>
+<br/>
+<img class="traininput" src="training/43_gt.png"/>
+<img class="traininput" src="training/43_0.png"/>
+<img class="traininput" src="training/43_1.png"/>
+<img class="traininput" src="training/43_2.png"/>
+<img class="traininput" src="training/43_3.png"/>
+<img class="traininput" src="training/43_4.png"/>
+<img class="traininput" src="training/43_5.png"/>
+<img class="traininput" src="training/43_6.png"/>
+<img class="traininput" src="training/43_7.png"/>
+<br/>
+<img class="traininput" src="training/44_gt.png"/>
+<img class="traininput" src="training/44_0.png"/>
+<img class="traininput" src="training/44_1.png"/>
+<img class="traininput" src="training/44_2.png"/>
+<img class="traininput" src="training/44_3.png"/>
+<img class="traininput" src="training/44_4.png"/>
+<img class="traininput" src="training/44_5.png"/>
+<img class="traininput" src="training/44_6.png"/>
+<img class="traininput" src="training/44_7.png"/>
+<br/>
+<img class="traininput" src="training/45_gt.png"/>
+<img class="traininput" src="training/45_0.png"/>
+<img class="traininput" src="training/45_1.png"/>
+<img class="traininput" src="training/45_2.png"/>
+<img class="traininput" src="training/45_3.png"/>
+<img class="traininput" src="training/45_4.png"/>
+<img class="traininput" src="training/45_5.png"/>
+<img class="traininput" src="training/45_6.png"/>
+<img class="traininput" src="training/45_7.png"/>
+<br/>
+<img class="traininput" src="training/46_gt.png"/>
+<img class="traininput" src="training/46_0.png"/>
+<img class="traininput" src="training/46_1.png"/>
+<img class="traininput" src="training/46_2.png"/>
+<img class="traininput" src="training/46_3.png"/>
+<img class="traininput" src="training/46_4.png"/>
+<img class="traininput" src="training/46_5.png"/>
+<img class="traininput" src="training/46_6.png"/>
+<img class="traininput" src="training/46_7.png"/>
+<br/>
+<img class="traininput" src="training/47_gt.png"/>
+<img class="traininput" src="training/47_0.png"/>
+<img class="traininput" src="training/47_1.png"/>
+<img class="traininput" src="training/47_2.png"/>
+<img class="traininput" src="training/47_3.png"/>
+<img class="traininput" src="training/47_4.png"/>
+<img class="traininput" src="training/47_5.png"/>
+<img class="traininput" src="training/47_6.png"/>
+<img class="traininput" src="training/47_7.png"/>
+<br/>
+<img class="traininput" src="training/48_gt.png"/>
+<img class="traininput" src="training/48_0.png"/>
+<img class="traininput" src="training/48_1.png"/>
+<img class="traininput" src="training/48_2.png"/>
+<img class="traininput" src="training/48_3.png"/>
+<img class="traininput" src="training/48_4.png"/>
+<img class="traininput" src="training/48_5.png"/>
+<img class="traininput" src="training/48_6.png"/>
+<img class="traininput" src="training/48_7.png"/>
+<br/>
+<img class="traininput" src="training/49_gt.png"/>
+<img class="traininput" src="training/49_0.png"/>
+<img class="traininput" src="training/49_1.png"/>
+<img class="traininput" src="training/49_2.png"/>
+<img class="traininput" src="training/49_3.png"/>
+<img class="traininput" src="training/49_4.png"/>
+<img class="traininput" src="training/49_5.png"/>
+<img class="traininput" src="training/49_6.png"/>
+<img class="traininput" src="training/49_7.png"/>
+<br/>
+<img class="traininput" src="training/50_gt.png"/>
+<img class="traininput" src="training/50_0.png"/>
+<img class="traininput" src="training/50_1.png"/>
+<img class="traininput" src="training/50_2.png"/>
+<img class="traininput" src="training/50_3.png"/>
+<img class="traininput" src="training/50_4.png"/>
+<img class="traininput" src="training/50_5.png"/>
+<img class="traininput" src="training/50_6.png"/>
+<img class="traininput" src="training/50_7.png"/>
+<br/>
+<img class="traininput" src="training/51_gt.png"/>
+<img class="traininput" src="training/51_0.png"/>
+<img class="traininput" src="training/51_1.png"/>
+<img class="traininput" src="training/51_2.png"/>
+<img class="traininput" src="training/51_3.png"/>
+<img class="traininput" src="training/51_4.png"/>
+<img class="traininput" src="training/51_5.png"/>
+<img class="traininput" src="training/51_6.png"/>
+<img class="traininput" src="training/51_7.png"/>
+<br/>
+<img class="traininput" src="training/52_gt.png"/>
+<img class="traininput" src="training/52_0.png"/>
+<img class="traininput" src="training/52_1.png"/>
+<img class="traininput" src="training/52_2.png"/>
+<img class="traininput" src="training/52_3.png"/>
+<img class="traininput" src="training/52_4.png"/>
+<img class="traininput" src="training/52_5.png"/>
+<img class="traininput" src="training/52_6.png"/>
+<img class="traininput" src="training/52_7.png"/>
+<br/>
+<img class="traininput" src="training/53_gt.png"/>
+<img class="traininput" src="training/53_0.png"/>
+<img class="traininput" src="training/53_1.png"/>
+<img class="traininput" src="training/53_2.png"/>
+<img class="traininput" src="training/53_3.png"/>
+<img class="traininput" src="training/53_4.png"/>
+<img class="traininput" src="training/53_5.png"/>
+<img class="traininput" src="training/53_6.png"/>
+<img class="traininput" src="training/53_7.png"/>
+<br/>
+<img class="traininput" src="training/54_gt.png"/>
+<img class="traininput" src="training/54_0.png"/>
+<img class="traininput" src="training/54_1.png"/>
+<img class="traininput" src="training/54_2.png"/>
+<img class="traininput" src="training/54_3.png"/>
+<img class="traininput" src="training/54_4.png"/>
+<img class="traininput" src="training/54_5.png"/>
+<img class="traininput" src="training/54_6.png"/>
+<img class="traininput" src="training/54_7.png"/>
+<br/>
+<img class="traininput" src="training/55_gt.png"/>
+<img class="traininput" src="training/55_0.png"/>
+<img class="traininput" src="training/55_1.png"/>
+<img class="traininput" src="training/55_2.png"/>
+<img class="traininput" src="training/55_3.png"/>
+<img class="traininput" src="training/55_4.png"/>
+<img class="traininput" src="training/55_5.png"/>
+<img class="traininput" src="training/55_6.png"/>
+<img class="traininput" src="training/55_7.png"/>
+<br/>
+<img class="traininput" src="training/56_gt.png"/>
+<img class="traininput" src="training/56_0.png"/>
+<img class="traininput" src="training/56_1.png"/>
+<img class="traininput" src="training/56_2.png"/>
+<img class="traininput" src="training/56_3.png"/>
+<img class="traininput" src="training/56_4.png"/>
+<img class="traininput" src="training/56_5.png"/>
+<img class="traininput" src="training/56_6.png"/>
+<img class="traininput" src="training/56_7.png"/>
+<br/>
+<img class="traininput" src="training/57_gt.png"/>
+<img class="traininput" src="training/57_0.png"/>
+<img class="traininput" src="training/57_1.png"/>
+<img class="traininput" src="training/57_2.png"/>
+<img class="traininput" src="training/57_3.png"/>
+<img class="traininput" src="training/57_4.png"/>
+<img class="traininput" src="training/57_5.png"/>
+<img class="traininput" src="training/57_6.png"/>
+<img class="traininput" src="training/57_7.png"/>
+<br/>
+<img class="traininput" src="training/58_gt.png"/>
+<img class="traininput" src="training/58_0.png"/>
+<img class="traininput" src="training/58_1.png"/>
+<img class="traininput" src="training/58_2.png"/>
+<img class="traininput" src="training/58_3.png"/>
+<img class="traininput" src="training/58_4.png"/>
+<img class="traininput" src="training/58_5.png"/>
+<img class="traininput" src="training/58_6.png"/>
+<img class="traininput" src="training/58_7.png"/>
+<br/>
+<img class="traininput" src="training/59_gt.png"/>
+<img class="traininput" src="training/59_0.png"/>
+<img class="traininput" src="training/59_1.png"/>
+<img class="traininput" src="training/59_2.png"/>
+<img class="traininput" src="training/59_3.png"/>
+<img class="traininput" src="training/59_4.png"/>
+<img class="traininput" src="training/59_5.png"/>
+<img class="traininput" src="training/59_6.png"/>
+<img class="traininput" src="training/59_7.png"/>
+<br/>
+<img class="traininput" src="training/60_gt.png"/>
+<img class="traininput" src="training/60_0.png"/>
+<img class="traininput" src="training/60_1.png"/>
+<img class="traininput" src="training/60_2.png"/>
+<img class="traininput" src="training/60_3.png"/>
+<img class="traininput" src="training/60_4.png"/>
+<img class="traininput" src="training/60_5.png"/>
+<img class="traininput" src="training/60_6.png"/>
+<img class="traininput" src="training/60_7.png"/>
+<br/>
+<img class="traininput" src="training/61_gt.png"/>
+<img class="traininput" src="training/61_0.png"/>
+<img class="traininput" src="training/61_1.png"/>
+<img class="traininput" src="training/61_2.png"/>
+<img class="traininput" src="training/61_3.png"/>
+<img class="traininput" src="training/61_4.png"/>
+<img class="traininput" src="training/61_5.png"/>
+<img class="traininput" src="training/61_6.png"/>
+<img class="traininput" src="training/61_7.png"/>
+<br/>
+<img class="traininput" src="training/62_gt.png"/>
+<img class="traininput" src="training/62_0.png"/>
+<img class="traininput" src="training/62_1.png"/>
+<img class="traininput" src="training/62_2.png"/>
+<img class="traininput" src="training/62_3.png"/>
+<img class="traininput" src="training/62_4.png"/>
+<img class="traininput" src="training/62_5.png"/>
+<img class="traininput" src="training/62_6.png"/>
+<img class="traininput" src="training/62_7.png"/>
+<br/>
+<img class="traininput" src="training/63_gt.png"/>
+<img class="traininput" src="training/63_0.png"/>
+<img class="traininput" src="training/63_1.png"/>
+<img class="traininput" src="training/63_2.png"/>
+<img class="traininput" src="training/63_3.png"/>
+<img class="traininput" src="training/63_4.png"/>
+<img class="traininput" src="training/63_5.png"/>
+<img class="traininput" src="training/63_6.png"/>
+<img class="traininput" src="training/63_7.png"/>
+<br/>
+<img class="traininput" src="training/64_gt.png"/>
+<img class="traininput" src="training/64_0.png"/>
+<img class="traininput" src="training/64_1.png"/>
+<img class="traininput" src="training/64_2.png"/>
+<img class="traininput" src="training/64_3.png"/>
+<img class="traininput" src="training/64_4.png"/>
+<img class="traininput" src="training/64_5.png"/>
+<img class="traininput" src="training/64_6.png"/>
+<img class="traininput" src="training/64_7.png"/>
+<br/>
+<img class="traininput" src="training/65_gt.png"/>
+<img class="traininput" src="training/65_0.png"/>
+<img class="traininput" src="training/65_1.png"/>
+<img class="traininput" src="training/65_2.png"/>
+<img class="traininput" src="training/65_3.png"/>
+<img class="traininput" src="training/65_4.png"/>
+<img class="traininput" src="training/65_5.png"/>
+<img class="traininput" src="training/65_6.png"/>
+<img class="traininput" src="training/65_7.png"/>
+<br/>
+<img class="traininput" src="training/66_gt.png"/>
+<img class="traininput" src="training/66_0.png"/>
+<img class="traininput" src="training/66_1.png"/>
+<img class="traininput" src="training/66_2.png"/>
+<img class="traininput" src="training/66_3.png"/>
+<img class="traininput" src="training/66_4.png"/>
+<img class="traininput" src="training/66_5.png"/>
+<img class="traininput" src="training/66_6.png"/>
+<img class="traininput" src="training/66_7.png"/>
+<br/>
+<img class="traininput" src="training/67_gt.png"/>
+<img class="traininput" src="training/67_0.png"/>
+<img class="traininput" src="training/67_1.png"/>
+<img class="traininput" src="training/67_2.png"/>
+<img class="traininput" src="training/67_3.png"/>
+<img class="traininput" src="training/67_4.png"/>
+<img class="traininput" src="training/67_5.png"/>
+<img class="traininput" src="training/67_6.png"/>
+<img class="traininput" src="training/67_7.png"/>
+<br/>
+<img class="traininput" src="training/68_gt.png"/>
+<img class="traininput" src="training/68_0.png"/>
+<img class="traininput" src="training/68_1.png"/>
+<img class="traininput" src="training/68_2.png"/>
+<img class="traininput" src="training/68_3.png"/>
+<img class="traininput" src="training/68_4.png"/>
+<img class="traininput" src="training/68_5.png"/>
+<img class="traininput" src="training/68_6.png"/>
+<img class="traininput" src="training/68_7.png"/>
+<br/>
+<img class="traininput" src="training/69_gt.png"/>
+<img class="traininput" src="training/69_0.png"/>
+<img class="traininput" src="training/69_1.png"/>
+<img class="traininput" src="training/69_2.png"/>
+<img class="traininput" src="training/69_3.png"/>
+<img class="traininput" src="training/69_4.png"/>
+<img class="traininput" src="training/69_5.png"/>
+<img class="traininput" src="training/69_6.png"/>
+<img class="traininput" src="training/69_7.png"/>
+<br/>
+<img class="traininput" src="training/70_gt.png"/>
+<img class="traininput" src="training/70_0.png"/>
+<img class="traininput" src="training/70_1.png"/>
+<img class="traininput" src="training/70_2.png"/>
+<img class="traininput" src="training/70_3.png"/>
+<img class="traininput" src="training/70_4.png"/>
+<img class="traininput" src="training/70_5.png"/>
+<img class="traininput" src="training/70_6.png"/>
+<img class="traininput" src="training/70_7.png"/>
+<br/>
+<img class="traininput" src="training/71_gt.png"/>
+<img class="traininput" src="training/71_0.png"/>
+<img class="traininput" src="training/71_1.png"/>
+<img class="traininput" src="training/71_2.png"/>
+<img class="traininput" src="training/71_3.png"/>
+<img class="traininput" src="training/71_4.png"/>
+<img class="traininput" src="training/71_5.png"/>
+<img class="traininput" src="training/71_6.png"/>
+<img class="traininput" src="training/71_7.png"/>
+<br/>
+<img class="traininput" src="training/72_gt.png"/>
+<img class="traininput" src="training/72_0.png"/>
+<img class="traininput" src="training/72_1.png"/>
+<img class="traininput" src="training/72_2.png"/>
+<img class="traininput" src="training/72_3.png"/>
+<img class="traininput" src="training/72_4.png"/>
+<img class="traininput" src="training/72_5.png"/>
+<img class="traininput" src="training/72_6.png"/>
+<img class="traininput" src="training/72_7.png"/>
+<br/>
+<img class="traininput" src="training/73_gt.png"/>
+<img class="traininput" src="training/73_0.png"/>
+<img class="traininput" src="training/73_1.png"/>
+<img class="traininput" src="training/73_2.png"/>
+<img class="traininput" src="training/73_3.png"/>
+<img class="traininput" src="training/73_4.png"/>
+<img class="traininput" src="training/73_5.png"/>
+<img class="traininput" src="training/73_6.png"/>
+<img class="traininput" src="training/73_7.png"/>
+<br/>
+<img class="traininput" src="training/74_gt.png"/>
+<img class="traininput" src="training/74_0.png"/>
+<img class="traininput" src="training/74_1.png"/>
+<img class="traininput" src="training/74_2.png"/>
+<img class="traininput" src="training/74_3.png"/>
+<img class="traininput" src="training/74_4.png"/>
+<img class="traininput" src="training/74_5.png"/>
+<img class="traininput" src="training/74_6.png"/>
+<img class="traininput" src="training/74_7.png"/>
+<br/>
+<img class="traininput" src="training/75_gt.png"/>
+<img class="traininput" src="training/75_0.png"/>
+<img class="traininput" src="training/75_1.png"/>
+<img class="traininput" src="training/75_2.png"/>
+<img class="traininput" src="training/75_3.png"/>
+<img class="traininput" src="training/75_4.png"/>
+<img class="traininput" src="training/75_5.png"/>
+<img class="traininput" src="training/75_6.png"/>
+<img class="traininput" src="training/75_7.png"/>
+<br/>
+<img class="traininput" src="training/76_gt.png"/>
+<img class="traininput" src="training/76_0.png"/>
+<img class="traininput" src="training/76_1.png"/>
+<img class="traininput" src="training/76_2.png"/>
+<img class="traininput" src="training/76_3.png"/>
+<img class="traininput" src="training/76_4.png"/>
+<img class="traininput" src="training/76_5.png"/>
+<img class="traininput" src="training/76_6.png"/>
+<img class="traininput" src="training/76_7.png"/>
+<br/>
+<img class="traininput" src="training/77_gt.png"/>
+<img class="traininput" src="training/77_0.png"/>
+<img class="traininput" src="training/77_1.png"/>
+<img class="traininput" src="training/77_2.png"/>
+<img class="traininput" src="training/77_3.png"/>
+<img class="traininput" src="training/77_4.png"/>
+<img class="traininput" src="training/77_5.png"/>
+<img class="traininput" src="training/77_6.png"/>
+<img class="traininput" src="training/77_7.png"/>
+<br/>
+<img class="traininput" src="training/78_gt.png"/>
+<img class="traininput" src="training/78_0.png"/>
+<img class="traininput" src="training/78_1.png"/>
+<img class="traininput" src="training/78_2.png"/>
+<img class="traininput" src="training/78_3.png"/>
+<img class="traininput" src="training/78_4.png"/>
+<img class="traininput" src="training/78_5.png"/>
+<img class="traininput" src="training/78_6.png"/>
+<img class="traininput" src="training/78_7.png"/>
+<br/>
+<img class="traininput" src="training/79_gt.png"/>
+<img class="traininput" src="training/79_0.png"/>
+<img class="traininput" src="training/79_1.png"/>
+<img class="traininput" src="training/79_2.png"/>
+<img class="traininput" src="training/79_3.png"/>
+<img class="traininput" src="training/79_4.png"/>
+<img class="traininput" src="training/79_5.png"/>
+<img class="traininput" src="training/79_6.png"/>
+<img class="traininput" src="training/79_7.png"/>
+<br/>
+<img class="traininput" src="training/80_gt.png"/>
+<img class="traininput" src="training/80_0.png"/>
+<img class="traininput" src="training/80_1.png"/>
+<img class="traininput" src="training/80_2.png"/>
+<img class="traininput" src="training/80_3.png"/>
+<img class="traininput" src="training/80_4.png"/>
+<img class="traininput" src="training/80_5.png"/>
+<img class="traininput" src="training/80_6.png"/>
+<img class="traininput" src="training/80_7.png"/>
+<br/>
+<img class="traininput" src="training/81_gt.png"/>
+<img class="traininput" src="training/81_0.png"/>
+<img class="traininput" src="training/81_1.png"/>
+<img class="traininput" src="training/81_2.png"/>
+<img class="traininput" src="training/81_3.png"/>
+<img class="traininput" src="training/81_4.png"/>
+<img class="traininput" src="training/81_5.png"/>
+<img class="traininput" src="training/81_6.png"/>
+<img class="traininput" src="training/81_7.png"/>
+<br/>
+<img class="traininput" src="training/82_gt.png"/>
+<img class="traininput" src="training/82_0.png"/>
+<img class="traininput" src="training/82_1.png"/>
+<img class="traininput" src="training/82_2.png"/>
+<img class="traininput" src="training/82_3.png"/>
+<img class="traininput" src="training/82_4.png"/>
+<img class="traininput" src="training/82_5.png"/>
+<img class="traininput" src="training/82_6.png"/>
+<img class="traininput" src="training/82_7.png"/>
+<br/>
+<img class="traininput" src="training/83_gt.png"/>
+<img class="traininput" src="training/83_0.png"/>
+<img class="traininput" src="training/83_1.png"/>
+<img class="traininput" src="training/83_2.png"/>
+<img class="traininput" src="training/83_3.png"/>
+<img class="traininput" src="training/83_4.png"/>
+<img class="traininput" src="training/83_5.png"/>
+<img class="traininput" src="training/83_6.png"/>
+<img class="traininput" src="training/83_7.png"/>
+<br/>
+<img class="traininput" src="training/84_gt.png"/>
+<img class="traininput" src="training/84_0.png"/>
+<img class="traininput" src="training/84_1.png"/>
+<img class="traininput" src="training/84_2.png"/>
+<img class="traininput" src="training/84_3.png"/>
+<img class="traininput" src="training/84_4.png"/>
+<img class="traininput" src="training/84_5.png"/>
+<img class="traininput" src="training/84_6.png"/>
+<img class="traininput" src="training/84_7.png"/>
+<br/>
+<img class="traininput" src="training/85_gt.png"/>
+<img class="traininput" src="training/85_0.png"/>
+<img class="traininput" src="training/85_1.png"/>
+<img class="traininput" src="training/85_2.png"/>
+<img class="traininput" src="training/85_3.png"/>
+<img class="traininput" src="training/85_4.png"/>
+<img class="traininput" src="training/85_5.png"/>
+<img class="traininput" src="training/85_6.png"/>
+<img class="traininput" src="training/85_7.png"/>
+<br/>
+<img class="traininput" src="training/86_gt.png"/>
+<img class="traininput" src="training/86_0.png"/>
+<img class="traininput" src="training/86_1.png"/>
+<img class="traininput" src="training/86_2.png"/>
+<img class="traininput" src="training/86_3.png"/>
+<img class="traininput" src="training/86_4.png"/>
+<img class="traininput" src="training/86_5.png"/>
+<img class="traininput" src="training/86_6.png"/>
+<img class="traininput" src="training/86_7.png"/>
+<br/>
+<img class="traininput" src="training/87_gt.png"/>
+<img class="traininput" src="training/87_0.png"/>
+<img class="traininput" src="training/87_1.png"/>
+<img class="traininput" src="training/87_2.png"/>
+<img class="traininput" src="training/87_3.png"/>
+<img class="traininput" src="training/87_4.png"/>
+<img class="traininput" src="training/87_5.png"/>
+<img class="traininput" src="training/87_6.png"/>
+<img class="traininput" src="training/87_7.png"/>
+<br/>
+<img class="traininput" src="training/88_gt.png"/>
+<img class="traininput" src="training/88_0.png"/>
+<img class="traininput" src="training/88_1.png"/>
+<img class="traininput" src="training/88_2.png"/>
+<img class="traininput" src="training/88_3.png"/>
+<img class="traininput" src="training/88_4.png"/>
+<img class="traininput" src="training/88_5.png"/>
+<img class="traininput" src="training/88_6.png"/>
+<img class="traininput" src="training/88_7.png"/>
+<br/>
+<img class="traininput" src="training/89_gt.png"/>
+<img class="traininput" src="training/89_0.png"/>
+<img class="traininput" src="training/89_1.png"/>
+<img class="traininput" src="training/89_2.png"/>
+<img class="traininput" src="training/89_3.png"/>
+<img class="traininput" src="training/89_4.png"/>
+<img class="traininput" src="training/89_5.png"/>
+<img class="traininput" src="training/89_6.png"/>
+<img class="traininput" src="training/89_7.png"/>
+<br/>
+<img class="traininput" src="training/90_gt.png"/>
+<img class="traininput" src="training/90_0.png"/>
+<img class="traininput" src="training/90_1.png"/>
+<img class="traininput" src="training/90_2.png"/>
+<img class="traininput" src="training/90_3.png"/>
+<img class="traininput" src="training/90_4.png"/>
+<img class="traininput" src="training/90_5.png"/>
+<img class="traininput" src="training/90_6.png"/>
+<img class="traininput" src="training/90_7.png"/>
+<br/>
+<img class="traininput" src="training/91_gt.png"/>
+<img class="traininput" src="training/91_0.png"/>
+<img class="traininput" src="training/91_1.png"/>
+<img class="traininput" src="training/91_2.png"/>
+<img class="traininput" src="training/91_3.png"/>
+<img class="traininput" src="training/91_4.png"/>
+<img class="traininput" src="training/91_5.png"/>
+<img class="traininput" src="training/91_6.png"/>
+<img class="traininput" src="training/91_7.png"/>
+<br/>
+<img class="traininput" src="training/92_gt.png"/>
+<img class="traininput" src="training/92_0.png"/>
+<img class="traininput" src="training/92_1.png"/>
+<img class="traininput" src="training/92_2.png"/>
+<img class="traininput" src="training/92_3.png"/>
+<img class="traininput" src="training/92_4.png"/>
+<img class="traininput" src="training/92_5.png"/>
+<img class="traininput" src="training/92_6.png"/>
+<img class="traininput" src="training/92_7.png"/>
+<br/>
+<img class="traininput" src="training/93_gt.png"/>
+<img class="traininput" src="training/93_0.png"/>
+<img class="traininput" src="training/93_1.png"/>
+<img class="traininput" src="training/93_2.png"/>
+<img class="traininput" src="training/93_3.png"/>
+<img class="traininput" src="training/93_4.png"/>
+<img class="traininput" src="training/93_5.png"/>
+<img class="traininput" src="training/93_6.png"/>
+<img class="traininput" src="training/93_7.png"/>
+<br/>
+<img class="traininput" src="training/94_gt.png"/>
+<img class="traininput" src="training/94_0.png"/>
+<img class="traininput" src="training/94_1.png"/>
+<img class="traininput" src="training/94_2.png"/>
+<img class="traininput" src="training/94_3.png"/>
+<img class="traininput" src="training/94_4.png"/>
+<img class="traininput" src="training/94_5.png"/>
+<img class="traininput" src="training/94_6.png"/>
+<img class="traininput" src="training/94_7.png"/>
+<br/>
+<img class="traininput" src="training/95_gt.png"/>
+<img class="traininput" src="training/95_0.png"/>
+<img class="traininput" src="training/95_1.png"/>
+<img class="traininput" src="training/95_2.png"/>
+<img class="traininput" src="training/95_3.png"/>
+<img class="traininput" src="training/95_4.png"/>
+<img class="traininput" src="training/95_5.png"/>
+<img class="traininput" src="training/95_6.png"/>
+<img class="traininput" src="training/95_7.png"/>
+<br/>
+<img class="traininput" src="training/96_gt.png"/>
+<img class="traininput" src="training/96_0.png"/>
+<img class="traininput" src="training/96_1.png"/>
+<img class="traininput" src="training/96_2.png"/>
+<img class="traininput" src="training/96_3.png"/>
+<img class="traininput" src="training/96_4.png"/>
+<img class="traininput" src="training/96_5.png"/>
+<img class="traininput" src="training/96_6.png"/>
+<img class="traininput" src="training/96_7.png"/>
+<br/>
+<img class="traininput" src="training/97_gt.png"/>
+<img class="traininput" src="training/97_0.png"/>
+<img class="traininput" src="training/97_1.png"/>
+<img class="traininput" src="training/97_2.png"/>
+<img class="traininput" src="training/97_3.png"/>
+<img class="traininput" src="training/97_4.png"/>
+<img class="traininput" src="training/97_5.png"/>
+<img class="traininput" src="training/97_6.png"/>
+<img class="traininput" src="training/97_7.png"/>
+<br/>
+<img class="traininput" src="training/98_gt.png"/>
+<img class="traininput" src="training/98_0.png"/>
+<img class="traininput" src="training/98_1.png"/>
+<img class="traininput" src="training/98_2.png"/>
+<img class="traininput" src="training/98_3.png"/>
+<img class="traininput" src="training/98_4.png"/>
+<img class="traininput" src="training/98_5.png"/>
+<img class="traininput" src="training/98_6.png"/>
+<img class="traininput" src="training/98_7.png"/>
+<br/>
+<img class="traininput" src="training/99_gt.png"/>
+<img class="traininput" src="training/99_0.png"/>
+<img class="traininput" src="training/99_1.png"/>
+<img class="traininput" src="training/99_2.png"/>
+<img class="traininput" src="training/99_3.png"/>
+<img class="traininput" src="training/99_4.png"/>
+<img class="traininput" src="training/99_5.png"/>
+<img class="traininput" src="training/99_6.png"/>
+<img class="traininput" src="training/99_7.png"/>
+<br/>
+<img class="traininput" src="training/100_gt.png"/>
+<img class="traininput" src="training/100_0.png"/>
+<img class="traininput" src="training/100_1.png"/>
+<img class="traininput" src="training/100_2.png"/>
+<img class="traininput" src="training/100_3.png"/>
+<img class="traininput" src="training/100_4.png"/>
+<img class="traininput" src="training/100_5.png"/>
+<img class="traininput" src="training/100_6.png"/>
+<img class="traininput" src="training/100_7.png"/>
+<br/>
+        </div>
+      </div>
+
+      <div style="clear:both"></div>
+      <a class="anchor" name="partially_cloudy"></a>
+      <h2>3. Partially cloudy day</h2>
+
+      <p>In this section, we present results on the partially cloudy day shown below. We follow the same procedure as section 8.6 to render images on partially cloudy days taken from the Laval HDR sky dataset. Our method still shows competitive performance despite its degraded accuracy compared to clear weather.</p>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align: center;">
+
+<h5>input images</h5><br/>
+<img class="inputim" src="partially_cloudy/094500.jpg"/>
+<img class="inputim" src="partially_cloudy/103900.jpg"/>
+<img class="inputim" src="partially_cloudy/113908.jpg"/>
+<img class="inputim" src="partially_cloudy/122911.jpg"/>
+<img class="inputim" src="partially_cloudy/132915.jpg"/>
+<img class="inputim" src="partially_cloudy/141918.jpg"/>
+<img class="inputim" src="partially_cloudy/152919.jpg"/>
+<img class="inputim" src="partially_cloudy/162927.jpg"/><br/>
+<p style="text-align: center;">Images are tonemapped using the gamma correction &gamma;=2.2 for visualization.</p>
+<h5>performance</h5><br/>
+<img style="height:300px;" src="partially_cloudy/performance_partially_cloudy.png"/><br/>
+
+    </div>
+    </div>
+
+
+    <footer class="footer navbar-fixed-bottom">
+      <div class="container">
+        <span class="text-muted">Single Day Outdoor Photometric Stereo &mdash; Supplementary Material&mdash; TPAMI 2019</span>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./js/lightbox-plus-jquery.min.js"></script>
+    <script src="./js/tether.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/JavaScript">
+    $(".nav a").on("click", function(){
+       $(".nav").find(".active").removeClass("active");
+       $(this).parent().addClass("active");
+    });
+    </script>
+  </body>
+</html>
