@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Deep Parametric Indoor Lighting Estimation, Supplementary Material, Submission #5073</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/lightbox.min.css" rel="stylesheet">
+    <link href="./css/extra.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="pos-f-t">
+      <!-- <div class="collapse" id="navbar-header">
+        <div class="container bg-inverse p-1">
+          <h3>Collapsed content</h3>
+          <p>Toggleable via the navbar brand.</p>
+        </div>
+      </div> -->
+      <nav class="navbar navbar-light navbar-static-top bg-faded">
+        <div class="container">
+          <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-expanded="false" aria-controls="exCollapsingNavbar2" aria-label="Toggle navigation"></button>
+          <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+            <!-- <a class="navbar-brand" href="#">Sticky footer</a> -->
+            <ul class="nav navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="#video">Video</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#results">Qualitative results</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#userstudy">User study images</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#bunny">Relighting comparisons</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#stock">Stock photo results</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Begin page content -->
+    <div class="container">
+      <div class="mt-1">
+        <h1>Deep Parametric Indoor Lighting Estimation Supplementary Material</h1>
+        <h4> Marc-André Gardner, <a href="http://yannickhold.com/">Yannick Hold-Geoffroy</a>, <a href="http://www.kalyans.org/">Kalyan Sunkavalli</a>, <a href="http://vision.gel.ulaval.ca/~cgagne/">Christian Gagné</a>, and <a href="http://www.jflalonde.ca/">Jean-François Lalonde</a></h4>
+      </div>
+      <p class="lead">
+        In this document, we provide additional results and a video to complement the main paper. </p>
+
+      <p>In the video we demonstrate the spatially-varying nature of our lighting estimation by moving a virtual object through the scene. As the object moves the shading and shadows change consistently with the location of the lighting, demonstrating the efficacy of our method. We also demonstrate how our parameteric outputs can be easily edited by an artist to achieve different lighting effects.</p>
+
+      <p>We also compare our lighting estimates to ground truth EnvyDepth lighting and the results of [Gardner et al. 2017] on a number of example images; we qualitatively evaluate these estimates via visually comparing renders of a generic spiky sphere model under these different lighting conditions. This supplements Figure 5 in the main paper.</p>
+
+      <p>We provide all the images used in the user study (Section 4.1), which supplements Figure 8 in the main paper. Finally, we add more examples of bunny relighting (supplementing Figure 10 in the paper) and relighting in stock photos (as in Figure 11 in the main paper).</p>
+
+      <p>
+        All the provided examples (images and panoramas) are taken from our test set or from images outside the dataset, which the neural network has never seen during either phase of the training.
+      </p>
+
+
+
+      
+
+      <a class="anchor" name="video"></a>
+      <div style="clear:both"></div>
+      <h2>1. Demonstration video</h2>
+
+      <p>In this section, we present a video showcasing two important characteristics of our approach: 1) the ability to represent different lighting conditions depending on the position of the relighted object in the scene, with a single inference pass, and 2) the possibility for a user to intuitively edit the predictions with a simple interface.</p>
+
+      <video class="video-fluid z-depth-1" width="1024" height="768" controls>
+        <source src="ICCV19_supp_mat.mp4" type="video/mp4" />
+      </video>
+
+
+
+
+
+
+      <div style="clear:both"></div>
+      <a class="anchor" name="results"></a>
+      <h2>2. HDR dataset mosaic</h2>
+
+      <p>From left to right, we show the input image fed to the network, its prediction (reprojected as an environment map), and an object rendered using A) the Envydepth ground truth, B) the non-parametric method from [Gardner et al. 2017], and C) our method. For both methods, we compute a global scale (across all scenes) to best align the results with the ground truth. This removes the overall intensity that are especially difficult for [Gardner et al. 2017] to estimate.</p>
+
+      <table style="border-collapse:separate; border-spacing:5px 15px; margin-left:-150px">
+        <tr><th>Input image</th><th>Predicted parameters (IBL)</th><th>Render (ground truth)</th><th>Render (Gardner et al.)</th><th>Render (ours)</th></tr>
+        <tr><td><img src="img/inputs/9C4A1506-2a1235e04f__100__1.22180__1.87828__6.5977089__0.943.jpg" style="width:300px" /></td><td><img src="img/envmaps/9C4A1506-2a1235e04f__100__1.22180__1.87828__6.5977089__0.943.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/9C4A1506-2a1235e04f__100__1.22180__1.87828__6.5977089__0.943.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/9C4A1506-2a1235e04f__100__1.22180__1.87828__6.5977089__0.943.jpg" style="width:225px" /></td><td><img src="img/renders/9C4A1506-2a1235e04f__100__1.22180__1.87828__6.5977089__0.943.jpg" style="width:225px" /></td></tr>
+        <tr><td><img src="img/inputs/9C4A1524-8872dc3d50__250__1.22179__1.93150__6.5347029__0.619.jpg" style="width:300px" /></td><td><img src="img/envmaps/9C4A1524-8872dc3d50__250__1.22179__1.93150__6.5347029__0.619.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/9C4A1524-8872dc3d50__250__1.22179__1.93150__6.5347029__0.619.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/9C4A1524-8872dc3d50__250__1.22179__1.93150__6.5347029__0.619.jpg" style="width:225px" /></td><td><img src="img/renders/9C4A1524-8872dc3d50__250__1.22179__1.93150__6.5347029__0.619.jpg" style="width:225px" /></td></tr>
+        <tr><td><img src="img/inputs/AG8A8987-697e788f27__250__1.22168__1.94591__2.5189350__0.662.jpg" style="width:300px" /></td><td><img src="img/envmaps/AG8A8987-697e788f27__250__1.22168__1.94591__2.5189350__0.662.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/AG8A8987-697e788f27__250__1.22168__1.94591__2.5189350__0.662.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/AG8A8987-697e788f27__250__1.22168__1.94591__2.5189350__0.662.jpg" style="width:225px" /></td><td><img src="img/renders/AG8A8987-697e788f27__250__1.22168__1.94591__2.5189350__0.662.jpg" style="width:225px" /></td></tr>
+        <tr><td><img src="img/inputs/9C4A5078-4dd5d8db46__300__1.22170__1.69520__8.8672824__1.077.jpg" style="width:300px" /></td><td><img src="img/envmaps/9C4A5078-4dd5d8db46__300__1.22170__1.69520__8.8672824__1.077.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/9C4A5078-4dd5d8db46__300__1.22170__1.69520__8.8672824__1.077.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/9C4A5078-4dd5d8db46__300__1.22170__1.69520__8.8672824__1.077.jpg" style="width:225px" /></td><td><img src="img/renders/9C4A5078-4dd5d8db46__300__1.22170__1.69520__8.8672824__1.077.jpg" style="width:225px" /></td></tr>
+        <tr><td><img src="img/inputs/9C4A9064-8854b7f63b__350__1.22171__1.68732__9.8012565__1.123.jpg" style="width:300px" /></td><td><img src="img/envmaps/9C4A9064-8854b7f63b__350__1.22171__1.68732__9.8012565__1.123.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/9C4A9064-8854b7f63b__350__1.22171__1.68732__9.8012565__1.123.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/9C4A9064-8854b7f63b__350__1.22171__1.68732__9.8012565__1.123.jpg" style="width:225px" /></td><td><img src="img/renders/9C4A9064-8854b7f63b__350__1.22171__1.68732__9.8012565__1.123.jpg" style="width:225px" /></td></tr>
+        <tr><td><img src="img/inputs/AG8A8289-0820a81f56__250__1.22187__1.85793__10.6343129__0.797.jpg" style="width:300px" /></td><td><img src="img/envmaps/AG8A8289-0820a81f56__250__1.22187__1.85793__10.6343129__0.797.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/AG8A8289-0820a81f56__250__1.22187__1.85793__10.6343129__0.797.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/AG8A8289-0820a81f56__250__1.22187__1.85793__10.6343129__0.797.jpg" style="width:225px" /></td><td><img src="img/renders/AG8A8289-0820a81f56__250__1.22187__1.85793__10.6343129__0.797.jpg" style="width:225px" /></td></tr>
+        <tr><td><img src="img/inputs/9C4A6395-7537914367__250__1.22181__2.06628__10.1768094__0.501.jpg" style="width:300px" /></td><td><img src="img/envmaps/9C4A6395-7537914367__250__1.22181__2.06628__10.1768094__0.501.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/9C4A6395-7537914367__250__1.22181__2.06628__10.1768094__0.501.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/9C4A6395-7537914367__250__1.22181__2.06628__10.1768094__0.501.jpg" style="width:225px" /></td><td><img src="img/renders/9C4A6395-7537914367__250__1.22181__2.06628__10.1768094__0.501.jpg" style="width:225px" /></td></tr>
+        <tr><td><img src="img/inputs/AG8A9029-90ac7da010__050__1.22173__2.19609__6.0390260__0.321.jpg" style="width:300px" /></td><td><img src="img/envmaps/AG8A9029-90ac7da010__050__1.22173__2.19609__6.0390260__0.321.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/AG8A9029-90ac7da010__050__1.22173__2.19609__6.0390260__0.321.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/AG8A9029-90ac7da010__050__1.22173__2.19609__6.0390260__0.321.jpg" style="width:225px" /></td><td><img src="img/renders/AG8A9029-90ac7da010__050__1.22173__2.19609__6.0390260__0.321.jpg" style="width:225px" /></td></tr>
+        <tr><td><img src="img/inputs/AG8A1537-23cf67b1ea__100__1.22186__1.89317__5.5806021__0.889.jpg" style="width:300px" /></td><td><img src="img/envmaps/AG8A1537-23cf67b1ea__100__1.22186__1.89317__5.5806021__0.889.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/AG8A1537-23cf67b1ea__100__1.22186__1.89317__5.5806021__0.889.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/AG8A1537-23cf67b1ea__100__1.22186__1.89317__5.5806021__0.889.jpg" style="width:225px" /></td><td><img src="img/renders/AG8A1537-23cf67b1ea__100__1.22186__1.89317__5.5806021__0.889.jpg" style="width:225px" /></td></tr>
+        <tr><td><img src="img/inputs/9C4A7111-6579f99501__150__1.22189__2.08674__10.8160903__0.476.jpg" style="width:300px" /></td><td><img src="img/envmaps/9C4A7111-6579f99501__150__1.22189__2.08674__10.8160903__0.476.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/9C4A7111-6579f99501__150__1.22189__2.08674__10.8160903__0.476.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/9C4A7111-6579f99501__150__1.22189__2.08674__10.8160903__0.476.jpg" style="width:225px" /></td><td><img src="img/renders/9C4A7111-6579f99501__150__1.22189__2.08674__10.8160903__0.476.jpg" style="width:225px" /></td></tr>
+      <tr><th>Input image</th><th>Predicted parameters (IBL)</th><th>Render (ground truth)</th><th>Render (Gardner et al.)</th><th>Render (ours)</th></tr>
+        <tr><td><img src="img/inputs/9C4A0731-b145fdd83d__350__1.22174__2.07760__8.1069687__0.779.jpg" style="width:300px" /></td><td><img src="img/envmaps/9C4A0731-b145fdd83d__350__1.22174__2.07760__8.1069687__0.779.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/9C4A0731-b145fdd83d__350__1.22174__2.07760__8.1069687__0.779.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/9C4A0731-b145fdd83d__350__1.22174__2.07760__8.1069687__0.779.jpg" style="width:225px" /></td><td><img src="img/renders/9C4A0731-b145fdd83d__350__1.22174__2.07760__8.1069687__0.779.jpg" style="width:225px" /></td></tr>
+        <tr><td><img src="img/inputs/9C4A0454-1bc50df38f__150__1.22172__1.86275__8.1760881__0.776.jpg" style="width:300px" /></td><td><img src="img/envmaps/9C4A0454-1bc50df38f__150__1.22172__1.86275__8.1760881__0.776.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/9C4A0454-1bc50df38f__150__1.22172__1.86275__8.1760881__0.776.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/9C4A0454-1bc50df38f__150__1.22172__1.86275__8.1760881__0.776.jpg" style="width:225px" /></td><td><img src="img/renders/9C4A0454-1bc50df38f__150__1.22172__1.86275__8.1760881__0.776.jpg" style="width:225px" /></td></tr>
+        <tr><td><img src="img/inputs/AG8A5776-2e736db2be__000__1.22177__1.98676__10.3576131__0.605.jpg" style="width:300px" /></td><td><img src="img/envmaps/AG8A5776-2e736db2be__000__1.22177__1.98676__10.3576131__0.605.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/AG8A5776-2e736db2be__000__1.22177__1.98676__10.3576131__0.605.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/AG8A5776-2e736db2be__000__1.22177__1.98676__10.3576131__0.605.jpg" style="width:225px" /></td><td><img src="img/renders/AG8A5776-2e736db2be__000__1.22177__1.98676__10.3576131__0.605.jpg" style="width:225px" /></td></tr>
+        <tr><td><img src="img/inputs/AG8A3196-8e1dfd8d95__250__1.22171__1.83483__7.7114579__2.469.jpg" style="width:300px" /></td><td><img src="img/envmaps/AG8A3196-8e1dfd8d95__250__1.22171__1.83483__7.7114579__2.469.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/AG8A3196-8e1dfd8d95__250__1.22171__1.83483__7.7114579__2.469.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/AG8A3196-8e1dfd8d95__250__1.22171__1.83483__7.7114579__2.469.jpg" style="width:225px" /></td><td><img src="img/renders/AG8A3196-8e1dfd8d95__250__1.22171__1.83483__7.7114579__2.469.jpg" style="width:225px" /></td></tr>
+        <tr><td><img src="img/inputs/9C4A5172-2a95bdc502__150__1.22167__2.13713__6.7437469__0.415.jpg" style="width:300px" /></td><td><img src="img/envmaps/9C4A5172-2a95bdc502__150__1.22167__2.13713__6.7437469__0.415.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/9C4A5172-2a95bdc502__150__1.22167__2.13713__6.7437469__0.415.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/9C4A5172-2a95bdc502__150__1.22167__2.13713__6.7437469__0.415.jpg" style="width:225px" /></td><td><img src="img/renders/9C4A5172-2a95bdc502__150__1.22167__2.13713__6.7437469__0.415.jpg" style="width:225px" /></td></tr>
+        <tr><td><img src="img/inputs/AG8A9900-b4b6cf5a84__000__1.22174__1.88425__6.5367656__0.981.jpg" style="width:300px" /></td><td><img src="img/envmaps/AG8A9900-b4b6cf5a84__000__1.22174__1.88425__6.5367656__0.981.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/AG8A9900-b4b6cf5a84__000__1.22174__1.88425__6.5367656__0.981.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/AG8A9900-b4b6cf5a84__000__1.22174__1.88425__6.5367656__0.981.jpg" style="width:225px" /></td><td><img src="img/renders/AG8A9900-b4b6cf5a84__000__1.22174__1.88425__6.5367656__0.981.jpg" style="width:225px" /></td></tr>
+        <tr><td><img src="img/inputs/AG8A2294-51a6cdc9f8__250__1.22165__1.72413__4.1495107__0.684.jpg" style="width:300px" /></td><td><img src="img/envmaps/AG8A2294-51a6cdc9f8__250__1.22165__1.72413__4.1495107__0.684.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/AG8A2294-51a6cdc9f8__250__1.22165__1.72413__4.1495107__0.684.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/AG8A2294-51a6cdc9f8__250__1.22165__1.72413__4.1495107__0.684.jpg" style="width:225px" /></td><td><img src="img/renders/AG8A2294-51a6cdc9f8__250__1.22165__1.72413__4.1495107__0.684.jpg" style="width:225px" /></td></tr>
+        <tr><td><img src="img/inputs/9C4A2893-0b10daa3c5__100__1.22185__1.79456__20.2353621__0.906.jpg" style="width:300px" /></td><td><img src="img/envmaps/9C4A2893-0b10daa3c5__100__1.22185__1.79456__20.2353621__0.906.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/9C4A2893-0b10daa3c5__100__1.22185__1.79456__20.2353621__0.906.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/9C4A2893-0b10daa3c5__100__1.22185__1.79456__20.2353621__0.906.jpg" style="width:225px" /></td><td><img src="img/renders/9C4A2893-0b10daa3c5__100__1.22185__1.79456__20.2353621__0.906.jpg" style="width:225px" /></td></tr>
+        <tr><td><img src="img/inputs/AG8A9339-a1c4e01ba9__250__1.22177__1.86765__1.7079237__1.093.jpg" style="width:300px" /></td><td><img src="img/envmaps/AG8A9339-a1c4e01ba9__250__1.22177__1.86765__1.7079237__1.093.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/AG8A9339-a1c4e01ba9__250__1.22177__1.86765__1.7079237__1.093.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/AG8A9339-a1c4e01ba9__250__1.22177__1.86765__1.7079237__1.093.jpg" style="width:225px" /></td><td><img src="img/renders/AG8A9339-a1c4e01ba9__250__1.22177__1.86765__1.7079237__1.093.jpg" style="width:225px" /></td></tr>
+        <tr><td><img src="img/inputs/9C4A3459-006926b10e__150__1.22173__1.99564__22.1974661__0.590.jpg" style="width:300px" /></td><td><img src="img/envmaps/9C4A3459-006926b10e__150__1.22173__1.99564__22.1974661__0.590.jpg" style="width:450px" /></td><td><img src="img/rendersenvydepth/9C4A3459-006926b10e__150__1.22173__1.99564__22.1974661__0.590.jpg" style="width:225px" /></td><td><img src="img/rendersgardneretal/9C4A3459-006926b10e__150__1.22173__1.99564__22.1974661__0.590.jpg" style="width:225px" /></td><td><img src="img/renders/9C4A3459-006926b10e__150__1.22173__1.99564__22.1974661__0.590.jpg" style="width:225px" /></td></tr>
+      
+        </table>
+      
+      
+        <div style="clear:both"></div>
+        <a class="anchor" name="userstudy"></a>
+        <h2>3. User study images</h2>
+
+        <p style="margin-bottom:2em">In this section, we show all the images used for the user study. For each method (our parametric approach, Gardner et al. 2017 non-parametric method, and Karsch et al. 2014), the render produced using the predicted illumination was A/B compared to another render illuminated with the ground truth lighting. The underlying scene geometry and object materials were the same across all methods. 19 scenes were used in total.</p>
+
+        <div class="row">
+          <div class="col-md-6" style="position:relative; ">
+            <a href="img/userStudy/scene0_envydepth.jpg"><img src="img/userStudy/scene0_envydepth.jpg" width="100%"/></a><br/>
+            <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+    
+            <div style="position:absolute; top:-25px; left:-30px; width:45%">
+              <a href="img/userStudy/scene0.jpg"><img src="img/userStudy/scene0.jpg" style="border:2px solid black" width="100%"/></a><br/>
+            </div>
+          </div>
+          <div class="col-md-6" style="text-align: center;">
+            <a href="img/userStudy/scene0_parametricNew.jpg"><img src="img/userStudy/scene0_parametricNew.jpg" width="100%"/></a><br/>
+            <figurecaption>Ours (parametric)</figurecaption>
+          </div>
+    
+          <div class="col-md-6" style="text-align: center;">
+            <a href="img/userStudy/scene0_sigasia.jpg"><img src="img/userStudy/scene0_sigasia.jpg" width="100%"/></a><br/>
+            <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+          </div>
+    
+          <div class="col-md-6" style="text-align: center;">
+            <a href="img/userStudy/scene0_karsch.jpg"><img src="img/userStudy/scene0_karsch.jpg" width="100%"/></a><br/>
+            <figurecaption>[Karsch et al. 2014]</figurecaption>
+          </div>
+          </div>
+    
+          <hr/>
+
+
+        <div class="row">
+          <div class="col-md-6" style="position:relative; ">
+            <a href="img/userStudy/scene3_envydepth.jpg"><img src="img/userStudy/scene3_envydepth.jpg" width="100%"/></a><br/>
+            <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+    
+            <div style="position:absolute; top:-25px; left:-30px; width:45%">
+              <a href="img/userStudy/scene3.jpg"><img src="img/userStudy/scene3.jpg" style="border:2px solid black" width="100%"/></a><br/>
+            </div>
+          </div>
+          <div class="col-md-6" style="text-align: center;">
+            <a href="img/userStudy/scene3_parametricNew.jpg"><img src="img/userStudy/scene3_parametricNew.jpg" width="100%"/></a><br/>
+            <figurecaption>Ours (parametric)</figurecaption>
+          </div>
+    
+          <div class="col-md-6" style="text-align: center;">
+            <a href="img/userStudy/scene3_sigasia.jpg"><img src="img/userStudy/scene3_sigasia.jpg" width="100%"/></a><br/>
+            <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+          </div>
+    
+          <div class="col-md-6" style="text-align: center;">
+            <a href="img/userStudy/scene3_karsch.jpg"><img src="img/userStudy/scene3_karsch.jpg" width="100%"/></a><br/>
+            <figurecaption>[Karsch et al. 2014]</figurecaption>
+          </div>
+          </div>
+    
+          <hr/>
+
+          <div class="row">
+            <div class="col-md-6" style="position:relative; ">
+              <a href="img/userStudy/scene13_envydepth.jpg"><img src="img/userStudy/scene13_envydepth.jpg" width="100%"/></a><br/>
+              <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+      
+              <div style="position:absolute; top:-25px; left:-30px; width:45%">
+                <a href="img/userStudy/scene13.jpg"><img src="img/userStudy/scene13.jpg" style="border:2px solid black" width="100%"/></a><br/>
+              </div>
+            </div>
+            <div class="col-md-6" style="text-align: center;">
+              <a href="img/userStudy/scene13_parametricNew.jpg"><img src="img/userStudy/scene13_parametricNew.jpg" width="100%"/></a><br/>
+              <figurecaption>Ours (parametric)</figurecaption>
+            </div>
+      
+            <div class="col-md-6" style="text-align: center;">
+              <a href="img/userStudy/scene13_sigasia.jpg"><img src="img/userStudy/scene13_sigasia.jpg" width="100%"/></a><br/>
+              <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+            </div>
+      
+            <div class="col-md-6" style="text-align: center;">
+              <a href="img/userStudy/scene13_karsch.jpg"><img src="img/userStudy/scene13_karsch.jpg" width="100%"/></a><br/>
+              <figurecaption>[Karsch et al. 2014]</figurecaption>
+            </div>
+            </div>
+      
+            <hr/>
+
+            <div class="row">
+              <div class="col-md-6" style="position:relative; ">
+                <a href="img/userStudy/scene17_envydepth.jpg"><img src="img/userStudy/scene17_envydepth.jpg" width="100%"/></a><br/>
+                <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+        
+                <div style="position:absolute; top:-25px; left:-30px; width:45%">
+                  <a href="img/userStudy/scene17.jpg"><img src="img/userStudy/scene17.jpg" style="border:2px solid black" width="100%"/></a><br/>
+                </div>
+              </div>
+              <div class="col-md-6" style="text-align: center;">
+                <a href="img/userStudy/scene17_parametricNew.jpg"><img src="img/userStudy/scene17_parametricNew.jpg" width="100%"/></a><br/>
+                <figurecaption>Ours (parametric)</figurecaption>
+              </div>
+        
+              <div class="col-md-6" style="text-align: center;">
+                <a href="img/userStudy/scene17_sigasia.jpg"><img src="img/userStudy/scene17_sigasia.jpg" width="100%"/></a><br/>
+                <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+              </div>
+        
+              <div class="col-md-6" style="text-align: center;">
+                <a href="img/userStudy/scene17_karsch.jpg"><img src="img/userStudy/scene17_karsch.jpg" width="100%"/></a><br/>
+                <figurecaption>[Karsch et al. 2014]</figurecaption>
+              </div>
+              </div>
+        
+              <hr/>
+
+
+          <div class="row">
+            <div class="col-md-6" style="position:relative; ">
+              <a href="img/userStudy/scene20_envydepth.jpg"><img src="img/userStudy/scene20_envydepth.jpg" width="100%"/></a><br/>
+              <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+      
+              <div style="position:absolute; top:-25px; left:-30px; width:45%">
+                <a href="img/userStudy/scene20.jpg"><img src="img/userStudy/scene20.jpg" style="border:2px solid black" width="100%"/></a><br/>
+              </div>
+            </div>
+            <div class="col-md-6" style="text-align: center;">
+              <a href="img/userStudy/scene20_parametricNew.jpg"><img src="img/userStudy/scene20_parametricNew.jpg" width="100%"/></a><br/>
+              <figurecaption>Ours (parametric)</figurecaption>
+            </div>
+      
+            <div class="col-md-6" style="text-align: center;">
+              <a href="img/userStudy/scene20_sigasia.jpg"><img src="img/userStudy/scene20_sigasia.jpg" width="100%"/></a><br/>
+              <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+            </div>
+      
+            <div class="col-md-6" style="text-align: center;">
+              <a href="img/userStudy/scene20_karsch.jpg"><img src="img/userStudy/scene20_karsch.jpg" width="100%"/></a><br/>
+              <figurecaption>[Karsch et al. 2014]</figurecaption>
+            </div>
+            </div>
+      
+            <hr/>
+
+
+          <div class="row">
+            <div class="col-md-6" style="position:relative; ">
+              <a href="img/userStudy/scene22_envydepth.jpg"><img src="img/userStudy/scene22_envydepth.jpg" width="100%"/></a><br/>
+              <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+      
+              <div style="position:absolute; top:-25px; left:-30px; width:45%">
+                <a href="img/userStudy/scene22.jpg"><img src="img/userStudy/scene22.jpg" style="border:2px solid black" width="100%"/></a><br/>
+              </div>
+            </div>
+            <div class="col-md-6" style="text-align: center;">
+              <a href="img/userStudy/scene22_parametricNew.jpg"><img src="img/userStudy/scene22_parametricNew.jpg" width="100%"/></a><br/>
+              <figurecaption>Ours (parametric)</figurecaption>
+            </div>
+      
+            <div class="col-md-6" style="text-align: center;">
+              <a href="img/userStudy/scene22_sigasia.jpg"><img src="img/userStudy/scene22_sigasia.jpg" width="100%"/></a><br/>
+              <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+            </div>
+      
+            <div class="col-md-6" style="text-align: center;">
+              <a href="img/userStudy/scene22_karsch.jpg"><img src="img/userStudy/scene22_karsch.jpg" width="100%"/></a><br/>
+              <figurecaption>[Karsch et al. 2014]</figurecaption>
+            </div>
+            </div>
+      
+            <hr/>
+
+
+
+          <div class="row">
+            <div class="col-md-6" style="position:relative; ">
+              <a href="img/userStudy/scene33_envydepth.jpg"><img src="img/userStudy/scene33_envydepth.jpg" width="100%"/></a><br/>
+              <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+      
+              <div style="position:absolute; top:-25px; left:-30px; width:45%">
+                <a href="img/userStudy/scene33.jpg"><img src="img/userStudy/scene33.jpg" style="border:2px solid black" width="100%"/></a><br/>
+              </div>
+            </div>
+            <div class="col-md-6" style="text-align: center;">
+              <a href="img/userStudy/scene33_parametricNew.jpg"><img src="img/userStudy/scene33_parametricNew.jpg" width="100%"/></a><br/>
+              <figurecaption>Ours (parametric)</figurecaption>
+            </div>
+      
+            <div class="col-md-6" style="text-align: center;">
+              <a href="img/userStudy/scene33_sigasia.jpg"><img src="img/userStudy/scene33_sigasia.jpg" width="100%"/></a><br/>
+              <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+            </div>
+      
+            <div class="col-md-6" style="text-align: center;">
+              <a href="img/userStudy/scene33_karsch.jpg"><img src="img/userStudy/scene33_karsch.jpg" width="100%"/></a><br/>
+              <figurecaption>[Karsch et al. 2014]</figurecaption>
+            </div>
+            </div>
+      
+            <hr/>
+
+            <div class="row">
+              <div class="col-md-6" style="position:relative; ">
+                <a href="img/userStudy/scene67_envydepth.jpg"><img src="img/userStudy/scene67_envydepth.jpg" width="100%"/></a><br/>
+                <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+        
+                <div style="position:absolute; top:-25px; left:-30px; width:45%">
+                  <a href="img/userStudy/scene67.jpg"><img src="img/userStudy/scene67.jpg" style="border:2px solid black" width="100%"/></a><br/>
+                </div>
+              </div>
+              <div class="col-md-6" style="text-align: center;">
+                <a href="img/userStudy/scene67_parametricNew.jpg"><img src="img/userStudy/scene67_parametricNew.jpg" width="100%"/></a><br/>
+                <figurecaption>Ours (parametric)</figurecaption>
+              </div>
+        
+              <div class="col-md-6" style="text-align: center;">
+                <a href="img/userStudy/scene67_sigasia.jpg"><img src="img/userStudy/scene67_sigasia.jpg" width="100%"/></a><br/>
+                <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+              </div>
+        
+              <div class="col-md-6" style="text-align: center;">
+                <a href="img/userStudy/scene67_karsch.jpg"><img src="img/userStudy/scene67_karsch.jpg" width="100%"/></a><br/>
+                <figurecaption>[Karsch et al. 2014]</figurecaption>
+              </div>
+              </div>
+        
+              <hr/>
+
+
+
+          <div class="row">
+            <div class="col-md-6" style="position:relative; ">
+              <a href="img/userStudy/scene84_envydepth.jpg"><img src="img/userStudy/scene84_envydepth.jpg" width="100%"/></a><br/>
+              <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+      
+              <div style="position:absolute; top:-25px; left:-30px; width:45%">
+                <a href="img/userStudy/scene84.jpg"><img src="img/userStudy/scene84.jpg" style="border:2px solid black" width="100%"/></a><br/>
+              </div>
+            </div>
+            <div class="col-md-6" style="text-align: center;">
+              <a href="img/userStudy/scene84_parametricNew.jpg"><img src="img/userStudy/scene84_parametricNew.jpg" width="100%"/></a><br/>
+              <figurecaption>Ours (parametric)</figurecaption>
+            </div>
+      
+            <div class="col-md-6" style="text-align: center;">
+              <a href="img/userStudy/scene84_sigasia.jpg"><img src="img/userStudy/scene84_sigasia.jpg" width="100%"/></a><br/>
+              <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+            </div>
+      
+            <div class="col-md-6" style="text-align: center;">
+              <a href="img/userStudy/scene84_karsch.jpg"><img src="img/userStudy/scene84_karsch.jpg" width="100%"/></a><br/>
+              <figurecaption>[Karsch et al. 2014]</figurecaption>
+            </div>
+            </div>
+      
+            <hr/>
+
+
+          <div class="row">
+            <div class="col-md-6" style="position:relative; ">
+              <a href="img/userStudy/scene105_envydepth.jpg"><img src="img/userStudy/scene105_envydepth.jpg" width="100%"/></a><br/>
+              <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+      
+              <div style="position:absolute; top:-25px; left:-30px; width:45%">
+                <a href="img/userStudy/scene105.jpg"><img src="img/userStudy/scene105.jpg" style="border:2px solid black" width="100%"/></a><br/>
+              </div>
+            </div>
+            <div class="col-md-6" style="text-align: center;">
+              <a href="img/userStudy/scene105_parametricNew.jpg"><img src="img/userStudy/scene105_parametricNew.jpg" width="100%"/></a><br/>
+              <figurecaption>Ours (parametric)</figurecaption>
+            </div>
+      
+            <div class="col-md-6" style="text-align: center;">
+              <a href="img/userStudy/scene105_sigasia.jpg"><img src="img/userStudy/scene105_sigasia.jpg" width="100%"/></a><br/>
+              <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+            </div>
+      
+            <div class="col-md-6" style="text-align: center;">
+              <a href="img/userStudy/scene105_karsch.jpg"><img src="img/userStudy/scene105_karsch.jpg" width="100%"/></a><br/>
+              <figurecaption>[Karsch et al. 2014]</figurecaption>
+            </div>
+            </div>
+      
+            <hr/>
+
+
+            <div class="row">
+              <div class="col-md-6" style="position:relative; ">
+                <a href="img/userStudy/scene107_envydepth.jpg"><img src="img/userStudy/scene107_envydepth.jpg" width="100%"/></a><br/>
+                <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+        
+                <div style="position:absolute; top:-25px; left:-30px; width:45%">
+                  <a href="img/userStudy/scene107.jpg"><img src="img/userStudy/scene107.jpg" style="border:2px solid black" width="100%"/></a><br/>
+                </div>
+              </div>
+              <div class="col-md-6" style="text-align: center;">
+                <a href="img/userStudy/scene107_parametricNew.jpg"><img src="img/userStudy/scene107_parametricNew.jpg" width="100%"/></a><br/>
+                <figurecaption>Ours (parametric)</figurecaption>
+              </div>
+        
+              <div class="col-md-6" style="text-align: center;">
+                <a href="img/userStudy/scene107_sigasia.jpg"><img src="img/userStudy/scene107_sigasia.jpg" width="100%"/></a><br/>
+                <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+              </div>
+        
+              <div class="col-md-6" style="text-align: center;">
+                <a href="img/userStudy/scene107_karsch.jpg"><img src="img/userStudy/scene107_karsch.jpg" width="100%"/></a><br/>
+                <figurecaption>[Karsch et al. 2014]</figurecaption>
+              </div>
+              </div>
+        
+              <hr/>
+
+
+              <div class="row">
+                <div class="col-md-6" style="position:relative; ">
+                  <a href="img/userStudy/scene111_envydepth.jpg"><img src="img/userStudy/scene111_envydepth.jpg" width="100%"/></a><br/>
+                  <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+          
+                  <div style="position:absolute; top:-25px; left:-30px; width:45%">
+                    <a href="img/userStudy/scene111.jpg"><img src="img/userStudy/scene111.jpg" style="border:2px solid black" width="100%"/></a><br/>
+                  </div>
+                </div>
+                <div class="col-md-6" style="text-align: center;">
+                  <a href="img/userStudy/scene111_parametricNew.jpg"><img src="img/userStudy/scene111_parametricNew.jpg" width="100%"/></a><br/>
+                  <figurecaption>Ours (parametric)</figurecaption>
+                </div>
+          
+                <div class="col-md-6" style="text-align: center;">
+                  <a href="img/userStudy/scene111_sigasia.jpg"><img src="img/userStudy/scene111_sigasia.jpg" width="100%"/></a><br/>
+                  <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+                </div>
+          
+                <div class="col-md-6" style="text-align: center;">
+                  <a href="img/userStudy/scene111_karsch.jpg"><img src="img/userStudy/scene111_karsch.jpg" width="100%"/></a><br/>
+                  <figurecaption>[Karsch et al. 2014]</figurecaption>
+                </div>
+                </div>
+          
+                <hr/>
+
+
+                <div class="row">
+                  <div class="col-md-6" style="position:relative; ">
+                    <a href="img/userStudy/scene123_envydepth.jpg"><img src="img/userStudy/scene123_envydepth.jpg" width="100%"/></a><br/>
+                    <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+            
+                    <div style="position:absolute; top:-25px; left:-30px; width:45%">
+                      <a href="img/userStudy/scene123.jpg"><img src="img/userStudy/scene123.jpg" style="border:2px solid black" width="100%"/></a><br/>
+                    </div>
+                  </div>
+                  <div class="col-md-6" style="text-align: center;">
+                    <a href="img/userStudy/scene123_parametricNew.jpg"><img src="img/userStudy/scene123_parametricNew.jpg" width="100%"/></a><br/>
+                    <figurecaption>Ours (parametric)</figurecaption>
+                  </div>
+            
+                  <div class="col-md-6" style="text-align: center;">
+                    <a href="img/userStudy/scene123_sigasia.jpg"><img src="img/userStudy/scene123_sigasia.jpg" width="100%"/></a><br/>
+                    <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+                  </div>
+            
+                  <div class="col-md-6" style="text-align: center;">
+                    <a href="img/userStudy/scene123_karsch.jpg"><img src="img/userStudy/scene123_karsch.jpg" width="100%"/></a><br/>
+                    <figurecaption>[Karsch et al. 2014]</figurecaption>
+                  </div>
+                  </div>
+            
+                  <hr/>
+
+
+                  <div class="row">
+                    <div class="col-md-6" style="position:relative; ">
+                      <a href="img/userStudy/scene131_envydepth.jpg"><img src="img/userStudy/scene131_envydepth.jpg" width="100%"/></a><br/>
+                      <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+              
+                      <div style="position:absolute; top:-25px; left:-30px; width:45%">
+                        <a href="img/userStudy/scene131.jpg"><img src="img/userStudy/scene131.jpg" style="border:2px solid black" width="100%"/></a><br/>
+                      </div>
+                    </div>
+                    <div class="col-md-6" style="text-align: center;">
+                      <a href="img/userStudy/scene131_parametricNew.jpg"><img src="img/userStudy/scene131_parametricNew.jpg" width="100%"/></a><br/>
+                      <figurecaption>Ours (parametric)</figurecaption>
+                    </div>
+              
+                    <div class="col-md-6" style="text-align: center;">
+                      <a href="img/userStudy/scene131_sigasia.jpg"><img src="img/userStudy/scene131_sigasia.jpg" width="100%"/></a><br/>
+                      <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+                    </div>
+              
+                    <div class="col-md-6" style="text-align: center;">
+                      <a href="img/userStudy/scene131_karsch.jpg"><img src="img/userStudy/scene131_karsch.jpg" width="100%"/></a><br/>
+                      <figurecaption>[Karsch et al. 2014]</figurecaption>
+                    </div>
+                    </div>
+              
+                    <hr/>
+
+
+                    <div class="row">
+                      <div class="col-md-6" style="position:relative; ">
+                        <a href="img/userStudy/scene134_envydepth.jpg"><img src="img/userStudy/scene134_envydepth.jpg" width="100%"/></a><br/>
+                        <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+                
+                        <div style="position:absolute; top:-25px; left:-30px; width:45%">
+                          <a href="img/userStudy/scene134.jpg"><img src="img/userStudy/scene134.jpg" style="border:2px solid black" width="100%"/></a><br/>
+                        </div>
+                      </div>
+                      <div class="col-md-6" style="text-align: center;">
+                        <a href="img/userStudy/scene134_parametricNew.jpg"><img src="img/userStudy/scene134_parametricNew.jpg" width="100%"/></a><br/>
+                        <figurecaption>Ours (parametric)</figurecaption>
+                      </div>
+                
+                      <div class="col-md-6" style="text-align: center;">
+                        <a href="img/userStudy/scene134_sigasia.jpg"><img src="img/userStudy/scene134_sigasia.jpg" width="100%"/></a><br/>
+                        <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+                      </div>
+                
+                      <div class="col-md-6" style="text-align: center;">
+                        <a href="img/userStudy/scene134_karsch.jpg"><img src="img/userStudy/scene134_karsch.jpg" width="100%"/></a><br/>
+                        <figurecaption>[Karsch et al. 2014]</figurecaption>
+                      </div>
+                      </div>
+                
+                      <hr/>
+
+
+                      <div class="row">
+                        <div class="col-md-6" style="position:relative; ">
+                          <a href="img/userStudy/scene139_envydepth.jpg"><img src="img/userStudy/scene139_envydepth.jpg" width="100%"/></a><br/>
+                          <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+                  
+                          <div style="position:absolute; top:-25px; left:-30px; width:45%">
+                            <a href="img/userStudy/scene139.jpg"><img src="img/userStudy/scene139.jpg" style="border:2px solid black" width="100%"/></a><br/>
+                          </div>
+                        </div>
+                        <div class="col-md-6" style="text-align: center;">
+                          <a href="img/userStudy/scene139_parametricNew.jpg"><img src="img/userStudy/scene139_parametricNew.jpg" width="100%"/></a><br/>
+                          <figurecaption>Ours (parametric)</figurecaption>
+                        </div>
+                  
+                        <div class="col-md-6" style="text-align: center;">
+                          <a href="img/userStudy/scene139_sigasia.jpg"><img src="img/userStudy/scene139_sigasia.jpg" width="100%"/></a><br/>
+                          <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+                        </div>
+                  
+                        <div class="col-md-6" style="text-align: center;">
+                          <a href="img/userStudy/scene139_karsch.jpg"><img src="img/userStudy/scene139_karsch.jpg" width="100%"/></a><br/>
+                          <figurecaption>[Karsch et al. 2014]</figurecaption>
+                        </div>
+                        </div>
+                  
+                        <hr/>
+
+
+                        <div class="row">
+                          <div class="col-md-6" style="position:relative; ">
+                            <a href="img/userStudy/scene156_envydepth.jpg"><img src="img/userStudy/scene156_envydepth.jpg" width="100%"/></a><br/>
+                            <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+                    
+                            <div style="position:absolute; top:-25px; left:-30px; width:45%">
+                              <a href="img/userStudy/scene156.jpg"><img src="img/userStudy/scene156.jpg" style="border:2px solid black" width="100%"/></a><br/>
+                            </div>
+                          </div>
+                          <div class="col-md-6" style="text-align: center;">
+                            <a href="img/userStudy/scene156_parametricNew.jpg"><img src="img/userStudy/scene156_parametricNew.jpg" width="100%"/></a><br/>
+                            <figurecaption>Ours (parametric)</figurecaption>
+                          </div>
+                    
+                          <div class="col-md-6" style="text-align: center;">
+                            <a href="img/userStudy/scene156_sigasia.jpg"><img src="img/userStudy/scene156_sigasia.jpg" width="100%"/></a><br/>
+                            <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+                          </div>
+                    
+                          <div class="col-md-6" style="text-align: center;">
+                            <a href="img/userStudy/scene156_karsch.jpg"><img src="img/userStudy/scene156_karsch.jpg" width="100%"/></a><br/>
+                            <figurecaption>[Karsch et al. 2014]</figurecaption>
+                          </div>
+                          </div>
+                    
+                          <hr/>
+
+
+                          <div class="row">
+                            <div class="col-md-6" style="position:relative; ">
+                              <a href="img/userStudy/scene217_envydepth.jpg"><img src="img/userStudy/scene217_envydepth.jpg" width="100%"/></a><br/>
+                              <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+                      
+                              <div style="position:absolute; top:-25px; left:-30px; width:45%">
+                                <a href="img/userStudy/scene217.jpg"><img src="img/userStudy/scene217.jpg" style="border:2px solid black" width="100%"/></a><br/>
+                              </div>
+                            </div>
+                            <div class="col-md-6" style="text-align: center;">
+                              <a href="img/userStudy/scene217_parametricNew.jpg"><img src="img/userStudy/scene217_parametricNew.jpg" width="100%"/></a><br/>
+                              <figurecaption>Ours (parametric)</figurecaption>
+                            </div>
+                      
+                            <div class="col-md-6" style="text-align: center;">
+                              <a href="img/userStudy/scene217_sigasia.jpg"><img src="img/userStudy/scene217_sigasia.jpg" width="100%"/></a><br/>
+                              <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+                            </div>
+                      
+                            <div class="col-md-6" style="text-align: center;">
+                              <a href="img/userStudy/scene217_karsch.jpg"><img src="img/userStudy/scene217_karsch.jpg" width="100%"/></a><br/>
+                              <figurecaption>[Karsch et al. 2014]</figurecaption>
+                            </div>
+                            </div>
+                      
+                            <hr/>
+
+                            <div class="row">
+                              <div class="col-md-6" style="position:relative; ">
+                                <a href="img/userStudy/scene225_envydepth.jpg"><img src="img/userStudy/scene225_envydepth.jpg" width="100%"/></a><br/>
+                                <figurecaption style="text-align: center;">Ground truth (inset: input image)</figurecaption>
+                        
+                                <div style="position:absolute; top:-25px; left:-30px; width:45%">
+                                  <a href="img/userStudy/scene225.jpg"><img src="img/userStudy/scene225.jpg" style="border:2px solid black" width="100%"/></a><br/>
+                                </div>
+                              </div>
+                              <div class="col-md-6" style="text-align: center;">
+                                <a href="img/userStudy/scene225_parametricNew.jpg"><img src="img/userStudy/scene225_parametricNew.jpg" width="100%"/></a><br/>
+                                <figurecaption>Ours (parametric)</figurecaption>
+                              </div>
+                        
+                              <div class="col-md-6" style="text-align: center;">
+                                <a href="img/userStudy/scene225_sigasia.jpg"><img src="img/userStudy/scene225_sigasia.jpg" width="100%"/></a><br/>
+                                <figurecaption>[Gardner et al. 2017] (non-parametric)</figurecaption>
+                              </div>
+                        
+                              <div class="col-md-6" style="text-align: center;">
+                                <a href="img/userStudy/scene225_karsch.jpg"><img src="img/userStudy/scene225_karsch.jpg" width="100%"/></a><br/>
+                                <figurecaption>[Karsch et al. 2014]</figurecaption>
+                              </div>
+                              </div>
+                        
+                              <hr/>
+
+        <div style="clear:both"></div>
+        <a class="anchor" name="bunny"></a>
+        <h2>4. Bunny relighting comparison</h2>
+
+        <p>Each image contains both a real bunny (present in the scene when the picture was taken) and a virtual one (inserted using the illumination predicted by our approach). The pictures are not part of the Ulaval-HDR dataset and were taken using a smartphone (Pixel 2, HDR mode off, automatic focus). The left/right order between the real and virtual bunny is arbitrary for each picture.</p>
+
+        <div class="row">
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_105115.jpg"><img src="img/bunnies/IMG_20190618_105115.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_105123.jpg"><img src="img/bunnies/IMG_20190618_105123.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_105211.jpg"><img src="img/bunnies/IMG_20190618_105211.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_105245.jpg"><img src="img/bunnies/IMG_20190618_105245.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_105411.jpg"><img src="img/bunnies/IMG_20190618_105411.jpg" width="100%"/></a><br/>
+          </div>
+
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_105420.jpg"><img src="img/bunnies/IMG_20190618_105420.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_105732.jpg"><img src="img/bunnies/IMG_20190618_105732.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_105749.jpg"><img src="img/bunnies/IMG_20190618_105749.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_105903.jpg"><img src="img/bunnies/IMG_20190618_105903.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_105915.jpg"><img src="img/bunnies/IMG_20190618_105915.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_110042.jpg"><img src="img/bunnies/IMG_20190618_110042.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_110114.jpg"><img src="img/bunnies/IMG_20190618_110114.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_110152.jpg"><img src="img/bunnies/IMG_20190618_110152.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_110353.jpg"><img src="img/bunnies/IMG_20190618_110353.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_110403.jpg"><img src="img/bunnies/IMG_20190618_110403.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_110913.jpg"><img src="img/bunnies/IMG_20190618_110913.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_110946.jpg"><img src="img/bunnies/IMG_20190618_110946.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_111012.jpg"><img src="img/bunnies/IMG_20190618_111012.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_111042.jpg"><img src="img/bunnies/IMG_20190618_111042.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_111110.jpg"><img src="img/bunnies/IMG_20190618_111110.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_111147.jpg"><img src="img/bunnies/IMG_20190618_111147.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_111155.jpg"><img src="img/bunnies/IMG_20190618_111155.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_111234.jpg"><img src="img/bunnies/IMG_20190618_111234.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_111324.jpg"><img src="img/bunnies/IMG_20190618_111324.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_111334.jpg"><img src="img/bunnies/IMG_20190618_111334.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_111350.jpg"><img src="img/bunnies/IMG_20190618_111350.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_111439.jpg"><img src="img/bunnies/IMG_20190618_111439.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_111451.jpg"><img src="img/bunnies/IMG_20190618_111451.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_111552.jpg"><img src="img/bunnies/IMG_20190618_111552.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_111559.jpg"><img src="img/bunnies/IMG_20190618_111559.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_111625.jpg"><img src="img/bunnies/IMG_20190618_111625.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_111711.jpg"><img src="img/bunnies/IMG_20190618_111711.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_111847.jpg"><img src="img/bunnies/IMG_20190618_111847.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_111859.jpg"><img src="img/bunnies/IMG_20190618_111859.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_112040.jpg"><img src="img/bunnies/IMG_20190618_112040.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_112049.jpg"><img src="img/bunnies/IMG_20190618_112049.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_112151.jpg"><img src="img/bunnies/IMG_20190618_112151.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_112156.jpg"><img src="img/bunnies/IMG_20190618_112156.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_112749.jpg"><img src="img/bunnies/IMG_20190618_112749.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_112856.jpg"><img src="img/bunnies/IMG_20190618_112856.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_112914.jpg"><img src="img/bunnies/IMG_20190618_112914.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_112938.jpg"><img src="img/bunnies/IMG_20190618_112938.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_113124.jpg"><img src="img/bunnies/IMG_20190618_113124.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_113215.jpg"><img src="img/bunnies/IMG_20190618_113215.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_113234.jpg"><img src="img/bunnies/IMG_20190618_113234.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_113340.jpg"><img src="img/bunnies/IMG_20190618_113340.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_113346.jpg"><img src="img/bunnies/IMG_20190618_113346.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_113418.jpg"><img src="img/bunnies/IMG_20190618_113418.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_113503.jpg"><img src="img/bunnies/IMG_20190618_113503.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-3" style="margin-bottom:2em">
+            <a href="img/bunnies/IMG_20190618_113516.jpg"><img src="img/bunnies/IMG_20190618_113516.jpg" width="100%"/></a><br/>
+          </div>
+          
+          </div>
+
+
+        <div style="clear:both"></div>
+        <a class="anchor" name="stock"></a>
+        <h2>5. Stock photos results</h2>
+
+        <p>Relighting results for various stock photos downloaded from the Internet.</p>
+
+        <div class="row">
+          <div class="col-md-6" style="margin-bottom:2em">
+            <a href="img/stockphotos/A_bg.jpg"><img src="img/stockphotos/A_bg.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-6" style="margin-bottom:2em">
+            <a href="img/stockphotos/A.jpg"><img src="img/stockphotos/A.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-6" style="margin-bottom:2em">
+            <a href="img/stockphotos/B_bg.jpg"><img src="img/stockphotos/B_bg.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-6" style="margin-bottom:2em">
+            <a href="img/stockphotos/B.jpg"><img src="img/stockphotos/B.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-6" style="margin-bottom:2em">
+            <a href="img/stockphotos/C_bg.jpg"><img src="img/stockphotos/C_bg.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-6" style="margin-bottom:2em">
+            <a href="img/stockphotos/C.jpg"><img src="img/stockphotos/C.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-6" style="margin-bottom:2em">
+            <a href="img/stockphotos/D_bg.jpg"><img src="img/stockphotos/D_bg.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-6" style="margin-bottom:2em">
+            <a href="img/stockphotos/D.jpg"><img src="img/stockphotos/D.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-6" style="margin-bottom:2em">
+            <a href="img/stockphotos/E_bg.jpg"><img src="img/stockphotos/E_bg.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-6" style="margin-bottom:2em">
+            <a href="img/stockphotos/E.jpg"><img src="img/stockphotos/E.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-6" style="margin-bottom:2em">
+            <a href="img/stockphotos/F_bg.jpg"><img src="img/stockphotos/F_bg.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-6" style="margin-bottom:2em">
+            <a href="img/stockphotos/F.jpg"><img src="img/stockphotos/F.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-6" style="margin-bottom:2em">
+            <a href="img/stockphotos/G_bg.jpg"><img src="img/stockphotos/G_bg.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-6" style="margin-bottom:2em">
+            <a href="img/stockphotos/G.jpg"><img src="img/stockphotos/G.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-6" style="margin-bottom:2em">
+            <a href="img/stockphotos/H_bg.jpg"><img src="img/stockphotos/H_bg.jpg" width="100%"/></a><br/>
+          </div>
+          <div class="col-md-6" style="margin-bottom:2em">
+            <a href="img/stockphotos/H.jpg"><img src="img/stockphotos/H.jpg" width="100%"/></a><br/>
+          </div>
+          
+          </div>
+    
+<hr/>
+
+
+
+
+    <footer class="footer navbar-fixed-bottom">
+      <div class="container">
+        <span class="text-muted">Deep Parametric Indoor Lighting Estimation, Supplementary Material</span>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./js/jquery-3.1.1.min.js"></script>
+    <script src="./js/tether.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/lightbox.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/JavaScript">
+    $(".nav a").on("click", function(){
+       $(".nav").find(".active").removeClass("active");
+       $(this).parent().addClass("active");
+    });
+    </script>
+  </body>
+</html>
