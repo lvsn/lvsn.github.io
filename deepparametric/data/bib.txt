@@ -1,0 +1,7 @@
+@InProceedings{Gardner_2019_ICCV,
+author = {Gardner, Marc-Andre and Hold-Geoffroy, Yannick and Sunkavalli, Kalyan and Gagne, Christian and Lalonde, Jean-Francois},
+title = {Deep Parametric Indoor Lighting Estimation},
+booktitle = {The IEEE International Conference on Computer Vision (ICCV)},
+month = {October},
+year = {2019}
+}  
