@@ -1,0 +1,10 @@
+@article{afrasiyabi2019associative,
+    title={Associative Alignment for Few-shot Image Classification},
+    author={Afrasiyabi Arman, Lalonde Jean-François, Gagné Christian},
+    journal={arXiv preprint arXiv:1912.05094},
+    year={2019}
+ }
+
+
+
+
