@@ -1,10 +1,10 @@
-@article{afrasiyabi2019associative,
-    title={Associative Alignment for Few-shot Image Classification},
-    author={Afrasiyabi Arman, Lalonde Jean-François, Gagné Christian},
-    journal={arXiv preprint arXiv:1912.05094},
-    year={2019}
- }
-
+@InProceedings{Afrasiyabi_2020_ECCV,
+author = {Afrasiyabi, Arman and Gagn\'{e}, Christian  and Lalonde, Jean-Fran\c{c}ois Lalonde},
+title = {Associative Alignment for Few-shot Image Classification},
+booktitle = {Proceedings of the European Conference on Computer Vision (ECCV)},
+month = {August},
+year = {2020}
+}  
 
 
 
