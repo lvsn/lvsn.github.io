@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#005ddd">
+    <link rel="canonical" href="lvsn.github.io/real-svbrdf">
+    <title>Deep SVBRDF Estimation on Real Materials</title>
+    <style>
+@font-face {
+    {#https://fonts.googleapis.com/css?family=Raleway:200&text=cep-AgtsilP uLj.hEoarbwNn#}
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+    src: local('Raleway ExtraLight'), local('Raleway-ExtraLight'), url(https://fonts.gstatic.com/l/font?kit=1Ptrg8zYS_SKggPNwOIpaqRdHNCz6xpXre7ff9ZcQFA1qKTJD0438nJ8qf8&skey=aa04310f5d0ba817&v=v12) format('woff2');
+}
+
+body {
+    color: #222;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    line-height: 1.5em;
+}
+
+page {
+    max-width: 50em;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.container {
+    max-width: 50em;
+    margin: 0 auto;
+    padding: 2em 1em;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    {#color: #005ddd;#}
+    color: #0047b0;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.header {
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding: 2.5em 2em 1.5em;
+
+}
+
+.header h1 {
+    font-size: 2em;
+    font-family: Raleway, Roboto, Arial, Open Sans, Helvetica Light, sans-serif;
+    font-weight:200;
+    font-weight: inherit;
+    color: #222;
+    text-decoration: none;
+    margin: .2em 0;
+    padding-right: 1em;
+}
+
+h1, h2, h3, h4, post-link-title {
+    font-weight: 400;
+    color: #333;
+    margin-top: 0.5em;
+    font-family: Roboto, Arial, Open Sans, sans-serif;
+    padding: 0;
+}
+
+nav a:hover {
+    background-color: #eee;
+}
+
+section {
+    border-bottom: 1px solid #eee;
+    margin: 2em 0;
+}
+
+.center {
+    width: 100%;
+    text-align: center;
+}
+
+section:last-child, .post-link-box:last-child {
+    border-bottom: none;
+}
+
+.decent {
+    font-size: 0.8em;
+    position: absolute;
+    text-align: left;
+    width: 100%;
+    transform: rotate(-8deg);
+    margin-left: -1em;
+    margin-top: -0.7em;
+    border: 0;
+    color: #eee;
+    text-shadow: -1px -1px 0 #666, 1px -1px 0 #666, -1px 1px 0 #666, 1px 1px 0 #666;
+    font-weight: bold;
+    width: auto;
+}
+
+.article-footer {
+    text-align: center;
+}
+
+.article-footer h3 {
+    margin-bottom: 0;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2px;
+    // justify-content: center;
+    justify-content: space-between;
+}
+
+.row img {
+    padding: 2px;
+}
+
+.abstract {
+    text-align: justify;
+    font-style: italic;
+}
+
+    </style>
+</head>
+<div class="header">
+    <div class="row" style="justify-content: center;">
+        <h1>Deep SVBRDF Estimation on Real Materials</h1>
+        <img style="max-height: 2em;" src="img/logo-ul.svg" alt="Logo Université Laval"</img>
+    </div>
+</div>
+<div class="container">
+    <section>
+        <p class="abstract">
+            Recent work has demonstrated that deep learning approaches can successfully be used to recover accurate estimates of the spatially-varying BRDF (SVBRDF) of a surface from as little as a single image. Closer inspection reveals, however, that most approaches in the literature are trained purely on synthetic data, which, while diverse and realistic, is often not representative of the richness of the real world. In this paper, we show that training such networks exclusively on synthetic data is insufficient to achieve adequate results when tested on real data. Our analysis leverages a new dataset of real materials obtained with a novel portable multi-light capture apparatus. Through an extensive series of experiments and with the use of a novel deep learning architecture, we explore two strategies for improving results on real data: finetuning, and a per-material optimization procedure. We show that adapting network weights to real data is of critical importance, resulting in an approach which significantly outperforms previous methods for SVBRDF estimation on real materials.
+        </p>
+    </section>
+    <section>
+        <div class="row" style="justify-content: space-around;">
+            <!--<img style="max-width: 20%;" src="img/capture-example-x1024.png" alt="Portable SVBRDF capture system" loading="lazy"> -->
+            <div>
+                <h2>Dataset</h2>
+                <p>Coming soon</p>
+            </div>
+            <div>
+                <h2>Code</h2>
+                <p>Coming soon</p>
+            </div>
+        </div>
+
+    </section>
+    <section>
+        <img style="max-width: 100%;" src="img/couronne.png" alt="Portable SVBRDF capture system" loading="lazy">
+    </section>
+
+    <section>
+        <h2>Acknowledgements</h2>
+        <p class="abstract">This work was supported by the REPARTI Strategic Network and the NSERC/Creaform Industrial Research Chair on 3D Scanning: CREATION 3D. We thank Charles Asselin for helping with data capture, Pierre Robitaille for electronics, Yannick Hold-Geoffroy for his invaluable proofreading skills, and Nvidia with the donation of GPUs.</p>
+
+    </section>
+</div>
+</body>
+</html>
+
+
+
+
+
