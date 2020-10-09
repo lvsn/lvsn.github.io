@@ -16,7 +16,7 @@ page {
 .container {
     max-width: 50em;
     margin: 0 auto;
-    padding: 2em 1em;
+    // padding: 2em 1em;
 }
 
 a {
@@ -105,4 +105,30 @@ section:last-child, .post-link-box:last-child {
 .abstract {
     text-align: justify;
     font-style: italic;
+}
+
+.dataset-pair-backup {
+    align-items: stretch;
+    justify-content: space-between;
+    padding: 0;
+    max-width: 100%;
+}
+
+.dataset-pair {
+    align-items: stretch;
+    justify-content: center;
+    padding: 0;
+    //min-width: 100%;
+    margin-left: -100%;
+    margin-right: -100%;
+    text-align: center;
+}
+
+.dataset-pair img {
+    height: auto;
+    width: 47vw;
+    max-width: 2816px;
+}
+.dataset-pair a {
+    line-height: 0;
 }

@@ -21,11 +21,23 @@
 </div>
 <div class="container">
     <section>
+        <span class="row dataset-pair">
+            <a href="img/077.jpg"><img src="img/077.jpg" loading="lazy" alt="dataset example 077"></a>
+            <a href="img/091.jpg"><img src="img/091.jpg" loading="lazy" alt="dataset example 091"></a>
+        </span>
+        <span class="row dataset-pair">
+            <a href="img/152.jpg"><img src="img/152.jpg" loading="lazy" alt="dataset example 152"></a>
+            <a href="img/023.jpg"><img src="img/024.jpg" loading="lazy" alt="dataset example 024"></a>
+        </span>
+        <span class="row dataset-pair">
+            <a href="img/141.jpg"><img src="img/141.jpg" loading="lazy" alt="dataset example 141"></a>
+            <a href="img/017.jpg"><img src="img/017.jpg" loading="lazy" alt="dataset example 017"></a>
+        </span>
         <div class="row" style="justify-content: space-between;">
             <div style="text-align: justify;">
                 <h2>Dataset</h2>
-                <div class="row" style="align-items: stretch; justify-content: space-between; padding: 0;">
-                    <div style="width: 70%; text-align: justify;">
+                <div class="row" style="flex-wrap: nowrap; align-items: stretch; justify-content: space-between; padding: 0;">
+                    <div style="text-align: justify;">
                         <p>
                             A total of 80 real material samples were captured in a dark room.
                             For each material, multiple captures were collected at different distances from the camera (between 250 and 650 mm) to observe both macro- and micro-level details.
@@ -34,7 +46,7 @@
                             Each capture set includes 12 LDR (8 bpp) RGB-D images at 4K pixel resolution. Each set is captured at 50% and 100% of maximum light intensity. In total, we captured 462 such image sets (combinations of light intensities, distances to the camera, and material sample).
                         </p>
                     </div>
-                    <div style="float: right; height: 100%;">
+                    <div style="float: right; height: 100%; padding: 0.5em;">
                         <img src="img/capture-example.png" height="300px" loading="lazy" alt="Material capture example">
                     </div>
                 </div>
@@ -59,7 +71,7 @@
 Coming soon</pre>
     </section>
     <section>
-        <div class="row" style="justify-content: space-around;">
+        <div class="row" style="justify-content: space-between;">
             <!--<img style="max-width: 20%;" src="img/capture-example-x1024.png" alt="Portable SVBRDF capture system" loading="lazy"> -->
             <div>
                 <h2>Crops only</h2>
@@ -83,7 +95,7 @@ Coming soon</pre>
         </div>
     </section>
 
-    <section>
+    <section id="Capture_system">
         <div class="row" style="justify-content: space-between;">
             <div style="text-align: justify;">
                 <i><h2>Capture system</h2></i>
