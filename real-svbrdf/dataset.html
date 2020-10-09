@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#005ddd">
+    <link rel="canonical" href="https://lvsn.github.io/real-svbrdf/dataset.html">
+    <title>Dataset SVBRDF Real Materials </title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<div class="header">
+    <div class="row" style="justify-content: center;">
+        <h1><a href="https://lvsn.github.io/real-svbrdf/">Deep SVBRDF Estimation on Real Materials</a></h1>
+        <img style="max-height: 2em;" src="img/logo-ul.svg" alt="Logo Université Laval">
+    </div>
+    <div class="row" style="justify-content: center;">
+        <p><a href="https://asselin.engineer/">Louis-Philippe Asselin</a>, <a href="http://vision.gel.ulaval.ca/~laurend/englishintro.html">Denis Laurendeau</a>, <a href="http://vision.gel.ulaval.ca/~jflalonde/">Jean-François Lalonde</a></p>
+    </div>
+    <div class="row">
+        <h1>Dataset Page</h1>
+    </div>
+</div>
+<div class="container">
+    <section>
+        <div class="row" style="justify-content: space-between;">
+            <div style="text-align: justify;">
+                <h2>Dataset</h2>
+                <div class="row" style="align-items: stretch; ">
+                    <div style="width: 70%; text-align: justify;">
+                        <p>
+                            A total of 80 real material samples were captured in a dark room.
+                            For each material, multiple captures were collected at different distances from the camera (between 250 and 650 mm) to observe both macro- and micro-level details.
+                            The dataset is mostly comprised of planar specimens but also includes non-planar objects such as mugs, globes, crumpled paper, etc.
+                            As shown below, it contains a rich diversity of materials, including diffuse or specular wrapping papers, fabrics, anisotropic metals, plastics, rugs, ceramic and wood flooring samples, etc.
+                            Each capture set includes 12 LDR (8 bpp) RGB-D images at 4K pixel resolution. Each set is captured at 50% and 100% of maximum light intensity. In total, we captured 462 such image sets (combinations of light intensities, distances to the camera, and material sample).
+                        </p>
+                    </div>
+                    <div style="float: right; height: 100%;">
+                        <img src="img/capture-example.png" height="300px" loading="lazy" alt="Material capture example">
+                    </div>
+                </div>
+
+                <p>
+                    Each capture set includes 12 LDR (8 bpp) RGB-D images at 4K pixel resolution.
+                    Each set is captured at 50% and 100% of maximum light intensity (LED50 and LED100 suffix).
+                    In total, we captured 462 such image sets (combinations of light intensities, distances to the camera, and material sample).
+                </p>
+                <p>
+                    In our experiments, only 256x256 RGB crops at 100% light intensity are used (see paper).
+                    This smaller dataset is provided below.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+    <section>
+        <h2>Cite</h2>
+        <pre style="max-width: 100%;">
+Coming soon</pre>
+    </section>
+    <section>
+        <div class="row" style="justify-content: space-around;">
+            <!--<img style="max-width: 20%;" src="img/capture-example-x1024.png" alt="Portable SVBRDF capture system" loading="lazy"> -->
+            <div>
+                <h2>Crops only</h2>
+                <p>Paper dataset, RGB 256x256</p>
+                <p>Link (0._ _ GB) coming soon</p>
+            </div>
+            <div>
+                <h2>Complete dataset</h2>
+                <p>Includes depth maps</p>
+                <p>Link (_._ _ GB) coming soon</p>
+            </div>
+            <div>
+                <h2>Helper Code</h2>
+                <p>Includes PyTorch loader</p>
+                <span>Link Coming soon</span>
+                <svg style="display: inline-block; margin-right: 0.3em;" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true">
+                    <path fill-rule="evenodd"
+                          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="row" style="justify-content: space-between;">
+            <div style="text-align: justify;">
+                <i><h2>Capture system</h2></i>
+                <p>We propose the multi-light capture system which is composed of a Kinect Azure RGB-D camera surrounded by a 225mm radius ring of 12 equally-spaced LEDs.
+                    All components are mounted rigidly on a custom 3D-printed frame.
+                    The LEDs, numbered from 0 (North) and incrementing clockwise, can be switched on/off individually in a round-robin fashion and in sync with the camera (thanks to the Kinect Azure sync line).
+                    LED intensity can be adjusted via a 500Hz PWM signal.
+                    The system can capture 4K videos at a frame rate of up to 15FPS, where each frame corresponds to a different light direction.
+                    In all, a full 12-frame capture can be acquired in less than 1 second.
+                    <a href="https://photos.app.goo.gl/q6faSWTvNa23EaKYA">Prototyping album</a>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <i><h2>La Couronne</h2></i>
+        </div>
+        <div class="row">
+            <dif>
+                <a href="img/couronne.png"><img src="img/couronne.png" height="400px" loading="lazy" alt="portable material appearance capture system"></a>
+            </dif>
+        </div>
+    </section>
+
+    <section>
+        <h2>Acknowledgements</h2>
+        <p class="abstract">This work was supported by the REPARTI Strategic Network and the NSERC/Creaform Industrial Research Chair on 3D Scanning: CREATION 3D. We thank Charles Asselin for helping with data capture, Pierre Robitaille for electronics, Yannick Hold-Geoffroy for his invaluable proofreading skills, and Nvidia with the donation of GPUs.</p>
+    </section>
+</div>
+</body>
+</html>
+
+
+
+
+

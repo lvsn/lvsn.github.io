@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap');
+
+body {
+    color: #222;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    line-height: 1.5em;
+}
+
+page {
+    max-width: 50em;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.container {
+    max-width: 50em;
+    margin: 0 auto;
+    padding: 2em 1em;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: #0047b0;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.header {
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding: 2.5em 2em 1.5em;
+
+}
+
+.header h1 {
+    font-size: 2em;
+    font-family: Raleway, Roboto, Arial, Open Sans, Helvetica Light, sans-serif;
+    font-weight: 400;
+    color: #222;
+    text-decoration: none;
+    margin: .2em 0;
+    padding-right: 1em;
+}
+
+.header a {
+    font-family: Raleway, Roboto, Arial, Open Sans, Helvetica Light, sans-serif;
+    font-weight: 400;
+}
+
+.header h1 a:link, .header h1 a:visited {
+    font-family: Raleway, Roboto, Arial, Open Sans, Helvetica Light, sans-serif;
+    font-weight: 400;
+    color: #333;
+}
+
+h1, h2, h3, h4, post-link-title {
+    font-family: Raleway, Roboto, Arial, Open Sans, Helvetica Light, sans-serif;
+    font-weight: 400;
+    color: #333;
+    margin-top: 0.5em;
+    padding: 0;
+}
+
+section {
+    border-bottom: 1px solid #eee;
+    margin: 2em 0;
+}
+
+section:last-child, .post-link-box:last-child {
+    border-bottom: none;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2px;
+    // justify-content: center;
+    justify-content: space-around;
+}
+
+.row > div {
+    text-align: center;
+}
+
+.row > div > h2 {
+    margin-bottom: 0.1em;
+}
+
+.row > div > span {
+    margin-top: 0.2em;
+    padding-bottom: 1em;
+}
+
+.row img {
+    padding: 2px;
+}
+
+.abstract {
+    text-align: justify;
+    font-style: italic;
+}
