@@ -1,0 +1,9 @@
+@InProceedings{Afrasiyabi_2021_ICCV,
+author = {Afrasiyabi, Arman and Lalonde, Jean-Fran\c{c}ois and Gagn\'{e}, Christian},
+title = {Mixture-based Feature Space Learning for Few-shot Image Classification},
+booktitle = {Proceedings of IEEE/CVF International Conference on Computer Vision (ICCV)}, 
+year = {2021}
+}  
+
+
+
