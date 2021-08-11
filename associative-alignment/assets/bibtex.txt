@@ -1,0 +1,8 @@
+@inproceedings{afrasiyabi2020associative,
+  title={Associative alignment for few-shot image classification},
+  author={Afrasiyabi, Arman and Lalonde, Jean-Fran{\c{c}}ois and Gagn{\'e}, Christian},
+  booktitle={European Conference on Computer Vision},
+  pages={18--35},
+  year={2020},
+  organization={Springer}
+}
