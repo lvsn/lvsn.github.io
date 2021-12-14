@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#005ddd">
+    <link rel="canonical" href="https://lvsn.github.io/real-svbrdf/dataset.html">
+    <title>Dataset SVBRDF Real Materials </title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<div class="header">
+    <div class="row" style="justify-content: center;">
+        <h1><a href="https://lvsn.github.io/real-svbrdf/">Deep SVBRDF Estimation on Real Materials</a></h1>
+        <img style="max-height: 2em;" src="img/logo-ul.svg" alt="Logo Université Laval">
+    </div>
+    <div class="row" style="justify-content: center;">
+        <p><a href="https://asselin.engineer/">Louis-Philippe Asselin</a>, <a href="http://vision.gel.ulaval.ca/~laurend/englishintro.html">Denis Laurendeau</a>, <a href="http://vision.gel.ulaval.ca/~jflalonde/">Jean-François Lalonde</a></p>
+    </div>
+    <div class="row">
+        <h1>Dataset Page</h1>
+    </div>
+</div>
+<div class="container">
+    <section>
+        <span class="row dataset-pair">
+            <a href="img/077.jpg"><img src="img/077.jpg" loading="lazy" alt="dataset example 077"></a>
+            <a href="img/091.jpg"><img src="img/091.jpg" loading="lazy" alt="dataset example 091"></a>
+        </span>
+        <span class="row dataset-pair">
+            <a href="img/152.jpg"><img src="img/152.jpg" loading="lazy" alt="dataset example 152"></a>
+            <a href="img/023.jpg"><img src="img/024.jpg" loading="lazy" alt="dataset example 024"></a>
+        </span>
+        <span class="row dataset-pair">
+            <a href="img/141.jpg"><img src="img/141.jpg" loading="lazy" alt="dataset example 141"></a>
+            <a href="img/017.jpg"><img src="img/017.jpg" loading="lazy" alt="dataset example 017"></a>
+        </span>
+        <div class="row" style="justify-content: space-between;">
+            <div style="text-align: justify;">
+                <h2>Dataset</h2>
+                <div class="row" style="flex-wrap: nowrap; align-items: stretch; justify-content: space-between; padding: 0;">
+                    <div style="text-align: justify;">
+                        <p>
+                            A total of 80 real material samples were captured in a dark room.
+                            For each material, multiple captures were collected at different distances from the camera (between 250 and 650 mm) to observe both macro- and micro-level details.
+                            The dataset is mostly comprised of planar specimens but also includes non-planar objects such as mugs, globes, crumpled paper, etc.
+                            As shown above, it contains a rich diversity of materials, including diffuse or specular wrapping papers, fabrics, anisotropic metals, plastics, rugs, ceramic and wood flooring samples, etc.
+                            Each capture set includes 12 LDR (8 bpp) RGB-D images at 4K pixel resolution. Each set is captured at 50% and 100% of maximum light intensity. In total, we captured 462 such image sets (combinations of light intensities, distances to the camera, and material sample).
+                        </p>
+                    </div>
+                    <div style="float: right; height: 100%; padding: 0.5em;">
+                        <img src="img/capture-example.png" height="300px" loading="lazy" alt="Material capture example">
+                    </div>
+                </div>
+                <p>
+                    In our experiments, only 256x256 RGB crops at 100% light intensity are used (see paper).
+                    This smaller dataset is provided below.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+    <section>
+        <h2>Cite</h2>
+        <p>
+            L.-P. Asselin, D. Laurendeau, and J.-F. Lalonde <br/>
+            Deep SVBRDF Estimation on Real Materials <br/>
+            International Conference on 3D Vision (3DV), 2020
+        </p>
+    </section>
+    <section>
+        <div class="row" style="justify-content: space-around;">
+            <!--<img style="max-width: 20%;" src="img/capture-example-x1024.png" alt="Portable SVBRDF capture system" loading="lazy"> -->
+            <div>
+                <h2>Crops only, with helper code</h2>
+                <p>Paper dataset, RGB 256x256</p>
+                <p><a href="http://rachmaninoff.gel.ulaval.ca/static/real-svbrdf-crops.zip">Link</a> (0.4 GB)</p>
+            </div>
+            <div>
+                <h2>Complete dataset</h2>
+                <p>Includes depth maps and all light intensities</p>
+                <p><a href="http://rachmaninoff.gel.ulaval.ca/static/real-svbrdf-dataset.zip">Link</a> (34.4 GB)</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="Capture_system">
+        <div class="row" style="justify-content: space-between;">
+            <div style="text-align: justify;">
+                <i><h2>Capture system</h2></i>
+                <p>We propose the multi-light capture system which is composed of a Kinect Azure RGB-D camera surrounded by a 225mm radius ring of 12 equally-spaced LEDs.
+                    All components are mounted rigidly on a custom 3D-printed frame.
+                    The LEDs, numbered from 0 (North) and incrementing clockwise, can be switched on/off individually in a round-robin fashion and in sync with the camera (thanks to the Kinect Azure sync line).
+                    LED intensity can be adjusted via a 500Hz PWM signal.
+                    The system can capture 4K videos at a frame rate of up to 15FPS, where each frame corresponds to a different light direction.
+                    In all, a full 12-frame capture can be acquired in less than 1 second.
+                    <a href="https://photos.app.goo.gl/q6faSWTvNa23EaKYA">Prototyping album</a>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <i><h2>La Couronne</h2></i>
+        </div>
+        <div class="row">
+            <dif>
+                <a href="img/couronne.png"><img src="img/couronne.png" height="400px" loading="lazy" alt="portable material appearance capture system"></a>
+            </dif>
+        </div>
+    </section>
+
+    <section>
+        <h2>Acknowledgements</h2>
+        <p class="abstract">This work was supported by the REPARTI Strategic Network and the NSERC/Creaform Industrial Research Chair on 3D Scanning: CREATION 3D. We thank Charles Asselin for helping with data capture, Pierre Robitaille for electronics, Yannick Hold-Geoffroy for his invaluable proofreading skills, and Nvidia with the donation of GPUs.</p>
+    </section>
+</div>
+</body>
+</html>
+
+
+
+
+

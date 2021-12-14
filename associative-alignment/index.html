@@ -1,0 +1,298 @@
+<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-weight:300;
+		font-size:18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1100px;
+	}
+	
+	h1 {
+		font-size:32px;
+		font-weight:300;
+	}
+	
+	.disclaimerbox {
+		background-color: #eee;		
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+		padding: 20px;
+	}
+
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.rounded {
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	a:link,a:visited
+	{
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+	
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+	
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		        15px 15px 0 0px #fff, /* The fourth layer */
+		        15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		        20px 20px 0 0px #fff, /* The fifth layer */
+		        20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		        25px 25px 0 0px #fff, /* The fifth layer */
+		        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+
+	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+	
+	.vert-cent {
+		position: relative;
+	    top: 50%;
+	    transform: translateY(-50%);
+	}
+	
+	hr
+	{
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+</style>
+
+<html>
+  <head>
+  		    
+  </head>
+
+  <body>
+    <br>
+          <center>
+          	    <br> 
+		    <div  style="text-align:center">
+                        <span style="font-size:32px">Associative Alignment for Few-shot Image Classification</span> 
+                        
+                    </div> 
+          	
+	  		  <table align=center width=600px>
+	  			  <tr>
+	  	              <td align=center> 
+			       <div class="container d-flex justify-content-between">
+				<a href="https://lvsn.github.io/associative-alignment/" class="navbar-brand d-flex align-items-center">
+	  					<center>  
+	  						<span style="font-size:20px"><a href="https://armanafrasiyabi.github.io/">Arman Afrasiyabi</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	  						<span style="font-size:20px"><a href="http://www.jflalonde.ca/">Jean-François Lalonde</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	  						<span style="font-size:20px"><a href="http://vision.gel.ulaval.ca/~cgagne/">Christian Gagné</a></span>&nbsp;&nbsp;&nbsp;&nbsp;  
+		  		  		</center>
+		  		  		<img src="./assets/ul_logo.png" align="center" width="13%">  <img src="./assets/iid_logo.png" align="center" width="13%">
+		  		  		<br>
+                  			        <br> 
+		  		  		
+		  		  	  </td> 
+		  		  </tr>
+	  			  <tr>
+		  		  </tr>
+			  </table> 
+          </center>
+
+          <center>
+  		  <table align=center width=850px>
+  			  <tr>
+  	              <td width=500px>
+  					<center>
+  	                	<img class="round" style="width:600px" src="./assets/method.png"/>
+	  				</center>
+  	              </td>  	              
+                </tr>
+  		  </table>  		  
+  		</center>
+   
+
+          <hr>
+          
+          
+          <table align=center width=875px>
+          		
+	  		  <table align=center width=600px>
+	  			  <tr> 
+	  	              <td align=center width=120px>
+	  	              
+	  					<center>
+	  						<span style="font-size:24px"><a href='https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123500018.pdf'>[Paper]</a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href='https://github.com/ArmanAfrasiyabi/associative-alignment-fs'>[GitHub]</a></span><br>
+		  		  		</center>
+		  		  	  </td>  
+		  		  	 </tr>
+	  			  <tr>
+	  			  
+			  </table>
+			</table> 
+		  <hr> 
+		   <table align=center width=875px>
+	  		  <table align=center width=600px> 
+	  			  <tr>  
+	  	              <td align=center width=120px>
+	  					<center>
+	  						Accepted at <span style="font-size:16px"><a href='https://eccv2020.eu/'>European Conference on Computer Vision (ECCV)</a></span>, 2020! <br>(as a spotlight presentation)
+		  		  		</center>
+		  		  	  </td>   
+	  			  <tr>
+	  			  
+			  </table>
+			</table>
+		  <hr> 
+
+  		  <table align=center width=875px>
+	  		  <center><h1>Abstract</h1></center>
+	  		  <tr>
+	  		  	<td>
+					Few-shot image classification aims at training a model from only a few examples for each of the "novel" classes. This paper proposes the idea of associative alignment for leveraging part of the base data by aligning the novel training instances to the closely related ones in the base training set. This expands the size of the effective novel training set by adding extra "related base" instances to the few novel ones, thereby allowing a constructive fine-tuning. We propose two associative alignment strategies: 1) a metric-learning loss for minimizing the distance between related base samples and the centroid of novel instances in the feature space, and 2) a conditional adversarial alignment loss based on the Wasserstein distance. Experiments on four standard datasets and three backbones demonstrate that combining our centroid-based alignment loss results in absolute accuracy improvements of 4.4%, 1.2%, and 6.2% in 5-shot learning over the state of the art for object recognition, fine-grained classification, and cross-domain adaptation, respectively.
+	  		    </td>
+	  		  </tr>
+			</table>
+  		  <br>
+		  <hr>
+			
+		<table align=center width=490px>
+	 		<center><h1>Paper and Supplementary Material</h1></center>
+  			  <tr>
+				  <td><a href="https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123500018.pdf"><img class="layered-paper-big" style="height:175px" src="./assets/page1.png"/></a></td>
+				  <td><span style="font-size:14pt">Arman Afrasiyabi, Jean-François Lalonde, Christian Gagné<br>
+				  <b>Associative Alignment for Few-shot Image Classification.</b><br>
+				  (hosted on <a href="https://arxiv.org/abs/1912.05094">ArXiv</a>)<br>
+				  <span style="font-size:4pt"><a href=""><br></a>
+				  </span>
+				  </td>
+  	              </td>
+              </tr>
+  		  </table>
+		  <br>
+
+		  <table align=center width=600px>
+			  <tr>
+				  <td><span style="font-size:14pt"><center>
+				  	<a href="./assets/bibtex.txt">[Bibtex]</a>
+  	              </center></td>
+              </tr>
+  		  </table>
+
+  		  <hr>
+
+  		  <table align=center width=700px>
+	  		  <center><h1>Overview</h1></center>
+  			  <tr>
+  	              <td align=center width=700px>
+  					<center>
+						  <td><img class="round" style="width:650px" src="./assets/associative_alignment.gif"/></td>
+	  		  		</center>
+			  </tr>
+		  </center>
+		  </table>
+		  <br>
+		  <hr>
+        <center><h1>Video (left: short, right: long)</h1></center> 
+        <p align="center"> 
+		<iframe id="video" width="330" height="195" src="https://www.youtube.com/embed/hRpflpNO9rM" frameborder="0" allow="autoplay;" allowfullscreen align="center"></iframe> 
+		<iframe id="video" width="330" height="195" src="./assets/associative_alignment.mp4" frameborder="0"  allowfullscreen align="center"></iframe></p>
+
+  		  <table align=center width=800px>
+			  <br>
+			  <tr><center>
+				<span style="font-size:28px">&nbsp;<a href='./assets/persentation.pdf'>[Slides]</a>
+		  </table>
+        <hr>
+
+ 		<center><h1>Poster</h1></center>
+
+  		  <table align=center width=420px> 
+				    <div class="album py-5 bg-light"> 
+				    <div class="container"> 
+					<div class="row">
+					    <div class="column2"> 
+					    <center>
+						  <a  href="./assets/poster.pdf" > <img style="width:650px" class="img-fluid" src="./assets/poster.png"></a>
+						<br> click on the figure to see .pdf version. <br>
+						<center> 
+					    </div>
+					</div>
+					<br><br>
+
+				 
+					<div class="card mb-4 shadow-sm text-center">
+					<h3 class="text-muted">Acknowledgements </h3>
+					This project was supported by funding from NSERC-Canada, Mitacs, Prompt-Québec, and E Machine Learning.
+					</ul>
+					</div>
+					</div>
+					</div>
+    </div>
+		  </table>
+
+      	  <br>
+		  <hr>
+		<br>
+
+              
+</body>
+</html>
+ 

@@ -1,0 +1,8 @@
+@misc{dubeau2020rgbde,
+    title={RGB-D-E: Event Camera Calibration for Fast 6-DOF Object Tracking},
+    author={Etienne Dubeau and Mathieu Garon and Benoit Debaque and Raoul de Charette and Jean-François Lalonde},
+    year={2020},
+    eprint={2006.05011},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}

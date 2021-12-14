@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="RGB-D-E tracking project web page">
+    <meta name="author" content="Etienne Dubeau">
+
+
+    <title>RGB-D-E: Event Camera Calibration for Fast 6-DOF Object Tracking</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="data/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="data/album.css" rel="stylesheet">
+    <link href="supplementary/css/portfolio-item.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+	<div class="navbar navbar-dark shadow-sm" style="background-color: #57595a;">
+            <div class="container d-flex justify-content-between">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <div  style="text-align:center">
+		        <h1 class="jumbotron-heading">RGB-D-E: Event Camera Calibration for Fast 6-DOF Object Tracking</h1>
+			<img src="data/inria_logo.png" align="center" width="15%">
+			<img src="data/ulaval-logo-white.png" align="center" width="15%">
+			<img src="data/thales_logo.png" align="center" width="15%">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main role="main">
+
+    <br><br>
+
+    <div class="container">
+        <p class="lead text-muted text-center">
+	In this paper, we propose, for the first time, to use an event-based camera to increase the speed of 3D object tracking in 6 degrees of freedom.
+	This application requires handling very high object speed to convey compelling AR experiences.
+	To this end, we propose a new system which combines a recent RGB-D sensor (Kinect Azure) with an event camera (DAVIS346).
+	We develop a deep learning approach, which combines an existing RGB-D network along with a novel event-based network in a cascade fashion, and demonstrate that our approach significantly improves the robustness of a state-of-the-art frame-based 6-DOF object tracker using our RGB-D-E pipeline.
+	</p>
+    </div>
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <h2 class="section-heading">Paper</h2>
+
+                Etienne Dubeau, Mathieu Garon, Benoit Debaque, <a href="https://team.inria.fr/rits/membres/raoul-de-charette/">Raoul de Charette</a> and <a href="http://www.jflalonde.ca/">Jean-François Lalonde</a>
+                <br>
+                RGB-D-E: Event Camera Calibration for Fast 6-DOF Object Tracking
+                <br>
+                In Symposium on Mixed and Augmented Reality (ISMAR) 2020
+                <br>
+                [<a href="http://arxiv.org/abs/2006.05011">arXiv:2006.05011 pre-print</a>]
+                [<a href="data/bib.txt">BibTeX</a>]
+                <br><br>
+            </div>
+            <div class="col-md-5">
+            <video poster="" controls="" width="100%">
+                  <source src="data/mais.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+            </video>
+            </div>
+        </div>
+
+        <br><br>
+        <div class="row">
+            <div class="col-md-5">
+                <h2 class="section-heading">Code and Dataset</h2>
+
+                Evaluation code and dataset: <a href="https://github.com/lvsn/rgbde_tracking">Available on github</a>
+		<img width="20" height="20" style="margin-top: -5px;" src="data/GitHub-Mark-32px.png">
+                <br><br>
+            </div>
+            <div class="col-md-5">
+            <video poster="" controls="" width="100%">
+                  <source src="data/supp.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+            </video>
+            </div>
+        </div>
+
+        <br><br>
+        <div class="row">
+            <div class="col-md-5">
+                <h2 class="section-heading">Poster</h2>
+            </div>
+            <div class="col-md-5">
+                <a href="data/mais_poster.pdf"><img class="img-fluid" src="data/poster.jpg"></a>
+            </div>
+        </div>
+
+    <br><br>
+
+        <div class="card mb-4 shadow-sm text-center">
+        <h3 class="text-muted">Acknowledgements </h3>
+        <div style="margin-left: auto; margin-right: auto; text-align: left;">
+        <ul class="list-unstyled text-muted">
+        <li type="square">Jérémie Roy for his help with data acquision;</li>
+        <li type="square">FRQ-NT Samuel de Champlain grant, the NSERC CRDPJ 524235 - 18 grant, and Thales for the funding;</li>
+        <li type="square">NVIDIA Corporation with the donation of the GPUs used for this research.</li>
+        </ul>
+        </div>
+        </div>
+        </div>
+    </div>
+</main>
+
+<footer class="text-muted">
+    <div class="container">
+        <p>The documents contained in these directories are included by
+        the contributing authors as a means to ensure timely dissemination of
+        scholarly and technical work on a non-commercial basis. Copyright and
+        all rights therein are maintained by the authors or by other copyright
+        holders, notwithstanding that they have offered their works here
+        electronically. It is understood that all persons copying this
+        information will adhere to the terms and constraints invoked by each
+        author's copyright. These works may not be reposted without the explicit
+        permission of the copyright holder, except when identified by Creative
+        Commons License 2.0, in which case the license applies to both the
+        original and modified versions of the images. </p>
+        <p class="float-right">
+            <a href="#">Back to top</a>
+        </p>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="The%20Laval%206%20DOF%20Object%20Tracking%20Dataset_files/jquery-3.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="The%20Laval%206%20DOF%20Object%20Tracking%20Dataset_files/popper.js"></script>
+<script src="The%20Laval%206%20DOF%20Object%20Tracking%20Dataset_files/bootstrap.js"></script>
+<script src="The%20Laval%206%20DOF%20Object%20Tracking%20Dataset_files/holder.js"></script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1001390-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" width="348" height="225" viewBox="0 0 348 225" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs><style type="text/css"></style></defs><text x="0" y="17" style="font-weight:bold;font-size:17pt;font-family:Arial, Helvetica, Open Sans, sans-serif">Thumbnail</text></svg><svg xmlns="http://www.w3.org/2000/svg" width="348" height="225" viewBox="0 0 348 225" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs><style type="text/css"></style></defs><text x="0" y="17" style="font-weight:bold;font-size:17pt;font-family:Arial, Helvetica, Open Sans, sans-serif">Thumbnail</text></svg><svg xmlns="http://www.w3.org/2000/svg" width="348" height="225" viewBox="0 0 348 225" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs><style type="text/css"></style></defs><text x="0" y="17" style="font-weight:bold;font-size:17pt;font-family:Arial, Helvetica, Open Sans, sans-serif">Thumbnail</text></svg>
+</body></html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#005ddd">
+    <link rel="canonical" href="https://lvsn.github.io/real-svbrdf/">
+    <title>Deep SVBRDF Estimation on Real Materials</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<div class="header">
+    <div class="row" style="justify-content: center;">
+        <h1><a href="https://lvsn.github.io/real-svbrdf/">Deep SVBRDF Estimation on Real Materials</a></h1>
+        <img style="max-height: 2em;" src="img/logo-ul.svg" alt="Logo Université Laval">
+    </div>
+    <div class="row" style="justify-content: center;">
+        <p><a href="https://asselin.engineer/">Louis-Philippe Asselin</a>, <a href="http://vision.gel.ulaval.ca/~laurend/englishintro.html">Denis Laurendeau</a>, <a href="http://vision.gel.ulaval.ca/~jflalonde/">Jean-François Lalonde</a></p>
+    </div>
+</div>
+<div class="container">
+    <section>
+        <h2>Abstract</h2>
+        <p class="abstract">
+            Recent work has demonstrated that deep learning approaches can successfully be used to recover accurate estimates of the spatially-varying BRDF (SVBRDF) of a surface from as little as a single image. Closer inspection reveals, however, that most approaches in the literature are trained purely on synthetic data, which, while diverse and realistic, is often not representative of the richness of the real world. In this paper, we show that training such networks exclusively on synthetic data is
+            insufficient to achieve adequate results when tested on real data. Our analysis leverages a new dataset of real materials obtained with a novel portable multi-light capture apparatus. Through an extensive series of experiments and with the use of a novel deep learning architecture, we explore two strategies for improving results on real data: finetuning, and a per-material optimization procedure. We show that adapting network weights to real data is of critical importance, resulting in an
+            approach which significantly outperforms previous methods for SVBRDF estimation on real materials.
+        </p>
+    </section>
+    <section>
+        <h2>Cite</h2>
+        <p>
+            L.-P. Asselin, D. Laurendeau, and J.-F. Lalonde <br/>
+            Deep SVBRDF Estimation on Real Materials <br/>
+            International Conference on 3D Vision (3DV), 2020
+        </p>
+    </section>
+    <section>
+        <div class="row" style="justify-content: space-around; padding-bottom: 1em;">
+            <div>
+                <h2>Paper</h2>
+                <a href="https://arxiv.org/abs/2010.04143">arXiv link</a>
+                <p style="margin-top: 0;">Accepted to <a href="http://3dv2020.dgcv.nii.ac.jp/">3DV 2020</a></p>
+            </div>
+            <div>
+                <h2>Supplementary</h2>
+                <span><a href="SVBRDF_3DV2020_supplementary.pdf">PDF</a>, Video below</span>
+                <p style="margin-top: 0;"><a href="http://rachmaninoff.gel.ulaval.ca/static/SVBRDF_3DV2020_poster.pdf">Poster</a></p>
+            </div>
+            <div>
+                <h2>Dataset</h2>
+                <span><a href="dataset.html">Dataset page</a></span>
+            </div>
+            <div>
+                <h2>Code</h2>
+                <span>Contact first author</span>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <a href="dataset.html#Capture_system"><img style="max-width: 100%;" src="img/couronne.png" alt="Portable SVBRDF capture system" loading="lazy"></a>
+    </section>
+
+    <section id="supplementary_video">
+        <div class="row">
+            <h2>Supplementary video</h2>
+        </div>
+        <div style="padding:20% 0 0 0;position:relative;">
+            <iframe src="https://player.vimeo.com/video/465866322?title=0&byline=0&portrait=0" style="position:absolute;top:0;left:25%;width:50%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+    </section>
+
+    <section id="presentation_2min">
+        <div class="row">
+            <h2>3DV2020 2min presentation</h2>
+        </div>
+        <div style="padding:20% 0 0 0;position:relative;">
+            <iframe src="https://player.vimeo.com/video/472421630?title=0&byline=0&portrait=0" style="position:absolute;top:0;left:25%;width:50%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+    </section>
+
+    <section id="presentation_10min">
+        <div class="row">
+            <h2>3DV2020 10min presentation</h2>
+        </div>
+        <div style="padding:20% 0 0 0;position:relative;">
+            <iframe src="https://player.vimeo.com/video/474899669?title=0&byline=0&portrait=0" style="position:absolute;top:0;left:25%;width:50%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+    </section>
+
+    <section>
+        <h2>Acknowledgements</h2>
+        <p class="abstract">This work was supported by the REPARTI Strategic Network and the NSERC/Creaform Industrial Research Chair on 3D Scanning: CREATION 3D. We thank Charles Asselin for helping with data capture, Pierre Robitaille for electronics, Yannick Hold-Geoffroy for his invaluable proofreading skills, and Nvidia with the donation of GPUs.</p>
+    </section>
+
+</div>
+</body>
+</html>
+
+
+
+
+
