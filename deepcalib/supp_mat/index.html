@@ -1,0 +1,779 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./favicon.ico">
+
+    <title>A Perceptual Measure for Deep Single Image Camera Calibration (#2618) &mdash; Supplementary Material</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/lightbox.min.css" rel="stylesheet">
+    <link href="./css/extra.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="pos-f-t">
+      <!-- <div class="collapse" id="navbar-header">
+        <div class="container bg-inverse p-1">
+          <h3>Collapsed content</h3>
+          <p>Toggleable via the navbar brand.</p>
+        </div>
+      </div> -->
+      <nav class="navbar navbar-light navbar-static-top bg-faded">
+        <div class="container">
+          <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-expanded="false" aria-controls="exCollapsingNavbar2" aria-label="Toggle navigation"></button>
+          <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+            <!-- <a class="navbar-brand" href="#">Sticky footer</a> -->
+            <ul class="nav navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="#he">Horizon Line Estimations</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#sgbp">Smoothed Guided Backpropagation</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#study">User Study Examples</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#studyresults">User Study Results</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#voi">Virtual Object Insertions</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Begin page content -->
+    <div class="container">
+      <div class="mt-1">
+        <h1>A Perceptual Measure for Deep Single Image Camera Calibration (#2618) &mdash; Supplementary Material</h1>
+      </div>
+      <p class="lead">
+        The purpose of this document is to extend the results presented in the main paper. Specifically, more results on horizon line estimation, smoothed guided backpropagation and virtual object insertion are provided.
+      </p>
+
+      <h3>Table of Contents</h3>
+      <p>
+      <ol>
+        <li>
+        <a href="#he">Horizon Line Estimations (extends fig. 1)</span></a>
+        </li>
+        <li>
+          <a href="#sgbp">Smoothed Guided Backpropagation (extends fig. 4)</a>
+        </li>
+        <li>
+          <a href="#study">User Study Examples (extends fig. 6)</a>
+        </li>
+        <li>
+          <a href="#studyresults">User Study Results (extends fig. 6)</a>
+        </li>
+        <li>
+          <a href="#voi">Virtual Object Insertions (extends fig. 10)</a>
+        </li>
+      </ol>
+      </p>
+
+      <a class="anchor" name="he"></a>
+      <div style="clear:both"></div>
+      <h2>1. Horizon Line Estimations</h2>
+
+      <p>In this section, we present additional horizon line estimations, extending the results shown in fig. 1.</p>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          
+          <a href="horizon_estimation/pano_addiryhuippofz.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addiryhuippofz.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addiryhuippofz.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addiryhuippofz.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_additeyvjdqubv.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_additeyvjdqubv.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_additeyvjdqubv.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_additeyvjdqubv.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_additeyvjdqubv.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_additeyvjdqubv.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_additeyvjdqubv.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_additeyvjdqubv.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_additeyvjdqubv.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_additeyvjdqubv.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_additeyvjdqubv.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_additeyvjdqubv.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addiwhphxpexcd.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addiwhphxpexcd.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addiwhphxpexcd.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addiwhphxpexcd.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addiwhphxpexcd.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addiwhphxpexcd.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addiwhphxpexcd.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addiwhphxpexcd.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addiwhphxpexcd.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addiwhphxpexcd.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addiwhphxpexcd.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addiwhphxpexcd.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addiyhtujpaovr.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addiyhtujpaovr.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addiyhtujpaovr.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addiyhtujpaovr.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addiyhtujpaovr.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addiyhtujpaovr.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addiyhtujpaovr.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addiyhtujpaovr.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addiyhtujpaovr.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addiyhtujpaovr.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addjhelqxestdk.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addjhelqxestdk.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addjhelqxestdk.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addjhelqxestdk.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addjhelqxestdk.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addjhelqxestdk.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addjhelqxestdk.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addjhelqxestdk.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addjhelqxestdk.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addjhelqxestdk.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addkkzvqqxujqf.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addkkzvqqxujqf.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addkkzvqqxujqf.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addkkzvqqxujqf.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addkkzvqqxujqf.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addkkzvqqxujqf.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addkkzvqqxujqf.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addkkzvqqxujqf.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addknxbljsbxqc.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addknxbljsbxqc.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addknxbljsbxqc.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addknxbljsbxqc.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addknxbljsbxqc.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addknxbljsbxqc.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addknxbljsbxqc.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addknxbljsbxqc.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addlmffiaizqlx.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addlmffiaizqlx.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addlmffiaizqlx.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addlmffiaizqlx.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addlmffiaizqlx.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addlmffiaizqlx.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addlmffiaizqlx.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addlmffiaizqlx.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addlplckiuhrna.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addlplckiuhrna.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addlplckiuhrna.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addlplckiuhrna.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addlplckiuhrna.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addlplckiuhrna.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addlplckiuhrna.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addlplckiuhrna.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addlplckiuhrna.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addlplckiuhrna.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addlzlbhsiydyz.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addlzlbhsiydyz.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addmgfldxizhnp.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmgfldxizhnp.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addmgfldxizhnp.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmgfldxizhnp.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addmgfldxizhnp.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmgfldxizhnp.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addmgfldxizhnp.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmgfldxizhnp.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addmgfldxizhnp.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmgfldxizhnp.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addmgfldxizhnp.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmgfldxizhnp.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addmgfldxizhnp.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmgfldxizhnp.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addmnmcpgaeuwy.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmnmcpgaeuwy.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addmnmcpgaeuwy.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmnmcpgaeuwy.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addmnmcpgaeuwy.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmnmcpgaeuwy.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addmnmcpgaeuwy.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmnmcpgaeuwy.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addmnmcpgaeuwy.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmnmcpgaeuwy.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addmnmcpgaeuwy.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmnmcpgaeuwy.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addmvyzfeagyun.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmvyzfeagyun.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addmvyzfeagyun.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmvyzfeagyun.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addmvyzfeagyun.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmvyzfeagyun.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addmvyzfeagyun.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmvyzfeagyun.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addmvyzfeagyun.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmvyzfeagyun.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addmvyzfeagyun.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmvyzfeagyun.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addmzevbcfhdgl.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmzevbcfhdgl.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addmzevbcfhdgl.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmzevbcfhdgl.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addmzevbcfhdgl.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addmzevbcfhdgl.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addndltklqxnsn.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addndltklqxnsn.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addndltklqxnsn.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addndltklqxnsn.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addndltklqxnsn.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addndltklqxnsn.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addndltklqxnsn.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addndltklqxnsn.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addndltklqxnsn.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addndltklqxnsn.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addndltklqxnsn.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addndltklqxnsn.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addnhnbmyfgyrj.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addnhnbmyfgyrj.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addnhnbmyfgyrj.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addnhnbmyfgyrj.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addnhnbmyfgyrj.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addnhnbmyfgyrj.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addnhnbmyfgyrj.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addnhnbmyfgyrj.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addnhnbmyfgyrj.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addnhnbmyfgyrj.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addnhnbmyfgyrj.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addnhnbmyfgyrj.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addnyewkblttyi.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addnyewkblttyi.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addnyewkblttyi.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addnyewkblttyi.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addnyewkblttyi.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addnyewkblttyi.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addnyewkblttyi.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addnyewkblttyi.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addnyewkblttyi.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addnyewkblttyi.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addocurcvalnob.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addocurcvalnob.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addocurcvalnob.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addocurcvalnob.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addocurcvalnob.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addocurcvalnob.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addocurcvalnob.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addocurcvalnob.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addocurcvalnob.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addocurcvalnob.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addontedcyafqk.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addontedcyafqk.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addontedcyafqk.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addontedcyafqk.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addontedcyafqk.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addontedcyafqk.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addontedcyafqk.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addontedcyafqk.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addontedcyafqk.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addontedcyafqk.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addontedcyafqk.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addontedcyafqk.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addontedcyafqk.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addontedcyafqk.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addoorwejhzgnm.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addoorwejhzgnm.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addoorwejhzgnm.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addoorwejhzgnm.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addoorwejhzgnm.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addoorwejhzgnm.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addoorwejhzgnm.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addoorwejhzgnm.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addoorwejhzgnm.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addoorwejhzgnm.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addpmoktykzsqb.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addpmoktykzsqb.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addpmoktykzsqb.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addpmoktykzsqb.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addpmoktykzsqb.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addpmoktykzsqb.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addpmoktykzsqb.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addpmoktykzsqb.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addpmoktykzsqb.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addpmoktykzsqb.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addpqpwdfajota.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addpqpwdfajota.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addpqpwdfajota.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addpqpwdfajota.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addpqpwdfajota.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addpqpwdfajota.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addpqpwdfajota.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addpqpwdfajota.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addpqpwdfajota.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addpqpwdfajota.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addpwzoaadsbbg.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addpwzoaadsbbg.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addpwzoaadsbbg.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addpwzoaadsbbg.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addpwzoaadsbbg.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addpwzoaadsbbg.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addpwzoaadsbbg.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addpwzoaadsbbg.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addpwzoaadsbbg.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addpwzoaadsbbg.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addqflfuthjcbf.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqflfuthjcbf.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addqflfuthjcbf.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqflfuthjcbf.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addqflfuthjcbf.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqflfuthjcbf.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addqflfuthjcbf.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqflfuthjcbf.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addqmfbfvyxrel.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqmfbfvyxrel.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addqmfbfvyxrel.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqmfbfvyxrel.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addqmfbfvyxrel.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqmfbfvyxrel.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addqprdubeuryq.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqprdubeuryq.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addqprdubeuryq.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqprdubeuryq.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addqprdubeuryq.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqprdubeuryq.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addqqrndcjlwcb.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqqrndcjlwcb.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addqqrndcjlwcb.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqqrndcjlwcb.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addqqrndcjlwcb.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqqrndcjlwcb.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addqqrndcjlwcb.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqqrndcjlwcb.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addqqrndcjlwcb.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqqrndcjlwcb.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addqqrndcjlwcb.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqqrndcjlwcb.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addqrjolltinof.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqrjolltinof.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addqrjolltinof.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqrjolltinof.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addqrjolltinof.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqrjolltinof.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addqrjolltinof.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqrjolltinof.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addqrjolltinof.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqrjolltinof.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addqrjolltinof.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqrjolltinof.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addqrjolltinof.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqrjolltinof.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addqxtovfrafmd.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqxtovfrafmd.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addqxtovfrafmd.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqxtovfrafmd.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addqxtovfrafmd.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqxtovfrafmd.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addqxtovfrafmd.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqxtovfrafmd.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addqxtovfrafmd.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqxtovfrafmd.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addqxtovfrafmd.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addqxtovfrafmd.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addshfajgyuqsc.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addshfajgyuqsc.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addshfajgyuqsc.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addshfajgyuqsc.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addshfajgyuqsc.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addshfajgyuqsc.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addshfajgyuqsc.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addshfajgyuqsc.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addshfajgyuqsc.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addshfajgyuqsc.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addshfajgyuqsc.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addshfajgyuqsc.jpg-6.jpg"/></a>
+<a href="horizon_estimation/pano_addsktoxwibild.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addsktoxwibild.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addsktoxwibild.jpg-1.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addsktoxwibild.jpg-1.jpg"/></a>
+<a href="horizon_estimation/pano_addsktoxwibild.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addsktoxwibild.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addsktoxwibild.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addsktoxwibild.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addsktoxwibild.jpg-4.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addsktoxwibild.jpg-4.jpg"/></a>
+<a href="horizon_estimation/pano_addsqkgygrcixb.jpg-0.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addsqkgygrcixb.jpg-0.jpg"/></a>
+<a href="horizon_estimation/pano_addsqkgygrcixb.jpg-2.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addsqkgygrcixb.jpg-2.jpg"/></a>
+<a href="horizon_estimation/pano_addsqkgygrcixb.jpg-3.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addsqkgygrcixb.jpg-3.jpg"/></a>
+<a href="horizon_estimation/pano_addsqkgygrcixb.jpg-5.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addsqkgygrcixb.jpg-5.jpg"/></a>
+<a href="horizon_estimation/pano_addsqkgygrcixb.jpg-6.jpg" data-lightbox="heim"><img src="horizon_estimation/thumb/pano_addsqkgygrcixb.jpg-6.jpg"/></a>
+
+          
+        </div>
+      </div>
+
+      <div style="clear:both"></div>
+      <a class="anchor" name="sgbp"></a>
+      <h2>2. Smoothed Guided Backpropagation</h2>
+
+      <p>In this section, we present additional smoothed guided backpropagation, extending the results shown in fig. 4.</p>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align: center;">
+            <a href="sgbp/pano_addbhhhqoevobx_jpg-1.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_addbhhhqoevobx_jpg-1.jpg"/></a>
+<a href="sgbp/pano_addcepusvsloks_jpg-3.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_addcepusvsloks_jpg-3.jpg"/></a>
+<a href="sgbp/pano_addcvcjtwboiev_jpg-3.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_addcvcjtwboiev_jpg-3.jpg"/></a>
+<a href="sgbp/pano_addekhyhqjvbeb_jpg-0.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_addekhyhqjvbeb_jpg-0.jpg"/></a>
+<a href="sgbp/pano_addfjqyibbzulh_jpg-2.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_addfjqyibbzulh_jpg-2.jpg"/></a>
+<a href="sgbp/pano_addgasjevqjafh_jpg-1.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_addgasjevqjafh_jpg-1.jpg"/></a>
+<a href="sgbp/pano_addgtzfdddfgrh_jpg-2.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_addgtzfdddfgrh_jpg-2.jpg"/></a>
+<a href="sgbp/pano_addhxkomphqrlr_jpg-4.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_addhxkomphqrlr_jpg-4.jpg"/></a>
+<a href="sgbp/pano_addkkzvqqxujqf_jpg-0.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_addkkzvqqxujqf_jpg-0.jpg"/></a>
+<a href="sgbp/pano_addlmffiaizqlx_jpg-0.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_addlmffiaizqlx_jpg-0.jpg"/></a>
+<a href="sgbp/pano_addontedcyafqk_jpg-6.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_addontedcyafqk_jpg-6.jpg"/></a>
+<a href="sgbp/pano_addpqpwdfajota_jpg-4.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_addpqpwdfajota_jpg-4.jpg"/></a>
+<a href="sgbp/pano_addqflfuthjcbf_jpg-3.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_addqflfuthjcbf_jpg-3.jpg"/></a>
+<a href="sgbp/pano_addsqkgygrcixb_jpg-3.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_addsqkgygrcixb_jpg-3.jpg"/></a>
+<a href="sgbp/pano_addtdiecjavkue_jpg-1.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_addtdiecjavkue_jpg-1.jpg"/></a>
+<a href="sgbp/pano_addtdiecjavkue_jpg-3.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_addtdiecjavkue_jpg-3.jpg"/></a>
+<a href="sgbp/pano_addtfngrqwwyvb_jpg-6.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_addtfngrqwwyvb_jpg-6.jpg"/></a>
+<a href="sgbp/pano_addtwdtklktubg_jpg-3.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_addtwdtklktubg_jpg-3.jpg"/></a>
+<a href="sgbp/pano_adqwuqgahcnffm_jpg-0.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_adqwuqgahcnffm_jpg-0.jpg"/></a>
+<a href="sgbp/pano_ayflzrhzcccird_jpg-0.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayflzrhzcccird_jpg-0.jpg"/></a>
+<a href="sgbp/pano_ayflzrhzcccird_jpg-1.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayflzrhzcccird_jpg-1.jpg"/></a>
+<a href="sgbp/pano_ayflzrhzcccird_jpg-2.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayflzrhzcccird_jpg-2.jpg"/></a>
+<a href="sgbp/pano_ayflzrhzcccird_jpg-3.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayflzrhzcccird_jpg-3.jpg"/></a>
+<a href="sgbp/pano_ayflzrhzcccird_jpg-4.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayflzrhzcccird_jpg-4.jpg"/></a>
+<a href="sgbp/pano_ayflzrhzcccird_jpg-5.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayflzrhzcccird_jpg-5.jpg"/></a>
+<a href="sgbp/pano_ayflzrhzcccird_jpg-6.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayflzrhzcccird_jpg-6.jpg"/></a>
+<a href="sgbp/pano_ayfnoupsclgjpp_jpg-3.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfnoupsclgjpp_jpg-3.jpg"/></a>
+<a href="sgbp/pano_ayfnoupsclgjpp_jpg-4.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfnoupsclgjpp_jpg-4.jpg"/></a>
+<a href="sgbp/pano_ayfnoupsclgjpp_jpg-5.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfnoupsclgjpp_jpg-5.jpg"/></a>
+<a href="sgbp/pano_ayfnoupsclgjpp_jpg-6.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfnoupsclgjpp_jpg-6.jpg"/></a>
+<a href="sgbp/pano_ayfpxlgzfcixnm_jpg-0.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfpxlgzfcixnm_jpg-0.jpg"/></a>
+<a href="sgbp/pano_ayfpxlgzfcixnm_jpg-1.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfpxlgzfcixnm_jpg-1.jpg"/></a>
+<a href="sgbp/pano_ayfpxlgzfcixnm_jpg-2.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfpxlgzfcixnm_jpg-2.jpg"/></a>
+<a href="sgbp/pano_ayfpxlgzfcixnm_jpg-3.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfpxlgzfcixnm_jpg-3.jpg"/></a>
+<a href="sgbp/pano_ayfpxlgzfcixnm_jpg-4.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfpxlgzfcixnm_jpg-4.jpg"/></a>
+<a href="sgbp/pano_ayfpxlgzfcixnm_jpg-5.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfpxlgzfcixnm_jpg-5.jpg"/></a>
+<a href="sgbp/pano_ayfpxlgzfcixnm_jpg-6.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfpxlgzfcixnm_jpg-6.jpg"/></a>
+<a href="sgbp/pano_ayfpxwwfwgfweh_jpg-0.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfpxwwfwgfweh_jpg-0.jpg"/></a>
+<a href="sgbp/pano_ayfpxwwfwgfweh_jpg-1.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfpxwwfwgfweh_jpg-1.jpg"/></a>
+<a href="sgbp/pano_ayfwzaseviqbww_jpg-0.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfwzaseviqbww_jpg-0.jpg"/></a>
+<a href="sgbp/pano_ayfwzaseviqbww_jpg-1.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfwzaseviqbww_jpg-1.jpg"/></a>
+<a href="sgbp/pano_ayfwzaseviqbww_jpg-2.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfwzaseviqbww_jpg-2.jpg"/></a>
+<a href="sgbp/pano_ayfwzaseviqbww_jpg-3.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfwzaseviqbww_jpg-3.jpg"/></a>
+<a href="sgbp/pano_ayfwzaseviqbww_jpg-4.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfwzaseviqbww_jpg-4.jpg"/></a>
+<a href="sgbp/pano_ayfwzaseviqbww_jpg-5.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfwzaseviqbww_jpg-5.jpg"/></a>
+<a href="sgbp/pano_ayfwzaseviqbww_jpg-6.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfwzaseviqbww_jpg-6.jpg"/></a>
+<a href="sgbp/pano_ayfzatxlublfjc_jpg-5.jpg" data-lightbox="sgbp"><img src="sgbp/thumb/pano_ayfzatxlublfjc_jpg-5.jpg"/></a>
+
+        </div>
+      </div>
+
+      <div style="clear:both"></div>
+      <a class="anchor" name="study"></a>
+      <h2>3. User Study Examples</h2>
+
+      <p>In this section, we present additional pairs of images shown during the user study along with their distorted parameter(s), extending the results shown in fig. 6.</p>
+
+      <p>To ease the comparison, hovering the mouse over the ground truth calibration column will display the distorted calibration. Note that in the study, the image containing the virtual object inserted using the ground truth camera calibration was randomly positioned left or right, and no mouse hovering comparison was given to the user.</p>
+
+      <div class="row">
+        <div class="col-md-3">&nbsp;</div>
+        <div class="col-md-3">
+            <h6 style="text-align:center; font-size:0.8em; display: block; height: 2em;">Ground truth calibration</h6>
+        </div>
+        <div class="col-md-3" style="text-align:left">
+            <h6 style="text-align:center; font-size:0.8em; display: block; height: 2em;">Distorted calibration</h6>
+        </div>
+        <div class="col-md-3">&nbsp;</div>
+        <div style="clear:both;"/>
+        <div class="col-md-3">&nbsp;</div>
+        <div class="col-md-6"><div>
+      <a href="study/pano_ahxngimugqzaln.jpg-1_4_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxngimugqzaln.jpg-1_4_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxngimugqzaln.jpg-1_4_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxngimugqzaln.jpg-1_4_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxngimugqzaln.jpg-1_4_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxngimugqzaln.jpg-1_4_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: -30.76&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxngimugqzaln.jpg-1_5_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxngimugqzaln.jpg-1_5_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxngimugqzaln.jpg-1_5_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxngimugqzaln.jpg-1_5_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxngimugqzaln.jpg-1_5_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxngimugqzaln.jpg-1_5_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll, hfov<br/>Amount: -7.17&deg;, -44.48&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxngimugqzaln.jpg-1_6_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxngimugqzaln.jpg-1_6_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxngimugqzaln.jpg-1_6_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxngimugqzaln.jpg-1_6_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxngimugqzaln.jpg-1_6_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxngimugqzaln.jpg-1_6_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: 13.04&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxngimugqzaln.jpg-1_7_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxngimugqzaln.jpg-1_7_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxngimugqzaln.jpg-1_7_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxngimugqzaln.jpg-1_7_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxngimugqzaln.jpg-1_7_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxngimugqzaln.jpg-1_7_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, roll<br/>Amount: -16.58&deg;, -1.69&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxngxlbcrplaw.jpg-6_0_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxngxlbcrplaw.jpg-6_0_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxngxlbcrplaw.jpg-6_0_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxngxlbcrplaw.jpg-6_0_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxngxlbcrplaw.jpg-6_0_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxngxlbcrplaw.jpg-6_0_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll, hfov<br/>Amount: 14.04&deg;, 32.35&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxngxlbcrplaw.jpg-6_1_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxngxlbcrplaw.jpg-6_1_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxngxlbcrplaw.jpg-6_1_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxngxlbcrplaw.jpg-6_1_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxngxlbcrplaw.jpg-6_1_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxngxlbcrplaw.jpg-6_1_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: 3.30&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxngxlbcrplaw.jpg-6_2_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxngxlbcrplaw.jpg-6_2_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxngxlbcrplaw.jpg-6_2_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxngxlbcrplaw.jpg-6_2_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxngxlbcrplaw.jpg-6_2_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxngxlbcrplaw.jpg-6_2_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, roll, hfov<br/>Amount: 24.13&deg;, 4.30&deg;, 12.24&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxngxlbcrplaw.jpg-6_3_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxngxlbcrplaw.jpg-6_3_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxngxlbcrplaw.jpg-6_3_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxngxlbcrplaw.jpg-6_3_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxngxlbcrplaw.jpg-6_3_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxngxlbcrplaw.jpg-6_3_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: -1.46&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxngxlbcrplaw.jpg-6_4_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxngxlbcrplaw.jpg-6_4_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxngxlbcrplaw.jpg-6_4_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxngxlbcrplaw.jpg-6_4_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxngxlbcrplaw.jpg-6_4_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxngxlbcrplaw.jpg-6_4_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: -4.49&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxngxlbcrplaw.jpg-6_5_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxngxlbcrplaw.jpg-6_5_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxngxlbcrplaw.jpg-6_5_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxngxlbcrplaw.jpg-6_5_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxngxlbcrplaw.jpg-6_5_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxngxlbcrplaw.jpg-6_5_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll, hfov<br/>Amount: 9.75&deg;, 34.95&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxngxlbcrplaw.jpg-6_6_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxngxlbcrplaw.jpg-6_6_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxngxlbcrplaw.jpg-6_6_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxngxlbcrplaw.jpg-6_6_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxngxlbcrplaw.jpg-6_6_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxngxlbcrplaw.jpg-6_6_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: -9.93&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxngxlbcrplaw.jpg-6_7_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxngxlbcrplaw.jpg-6_7_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxngxlbcrplaw.jpg-6_7_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxngxlbcrplaw.jpg-6_7_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxngxlbcrplaw.jpg-6_7_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxngxlbcrplaw.jpg-6_7_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: 25.03&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-0_0_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-0_0_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-0_0_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-0_0_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-0_0_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-0_0_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, hfov<br/>Amount: -17.46&deg;, -25.83&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-0_1_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-0_1_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-0_1_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-0_1_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-0_1_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-0_1_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: -40.29&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-0_2_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-0_2_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-0_2_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-0_2_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-0_2_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-0_2_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: -7.90&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-0_3_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-0_3_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-0_3_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-0_3_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-0_3_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-0_3_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, hfov<br/>Amount: 10.38&deg;, 32.73&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-0_4_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-0_4_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-0_4_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-0_4_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-0_4_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-0_4_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: 31.04&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-0_5_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-0_5_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-0_5_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-0_5_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-0_5_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-0_5_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: 15.65&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-0_6_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-0_6_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-0_6_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-0_6_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-0_6_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-0_6_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: 21.62&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-0_7_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-0_7_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-0_7_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-0_7_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-0_7_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-0_7_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, hfov<br/>Amount: 20.91&deg;, 8.13&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-3_0_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-3_0_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-3_0_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-3_0_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-3_0_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-3_0_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: -47.51&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-3_2_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-3_2_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-3_2_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-3_2_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-3_2_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-3_2_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, hfov<br/>Amount: 29.60&deg;, 28.94&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-3_3_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-3_3_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-3_3_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-3_3_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-3_3_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-3_3_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: -18.05&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-3_4_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-3_4_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-3_4_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-3_4_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-3_4_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-3_4_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, hfov<br/>Amount: -16.67&deg;, -47.51&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-3_5_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-3_5_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-3_5_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-3_5_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-3_5_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-3_5_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, hfov<br/>Amount: 21.70&deg;, 16.72&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-3_6_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-3_6_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-3_6_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-3_6_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-3_6_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-3_6_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, roll, hfov<br/>Amount: 1.63&deg;, 11.52&deg;, 20.50&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-3_7_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-3_7_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-3_7_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-3_7_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-3_7_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-3_7_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: 45.32&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-5_0_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-5_0_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-5_0_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-5_0_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-5_0_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-5_0_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, roll<br/>Amount: -2.43&deg;, -12.91&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-5_1_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-5_1_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-5_1_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-5_1_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-5_1_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-5_1_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll, hfov<br/>Amount: -9.08&deg;, -23.48&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-5_2_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-5_2_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-5_2_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-5_2_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-5_2_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-5_2_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: -11.81&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-5_3_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-5_3_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-5_3_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-5_3_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-5_3_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-5_3_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch<br/>Amount: 6.30&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-5_4_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-5_4_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-5_4_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-5_4_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-5_4_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-5_4_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, hfov<br/>Amount: 12.19&deg;, 53.86&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-5_5_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-5_5_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-5_5_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-5_5_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-5_5_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-5_5_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, roll, hfov<br/>Amount: 28.51&deg;, 3.21&deg;, 9.68&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-5_6_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-5_6_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-5_6_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-5_6_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-5_6_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-5_6_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, hfov<br/>Amount: 6.19&deg;, 22.54&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-5_7_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-5_7_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-5_7_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-5_7_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-5_7_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-5_7_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: -17.51&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-6_0_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-6_0_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-6_0_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-6_0_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-6_0_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-6_0_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, roll, hfov<br/>Amount: 16.80&deg;, 5.11&deg;, 10.91&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-6_1_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-6_1_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-6_1_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-6_1_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-6_1_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-6_1_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: -7.46&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-6_2_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-6_2_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-6_2_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-6_2_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-6_2_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-6_2_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll, hfov<br/>Amount: -10.22&deg;, -9.74&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-6_3_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-6_3_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-6_3_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-6_3_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-6_3_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-6_3_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll, hfov<br/>Amount: 8.78&deg;, 21.12&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-6_4_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-6_4_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-6_4_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-6_4_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-6_4_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-6_4_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, hfov<br/>Amount: 23.37&deg;, 32.76&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-6_5_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-6_5_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-6_5_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-6_5_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-6_5_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-6_5_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll, hfov<br/>Amount: 13.11&deg;, 20.87&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-6_6_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-6_6_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-6_6_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-6_6_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-6_6_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-6_6_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, hfov<br/>Amount: 24.07&deg;, 47.47&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxnzyleoiflya.jpg-6_7_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-6_7_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-6_7_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxnzyleoiflya.jpg-6_7_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxnzyleoiflya.jpg-6_7_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxnzyleoiflya.jpg-6_7_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: 11.37&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-1_0_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-1_0_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-1_0_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-1_0_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-1_0_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-1_0_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: 25.62&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-1_1_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-1_1_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-1_1_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-1_1_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-1_1_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-1_1_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: -4.05&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-1_2_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-1_2_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-1_2_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-1_2_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-1_2_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-1_2_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: 8.70&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-1_3_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-1_3_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-1_3_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-1_3_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-1_3_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-1_3_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: -16.67&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-1_4_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-1_4_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-1_4_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-1_4_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-1_4_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-1_4_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch<br/>Amount: 6.19&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-1_5_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-1_5_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-1_5_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-1_5_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-1_5_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-1_5_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch<br/>Amount: 11.45&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-1_6_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-1_6_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-1_6_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-1_6_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-1_6_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-1_6_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: -4.09&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-1_7_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-1_7_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-1_7_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-1_7_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-1_7_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-1_7_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: 11.94&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-2_0_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-2_0_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-2_0_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-2_0_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-2_0_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-2_0_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: 12.93&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-2_1_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-2_1_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-2_1_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-2_1_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-2_1_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-2_1_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: -13.67&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-2_2_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-2_2_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-2_2_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-2_2_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-2_2_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-2_2_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, roll, hfov<br/>Amount: 18.28&deg;, 15.36&deg;, 53.53&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-2_3_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-2_3_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-2_3_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-2_3_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-2_3_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-2_3_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, roll, hfov<br/>Amount: 26.91&deg;, 4.59&deg;, 57.07&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-2_4_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-2_4_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-2_4_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-2_4_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-2_4_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-2_4_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: -13.67&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-2_5_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-2_5_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-2_5_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-2_5_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-2_5_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-2_5_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: -13.07&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-2_6_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-2_6_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-2_6_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-2_6_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-2_6_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-2_6_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: -6.31&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-2_7_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-2_7_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-2_7_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoaeovxqdnnh.jpg-2_7_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoaeovxqdnnh.jpg-2_7_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoaeovxqdnnh.jpg-2_7_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll, hfov<br/>Amount: 15.56&deg;, 16.14&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-1_0_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-1_0_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-1_0_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-1_0_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-1_0_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-1_0_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: 11.55&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-1_1_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-1_1_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-1_1_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-1_1_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-1_1_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-1_1_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, roll, hfov<br/>Amount: 25.25&deg;, 11.11&deg;, 12.73&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-1_2_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-1_2_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-1_2_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-1_2_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-1_2_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-1_2_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, roll, hfov<br/>Amount: 29.22&deg;, 11.88&deg;, 41.32&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-1_3_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-1_3_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-1_3_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-1_3_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-1_3_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-1_3_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: 4.00&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-1_4_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-1_4_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-1_4_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-1_4_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-1_4_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-1_4_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, roll, hfov<br/>Amount: -9.91&deg;, -5.96&deg;, -12.78&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-1_5_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-1_5_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-1_5_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-1_5_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-1_5_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-1_5_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: 0.54&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-1_6_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-1_6_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-1_6_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-1_6_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-1_6_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-1_6_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: 15.22&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-1_7_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-1_7_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-1_7_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-1_7_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-1_7_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-1_7_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll, hfov<br/>Amount: 11.20&deg;, 41.07&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-2_0_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-2_0_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-2_0_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-2_0_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-2_0_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-2_0_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: 3.57&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-2_1_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-2_1_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-2_1_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-2_1_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-2_1_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-2_1_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, roll<br/>Amount: 23.11&deg;, 4.58&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-2_2_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-2_2_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-2_2_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-2_2_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-2_2_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-2_2_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, hfov<br/>Amount: 1.37&deg;, 6.28&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-2_3_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-2_3_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-2_3_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-2_3_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-2_3_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-2_3_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: -34.53&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-2_4_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-2_4_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-2_4_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-2_4_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-2_4_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-2_4_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: 45.41&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-2_5_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-2_5_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-2_5_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-2_5_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-2_5_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-2_5_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, roll, hfov<br/>Amount: 12.71&deg;, 15.61&deg;, 18.20&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-2_6_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-2_6_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-2_6_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-2_6_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-2_6_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-2_6_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, roll<br/>Amount: 15.63&deg;, 6.16&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-2_7_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-2_7_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-2_7_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-2_7_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-2_7_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-2_7_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: -28.76&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-3_0_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-3_0_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-3_0_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-3_0_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-3_0_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-3_0_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll, hfov<br/>Amount: -2.67&deg;, -52.32&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-3_1_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-3_1_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-3_1_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-3_1_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-3_1_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-3_1_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: -6.39&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-3_2_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-3_2_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-3_2_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-3_2_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-3_2_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-3_2_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll, hfov<br/>Amount: -10.17&deg;, -48.35&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-3_3_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-3_3_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-3_3_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-3_3_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-3_3_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-3_3_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll, hfov<br/>Amount: 11.01&deg;, 57.68&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-3_4_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-3_4_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-3_4_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-3_4_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-3_4_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-3_4_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, roll<br/>Amount: 4.75&deg;, 16.13&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-3_5_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-3_5_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-3_5_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-3_5_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-3_5_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-3_5_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch<br/>Amount: -15.75&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-3_6_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-3_6_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-3_6_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-3_6_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-3_6_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-3_6_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: -35.50&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-3_7_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-3_7_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-3_7_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-3_7_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-3_7_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-3_7_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll, hfov<br/>Amount: 6.34&deg;, 57.68&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-4_0_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-4_0_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-4_0_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-4_0_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-4_0_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-4_0_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll<br/>Amount: -19.93&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-4_1_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-4_1_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-4_1_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-4_1_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-4_1_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-4_1_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, roll, hfov<br/>Amount: -12.22&deg;, -9.73&deg;, -17.10&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-4_2_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-4_2_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-4_2_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-4_2_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-4_2_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-4_2_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, roll<br/>Amount: 6.65&deg;, 6.39&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-4_3_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-4_3_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-4_3_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-4_3_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-4_3_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-4_3_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll, hfov<br/>Amount: 1.68&deg;, 7.08&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-4_4_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-4_4_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-4_4_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-4_4_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-4_4_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-4_4_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll, hfov<br/>Amount: 15.54&deg;, 35.04&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-4_5_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-4_5_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-4_5_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-4_5_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-4_5_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-4_5_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, hfov<br/>Amount: 2.13&deg;, 35.04&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-4_6_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-4_6_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-4_6_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-4_6_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-4_6_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-4_6_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): roll, hfov<br/>Amount: -11.24&deg;, -14.60&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-4_7_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-4_7_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-4_7_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-4_7_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-4_7_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-4_7_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: 35.04&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-6_0_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-6_0_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-6_0_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-6_0_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-6_0_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-6_0_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch, hfov<br/>Amount: -16.07&deg;, -46.97&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-6_1_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-6_1_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-6_1_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-6_1_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-6_1_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-6_1_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): hfov<br/>Amount: 34.03&deg;</figurecaption>
+    </div><div style="clear:both;"></div><div>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-6_2_gt.jpg" data-lightbox="study" style="float:left;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-6_2_gt.jpg" onmouseover="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-6_2_dc.jpg'" onmouseout="this.src='study/thumb/pano_ahxoerlgyguyxt.jpg-6_2_gt.jpg'" style="width:255px;"/></a>
+      <a href="study/pano_ahxoerlgyguyxt.jpg-6_2_dc.jpg" data-lightbox="study" style="float:right;"><img src="study/thumb/pano_ahxoerlgyguyxt.jpg-6_2_dc.jpg" style="width:255px;"/></a><br/>
+      <figurecaption style="padding-bottom: 1em;">Distorted parameter(s): pitch<br/>Amount: 15.84&deg;</figurecaption>
+    </div><div style="clear:both;"></div></div>
+        <div class="col-md-3">&nbsp;</div>
+      </div>
+
+      <div style="clear:both"></div>
+      <a class="anchor" name="studyresults"></a>
+      <h2>4. User Study Results</h2>
+
+      <p>In this section, we present additional results from the user study, extending the results shown in fig. 6. Specifically, we show the human sensitivity with respect to errors and values of each parameter against one another.</p>
+
+      <div style="text-align: center;">
+        <img src="study_results/hist2d_image units_error_error.png" style="width:100%;"/><br/>
+        <figurecaption style="padding-bottom: 2em;">fig. 4.1: Influence of parameter errors between themselves on human sensitivity to errors. We bin the percentage of people choosing the ground truth per image of the user study. The colors in the plot represents the median over all values in each bin. 100% (yellow) means humans always detect the distortion, 50% (blue) means total confusion, where humans statistically selects the distorted image as often as the ground truth.</figurecaption>
+      </div>
+      <div style="text-align: center;">
+        <img src="study_results/hist2d_image units_error_value.png" style="width:100%;"/><br/>
+        <figurecaption style="padding-bottom: 2em;">fig. 4.2: Influence of parameter errors wrt. other parameter values on human sensitivity to errors.</figurecaption>
+      </div>
+      <div style="text-align: center;">
+        <img src="study_results/hist2d_image units_value_error.png" style="width:100%;"/><br/>
+        <figurecaption style="padding-bottom: 2em;">fig. 4.3: Influence of parameter values wrt. other parameter errors on human sensitivity to errors.</figurecaption>
+      </div>
+      <div style="text-align: center;">
+        <img src="study_results/hist2d_image units_value_value.png" style="width:100%;"/><br/>
+        <figurecaption style="padding-bottom: 2em;">fig. 4.4: Influence of parameter values between themselves on human sensitivity to errors. Note how when the roll parameter has a value very close to 0&deg;, humans could detect distortions more easily, whereas larger roll value (image tilted around the viewing axis) yields lower detection rate by humans.</figurecaption>
+      </div>
+      <div>
+      
+
+      <div style="clear:both"></div>
+      <a class="anchor" name="voi"></a>
+      <h2>5. Virtual object insertions</h2>
+
+      <p>In this section, we present additional virtual object insertions, extending the results shown in fig. 10.</p>
+
+      <div style="text-align: center;">
+      <a href="virtual_object_insertions/pano_abpaafvavryivl.jpg-2_0_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpaafvavryivl.jpg-2_0_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpaafvavryivl.jpg-2_1_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpaafvavryivl.jpg-2_1_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpaafvavryivl.jpg-2_2_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpaafvavryivl.jpg-2_2_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpaafvavryivl.jpg-2_4_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpaafvavryivl.jpg-2_4_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpaafvavryivl.jpg-2_5_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpaafvavryivl.jpg-2_5_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpaafvavryivl.jpg-2_6_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpaafvavryivl.jpg-2_6_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpaafvavryivl.jpg-2_7_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpaafvavryivl.jpg-2_7_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpdlceytozqgd.jpg-6_0_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpdlceytozqgd.jpg-6_0_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpdlceytozqgd.jpg-6_1_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpdlceytozqgd.jpg-6_1_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpdlceytozqgd.jpg-6_2_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpdlceytozqgd.jpg-6_2_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpdlceytozqgd.jpg-6_4_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpdlceytozqgd.jpg-6_4_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpdlceytozqgd.jpg-6_5_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpdlceytozqgd.jpg-6_5_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpdlceytozqgd.jpg-6_6_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpdlceytozqgd.jpg-6_6_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpdlceytozqgd.jpg-6_7_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpdlceytozqgd.jpg-6_7_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpebgbgmpccye.jpg-6_0_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpebgbgmpccye.jpg-6_0_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpebgbgmpccye.jpg-6_1_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpebgbgmpccye.jpg-6_1_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpebgbgmpccye.jpg-6_2_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpebgbgmpccye.jpg-6_2_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpebgbgmpccye.jpg-6_4_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpebgbgmpccye.jpg-6_4_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpebgbgmpccye.jpg-6_5_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpebgbgmpccye.jpg-6_5_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpebgbgmpccye.jpg-6_6_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpebgbgmpccye.jpg-6_6_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpebgbgmpccye.jpg-6_7_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpebgbgmpccye.jpg-6_7_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpezaevuxprln.jpg-0_0_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpezaevuxprln.jpg-0_0_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpezaevuxprln.jpg-0_1_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpezaevuxprln.jpg-0_1_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpezaevuxprln.jpg-0_2_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpezaevuxprln.jpg-0_2_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpezaevuxprln.jpg-0_4_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpezaevuxprln.jpg-0_4_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpezaevuxprln.jpg-0_5_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpezaevuxprln.jpg-0_5_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpezaevuxprln.jpg-0_6_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpezaevuxprln.jpg-0_6_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpezaevuxprln.jpg-0_7_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpezaevuxprln.jpg-0_7_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpfyqqgmvxkta.jpg-6_0_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpfyqqgmvxkta.jpg-6_0_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpfyqqgmvxkta.jpg-6_1_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpfyqqgmvxkta.jpg-6_1_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpfyqqgmvxkta.jpg-6_2_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpfyqqgmvxkta.jpg-6_2_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpfyqqgmvxkta.jpg-6_4_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpfyqqgmvxkta.jpg-6_4_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/pano_abpfyqqgmvxkta.jpg-6_5_es.jpg" data-lightbox="voi"><img src="virtual_object_insertions/pano_abpfyqqgmvxkta.jpg-6_5_es.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/scene0_compose.jpg" data-lightbox="voi"><img src="virtual_object_insertions/scene0_compose.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/scene107_compose.jpg" data-lightbox="voi"><img src="virtual_object_insertions/scene107_compose.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/scene123_compose.jpg" data-lightbox="voi"><img src="virtual_object_insertions/scene123_compose.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/scene156_compose2.jpg" data-lightbox="voi"><img src="virtual_object_insertions/scene156_compose2.jpg" style="width:255px;"/></a><a href="virtual_object_insertions/scene27_compose.jpg" data-lightbox="voi"><img src="virtual_object_insertions/scene27_compose.jpg" style="width:255px;"/></a>
+      </div>
+
+    </div>
+
+    <footer class="footer navbar-fixed-bottom">
+      <div class="container">
+        <span class="text-muted">A Perceptual Measure for Deep Single Image Camera Calibration (#2618) &mdash; Supplementary Material &mdash; CVPR 2018</span>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./js/lightbox-plus-jquery.min.js"></script>
+    <script src="./js/tether.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/JavaScript">
+    $(".nav a").on("click", function(){
+       $(".nav").find(".active").removeClass("active");
+       $(this).parent().addClass("active");
+    });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+a.anchor {
+    display: block;
+    position: relative;
+    top: -35px;
+    visibility: hidden;
+}
+
+h2 {
+	padding-top: 2em;
+}
+
+h5 {
+	padding-top: 1em;
+}
+
+.resultable {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+figurecaption {
+	font-size: 0.8em;
+	display: block;
+	text-align: center;
+}
+
+img {
+	cursor: pointer;
+}
