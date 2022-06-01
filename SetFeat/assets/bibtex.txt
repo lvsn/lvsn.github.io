@@ -1,6 +1,6 @@
-@article{afrasiyabi2021MixtFSL,
-  title={Persistent Mixture Model Networks for Few-Shot Image Classification},
-  author={Afrasiyabi, Arman and Lalonde, Jean-Fran{\c{c}}ois and Gagn{\'e}, Christian},
-  journal={IEEE/CVF International Conference on Computer Vision (ICCV)},
-  year={2021}
+@article{afrasiyabi2022MatchingFeature,
+  title={Matching Feature Sets for Few-Shot Image Classification},
+  author={Afrasiyabi, Arman and  Larochelle, Hugo and Lalonde, Jean-Fran{\c{c}}ois and Gagn{\'e}, Christian},
+  journal={IEEE/CVF International Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2022}
 }
