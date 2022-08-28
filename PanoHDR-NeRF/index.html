@@ -1,0 +1,328 @@
+
+<!-- todo page 1 -->
+<!-- todo bibtex link -->
+
+<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-weight:300;
+		font-size:18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1100px;
+	}
+	
+	h1 {
+		font-size:32px;
+		font-weight:300;
+	}
+	
+	.disclaimerbox {
+		background-color: #eee;		
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+		padding: 20px;
+	}
+
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.rounded {
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	a:link,a:visited
+	{
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+	
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+	
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		        15px 15px 0 0px #fff, /* The fourth layer */
+		        15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		        20px 20px 0 0px #fff, /* The fifth layer */
+		        20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		        25px 25px 0 0px #fff, /* The fifth layer */
+		        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+
+	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+	
+	.vert-cent {
+		position: relative;
+	    top: 50%;
+	    transform: translateY(-50%);
+	}
+	
+	hr
+	{
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+</style>
+
+<html>
+  <head>
+  		    
+  </head>
+
+  <body>
+    <br>
+          <center>
+          	    <br> 
+		    <div  style="text-align:center">
+                        <span style="font-size:32px">Casual Indoor HDR Radiance Capture from Omnidirectional Images</span>
+                    </div>  
+	  		  <table align=center width=600px>
+	  			  <tr>
+			          
+	  	              <td align=center>
+	  					<center>  
+	  						<span style="font-size:20px"><a href="https://darthgera123.github.io/">Pulkit Gera</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	  						<span style="font-size:20px"><a href="https://scholar.google.com/citations?user=lJmcRbUAAAAJ&hl=en">Mohammad Reza Karimi Dastjerdi</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+							  <br>
+							  <span style="font-size:20px"><a href="https://www.linkedin.com/in/charles-renaud-6b6b6622a/?locale=en_US">Charles Renaud</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+							  <span style="font-size:20px"><a href="https://faculty.iiit.ac.in/~pjn/">P J Narayanan</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	  						<span style="font-size:20px"><a href="http://www.jflalonde.ca/">Jean-François Lalonde</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+		  		  		</center>
+		  		  		<img src="./assets/iiit.jpeg" align="center" width="30%">
+		  		  		<img src="./assets/ul_logo.png" align="center" width="30%">  
+						
+		  		  		<br>
+                  			        <br> 
+		  		  		
+		  		  	  </td> 
+		  		  </tr>
+	  			  <tr>
+		  		  </tr>
+			  </table> 
+          </center>
+
+          <center>
+  		  <table align=center width=850px>
+  			  <tr>
+  	              <td width=1000px>
+  					<center>
+  	                	 <img class="round" style="width:1000px" src="./assets/teaser.png"/>  
+	  				</center>
+  	              </td>  	              
+                </tr>
+  		  </table>  		  
+  		</center>
+   
+	  <hr>
+          <hr>
+          
+          
+          
+		  
+		  <table align=center width=875px>
+	  		  <table align=center width=600px> 
+	  			  <tr>  
+	  	              <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href=./assets/paper.pdf>[Paper]</a></span>
+		  		  		</center>
+		  		  	  </td>
+		  		  	  <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href=./assets/Supplementary.pdf>[Supplementary]</a></span>
+		  		  		</center>
+		  		  	  </td>
+		  		  	  <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href='https://www.youtube.com/embed/xcQvbbwmsn8'>[Video]</a></span><br>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href='https://github.com/darthgera123/PanoHDR-NeRF'>[Code]</a></span><br>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href='https://www.youtube.com/embed/_mUeHePYQF8'>[Presentation]</a></span><br>
+		  		  		</center>
+		  		  	  </td>  
+		  		  	 </tr>
+	  			  <tr>
+	  			  
+			  </table>
+			</table> 
+		  <hr> 
+		  
+		  <table align=center width=875px>
+	  		  <table align=center width=600px> 
+	  			  <tr>  
+	  	              <td align=center width=120px>
+	  					<center>
+	  						Presented at <span style="font-size:16px"><a href='https://sites.google.com/view/omnicv2022/program?authuser=0#h.hmm5w3ninhg1'>3rd OmniCV Workshop: Omnidirectional Computer Vision in Research and Industry</a>,CVPR-W 2022!</span>
+		  		  		</center>
+		  		  	  </td>   
+	  			  <tr>
+	  			  
+			  </table>
+			</table> 
+		  <hr> 
+
+
+		<hr> 
+  		  <table align=center width=875px>
+	  		  <center><h1>Abstract</h1></center>
+	  		  <tr>
+	  		  	<td>
+					We present PanoHDR-NeRF, a novel pipeline to casually capture a plausible full HDR radiance field of a large indoor scene without elaborate setups or complex capture protocols. First, a user captures a low dynamic range (LDR) omnidirectional video of the scene by freely waving an off-the-shelf camera around the scene. Then, an LDR2HDR network uplifts the captured LDR frames to HDR, subsequently used to train a tailored NeRF++ model. The resulting PanoHDR-NeRF pipeline can estimate full HDR panoramas from any location of the scene. Through experiments on a novel test dataset of a variety of real scenes with the ground truth HDR radiance captured at locations not seen during training, we show that PanoHDR-NeRF predicts plausible radiance from any scene point. We also show that the HDR images produced by PanoHDR-NeRF can synthesize correct lighting effects, enabling the augmentation of indoor scenes with synthetic objects that are lit correctly.
+	  		    </td>
+	  		  </tr>
+			</table>
+  		  	<br>
+		<hr>
+			
+		<table align=center width=490px>
+	 		<center><h1>Paper and Supplementary Material</h1></center>
+  			  <tr>
+				  <td><a href="https://arxiv.org/abs/2208.07903"><img class="layered-paper-big" style="height:175px" src="./assets/page1.png"/></a></td>
+				  <td><span style="font-size:14pt">Pulkit Gera, Mohammed Reza Karimi Dastjerdi, Charles Renaud,P.J Narayanan, Jean-François Lalonde<br>
+				  <b>Casual Indoor HDR Radiance Capture from Omnidirectional Images</b><br>
+				  (hosted on <a href="https://arxiv.org/abs/2208.07903">ArXiv</a>)<br>
+				  <span style="font-size:4pt"><a href=""><br></a>
+				  </span>
+				  </td>
+  	              </td>
+              </tr>
+  		  </table>
+		  <br>
+
+		  <table align=center width=600px>
+			  <tr>
+				  <td><span style="font-size:14pt"><center>
+				  	<a href="./assets/bibtex.txt">[Bibtex]</a>
+  	              </center></td>
+              </tr>
+  		  </table>
+
+  		  <hr>
+
+  		  <center><h1>Video<span style="font-size:28px"></h1></center>
+		  
+
+  		  <table align=center height='1200' width='800px'>        
+	<p align="center">
+			<iframe width="760" height="415" src="https://www.youtube.com/embed/xcQvbbwmsn8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			  <br>  
+	  
+		</table>
+<hr>
+<hr>
+		<center><h1>Presentation @ OmniCV-2022, CVPR-W<span style="font-size:28px"></h1></center>
+		  
+
+  		  <table align=center height='1200' width='800px'>        
+	<p align="center">
+
+			<iframe width="760" height="415" src="https://www.youtube.com/embed/_mUeHePYQF8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			  <br>  
+	  
+		</table>
+  
+ 		<!-- <center><h1>Code</h1></center>
+  		  <table align=center width=800px>
+			  <br>
+			  <tr><center>
+				<span style="font-size:28px">&nbsp;<a href='https://github.com/ArmanAfrasiyabi/MixtFSL-fs'>[GitHub]</a>
+		  </table>
+
+      	  <br>
+		  <hr>
+		<br>
+				   -->
+				  
+	<!-- <center><h1>Poster</h1></center>
+
+  		  <table align=center width=420px> 
+				    <div class="album py-5 bg-light"> 
+				    <div class="container"> 
+					<div class="row">
+					    <div class="column2"> 
+					    <center>
+						  <a  href="./assets/MixFSL_Poster.pdf" > <img style="width:650px" class="img-fluid" src="./assets/poser.PNG"></a>
+						<br> click on the figure to see .pdf version. <br>
+						<center> 
+					    </div>
+					</div>
+					<br><br>
+
+				 
+					
+    </div>
+		  </table> -->
+
+		  <div class="card mb-4 shadow-sm text-center">
+				<h3 class="text-muted">Acknowledgements </h3>
+				This research was supported by NSERC grant RGPIN-2020-04799, Compute Canada, and a MITACS Globalink internship to Pulkit Gera. The authors thank Bowei Chen for his early work on the project, and David Ibarzabal for his help with data capture. We also thank Yohan Poirier-Ginter and Jinsong Zhang for their help.
+				</div>
+      	  <br>
+
+              
+</body>
+</html>
+ 
