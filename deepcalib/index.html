@@ -30,9 +30,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#paper">Paper</a></li>
-                    <li><a href="#demo">Demo</a></li>
-                    <li><a href="#poster">Poster</a></li>
+                    <li><a href="#paper">Paper (arXiv'22)</a></li>
+                    <li><a href="#demo">Live demo</a></li>
+                    <li><a href="#old">CVPR'18</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -50,9 +50,9 @@
                 <div class="col-md-12">
                     <div class="intro-message">
                         <h1></h1>
-                        <h1>A Perceptual Measure for Deep Single Image Camera Calibration</h1>
-                        <p>Most current single image camera calibration methods rely on specific image features or user input, and cannot be applied to natural images captured in uncontrolled settings. We propose directly inferring camera calibration parameters from a single image using a deep convolutional neural network. This network is trained using automatically generated samples from a large-scale panorama dataset, and considerably outperforms other methods, including recent deep learning-based approaches, in terms of standard L2 error. However, we argue that in many cases it is more important to consider how humans perceive errors in camera estimation. To this end, we conduct a large-scale human perception study where we ask users to judge the realism of 3D objects composited with and without ground truth camera calibration. Based on this study, we develop a new perceptual measure for camera calibration, and demonstrate that our deep calibration network outperforms other methods on this measure. Finally, we demonstrate the use of our calibration network for a number of applications including virtual object insertion, image retrieval and compositing.</p>
-                        <img class="center-block" src="./images/teaser.jpg" width="700px">
+                        <h1>A Deep Perceptual Measure <br> for Lens and Camera Calibration</h1>
+                        <p>Image editing and compositing have become ubiquitous in entertainment, from digital art to AR and VR experiences. To produce beautiful composites, the camera needs to be geometrically calibrated, which can be tedious and requires a physical calibration target. In place of the traditional multi-images calibration process, we propose to infer the camera calibration parameters such as pitch, roll, field of view, and lens distortion directly from a single image using a deep convolutional neural network. We train this network using automatically generated samples from a large-scale panorama dataset, yielding competitive accuracy in terms of standard l2 error. However, we argue that minimizing such standard error metrics might not be optimal for many applications. In this work, we investigate human sensitivity to inaccuracies in geometric camera calibration. To this end, we conduct a large-scale human perception study where we ask participants to judge the realism of 3D objects composited with correct and biased camera calibration parameters. Based on this study, we develop a new perceptual measure for camera calibration and demonstrate that our deep calibration network outperforms previous single-image based calibration methods both on standard metrics as well as on this novel perceptual measure. Finally, we demonstrate the use of our calibration network for several applications, including virtual object insertion, image retrieval, and compositing.</p>
+                        <img class="center-block" src="./images/teaser-new.jpg" width="800px">
                     </div>
                 </div>
             </div>
@@ -70,7 +70,65 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="section-heading">Paper</h2>
+                    <h2 class="section-heading">Paper (arXiv 2022 version)</h2>
+
+                    <a href="http://yannickhold.com">Yannick Hold-Geoffroy</a>, Dominique Piché-Meunier, <a href="https://research.adobe.com/person/kalyan-sunkavalli/">Kalyan Sunkavalli</a>, Jonathan Eisenmann, Jean-Charles Bazin, <a href="https://rameau-fr.github.io">François Rameau</a>, and <a href="http://vision.gel.ulaval.ca/~jflalonde/">Jean-François Lalonde</a> <br/>
+
+                    A Deep Perceptual Measure for Lens and Camera Calibration <br/>
+
+                    [<a href="https://arxiv.org/abs/2208.12300">arXiv pre-print</a>]
+
+                    <br><br>
+
+                    <!-- <div style="text-align:center;">
+                    <a href="https://arxiv.org/abs/">
+                    <img src="./images/thumbnails.jpg" width="850">
+                    </a>
+                    </div><br/>
+ -->
+                    <h4>Supplementary material</h4>
+
+                    We provide additional results in <a href="./supp_mat/main_supp.pdf">this supplementary document</a>.
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    
+
+    <a name="demo"></a>
+    <div class="content-section-b">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Live demo</h2>
+
+                    <p>We have two different versions of our most recent (arXiv 2022) approach: 
+                        <ul>
+                            <li><a href="http://rachmaninoff.gel.ulaval.ca:8004">With a ResNet backbone (as in the paper)</a></li>
+                            <li><a href="http://rachmaninoff.gel.ulaval.ca:8005">With a more recent ConvNeXt backbone</a></li>
+                        </ul>
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+    </div>
+
+
+    <a name="old"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-heading">Paper (CVPR 2018 version)</h2>
 
                     Yannick Hold-Geoffroy, <a href="https://research.adobe.com/person/kalyan-sunkavalli/">Kalyan Sunkavalli</a>, Jonathan Eisenmann, <a href="https://research.adobe.com/person/matt-fisher/">Matt Fisher</a>, Emiliano Gambaretto, <a href="https://research.adobe.com/person/sunil-hadap/">Sunil Hadap</a>, and <a href="http://vision.gel.ulaval.ca/~jflalonde/">Jean-François Lalonde</a> <br/>
 
@@ -98,35 +156,13 @@
         <!-- /.container -->
 
     </div>
-    <!-- /.content-section-a -->
-
-	<a name="demo"></a>
-    <div class="content-section-b">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Demo</h2>
-
-                    <p>A live demonstration of our work <a href="http://rachmaninoff.gel.ulaval.ca:8003">is available here</a>. </p>
-
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.content-section-a -->
     
-    <a name="poster"></a>
     <div class="content-section-b">
     <div class="container"><div class="row">
     <div class="col-md-5">
-        <h2 class="section-heading">Poster</h2>
+        <h2 class="section-heading">Poster (CVPR 2018)</h2>
         
-        <p>You can download the poster in <a href="./poster/YANNICK_HOLD_GEOFFROY_CVPR18_poster.pdf">PDF</a> format. </p>
+        <p>You can download the poster presented at CVPR 2018 in <a href="./poster/YANNICK_HOLD_GEOFFROY_CVPR18_poster.pdf">PDF</a> format. </p>
         
     </div>
     <div class="col-md-5 col-md-offset-1">
@@ -146,10 +182,12 @@
 	        <p>The authors gratefully acknowledge the following funding sources: </p>
 
 			<ul>
-			<li>A FRQ-NT Ph.D. scholarship to Yannick Hold-Geoffroy</li>
-            <li>A generous donation from Adobe to Jean-Francois Lalonde</li>
-			<li>NVIDIA Corporation with the donation of the Tesla K40 and Titan X GPUs used for this research.</li>
 			<li>NSERC Discovery GRANT RGPIN-2014-05314</li>
+            <li>Korea NRF grant NRF-2017R1C1B5077030</li>
+            <li>FRQ-NT Ph.D. scholarship to Yannick Hold-Geoffroy</li>
+            <li>NSERC USRA to Dominique Piché-Meunier</li>
+            <li>A generous donation from Adobe to J-F Lalonde and J-C Bazin</li>
+			<li>NVIDIA Corporation with the donation of the Tesla K40 and Titan X GPUs used for this research.</li>
 			<li>REPARTI Strategic Network</li>
 			</ul>
         	</div>
