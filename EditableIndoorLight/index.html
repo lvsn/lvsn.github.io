@@ -187,7 +187,6 @@
 	</center>
 
 	<hr>
-	<hr>
 
 
 
@@ -234,8 +233,6 @@
 	</table>
 	<hr>
 
-
-	<hr>
 	<table align=center width=875px>
 		<center>
 			<h1>Abstract</h1>
@@ -255,36 +252,89 @@
 		</tr>
 	</table>
 	<br>
-	<hr>
+	
+	<table align=center width=490px>
+		<center><h1>Paper (Arxiv)</h1></center>
+		   <tr>
+			 <td><a href="https://arxiv.org/abs/2211.03928"><img class="layered-paper-big" style="height:175px" src="./assets/page1.png"/></a></td>
+			 <td><span style="font-size:14pt">Henrique Weber, Mathieu Garon, Jean-François Lalonde<br>
+			 <b>Editable Indoor Lighting Estimation.</b> European
+			 Conference on Computer Vision (ECCV), 2022<br>
+			 <a href="https://arxiv.org/abs/2211.03928">Paper</a><br>
+			 <span style="font-size:4pt"><a href=""><br></a>
+			 </span>
+			 </td>
+			   </td>
+		 </tr>
+	   </table>
+	 <br>
+
+	<table align=center width=600px>
+		<tr>
+			<td><span style="font-size:14pt"><center>
+				<a href="./assets/bibtex.txt">[Bibtex]</a>
+			  </center></td>
+		</tr>
+	  </table>
 
 	<hr>
 	<table align=center width=875px>
 		<center>
-			<h1>Test Set Data</h1>
+			<h1>Test Set Data and Comparison Code</h1>
 		</center>
-		<td align=center>
-			Here we provide data for the test set of our paper.
+		<td align="left">
+			<a href="https://drive.google.com/file/d/13Uzju9crs8U9CLODlOEn9CAzksgPKOg6/view?usp=sharing">
+				Test Set Images
+			</a>
+			<br>
+			<a href="https://drive.google.com/file/d/1MjVfAnwe9y97B7eniOUJr3nmkMbyir1E/view?usp=sharing">
+				Renders with GT envmaps
+			</a>
+			<br>
+			 <a href="https://drive.google.com/drive/folders/1lmUth4MFFHYzsrkLtrc0rSF7-eczWagm?usp=sharing">
+				Scripts to render and generate Table 1 of the paper</a><br>
+			<!--<a href="http://rachmaninoff.gel.ulaval.ca/static/editable_indoor_light_eccv2022/optimized_params_blender.tar.gz">GT
+				Parametric Light</a><br>
+			<a href="http://rachmaninoff.gel.ulaval.ca/static/editable_indoor_light_eccv2022/layout_test.tar.gz">GT
+				Layout</a><br>
+			<a href="http://rachmaninoff.gel.ulaval.ca/static/editable_indoor_light_eccv2022/pkl_pred.tar.gz">Predicted
+				Parametric Light</a><br>
+			<a href="http://rachmaninoff.gel.ulaval.ca/static/editable_indoor_light_eccv2022/ldr_envmap.tar.gz">Predicted
+				Texture</a><br>
+			<a href="http://rachmaninoff.gel.ulaval.ca/static/editable_indoor_light_eccv2022/layout.tar.gz">Predicted
+				Layout</a><br> -->
 		</td>
-		<br>
-		<br>
 	</table>
-	<td align="left">
-		<a href="http://rachmaninoff.gel.ulaval.ca/static/editable_indoor_light_eccv2022/input_crops.tar.gz">Test
-			Set Images</a><br>
-		<a
-			href="http://rachmaninoff.gel.ulaval.ca/static/editable_indoor_light_eccv2022/optimized_params_blender.tar.gz">GT
-			Parametric Light</a><br>
-		<a href="http://rachmaninoff.gel.ulaval.ca/static/editable_indoor_light_eccv2022/layout_test.tar.gz">GT
-			Layout</a><br>
-		<a href="http://rachmaninoff.gel.ulaval.ca/static/editable_indoor_light_eccv2022/pkl_pred.tar.gz">Predicted
-			Parametric Light</a><br>
-		<a href="http://rachmaninoff.gel.ulaval.ca/static/editable_indoor_light_eccv2022/ldr_envmap.tar.gz">Predicted
-			Texture</a><br>
-		<a href="http://rachmaninoff.gel.ulaval.ca/static/editable_indoor_light_eccv2022/layout.tar.gz">Predicted
-			Layout</a><br>
-	</td>
+	
 	<br>
 	<hr>
+
+	<table align=center width=875px>
+		<center>
+			<h1>Poster</h1>
+		</center>
+		<td align="center">
+			<a href="https://lvsn.github.io/EditableIndoorLight/assets/poster.pdf"><img src="assets/poster_pict.png"
+					alt="poster pdf" style="width:300px"></a>
+		</td>
+	</table>
+	<br>
+
+	<table align=center width=875px>
+		<center>
+			<h1>Talk</h1>
+		</center>
+		<tr>
+			<td align="center">
+				<video width="600" height="auto" controls>
+					<source src="assets/2772.mp4" type="video/mp4">
+					<a href="assets/videos/2772.mp4">Download</a>
+					Your browser does not support the video tag.
+				</video>
+			</td>
+		</tr>s
+	</table>
+	<br>
 
 	<hr>
 	<table align=center width=875px>
@@ -295,46 +345,40 @@
 			Some results with our approach. The first few frames show the initial prediction, and subsequent frames how
 			we can modify the lighting (for example, by changing its azimuth, elevation, or size).
 		</td>
-		<br>
-		<br>
 	</table>
 	<!-- align center -->
 	<center>
-		<video width="300"  height="auto" controls="controls" autoplay muted>
+		<video width="300" height="auto" autoplay muted loop>
 			<source src="assets/videos/scene_9C4A1704-1892449f96.mp4" type="video/mp4">
 			<a href="assets/videos/scene_9C4A1704-1892449f96.mp4">Download</a>
 			Your browser does not support the video tag.
 		</video>
-		<video width="300"  height="auto" controls="controls" autoplay muted>
+		<video width="300" height="auto" autoplay muted loop>
 			<source src="assets/videos/scene_9C4A0132-07352d1dd0.mp4" type="video/mp4">
 			<a href="assets/videos/scene_9C4A0132-07352d1dd0.mp4">Download</a>
 			Your browser does not support the video tag.
 		</video>
-		<video width="300"  height="auto" controls="controls" autoplay muted>
+		<video width="300" height="auto" autoplay muted loop>
 			<source src="assets/videos/scene_9C4A1704-1892449f96-2.mp4" type="video/mp4">
 			<a href="assets/videos/scene_9C4A1704-1892449f96-2.mp4">Download</a>
 			Your browser does not support the video tag.
 		</video>
 		<br>
-		<video width="300"  height="auto" controls="controls" autoplay muted>
+		<video width="300" height="auto" autoplay muted loop>
 			<source src="assets/videos/scene_9C4A1704-1892449f96_texture.mp4" type="video/mp4" download>
 			Your browser does not support the video tag.
 		</video>
-		<video width="300"  height="auto" controls="controls" autoplay muted>
+		<video width="300" height="auto" autoplay muted loop>
 			<source src="assets/videos/scene_9C4A0132-07352d1dd0_texture.mp4" type="video/mp4" download>
 			Your browser does not support the video tag.
 		</video>
-		<video width="300"  height="auto" controls="controls" autoplay muted>
+		<video width="300" height="auto" autoplay muted loop>
 			<source src="assets/videos/scene_9C4A1704-1892449f96-2_texture.mp4" type="video/mp4" download>
 			Your browser does not support the video tag.
 		</video>
-
-	
-
-	<br>
-	<hr>
-
-	<!-- <table align=center width=490px>
+		<br>
+		<hr>
+		<!-- <table align=center width=490px>
 	 		<center><h1>Paper and Supplementary Material</h1></center>
   			  <tr>
 				  <td><a href="https://arxiv.org/abs/2011.11872"><img class="layered-paper-big" style="height:175px" src="./assets/page1.png"/></a></td>
@@ -349,17 +393,10 @@
   		  </table>
 		  <br> -->
 
-	<!-- <table align=center width=600px>
-			  <tr>
-				  <td><span style="font-size:14pt"><center>
-				  	<a href="./assets/bibtex.txt">[Bibtex]</a>
-  	              </center></td>
-              </tr>
-  		  </table> -->
+		  
 
-	<hr>
 
-	<!-- <center>
+		<!-- <center>
 		<h1>Video<span style="font-size:28px">&nbsp;<a
 					href='https://github.com/lvsn/lvsn.github.io/blob/master/MixtFSL/assets/MixtFSL_ICCV2021_presentation_pdf.pdf'>[Slides]</a>
 		</h1>
@@ -375,10 +412,10 @@
 			<br>
 
 	</table> -->
-	<!-- <hr> -->
-	<!-- <hr> -->
+		<!-- <hr> -->
+		<!-- <hr> -->
 
-	<!-- <center>
+		<!-- <center>
 		<h1>Code</h1>
 	</center>
 	<table align=center width=800px>
@@ -393,7 +430,7 @@
 	<br> -->
 
 
-	<!-- <center>
+		<!-- <center>
 		<h1>Poster</h1>
 	</center>
 
@@ -412,18 +449,19 @@
 				<br><br> -->
 
 
-	<div class="card mb-4 shadow-sm text-center">
-		<h3 class="text-muted">Acknowledgements </h3>
-		This research was supported by MITACS and the NSERC grant RGPIN-2020-04799. The authors thank Pascal Audet for
-		his help.
-		</ul>
-	</div>
-	</div>
-	</div>
-	</div>
-	</table>
+		<div class="card mb-4 shadow-sm text-center">
+			<h3 class="text-muted">Acknowledgements </h3>
+			This research was supported by MITACS and the NSERC grant RGPIN-2020-04799. The authors thank Pascal Audet
+			for
+			his help.
+			</ul>
+		</div>
+		</div>
+		</div>
+		</div>
+		</table>
 
-	<br>
+		<br>
 
 
 </body>

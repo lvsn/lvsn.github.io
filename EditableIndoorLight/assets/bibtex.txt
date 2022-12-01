@@ -1,0 +1,6 @@
+@inproceedings{hweberEditableIndoorLight,
+  title={Editable Indoor Lighting Estimation},
+  author={Weber, Henrique, and Garon, Mathieu, and Lalonde, Jean-Fran{\c{c}}ois},
+  booktitle={European Conference on Computer Vision (ECCV)},
+  year={2022}
+}
