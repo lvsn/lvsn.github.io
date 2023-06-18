@@ -1,0 +1,8 @@
+@misc{poirierginter2023robust,
+      title={Robust Unsupervised StyleGAN Image Restoration}, 
+      author={Yohan Poirier-Ginter and Jean-François Lalonde},
+      year={2023},
+      eprint={2302.06733},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
