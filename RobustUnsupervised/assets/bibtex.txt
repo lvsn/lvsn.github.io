@@ -1,8 +1,8 @@
-@misc{poirierginter2023robust,
-      title={Robust Unsupervised StyleGAN Image Restoration}, 
-      author={Yohan Poirier-Ginter and Jean-François Lalonde},
-      year={2023},
-      eprint={2302.06733},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@InProceedings{Poirier-Ginter_2023_CVPR,
+    author    = {Poirier-Ginter, Yohan and Lalonde, Jean-Fran\c{c}ois},
+    title     = {Robust Unsupervised StyleGAN Image Restoration},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2023},
+    pages     = {22292-22301}
 }
