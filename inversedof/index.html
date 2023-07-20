@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Lens Parameter Estimation for Realistic Depth of Field Synthesis</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap CSS-->
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <div class="text-center">
+                        <br><br><h1>Lens Parameter Estimation for Realistic<br>Depth of Field Synthesis</h1>
+                        <h5>Dominique Piché-Meunier<sup>1,2</sup>, Yannick Hold-Geoffroy<sup>2</sup>,<br>Jianming Zhang<sup>2</sup>,Jean-François Lalonde<sup>1</sup></h5>
+                        <h6><sup>1</sup>Université Laval, <sup>2</sup>Adobe</h6>
+                        <h6>ICCV 2023</h6>
+                    </div>
+
+                    <div class="row mt-5">
+                        <h3>Abstract</h3>
+                        <p>
+                            We present a method to estimate the depth of field effect from a single image. Most existing methods related to this task provide either a per-pixel estimation of blur and/or depth. Instead, we go further and propose a lens-based representation that models the depth of field using two parameters: the blur factor and focus disparity. Those two parameters, along with our new signed defocus representation, result in a more intuitive and linear representation directly solvable through linear least squares. Furthermore, our method explicitly enforces consistency between the estimated defocus blur, the lens parameters, and the depth map. Finally, we train our deep-learning-based model on a mix of real images with synthetic depth of field and fully synthetic images. These improvements result in a more robust and accurate method, as demonstrated by our state-of-the-art results. In particular, our lens parametrization enables several applications, such as 3D staging for AR environments and seamless object compositing.
+                        </p>
+                    </div>
+                        
+                    <div class="row mt-5">
+                        <h3>Video Presentation</h3>
+                    
+                        <video src="assets/videos/presentation.mp4" controls class="img-fluid"></video>
+                    </div>
+
+                    <div class="row mt-5">
+                        <h3>BibTeX</h3>
+                        <pre>
+                            
+                        </pre>
+                </div>
+            </div>
+        </div>
+        <!-- JQuerry -->
+        <script src="js/jquery-3.6.1.min.js"></script>
+        <!-- Bootstrap core JS-->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- Math jax -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>
