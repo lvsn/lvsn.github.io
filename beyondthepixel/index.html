@@ -86,6 +86,21 @@
 	.paper-btn:hover {
 		opacity:0.85;
 	}
+
+	pre {
+		font-size: 14px;
+		background-color: #eee;
+		padding: 16px;
+		text-align: justify;
+		display: block;
+		font-family: monospace;
+		white-space: pre;
+		margin: 1em 0px;
+	}
+
+	.material-icons {
+		vertical-align: -3px;
+	}
 	
 	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
 		box-shadow:
@@ -197,13 +212,25 @@
           
 		  
 		  <table align=center width=875px>
-	  		  <table align=center width=600px> 
+	  		  <table align=center width=700px> 
 	  			  <tr>  
 	  	              <td align=center width=120px>
 	  					<center>
 							<span><a class="paper-btn" href='https://arxiv.org/abs/2304.12372'>
 								<span class="material-icons"> description </span> 
 								Paper
+							</a></span>
+							<span><a class="paper-btn" href=''>
+								<span class="material-icons"> code </span> 
+								Code
+							</a></span>
+							<span><a class="paper-btn" href=''>
+								<span class="material-icons"> storage </span> 
+								Dataset
+							</a></span>
+							<span><a class="paper-btn" href='assets/bibtex.txt'>
+								<span class="material-icons"> insert_comment </span> 
+								BibTeX
 							</a></span>
 		  		  		</center>
 		  		  	  </td>
@@ -286,6 +313,25 @@
 	  		  </tr>
 			</table>
   		  	<br>
+		<hr>
+
+		<table align=center width=875px>
+				<center><h1>Citation</h1></center>
+				<tr>
+					<td>
+						<pre>
+<code>@article{bolduc2023beyondthepixel,
+	title={Beyond the Pixel: a Photometrically Calibrated HDR Dataset for Luminance and Color Prediction},
+	author={Bolduc, Christophe and Giroux, Justine and H{\'e}bert, Marc and Demers, Claude and Lalonde, Jean-Fran{\c{c}}ois and Gagn{\'e}, Christian},
+	journal={IEEE/CVF International Conference on Computer Vision (ICCV)},
+	year={2023}
+}
+						</code>
+						</pre>
+					</td>
+				</tr>
+			</table>
+				<br>
 		<hr>
 			
 		
