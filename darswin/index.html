@@ -1,0 +1,378 @@
+
+<!-- todo page 1 -->
+<!-- todo bibtex link -->
+
+<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-weight:300;
+		font-size:18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1100px;
+	}
+	
+	h1 {
+		font-size:32px;
+		font-weight:300;
+	}
+	
+	.disclaimerbox {
+		background-color: #eee;		
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+		padding: 20px;
+	}
+
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.rounded {
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	a:link,a:visited
+	{
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+	
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+
+	.paper-btn {
+		position: relative;
+		text-align: center;
+		display: inline-block;
+		margin: 8px;
+		padding: 8px 18px;
+		border-width: 0;
+		outline: none;
+		border-radius: 2px;
+		background-color: #1367a7;
+		color: #ecf0f1 !important;
+		font-size: 24px;
+		width: auto;
+		height: auto;
+	}
+
+	.paper-btn:hover {
+		opacity:0.85;
+	}
+
+	pre {
+		font-size: 14px;
+		background-color: #eee;
+		padding: 16px;
+		text-align: justify;
+		display: block;
+		font-family: monospace;
+		white-space: pre;
+		margin: 1em 0px;
+	}
+
+	.material-icons {
+		vertical-align: -3px;
+	}
+	
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		        15px 15px 0 0px #fff, /* The fourth layer */
+		        15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		        20px 20px 0 0px #fff, /* The fifth layer */
+		        20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		        25px 25px 0 0px #fff, /* The fifth layer */
+		        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+
+	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+	
+	.vert-cent {
+		position: relative;
+	    top: 50%;
+	    transform: translateY(-50%);
+	}
+	
+	hr
+	{
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+</style>
+
+<html>
+  <head>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
+	<link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+  </head>
+
+  <body>
+    <br>
+          <center>
+          	    <br 
+		    <div  style="text-align:center">
+                        <span style="font-size:32px"> DarSwin : Distortion Aware Radial Swin Transformer </span> 
+                        
+                    </div>  
+	  		  <table align=center width=600px>
+	  			  <tr>
+			          
+	  	              <td align=center>
+	  					<center>  
+	  						<span style="font-size:20px;white-space: nowrap"><a href="">Akshaya Athwale</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	  						<span style="font-size:20px;white-space: nowrap"><a href="https://armanafrasiyabi.github.io/">Arman Afrasiyabi</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+							<span style="font-size:20px;white-space: nowrap"><a href=""> Justin Lague </a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+							<span style="font-size:20px;white-space: nowrap"><a href=""> Ichrak Shili</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span style="font-size:20px;white-space: nowrap"><a href=""> Ola Ahmad </a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+							<span style="font-size:20px;white-space: nowrap"><a href="http://www.jflalonde.ca/">Jean-François Lalonde</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+		  		  		</center>
+		  		  		<br>
+		  		  		<img src="./assets/ul_logo.png" align="center" width="30%">  
+						<img src="./assets/thales.png" align="center" width="30%">
+		  		  		<br>
+                  			        <br> 
+		  		  		
+		  		  	  </td> 
+		  		  </tr>
+	  			  <tr>
+		  		  </tr>
+			  </table> 
+          </center>
+
+          <center>
+  		  <table align=center width=850px>
+  			  <tr>
+  	              <td width=1000px>
+  					<center>
+  	                	 <img class="round" style="width:1000px" src="./assets/teaser.png"/>  
+	  				</center>
+  	              </td>  	              
+                </tr>
+  		  </table>  		  
+  		</center>
+   
+	  <hr>
+    <hr>
+          
+          
+          
+		  
+		  <table align=center width=875px>
+	  		  <table align=center width=700px> 
+	  			  <tr>  
+	  	              <td align=center width=120px>
+	  					<center>
+							<span><a class="paper-btn" href='https://arxiv.org/abs/2304.12372'>
+								<span class="material-icons"> description </span> 
+								Paper
+							</a></span>
+							<span><a class="paper-btn" href=''>
+								<span class="material-icons"> code </span> 
+								Code
+							</a></span>
+							<span><a class="paper-btn" href='assets/bibtex.txt'>
+								<span class="material-icons"> insert_comment </span> 
+								BibTeX
+							</a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <!-- <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href='./supp/index.html'>[Supplementary]</a></span><br>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href='./assets/poster.pdf'>[Poster]</a></span><br>
+		  		  		</center>
+		  		  	  </td>  
+		  		  	  <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href='./assets/bibtex.txt'>[Bibtex]</a></span><br>
+		  		  		</center>
+		  		  	  </td>   -->
+		  		  	 </tr>
+	  			  <tr>
+	  			  
+			  </table>
+			</table> 
+		  <hr> 
+		  <hr>
+		  
+		  <table align=center width=875px>
+	  		  <table align=center width=700px> 
+	  		  	<tr>  
+	  	              <td align=center width=150px>
+	  					<center>
+	  						Accepted in <span style="font-size:20px"><a href='https://iccv2023.thecvf.com/'>International Conference on Computer Vision (ICCV)</a>, 2023!</span>
+		  		  		</center>
+		  		  	  </td>   
+	  			  <tr>
+	  			  <tr>  
+	  			  <tr>
+	  			  
+			  </table>
+			</table> 
+	  <hr> 
+		<hr>
+
+		<!-- <table align=center width=875px>
+	  		  <table align=center width=700px> 
+	  		  	<tr>  
+	  	              <td width=150px>
+	  					<center>
+	  						<span style="font-size:24px">This work is featured at <a href='https://www.adobe.com/max.html'>Adobe Max Sneaks 2022</a>!</span>
+		  		  		</td>
+		  		  	
+		  		  	</tr>
+		  		  </table>
+		  		  <table align=center width=700px> 
+
+		  		  	<tr>
+		  		  	<tr>
+		  		  	<td> 
+		  		  		Media Coverage: 
+		  		  		<td> <li> <a href='https://blog.adobe.com/en/publish/2022/10/19/adobe-max-sneaks-show-how-ai-is-enhancing-future-of-creativity'>Adobe Blog</a> </li> </td>
+		  		  		<td> <li> <a href='https://www.popsci.com/technology/adobe-beyond-the-seen-ai/'>Popular Science</a> </li> </td>
+		  		  		<td> <li> <a href='https://petapixel.com/2022/10/20/adobe-can-use-ai-to-extend-photos-well-beyond-their-original-boundaries/'>PetaPixel</a> </li> </td>
+		  		  		<td> <li> <a href='https://www.digitalcameraworld.com/news/the-future-of-photoshop-is-blowing-my-mind'>DigitalCameraWorld</a> </li> </td>
+		  		  		</center>
+		  		  	  </td>   
+	  			  <tr>
+	  			  
+	  			  
+			  </table>
+			</table>
+		  <hr> 
+		  <hr> -->
+
+  		  <table align=center width=875px>
+	  		  <center><h1>Abstract</h1></center>
+	  		  <tr>
+	  		  	<td>
+					Wide-angle lenses are commonly used in perception tasks requiring a large field of view. Unfortunately, these lenses produce significant distortions making conventional models that ignore the distortion effects unable to adapt to wide-angle images. In this paper, we present a novel transformer-based model that automatically adapts to the distortion produced by wide-angle lenses. We leverage the physical characteristics of such lenses, which are analytically defined by the radial distortion profile (assumed to be known), to develop a distortion aware radial swin transformer (DarSwin). In contrast to conventional transformer-based architectures, DarSwin comprises a radial patch partitioning, a distortion-based sampling technique for creating token embeddings, and a polar position encoding for radial patch merging. We validate our method on classification tasks using synthetically distorted ImageNet data and show through extensive experiments that DarSwin can perform zero-shot adaptation to unseen distortions of different wide-angle lenses. Compared to other baselines, DarSwin achieves the best results (in terms of Top-1 and -5 accuracy), when tested on in-distribution data, with almost 2% (6%) gain in Top-1 accuracy under medium (high) distortion levels, and comparable to the state-of-the-art under low and very low distortion levels (perspective-like images)
+				</td>
+	  		  </tr>
+			</table>
+  		  	<br>
+		<hr>
+
+		<table align=center width=875px>
+				<center><h1>Citation</h1></center>
+				<tr>
+					<td>
+						<pre>
+<code>@article{athwale2023darswin,
+    title={DarSwin : Distortion Aware Radial Swin Transformer},
+    author={Athwale, Akshaya and Afrasiyabi, Arman and Lague, Justin and Shili, Ichrak and Ahmad, Ola and Lalonde, Jean-Fran{\c{c}}ois},
+    journal={IEEE/CVF International Conference on Computer Vision (ICCV)},
+    year={2023}
+  }  
+
+						</code>
+						</pre>
+					</td>
+				</tr>
+			</table>
+				<br>
+		<hr>
+			
+		
+  
+ 		<!-- <center><h1>Code</h1></center>
+  		  <table align=center width=800px>
+			  <br>
+			  <tr><center>
+				<span style="font-size:28px">&nbsp;<a href='https://github.com/ArmanAfrasiyabi/MixtFSL-fs'>[GitHub]</a>
+		  </table>
+
+      	  <br>
+		  <hr>
+		<br>
+				   -->
+				  
+	<!-- <center><h1>Poster</h1></center>
+
+  		  <table align=center width=420px> 
+				    <div class="album py-5 bg-light"> 
+				    <div class="container"> 
+					<div class="row">
+					    <div class="column2"> 
+					    <center>
+						  <a  href="./assets/MixFSL_Poster.pdf" > <img style="width:650px" class="img-fluid" src="./assets/poser.PNG"></a>
+						<br> click on the figure to see .pdf version. <br>
+						<center> 
+					    </div>
+					</div>
+					<br><br>
+
+				 
+					
+    </div>
+		  </table> -->
+
+		  <div class="card mb-4 shadow-sm text-center">
+				<h3 class="text-muted">Acknowledgements </h3>
+				This research was partially supported by NSERC grant ALLRP-567654, Thales, an NSERC USRA to J. Lagüe, and the Digital Research Alliance Canada. We thank Yohan Poirier-Ginter, Frederic Fortier-Chouinard, Adam Tupper and Justine Giroux of Universite Laval for proofreading
+			</div>
+      	  <br>
+
+              
+</body>
+</html>
+ 

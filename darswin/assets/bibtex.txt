@@ -1,0 +1,6 @@
+@article{athwale2023darswin,
+  title={DarSwin : Distortion Aware Radial Swin Transformer},
+  author={Athwale, Akshaya and Afrasiyabi, Arman and Lague, Justin and Shili, Ichrak and Ahmad, Ola and Lalonde, Jean-Fran{\c{c}}ois},
+  journal={IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year={2023}
+}
