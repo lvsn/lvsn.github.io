@@ -3,45 +3,105 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Lens Parameter Estimation for Realistic Depth of Field Synthesis</title>
+        <meta name="description" content="Lens Parameter Estimation for Realistic Depth of Field Modeling" />
+        <meta name="author" content="Dominique Piche-Meunier" />
+        <title>Lens Parameter Estimation for Realistic Depth of Field Modeling</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap CSS-->
         <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <!-- Material icons-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-8 offset-2">
+                <div class="col-lg-8 offset-lg-2">
                     <div class="text-center">
-                        <br><br><h1>Lens Parameter Estimation for Realistic<br>Depth of Field Synthesis</h1>
-                        <h5>Dominique Piché-Meunier<sup>1,2</sup>, Yannick Hold-Geoffroy<sup>2</sup>,<br>Jianming Zhang<sup>2</sup>,Jean-François Lalonde<sup>1</sup></h5>
-                        <h6><sup>1</sup>Université Laval, <sup>2</sup>Adobe</h6>
-                        <h6>ICCV 2023</h6>
+                        <!-- -------- TITLE -------- -->
+                        <div class="row mt-5">
+                            <h2>Lens Parameter Estimation for Realistic<br>Depth of Field Modeling</h2>
+                        </div>
+                        <!-- ------- AUTHORS ------- -->
+                        <div class="row mt-1">
+                            <h5>Dominique Piché-Meunier&nbsp&nbsp&nbsp&nbspYannick Hold-Geoffroy</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Jianming Zhang&nbsp&nbsp&nbsp&nbspJean-François Lalonde</h5>
+                        </div>
+                        <!-- -------- LOGOS -------- -->
+                        <div class="row mt-2 align-items-center">
+                            <div class="col-3 offset-3">
+                                <img src="assets/logos/ulaval.svg" class="img-fluid">
+                            </div>
+                            <div class="col-3">
+                                <img src="assets/logos/adobe.svg" class="img-fluid">
+                            </div>
+                        </div>
+                        <!-- ------ CONFRENCE ------ -->
+                        <div class="row mt-1">
+                            <h4>ICCV 2023</h4>
+                        </div>
+                        <!-- -------- LINKS -------- -->
+                        <div class="row mt-3">
+                            <div class="col text-center">
+                                <a type="button" class="btn btn-secondary" href="">
+                                    <span class="material-icons" style="vertical-align: -6px">description</span> Paper
+                                </a>
+                                <a type="button" class="btn btn-secondary" href="supp/index.html">
+                                    <span class="material-icons" style="vertical-align: -6px">note_add</span> Supplementary
+                                </a>
+                                <a type="button" class="btn btn-secondary" href="">
+                                    <span class="material-icons" style="vertical-align: -6px">storage</span> Dataset
+                                </a>
+                                <a type="button" class="btn btn-secondary" href="http://rachmaninoff.gel.ulaval.ca:8008/">
+                                    <span class="material-icons" style="vertical-align: -6px">description</span> Live demo
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
+                    <!-- -------- TEASER -------- -->
+                    <div class="row mt-5 text-center">
+                        <img src="assets/method/method.svg" class="img-fluid">
+                    </div>
+
+
+                    <!-- ------- ABSTRACT ------- -->
                     <div class="row mt-5">
                         <h3>Abstract</h3>
-                        <p>
+                        <p align="justify">
                             We present a method to estimate the depth of field effect from a single image. Most existing methods related to this task provide either a per-pixel estimation of blur and/or depth. Instead, we go further and propose a lens-based representation that models the depth of field using two parameters: the blur factor and focus disparity. Those two parameters, along with our new signed defocus representation, result in a more intuitive and linear representation directly solvable through linear least squares. Furthermore, our method explicitly enforces consistency between the estimated defocus blur, the lens parameters, and the depth map. Finally, we train our deep-learning-based model on a mix of real images with synthetic depth of field and fully synthetic images. These improvements result in a more robust and accurate method, as demonstrated by our state-of-the-art results. In particular, our lens parametrization enables several applications, such as 3D staging for AR environments and seamless object compositing.
                         </p>
                     </div>
-                        
-                    <div class="row mt-5">
-                        <h3>Video Presentation</h3>
                     
-                        <video src="assets/videos/presentation.mp4" controls class="img-fluid"></video>
+                    <!-- -------- VIDEO -------- -->
+                    <div class="row mt-3">
+                        <h3>Video presentation</h3>
+                    
+                        <video src="supp/assets/animated_insertion/insertion_comparison_audio.mp4" controls class="img-fluid"></video>
                     </div>
 
+                    <!-- ------- DATASET -------- -->
                     <div class="row mt-5">
+                        <h3>Dataset</h3>
+                        <p align="justify">
+                            Coming soon.
+                        </p>
+
+                    <!-- -------- BIBTEX -------- -->
+                    <div class="row mt-3">
                         <h3>BibTeX</h3>
                         <pre>
-                            
+@inproceedings{piche-meunierLensParameterEstimation2023,
+    title = {Lens {{Parameter Estimation}} for {{Realistic Depth}} of {{Field Modeling}}},
+    booktitle = {Proceedings of the {{IEEE}}/{{CVF International Conference}} on {{Computer Vision}}},
+    author = {{Pich{\'e}-Meunier}, Dominique and {Hold-Geoffroy}, Yannick and Zhang, Jianming and Lalonde, Jean-Fran{\c c}ois},
+    year = {2023}
+    }   
                         </pre>
-                </div>
+                </div>  
             </div>
         </div>
         <!-- JQuerry -->
