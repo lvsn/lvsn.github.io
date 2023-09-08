@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="Lens Parameter Estimation for Realistic Depth of Field Modeling" />
+        <meta name="author" content="Dominique Piche-Meunier" />
+        <title>Lens Parameter Estimation for Realistic Depth of Field Modeling</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap CSS-->
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <!-- Material icons-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="text-center">
+                        <!-- -------- TITLE -------- -->
+                        <div class="row mt-5">
+                            <h1>Lens Parameter Estimation for Realistic Depth of Field Modeling</h1>
+                        </div>
+                        <!-- ------- AUTHORS ------- -->
+                        <div class="row mt-1" style="white-space: pre-wrap;">
+                            <h5>Dominique&nbspPiché‑Meunier  Yannick&nbspHold‑Geoffroy  Jianming&nbspZhang  Jean‑François&nbspLalonde</h5>
+                        </div>
+                        <!-- -------- LOGOS -------- -->
+                        <div class="row mt-2 align-items-center">
+                            <div class="col-3 offset-3">
+                                <img src="assets/logos/ulaval.svg" class="img-fluid">
+                            </div>
+                            <div class="col-3">
+                                <img src="assets/logos/adobe.svg" class="img-fluid">
+                            </div>
+                        </div>
+                        <!-- ------ CONFRENCE ------ -->
+                        <div class="row mt-1">
+                            <h4>ICCV 2023</h4>
+                        </div>
+                        <!-- -------- LINKS -------- -->
+                        <div class="row mt-3">
+                            <div class="col text-center">
+                                <a type="button" class="btn btn-secondary mb-1" href="">
+                                    <span class="material-icons" style="vertical-align: -6px">description</span> Paper
+                                </a>
+                                <a type="button" class="btn btn-secondary mb-1" href="supp/index.html">
+                                    <span class="material-icons" style="vertical-align: -6px">note_add</span> Supplementary
+                                </a>
+                                <a type="button" class="btn btn-secondary mb-1" href="">
+                                    <span class="material-icons" style="vertical-align: -6px">storage</span> Dataset
+                                </a>
+                                <a type="button" class="btn btn-secondary mb-1" href="http://rachmaninoff.gel.ulaval.ca:8003/">
+                                    <span class="material-icons" style="vertical-align: -6px">description</span> Live demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- -------- TEASER -------- -->
+                    <div class="row mt-4 text-center">
+                        <img src="assets/method/method.svg" class="img-fluid">
+                    </div>
+
+
+                    <!-- ------- ABSTRACT ------- -->
+                    <div class="row mt-4">
+                        <h3>Abstract</h3>
+                        <p align="justify">
+                            We present a method to estimate the depth of field effect from a single image. Most existing methods related to this task provide either a per-pixel estimation of blur and/or depth. Instead, we go further and propose a lens-based representation that models the depth of field using two parameters: the blur factor and focus disparity. Those two parameters, along with our new signed defocus representation, result in a more intuitive and linear representation directly solvable through linear least squares. Furthermore, our method explicitly enforces consistency between the estimated defocus blur, the lens parameters, and the depth map. Finally, we train our deep-learning-based model on a mix of real images with synthetic depth of field and fully synthetic images. These improvements result in a more robust and accurate method, as demonstrated by our state-of-the-art results. In particular, our lens parametrization enables several applications, such as 3D staging for AR environments and seamless object compositing.
+                        </p>
+                    </div>
+                    
+                    <!-- -------- VIDEO -------- -->
+                    <div class="row mt-3">
+                        <h3>Video presentation</h3>
+                    
+                        <video src="supp/assets/animated_insertion/insertion_comparison_audio.mp4" controls class="img-fluid"></video>
+                    </div>
+
+                    <!-- ------- DATASET -------- -->
+                    <div class="row mt-5">
+                        <h3>Dataset</h3>
+                        <p align="justify">
+                            Coming soon.
+                        </p>
+
+                    <!-- -------- BIBTEX -------- -->
+                    <div class="row mt-3">
+                        <h3>BibTeX</h3>
+                        <pre>
+@inproceedings{piche-meunierLensParameterEstimation2023,
+    title = {Lens {{Parameter Estimation}} for {{Realistic Depth}} of {{Field Modeling}}},
+    booktitle = {Proceedings of the {{IEEE}}/{{CVF International Conference}} on {{Computer Vision}}},
+    author = {{Pich{\'e}-Meunier}, Dominique and {Hold-Geoffroy}, Yannick and Zhang, Jianming and Lalonde, Jean-Fran{\c c}ois},
+    year = {2023}
+    }   
+                        </pre>
+                </div>  
+            </div>
+        </div>
+        <!-- JQuerry -->
+        <script src="js/jquery-3.6.1.min.js"></script>
+        <!-- Bootstrap core JS-->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- Math jax -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>

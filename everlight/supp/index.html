@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./favicon.ico">
+
+    <title>EverLight: Indoor-Outdoor Editable HDR Lighting Estimation &mdash; Supplementary Material &mdash; ICCV 2023</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/lightbox.min.css" rel="stylesheet">
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="./css/sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Supplementary Material</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-expanded="false" aria-controls="navbarCollapse" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <!-- <a class="navbar-brand" href="#">Sticky footer</a> -->
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#moving">Moving lighting</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#editing">Editing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#outdoor_test">Outdoor results</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#indoor_test">Indoor results</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#implementation">Implementation details</span></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <div class="container">
+      <div class="mt-1">
+        <h1>EverLight: Indoor-Outdoor Editable HDR Lighting Estimation &mdash; Supplementary Material &mdash; ICCV 2023</h1>
+      </div>
+      <p align="justify" class="lead">
+        This document provides additional results and analysis for our proposed method in the main paper. 
+        We start with showcasing the power of our approach for editing by conducting an experiment on changing the position of input lighting parameters and visualizing the corresponding output. 
+        Next, we show different editing results for various indoor and outdoor input images. 
+        Then, we provide further results for outdoor and indoor scenarios. We conclude this document by providing more implementation details on our method.
+      </p>
+
+      <div style="clear:both; height:2em;"></div>
+      <h3>Table of Contents</h3>
+      <p>
+      <ol>
+        <li>
+          <a href="#moving">Moving lighting parameters (extends fig. 6)</a>
+        </li>
+        <li>
+          <a href="#editing">Editing (extends fig. 6)</a>
+        </li>
+        <li>
+          <a href="#outdoor_test">Outdoor Results (extends fig. 5)</a>
+        </li>
+        <li>
+          <a href="#indoor_test">Indoor Results (extends fig. 4)</a>
+        </li>  
+        <li>
+          <a href="#implementation">Implementation Details</span></a>
+        </li>
+        
+      </ol>
+      </p>
+
+      <a class="anchor" name="moving"></a>
+      <div style="clear:both; height:4em;"></div>
+      <h2>1. Moving Lighting Parameters</h2>
+      <p align="justify"> To show the performance of our method for editing, we change the position of lighting parameters smoothly, and as a result, we create a video of the output of the network.</p>
+
+      <div class="row">
+        <div class="col-md-4" style="text-align:center;">
+          <img style="border:1px solid white;width:360px;" src="figures/masked_panos/12903.jpg"/> 
+          <p style="text-align:center"> Input image </p>
+          </div>
+        <div class="col-md-8" style="text-align:center;">
+          <video poster="" controls="" width="100%"> <source src="figures/moving_Sg_stacked/12903.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+          <p style="text-align:center"> Input lighting parameters and the corresponding output</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4" style="text-align:center;">
+          <img style="border:1px solid white;width:360px;" src="figures/masked_panos/53610.jpg"/> 
+          <p style="text-align:center"> Input image </p>
+          </div>
+        <div class="col-md-8" style="text-align:center;">
+          <video poster="" controls="" width="100%"> <source src="figures/moving_Sg_stacked/53610.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+          <p style="text-align:center">  Input lighting parameters and the corresponding output </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4" style="text-align:center;">
+          <img style="border:1px solid white;width:360px;" src="figures/masked_panos/180086.jpg"/> 
+          <p style="text-align:center"> Input image </p>
+          </div>
+        <div class="col-md-8" style="text-align:center;">
+          <video poster="" controls="" width="100%"> <source src="figures/moving_Sg_stacked/180086.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+          <p style="text-align:center"> Input lighting parameters and the corresponding output </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4" style="text-align:center;">
+          <img style="border:1px solid white;width:360px;" src="figures/masked_panos/17378.jpg"/> 
+          <p style="text-align:center"> Input image </p>
+          </div>
+        <div class="col-md-8" style="text-align:center;">
+          <video poster="" controls="" width="100%"> <source src="figures/moving_Sg_stacked/17378.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+          <p style="text-align:center"> Input lighting parameters and the corresponding output </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4" style="text-align:center;">
+          <img style="border:1px solid white;width:360px;" src="figures/masked_panos/136974.jpg"/> 
+          <p style="text-align:center"> Input image </p>
+          </div>
+        <div class="col-md-8" style="text-align:center;">
+          <video poster="" controls="" width="100%"> <source src="figures/moving_Sg_stacked/136974.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+          <p style="text-align:center"> Input lighting parameters and the corresponding output </p>
+        </div>
+      </div>
+
+
+      <a class="anchor" name="editing"></a>
+      <div style="clear:both; height:4em;"></div>
+      <h2>2. Editing results</h2>
+      <p align="justify"> Here are more results of our method for different lighting user inputs as an extension to figure 6. Please consult section 5.3 of the main paper for more information. First we show results for outdoor cases.</p>
+
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing_sgs/35860_00_sg.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing_sgs/100588_00_sg.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing_sgs/56348_00_sg.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing_sgs/78948_00_sg.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing_sgs/123974_00_sg.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/35860.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/35860_35860.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/35860_100588.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/35860_56348.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/35860_78948.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/35860_123974.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/100588.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/100588_35860.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/100588_100588.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/100588_56348.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/100588_78948.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/100588_123974.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/56348.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/56348_35860.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/56348_100588.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/56348_56348.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/56348_78948.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/56348_123974.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/78948.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/78948_35860.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/78948_100588.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/78948_56348.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/78948_78948.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/78948_123974.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/123974.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/123974_35860.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/123974_100588.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/123974_56348.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/123974_78948.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/123974_123974.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/48462.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/48462_35860.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/48462_100588.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/48462_56348.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/48462_78948.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/48462_123974.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/56624.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/56624_35860.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/56624_100588.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/56624_56348.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/56624_78948.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/56624_123974.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/77125.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/77125_35860.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/77125_100588.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/77125_56348.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/77125_78948.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/77125_123974.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/84735.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/84735_35860.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/84735_100588.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/84735_56348.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/84735_78948.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/84735_123974.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/87083.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/87083_35860.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/87083_100588.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/87083_56348.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/87083_78948.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/87083_123974.jpg"/> </div>
+    </div>
+
+    <br /> <br />
+    <p align="justify"> Our method works well for both outdoor and indoor scenarios. Here are more results of our method for different lighting user inputs for indoor cases.</p>
+
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing_sgs/59041_00_sg.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing_sgs/84053_00_sg.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing_sgs/108254_00_sg.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing_sgs/133029_00_sg.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing_sgs/213377_00_sg.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/59041.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/59041_59041.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/59041_84053.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/59041_108254.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/59041_133029.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/59041_213377.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/84053.jpg"/></div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/84053_59041.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/84053_84053.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/84053_108254.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/84053_133029.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/84053_213377.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/108254.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/108254_59041.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/108254_84053.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/108254_108254.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/108254_133029.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/108254_213377.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/213377.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/213377_59041.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/213377_84053.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/213377_108254.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/213377_133029.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/213377_213377.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/133029.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/133029_59041.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/133029_84053.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/133029_108254.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/133029_133029.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/133029_213377.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/59876.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/59876_59041.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/59876_84053.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/59876_108254.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/59876_133029.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/59876_213377.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/108998.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/108998_59041.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/108998_84053.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/108998_108254.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/108998_133029.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/108998_213377.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/120279.jpg"> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/120279_59041.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/120279_84053.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/120279_108254.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/120279_133029.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/120279_213377.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/135743.jpg"/></div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/135743_59041.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/135743_84053.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/135743_108254.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/135743_133029.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/135743_213377.jpg"/> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/masked_panos/148928.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/148928_59041.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/148928_84053.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/148928_108254.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/148928_133029.jpg"/> </div>
+      <div class="col-md-2 text-center" style="text-align:center;"> <img style="border:1px solid white;width:180px;" src="figures/editing/148928_213377.jpg"/> </div>
+    </div>
+
+      
+
+      <a class="anchor" name="outdoor_test"></a>
+      <div style="clear:both; height:4em;"></div>
+      <h2>3. Outdoor Results</h2>
+
+      <p>Here are more results of our method compared to existing methods for outdoor cases as an extension to figure 5. Please consult section 5.2 of the main paper for more information.</p>
+
+      <div class="row">
+          <div class="col-md-3 text-center" style="text-align:center;"> <h6>Input Crop</h6></div>
+          <div class="col-md-3 text-center" style="text-align:center;"> <h6>immersegan [6]</h6></div>
+          <div class="col-md-3 text-center" style="text-align:center;"> <h6>Zhang’19 [59]</h6></div>
+          <div class="col-md-3 text-center" style="text-align:center;"> <h6>EverLight (ours)</h6></div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/00000_00.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/00000_00.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/00000_00.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/00000_00.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/00004_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/00004_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/00004_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/00004_01.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/10-Shiodome_Stairs_3k_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/10-Shiodome_Stairs_3k_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/10-Shiodome_Stairs_3k_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/10-Shiodome_Stairs_3k_01.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/14-Hamarikyu_Bridge_B_3k_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/14-Hamarikyu_Bridge_B_3k_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/14-Hamarikyu_Bridge_B_3k_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/14-Hamarikyu_Bridge_B_3k_01.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/00020_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/00020_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/00020_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/00020_01.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/00023_00.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/00023_00.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/00023_00.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/00023_00.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/00024_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/00024_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/00024_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/00024_02.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/00111_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/00111_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/00111_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/00111_01.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/GCanyon_C_YumaPoint_3k_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/GCanyon_C_YumaPoint_3k_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/GCanyon_C_YumaPoint_3k_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/GCanyon_C_YumaPoint_3k_02.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/goegap_8k_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/goegap_8k_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/goegap_8k_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/goegap_8k_02.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/openfootage_00009_00.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/openfootage_00009_00.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/openfootage_00009_00.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/openfootage_00009_00.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/openfootage_00012_00.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/openfootage_00012_00.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/openfootage_00012_00.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/openfootage_00012_00.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/openfootage_00014_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/openfootage_00014_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/openfootage_00014_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/openfootage_00014_01.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/openfootage_00020_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/openfootage_00020_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/openfootage_00020_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/openfootage_00020_02.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/openfootage_00030_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/openfootage_00030_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/openfootage_00030_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/openfootage_00030_02.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/openfootage_00039_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/openfootage_00039_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/openfootage_00039_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/openfootage_00039_02.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/openfootage_00044_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/openfootage_00044_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/openfootage_00044_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/openfootage_00044_02.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/openfootage_00048_00.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/openfootage_00048_00.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/openfootage_00048_00.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/openfootage_00048_00.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/openfootage_00047_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/openfootage_00047_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/openfootage_00047_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/openfootage_00047_01.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/openfootage_00059_00.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/openfootage_00059_00.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/openfootage_00059_00.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/openfootage_00059_00.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/openfootage_00156_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/openfootage_00156_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/openfootage_00156_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/openfootage_00156_02.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/park_bench_8k_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/park_bench_8k_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/park_bench_8k_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/park_bench_8k_02.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/Ridgecrest_Road_Ref_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/Ridgecrest_Road_Ref_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/Ridgecrest_Road_Ref_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/Ridgecrest_Road_Ref_01.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/shanghai_bund_8k_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/shanghai_bund_8k_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/shanghai_bund_8k_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/shanghai_bund_8k_01.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/simons_town_harbour_8k_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/simons_town_harbour_8k_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/simons_town_harbour_8k_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/simons_town_harbour_8k_02.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/Stadium_Center_3k_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/Stadium_Center_3k_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/Stadium_Center_3k_01.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/Stadium_Center_3k_01.jpg"/> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:128px;" src="figures/quantitative_outdoor/crop/xiequ_yuan_8k_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/immersegan/xiequ_yuan_8k_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/cropnet/xiequ_yuan_8k_02.jpg"/> </div>
+        <div class="col-md-3 text-center" style="text-align:center;"> <img style="border:3px solid white;width:256px;" src="figures/quantitative_outdoor/everlight/xiequ_yuan_8k_02.jpg"/> </div>
+      </div>
+      
+      
+      
+      <a class="anchor" name="indoor_test"></a>
+      <div style="clear:both; height:4em;"></div>
+      <h2>4. Indoor Results</h2>
+
+      <p>Here are more results of our method compared to existing methods for outdoor cases as an extension to figure 4. Please consult section 5.1 of the main paper for more information.</p>
+
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">Input <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/crops/9C4A0022-6d8fe2e88e_00_crop.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;">GT <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/gt/9C4A0022-6d8fe2e88e_00.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’17 [13] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_sigasia/9C4A0022-6d8fe2e88e_00.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’19 (3) [12] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_3_lights/9C4A0022-6d8fe2e88e_00.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EMLight [57] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/emlight/9C4A0022-6d8fe2e88e_00_fake_image.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Lighthouse [44] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/lighthouse/9C4A0022-6d8fe2e88e_00.jpg" /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">  </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Garon’19 [14]  <br /> <img style="border:3px solid white;width:128px;" src="figures/quantitative_indoor/mg_sh/9C4A0022-6d8fe2e88e_00.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> ImmerseGAN [6] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/immersegan/9C4A0022-6d8fe2e88e_00.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> StyleLight [47]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/stylelight/9C4A0022-6d8fe2e88e_00_test.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Weber'22 [51] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/weber/9C4A0022-6d8fe2e88e_00_texture.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EverLight (ours) <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/everlight/9C4A0022-6d8fe2e88e_00.jpg" /> </div>
+      </div>
+      
+      <br /> <br /> <br />
+      
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">Input <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/crops/9C4A0370-2d21311d85_01_crop.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;">GT <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/gt/9C4A0370-2d21311d85_01.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’17 [13] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_sigasia/9C4A0370-2d21311d85_01.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’19 (3) [12] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_3_lights/9C4A0370-2d21311d85_01.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EMLight [57] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/emlight/9C4A0370-2d21311d85_01_fake_image.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Lighthouse [44] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/lighthouse/9C4A0370-2d21311d85_01.jpg" /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">  </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Garon’19 [14]  <br /> <img style="border:3px solid white;width:128px;" src="figures/quantitative_indoor/mg_sh/9C4A0370-2d21311d85_01.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> ImmerseGAN [6]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/immersegan/9C4A0370-2d21311d85_01.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> StyleLight [47]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/stylelight/9C4A0370-2d21311d85_01_test.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Weber'22 [51] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/weber/9C4A0370-2d21311d85_01_texture.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EverLight (ours) <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/everlight/9C4A0370-2d21311d85_01.jpg" /> </div>
+      </div>
+
+      <br /> <br /> <br />
+      
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">Input <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/crops/9C4A0132-07352d1dd0_03_crop.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;">GT <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/gt/9C4A0132-07352d1dd0_03.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’17 [13] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_sigasia/9C4A0132-07352d1dd0_03.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’19 (3) [12] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_3_lights/9C4A0132-07352d1dd0_03.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EMLight [57] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/emlight/9C4A0132-07352d1dd0_03_fake_image.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Lighthouse [44] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/lighthouse/9C4A0132-07352d1dd0_03.jpg" /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">  </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Garon’19 [14]  <br /> <img style="border:3px solid white;width:128px;" src="figures/quantitative_indoor/mg_sh/9C4A0132-07352d1dd0_03.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> ImmerseGAN [6]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/immersegan/9C4A0132-07352d1dd0_03.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> StyleLight [47]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/stylelight/9C4A0132-07352d1dd0_03_test.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Weber'22 [51] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/weber/9C4A0132-07352d1dd0_03_texture.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EverLight (ours) <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/everlight/9C4A0132-07352d1dd0_03.jpg" /> </div>
+      </div>
+
+
+      <br /> <br /> <br />
+      
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">Input <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/crops/9C4A0204-fa5ffbc29c_06_crop.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;">GT <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/gt/9C4A0204-fa5ffbc29c_06.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’17 [13] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_sigasia/9C4A0204-fa5ffbc29c_06.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’19 (3) [12] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_3_lights/9C4A0204-fa5ffbc29c_06.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EMLight [57] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/emlight/9C4A0204-fa5ffbc29c_06_fake_image.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Lighthouse [44] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/lighthouse/9C4A0204-fa5ffbc29c_06.jpg" /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">  </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Garon’19 [14]  <br /> <img style="border:3px solid white;width:128px;" src="figures/quantitative_indoor/mg_sh/9C4A0204-fa5ffbc29c_06.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> ImmerseGAN [6]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/immersegan/9C4A0204-fa5ffbc29c_06.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> StyleLight [47]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/stylelight/9C4A0204-fa5ffbc29c_06_test.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Weber'22 [51] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/weber/9C4A0204-fa5ffbc29c_06_texture.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EverLight (ours) <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/everlight/9C4A0204-fa5ffbc29c_06.jpg" /> </div>
+      </div>
+
+      <br /> <br /> <br />
+      
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">Input <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/crops/9C4A0205-437172d8ee_07_crop.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;">GT <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/gt/9C4A0205-437172d8ee_07.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’17 [13] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_sigasia/9C4A0205-437172d8ee_07.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’19 (3) [12] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_3_lights/9C4A0205-437172d8ee_07.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EMLight [57] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/emlight/9C4A0205-437172d8ee_07_fake_image.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Lighthouse [44] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/lighthouse/9C4A0205-437172d8ee_07.jpg" /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">  </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Garon’19 [14]  <br /> <img style="border:3px solid white;width:128px;" src="figures/quantitative_indoor/mg_sh/9C4A0205-437172d8ee_07.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> ImmerseGAN [6]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/immersegan/9C4A0205-437172d8ee_07.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> StyleLight [47]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/stylelight/9C4A0205-437172d8ee_07_test.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Weber'22 [51] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/weber/9C4A0205-437172d8ee_07_texture.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EverLight (ours) <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/everlight/9C4A0205-437172d8ee_07.jpg" /> </div>
+      </div>
+
+      <br /> <br /> <br />
+      
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">Input <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/crops/9C4A0286-fb330a56ab_04_crop.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;">GT <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/gt/9C4A0286-fb330a56ab_04.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’17 [13] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_sigasia/9C4A0286-fb330a56ab_04.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’19 (3) [12] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_3_lights/9C4A0286-fb330a56ab_04.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EMLight [57] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/emlight/9C4A0286-fb330a56ab_04_fake_image.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Lighthouse [44] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/lighthouse/9C4A0286-fb330a56ab_04.jpg" /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">  </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Garon’19 [14]  <br /> <img style="border:3px solid white;width:128px;" src="figures/quantitative_indoor/mg_sh/9C4A0286-fb330a56ab_04.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> ImmerseGAN [6]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/immersegan/9C4A0286-fb330a56ab_04.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> StyleLight [47]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/stylelight/9C4A0286-fb330a56ab_04_test.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Weber'22 [51] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/weber/9C4A0286-fb330a56ab_04_texture.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EverLight (ours) <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/everlight/9C4A0286-fb330a56ab_04.jpg" /> </div>
+      </div>
+
+      <br /> <br /> <br />
+      
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">Input <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/crops/9C4A0307-ca23f47d11_05_crop.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;">GT <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/gt/9C4A0307-ca23f47d11_05.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’17 [13] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_sigasia/9C4A0307-ca23f47d11_05.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’19 (3) [12] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_3_lights/9C4A0307-ca23f47d11_05.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EMLight [57] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/emlight/9C4A0307-ca23f47d11_05_fake_image.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Lighthouse [44] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/lighthouse/9C4A0307-ca23f47d11_05.jpg" /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">  </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Garon’19 [14]  <br /> <img style="border:3px solid white;width:128px;" src="figures/quantitative_indoor/mg_sh/9C4A0307-ca23f47d11_05.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> ImmerseGAN [6]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/immersegan/9C4A0307-ca23f47d11_05.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> StyleLight [47]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/stylelight/9C4A0307-ca23f47d11_05_test.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Weber'22 [51] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/weber/9C4A0307-ca23f47d11_05_texture.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EverLight (ours) <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/everlight/9C4A0307-ca23f47d11_05.jpg" /> </div>
+      </div>
+
+      <br /> <br /> <br />
+      
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">Input <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/crops/9C4A0330-55d4beffc9_06_crop.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;">GT <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/gt/9C4A0330-55d4beffc9_06.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’17 [13] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_sigasia/9C4A0330-55d4beffc9_06.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’19 (3) [12] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_3_lights/9C4A0330-55d4beffc9_06.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EMLight [57] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/emlight/9C4A0330-55d4beffc9_06_fake_image.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Lighthouse [44] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/lighthouse/9C4A0330-55d4beffc9_06.jpg" /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">  </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Garon’19 [14]  <br /> <img style="border:3px solid white;width:128px;" src="figures/quantitative_indoor/mg_sh/9C4A0330-55d4beffc9_06.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> ImmerseGAN [6]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/immersegan/9C4A0330-55d4beffc9_06.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> StyleLight [47]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/stylelight/9C4A0330-55d4beffc9_06_test.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Weber'22 [51] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/weber/9C4A0330-55d4beffc9_06_texture.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EverLight (ours) <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/everlight/9C4A0330-55d4beffc9_06.jpg" /> </div>
+      </div>
+
+      <br /> <br /> <br />
+      
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">Input <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/crops/9C4A0358-ffcdfa74fe_08_crop.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;">GT <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/gt/9C4A0358-ffcdfa74fe_08.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’17 [13] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_sigasia/9C4A0358-ffcdfa74fe_08.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’19 (3) [12] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_3_lights/9C4A0358-ffcdfa74fe_08.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EMLight [57] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/emlight/9C4A0358-ffcdfa74fe_08_fake_image.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Lighthouse [44] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/lighthouse/9C4A0358-ffcdfa74fe_08.jpg" /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">  </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Garon’19 [14]  <br /> <img style="border:3px solid white;width:128px;" src="figures/quantitative_indoor/mg_sh/9C4A0358-ffcdfa74fe_08.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> ImmerseGAN [6]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/immersegan/9C4A0358-ffcdfa74fe_08.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> StyleLight [47]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/stylelight/9C4A0358-ffcdfa74fe_08_test.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Weber'22 [51] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/weber/9C4A0358-ffcdfa74fe_08_texture.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EverLight (ours) <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/everlight/9C4A0358-ffcdfa74fe_08.jpg" /> </div>
+      </div>
+
+      <br /> <br /> <br />
+      
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">Input <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/crops/9C4A0395-ef28332472_01_crop.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;">GT <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/gt/9C4A0395-ef28332472_01.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’17 [13] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_sigasia/9C4A0395-ef28332472_01.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’19 (3) [12] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_3_lights/9C4A0395-ef28332472_01.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EMLight [57] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/emlight/9C4A0395-ef28332472_01_fake_image.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Lighthouse [44] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/lighthouse/9C4A0395-ef28332472_01.jpg" /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">  </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Garon’19 [14]  <br /> <img style="border:3px solid white;width:128px;" src="figures/quantitative_indoor/mg_sh/9C4A0395-ef28332472_01.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> ImmerseGAN [6]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/immersegan/9C4A0395-ef28332472_01.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> StyleLight [47]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/stylelight/9C4A0395-ef28332472_01_test.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Weber'22 [51] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/weber/9C4A0395-ef28332472_01_texture.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EverLight (ours) <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/everlight/9C4A0395-ef28332472_01.jpg" /> </div>
+      </div>
+
+      <br /> <br /> <br />
+      
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">Input <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/crops/9C4A0548-b8fe6edac7_02_crop.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;">GT <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/gt/9C4A0548-b8fe6edac7_02.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’17 [13] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_sigasia/9C4A0548-b8fe6edac7_02.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’19 (3) [12] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_3_lights/9C4A0548-b8fe6edac7_02.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EMLight [57] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/emlight/9C4A0548-b8fe6edac7_02_fake_image.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Lighthouse [44] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/lighthouse/9C4A0548-b8fe6edac7_02.jpg" /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">  </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Garon’19 [14]  <br /> <img style="border:3px solid white;width:128px;" src="figures/quantitative_indoor/mg_sh/9C4A0548-b8fe6edac7_02.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> ImmerseGAN [6]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/immersegan/9C4A0548-b8fe6edac7_02.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> StyleLight [47]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/stylelight/9C4A0548-b8fe6edac7_02_test.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Weber'22 [51] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/weber/9C4A0548-b8fe6edac7_02_texture.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EverLight (ours) <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/everlight/9C4A0548-b8fe6edac7_02.jpg" /> </div>
+      </div>
+
+      <br /> <br /> <br />
+      
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">Input <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/crops/9C4A0566-a088c98ccf_05_crop.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;">GT <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/gt/9C4A0566-a088c98ccf_05.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’17 [13] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_sigasia/9C4A0566-a088c98ccf_05.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’19 (3) [12] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_3_lights/9C4A0566-a088c98ccf_05.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EMLight [57] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/emlight/9C4A0566-a088c98ccf_05_fake_image.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Lighthouse [44] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/lighthouse/9C4A0566-a088c98ccf_05.jpg" /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">  </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Garon’19 [14]  <br /> <img style="border:3px solid white;width:128px;" src="figures/quantitative_indoor/mg_sh/9C4A0566-a088c98ccf_05.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> ImmerseGAN [6] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/immersegan/9C4A0566-a088c98ccf_05.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> StyleLight [47]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/stylelight/9C4A0566-a088c98ccf_05_test.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Weber'22 [51] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/weber/9C4A0566-a088c98ccf_05_texture.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EverLight (ours) <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/everlight/9C4A0566-a088c98ccf_05.jpg" /> </div>
+      </div>
+
+      <br /> <br /> <br />
+      
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">Input <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/crops/9C4A1402-43e4a23c95_06_crop.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;">GT <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/gt/9C4A1402-43e4a23c95_06.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’17 [13] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_sigasia/9C4A1402-43e4a23c95_06.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’19 (3) [12] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_3_lights/9C4A1402-43e4a23c95_06.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EMLight [57] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/emlight/9C4A1402-43e4a23c95_06_fake_image.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Lighthouse [44] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/lighthouse/9C4A1402-43e4a23c95_06.jpg" /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">  </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Garon’19 [14]  <br /> <img style="border:3px solid white;width:128px;" src="figures/quantitative_indoor/mg_sh/9C4A1402-43e4a23c95_06.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> ImmerseGAN [6]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/immersegan/9C4A1402-43e4a23c95_06.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> StyleLight [47]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/stylelight/9C4A1402-43e4a23c95_06_test.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Weber'22 [51] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/weber/9C4A1402-43e4a23c95_06_texture.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EverLight (ours) <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/everlight/9C4A1402-43e4a23c95_06.jpg" /> </div>
+      </div>
+
+      <br /> <br /> <br />
+      
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">Input <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/crops/9C4A2495-40e081c571_02_crop.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;">GT <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/gt//9C4A2495-40e081c571_02.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’17 [13] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_sigasia//9C4A2495-40e081c571_02.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’19 (3) [12] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_3_lights//9C4A2495-40e081c571_02.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EMLight [57] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/emlight//9C4A2495-40e081c571_02_fake_image.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Lighthouse [44] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/lighthouse//9C4A2495-40e081c571_02.jpg" /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">  </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Garon’19 [14]  <br /> <img style="border:3px solid white;width:128px;" src="figures/quantitative_indoor/mg_sh//9C4A2495-40e081c571_02.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> ImmerseGAN [6] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/immersegan//9C4A2495-40e081c571_02.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> StyleLight [47]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/stylelight//9C4A2495-40e081c571_02_test.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Weber'22 [51] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/weber//9C4A2495-40e081c571_02_texture.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EverLight (ours) <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/everlight//9C4A2495-40e081c571_02.jpg" /> </div>
+      </div>
+
+      <br /> <br /> <br />
+      
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">Input <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/crops/9C4A3067-913cabd4f0_05_crop.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;">GT <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/gt/9C4A3067-913cabd4f0_05.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’17 [13] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_sigasia/9C4A3067-913cabd4f0_05.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’19 (3) [12] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_3_lights/9C4A3067-913cabd4f0_05.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EMLight [57] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/emlight/9C4A3067-913cabd4f0_05_fake_image.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Lighthouse [44] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/lighthouse/9C4A3067-913cabd4f0_05.jpg" /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">  </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Garon’19 [14]  <br /> <img style="border:3px solid white;width:128px;" src="figures/quantitative_indoor/mg_sh/9C4A3067-913cabd4f0_05.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> ImmerseGAN [6]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/immersegan/9C4A3067-913cabd4f0_05.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> StyleLight [47]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/stylelight/9C4A3067-913cabd4f0_05_test.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Weber'22 [51] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/weber/9C4A3067-913cabd4f0_05_texture.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EverLight (ours) <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/everlight/9C4A3067-913cabd4f0_05.jpg" /> </div>
+      </div>
+
+      <br /> <br /> <br />
+      
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">Input <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/crops/9C4A3359-3edd9ddf7d_07_crop.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;">GT <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/gt/9C4A3359-3edd9ddf7d_07.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’17 [13] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_sigasia/9C4A3359-3edd9ddf7d_07.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’19 (3) [12] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_3_lights/9C4A3359-3edd9ddf7d_07.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EMLight [57] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/emlight/9C4A3359-3edd9ddf7d_07_fake_image.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Lighthouse [44] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/lighthouse/9C4A3359-3edd9ddf7d_07.jpg" /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">  </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Garon’19 [14]  <br /> <img style="border:3px solid white;width:128px;" src="figures/quantitative_indoor/mg_sh/9C4A3359-3edd9ddf7d_07.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> ImmerseGAN [6] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/immersegan/9C4A3359-3edd9ddf7d_07.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> StyleLight [47]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/stylelight/9C4A3359-3edd9ddf7d_07_test.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Weber'22 [51] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/weber/9C4A3359-3edd9ddf7d_07_texture.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EverLight (ours) <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/everlight/9C4A3359-3edd9ddf7d_07.jpg" /> </div>
+      </div>
+
+      <br /> <br /> <br />
+      
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">Input <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/crops/9C4A4811-64470bd442_09_crop.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;">GT <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/gt/9C4A4811-64470bd442_09.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’17 [13] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_sigasia/9C4A4811-64470bd442_09.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’19 (3) [12] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_3_lights/9C4A4811-64470bd442_09.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EMLight [57] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/emlight/9C4A4811-64470bd442_09_fake_image.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Lighthouse [44] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/lighthouse/9C4A4811-64470bd442_09.jpg" /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">  </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Garon’19 [14]  <br /> <img style="border:3px solid white;width:128px;" src="figures/quantitative_indoor/mg_sh/9C4A4811-64470bd442_09.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> ImmerseGAN [6]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/immersegan/9C4A4811-64470bd442_09.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> StyleLight [47]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/stylelight/9C4A4811-64470bd442_09_test.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Weber'22 [51] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/weber/9C4A4811-64470bd442_09_texture.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EverLight (ours) <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/everlight/9C4A4811-64470bd442_09.jpg" /> </div>
+      </div>
+
+      <br /> <br /> <br />
+      
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">Input <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/crops/9C4A4878-4dac321d8b_07_crop.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;">GT <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/gt/9C4A4878-4dac321d8b_07.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’17 [13] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_sigasia/9C4A4878-4dac321d8b_07.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Gardner’19 (3) [12] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/mag_3_lights/9C4A4878-4dac321d8b_07.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EMLight [57] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/emlight/9C4A4878-4dac321d8b_07_fake_image.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Lighthouse [44] <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/lighthouse/9C4A4878-4dac321d8b_07.jpg" /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center" style="text-align:center;">  </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Garon’19 [14]  <br /> <img style="border:3px solid white;width:128px;" src="figures/quantitative_indoor/mg_sh/9C4A4878-4dac321d8b_07.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> ImmerseGAN [6]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/immersegan/9C4A4878-4dac321d8b_07.jpg"/> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> StyleLight [47]  <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/stylelight/9C4A4878-4dac321d8b_07_test.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> Weber'22 [51] <br /><img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/weber/9C4A4878-4dac321d8b_07_texture.jpg" /> </div>
+        <div class="col-md-2 text-center" style="text-align:center;"> EverLight (ours) <br /> <img style="border:1px solid white;width:128px;" src="figures/quantitative_indoor/everlight/9C4A4878-4dac321d8b_07.jpg" /> </div>
+      </div>
+      
+
+      
+      
+    <a class="anchor" name="implementation"></a>
+      <div style="clear:both; height:4em;"></div>
+      <h2>5. Implementation Details</h2>
+
+      <p>
+        As described in sec. 4.3 of the main manuscript, our spherical gaussian fitting \( f_\mathrm{SG}^{-1} \) is performed using the following optimization: 
+        \[ \hat{\mathbf{p}} = \arg\min_{\mathbf{p}} \sum_{\omega \in \Omega} \lambda_1 \left\lVert f_\mathrm{SG}(\omega; \mathbf{p}) - \mathbf{E}(\omega) \right\rVert_2^2 + \ell_\mathrm{reg}( \mathbf{p} ) \; ,\]
+        recovering the light parameters \( \hat{\mathbf{p}} \) from the environment map \( \mathbf{E}(\omega) \). Please see the main manuscript for the description of the first term.
+        The second term \( \ell_\mathrm{reg}( \mathbf{p} ) \) is a regularizing term used to stabilize the optimization over light vector length \( \ell_\mathrm{length} \), intensity positivity \( \ell_\mathrm{neg} \), light color \( \ell_\mathrm{color} \) and bandwdith \( \ell_\mathrm{sigma} \). We sum the regularizing terms as
+        \[ \ell_\mathrm{reg}( \mathbf{p} ) = \lambda_2 \ell_\mathrm{length} + \lambda_3 \ell_\mathrm{neg} + \lambda_4 \ell_\mathrm{color} + \lambda_5 \ell_\mathrm{\sigma} \; . \]
+        In the following, we describe each individual term.
+      </p>
+      <p>
+        The vector length loss \( \ell_\mathrm{length} \) is used since the representation for the light position used during the optimization is \( \xi \in \mathcal{R}^3 \), effectively optimizing over the cartesian coordinates \( \{x,y,z\} \).
+        While this yields one additional degree of freedom over the necessary \( \mathcal{S}^2 \) space required to represent all 3D rotations, we found this representation to be more stable due to the lack of wraparound. As such, we need to constrain the cartesian coordinates to be close to unit length during the optimization, which we do using
+        \[ \ell_\mathrm{length} = \sum_{k=1}^K \left\vert 1 - \left\Vert \xi_{k_{\{x,y,z\}}} \right\Vert \: \right\vert \; ,\] 
+        where \( \left\Vert \cdot \right\Vert \) is the vector length, and \( \left\vert \cdot \right\vert \) the absolute value. This loss is summed over all lights \( K \).
+      </p>
+      <p>
+        We enforce the light color to be non-negative using 
+        \[ \ell_\mathrm{neg} = \sum_{k=1}^K \left\vert \max(\mathbf{c_k}, 0) \right\vert \; , \]
+        ensuring values of light intensity \( \mathbf{c_k} \) below 0 are penalized.
+        Similarly, we regularize the light color towards gray using
+        \[ \ell_\mathrm{color} = \sum_{k=1}^K \left\vert \delta_{\left\vert \mathbf{c_k} \right\vert,1\!\times\!10^{-3}} \cdot \sigma_\mathbf{c_k} \right\vert \; , \]
+        where \( \sigma_\mathbf{c_k} \) is the standard deviation of the rgb values of light \(k\), and \( \delta_{\left\vert \mathbf{c_k} \right\vert,1\!\times\!10^{-3}} \) is the <a href="https://en.wikipedia.org/wiki/Kronecker_delta">Kronecker delta function</a> taking the value 1 when the intensity of light \( \mathbf{c_k} \) is over \( 1\!\times\!10^{-3} \) and 0 otherwise. 
+      </p>
+      <p>
+        Finally, we found that leaving the light bandwidth&mdash;or effective size&mdash;\( \sigma_k \) unconstrained during the optimization would typically result in very large lights, potentially yielding almost uniform lights on the sphere. We hypothesize the optimization tries to approximate ambient light with very large \( \sigma_k \) values. To circumvent this, we use the following loss:
+        \[ \ell_\mathrm{\sigma} = \sum_{k=1}^K \max \left(\sigma_k, \; \sqrt{\frac{0.05}{4\pi}} \right) \;. \]
+        In our implementation, \( \lambda_2 = 0.1 , \lambda_3 = 10 , \lambda_4 = 1\!\times\!10^{-2} , \lambda_5 = 0.8 \).
+      </p>
+
+      
+    
+    </div>
+      
+
+    <footer class="footer navbar-fixed-bottom">
+      <div class="container">
+        <span class="text-muted">EverLight: Indoor-Outdoor Editable HDR Lighting Estimation &mdash; Supplementary Material &mdash; ICCV 2023</span>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./js/lightbox-plus-jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+  </body>
+</html>
