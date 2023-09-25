@@ -9,7 +9,7 @@
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap CSS-->
-        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!-- Material icons-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
@@ -17,15 +17,19 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 offset-lg-2">
+                <div class="col-lg-10 offset-lg-1">
                     <div class="text-center">
                         <!-- -------- TITLE -------- -->
                         <div class="row mt-5">
-                            <h1>Lens Parameter Estimation for Realistic Depth of Field Modeling</h1>
+                            <div class="col">
+                                <h1>Lens Parameter Estimation for Realistic Depth of Field Modeling</h1>
+                            </div>
                         </div>
                         <!-- ------- AUTHORS ------- -->
-                        <div class="row mt-1" style="white-space: pre-wrap;">
-                            <h5>Dominique&nbspPiché‑Meunier  Yannick&nbspHold‑Geoffroy  Jianming&nbspZhang  Jean‑François&nbspLalonde</h5>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <div style="white-space: pre-wrap;"><h5><a href="https://dompm.github.io">Dominique&nbspPiché‑Meunier</a>   <a href="https://yannickhold.com/">Yannick&nbspHold‑Geoffroy</a>   <a href="https://jimmie33.github.io/">Jianming&nbspZhang</a>   <a href="http://vision.gel.ulaval.ca/~jflalonde/">Jean‑François&nbspLalonde</a></h5></div>
+                            </div>
                         </div>
                         <!-- -------- LOGOS -------- -->
                         <div class="row mt-2 align-items-center">
@@ -38,7 +42,9 @@
                         </div>
                         <!-- ------ CONFRENCE ------ -->
                         <div class="row mt-1">
-                            <h4>ICCV 2023</h4>
+                            <div class="col">
+                                <h4>ICCV 2023</h4>
+                            </div>
                         </div>
                         <!-- -------- LINKS -------- -->
                         <div class="row mt-3">
@@ -49,11 +55,14 @@
                                 <a type="button" class="btn btn-secondary mb-1" href="supp/index.html">
                                     <span class="material-icons" style="vertical-align: -6px">note_add</span> Supplementary
                                 </a>
+                                <a type="button" class="btn btn-secondary mb-1" href="assets/poster/poster_iccv.pdf">
+                                    <span class="material-icons" style="vertical-align: -6px">data_thresholding</span> Poster
+                                </a>
                                 <a type="button" class="btn btn-secondary mb-1" href="">
                                     <span class="material-icons" style="vertical-align: -6px">storage</span> Dataset
                                 </a>
-                                <a type="button" class="btn btn-secondary mb-1" href="http://rachmaninoff.gel.ulaval.ca:8003/">
-                                    <span class="material-icons" style="vertical-align: -6px">description</span> Live demo
+                                <a type="button" class="btn btn-secondary mb-1" href="http://rachmaninoff.gel.ulaval.ca:8008/">
+                                    <span class="material-icons" style="vertical-align: -6px">web</span> Live demo
                                 </a>
                             </div>
                         </div>
@@ -76,16 +85,22 @@
                     <!-- -------- VIDEO -------- -->
                     <div class="row mt-3">
                         <h3>Video presentation</h3>
-                    
-                        <video src="supp/assets/animated_insertion/insertion_comparison_audio.mp4" controls class="img-fluid"></video>
+                    </div>
+                    <div class="row">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vv06dr0p7oo?si=eak_VKWvvC7KqKpK" allowfullscreen></iframe>
+                        </div>
                     </div>
 
                     <!-- ------- DATASET -------- -->
                     <div class="row mt-5">
                         <h3>Dataset</h3>
+                    </div>
+                    <div class="row">
                         <p align="justify">
                             Coming soon.
                         </p>
+                    </div>
 
                     <!-- -------- BIBTEX -------- -->
                     <div class="row mt-3">
@@ -98,13 +113,14 @@
     year = {2023}
     }   
                         </pre>
+                    </div>
                 </div>  
             </div>
         </div>
         <!-- JQuerry -->
-        <script src="js/jquery-3.6.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
         <!-- Bootstrap core JS-->
-        <script src="js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <!-- Math jax -->
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
