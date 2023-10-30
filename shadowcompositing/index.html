@@ -7,6 +7,7 @@
 
     <title>Shadow Harmonization for Realistic Compositing</title>
     <meta name="description" content="SIGGRAPH Asia 2023 Conference Proceedings publication.">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -18,6 +19,10 @@
 </head>
 
 <body>
+    <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+        <i class="material-symbols-outlined pt-2">arrow_upward</i>
+    </button>
+
     <div class="container">
         <div class="row justify-content-center align-items-center pt-1 pb-3">
             <a href="https://www.ulaval.ca" class="col-lg-2 col-md-3 col-sm-4 col-5 pt-2">
@@ -51,10 +56,38 @@
             <div class="row justify-content-center text-center pt-3 pb-2 paper-text" style="font-size: 0.9em; color: black;">
                 <i>SIGGRAPH Asia 2023 Conference Proceedings</i>
             </div>
+
+            <div class="row justify-content-center">
+                <div class="col-1 m-2 p-2 paper-btn btn"><a href="#paper-stuff">
+                    <span class="material-icons inline-icon">description</span>
+                    Paper
+                </a></div>
+                <button class="col-1 m-2 p-2 disabled-btn btn" type="button"
+                        data-bs-container="body" data-bs-toggle="popover" data-bs-hover="popover" data-bs-placement="top"
+                        data-bs-content="Available soon!">
+                    <!-- <a href="https://github.com/lvsn/shadowcompositing"> -->
+                        <span class="material-icons inline-icon">terminal</span>
+                        Code
+                    <!-- </a> -->
+                </button>
+                <button class="col-1 m-2 p-2 disabled-btn btn" type="button"
+                        data-bs-container="body" data-bs-toggle="popover" data-bs-hover="popover" data-bs-placement="top"
+                        data-bs-content="Available soon!">
+                    <span class="material-symbols-outlined inline-icon">database</span>
+                    Assets
+                </button>
+            </div>
         </div>
 
         <center>
             <div class="pt-3"></div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-8 alert alert-success" role="alert">
+                    <b>Tip:</b> drag the sliders in the figures below to compare the images before and after our method.
+                </div>
+            </div>
+
             <div class="teaser">
                 <div class="teaser-bg" id="bg1">
                     <div class="teaser-fg" id="fg1"></div>
@@ -63,27 +96,6 @@
                 </div>
             </div>
         </center>
-
-        <div class="row justify-content-center">
-            <div class="col-1 m-2 p-2 paper-btn"><a href="#paper-stuff">
-                <span class="material-icons inline-icon">description</span>
-                Paper
-            </a></div>
-            <div class="col-1 m-2 p-2 paper-btn"><a href="https://github.com/lvsn/shadowcompositing">
-                <span class="material-icons inline-icon">terminal</span>
-                Code
-            </a></div>
-            <div class="col-1 m-2 p-2 disabled-btn">
-                <span class="material-symbols-outlined inline-icon">database</span>
-                Assets
-            </div>
-        </div>
-
-        <div class="row justify-content-center text-center">
-            <div class="col-8 alert alert-warning" role="alert">
-                <b>Note:</b> code and assets will be released soon.
-            </div>
-        </div>
 
         <div class="row justify-content-center text-center pt-4">
                 <div class="h3">Abstract</div>
@@ -149,7 +161,7 @@
                 <div class="row justify-content-begin">
                     <div class="col-12 m-2 p-2 pb-0 mb-0 inline-btn">
                         For technical questions and feedback, please contact
-                        <a class="col-12 p-0 m-0" href="https://valenca.io">Lucas Valença <i>(lucas@valenca.io)</i></a>.
+                        <a class="col-12 p-0 m-0" href="https://valenca.io">Lucas Valença <i>(lucas@valenca.io)</i></a>
                     </div>
                 </div>
                 <div class="row justify-content-begin">
@@ -187,60 +199,79 @@
         </div>
         <center>
             <div class="pt-3"></div>
-
-            <div class="row justify-content-center text-center">
-                <div class="col-8 alert alert-warning" role="alert">
-                    <b>Note:</b> from this point onward, the website is under construction.
-                </div>
-            </div>
-
-            <div class="teaser" style="max-height: 480px; max-width: 640px; height: 37vw;">
+            <div class="teaser" style="max-height: 480px; max-width: 640px; height: 56vw;">
                 <div class="teaser-bg" id="bg2" style="background-image: url(img/ours_117-13.png);">
                     <div class="teaser-fg" id="fg2" style="background-image: url(img/naive_117-13.png);"></div>
                     <div class="slider-button" id="sliderBt2"></div>
                     <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider2" oninput="moveDivisor(2)">
                 </div>
             </div>
-            <div class="pt-3"></div>
-            <div class="teaser" style="max-height: 480px; max-width: 640px; height: 37vw;">
+            <figcaption class="figure-caption pt-1 col-6">
+                <b>Realistic shadow compositing</b>
+                must consider ground shadow interactions as well as real shadows cast on the virtual object.
+            </figcaption>
+            <div class="pt-5"></div>
+            <div class="teaser" style="max-height: 480px; max-width: 640px; height: 56vw;">
                 <div class="teaser-bg" id="bg3" style="background-image: url(img/ours_99-4.png);">
                     <div class="teaser-fg" id="fg3" style="background-image: url(img/naive_99-4.png);"></div>
                     <div class="slider-button" id="sliderBt3"></div>
                     <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider3" oninput="moveDivisor(3)">
                 </div>
             </div>
-            <div class="pt-3"></div>
-            <div class="teaser" style="max-height: 453px; max-width: 604px; height: 37vw;">
+            <figcaption class="figure-caption pt-1 col-6">
+                <b>Non-planar surfaces</b>
+                may cause the object to look less realistic if approximated as a plane. Our method can be extended to non-flat grounds given
+                the 3D surface as input.
+            </figcaption>
+            <div class="pt-5"></div>
+            <div class="teaser" style="max-height: 453px; max-width: 604px; height: 56vw;">
                 <div class="teaser-bg" id="bg4" style="background-image: url(img/ours_lssd432.png);">
                     <div class="teaser-fg" id="fg4" style="background-image: url(img/naive_lssd432.png);"></div>
                     <div class="slider-button" id="sliderBt4"></div>
                     <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider4" oninput="moveDivisor(4)">
                 </div>
             </div>
-            <div class="pt-3"></div>
-            <div class="teaser" style="max-height: 391px; max-width: 482px; height: 40vw;">
+            <figcaption class="figure-caption pt-1 col-6">
+                <b>Noise in the background image</b>
+                can cause issues. Upon closer inspection, the noisy pixels in our shadow border are similar to the noisy pixels in the sand.
+            </figcaption>
+            <div class="pt-5"></div>
+            <div class="teaser" style="max-height: 391px; max-width: 482px; height: 61vw;">
                 <div class="teaser-bg" id="bg5" style="background-image: url(img/ours_60977-5325429.png);">
                     <div class="teaser-fg" id="fg5" style="background-image: url(img/naive_60977-5325429.png);"></div>
                     <div class="slider-button" id="sliderBt5"></div>
                     <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider5" oninput="moveDivisor(5)">
                 </div>
             </div>
-            <div class="pt-3"></div>
-            <div class="teaser" style="max-height: 564px; max-width: 752px; height: 37vw;">
+            <figcaption class="figure-caption pt-1 col-6">
+                <b>Unknown geometries</b>
+                are not accounted for unless 3D data is available (e.g., the bench close to the bunny's head does not make the shadow darker).
+            </figcaption>
+            <div class="pt-5"></div>
+            <div class="teaser" style="max-height: 564px; max-width: 752px; height: 56vw;">
                 <div class="teaser-bg" id="bg6" style="background-image: url(img/ours_474721840.png);">
                     <div class="teaser-fg" id="fg6" style="background-image: url(img/naive_474721840.png);"></div>
                     <div class="slider-button" id="sliderBt6"></div>
                     <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider6" oninput="moveDivisor(6)">
                 </div>
             </div>
-            <div class="pt-3"></div>
-            <div class="teaser" style="max-height: 768px; max-width: 1024px; height: 38vw;">
+            <figcaption class="figure-caption pt-1 col-6">
+                <b>Unusual surface textures</b>, like the orange ground above,
+                are more challenging to generalize to, given the scarcity of training data available.
+            </figcaption>
+            <div class="pt-5"></div>
+            <div class="teaser" style="max-height: 768px; max-width: 1024px; height: 57vw;">
                 <div class="teaser-bg" id="bg7" style="background-image: url(img/ours_web-shadow0125.png);">
                     <div class="teaser-fg" id="fg7" style="background-image: url(img/naive_web-shadow0125.png);"></div>
                     <div class="slider-button" id="sliderBt7"></div>
                     <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider7" oninput="moveDivisor(7)">
                 </div>
             </div>
+            <figcaption class="figure-caption pt-1 col-6">
+                <b>Ground textures with detailed shadow patterns</b>
+                are especially challenging to discern from unknown ground textures, causing innacuracies in shadow blending (e.g., floor gaps in the image above).
+            </figcaption>
+            <div class="pt-5"></div>
         </center>
 
     </div>
