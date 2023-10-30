@@ -19,7 +19,6 @@
 
 <body>
     <div class="container">
-
         <div class="row justify-content-center align-items-center pt-1 pb-3">
             <a href="https://www.ulaval.ca" class="col-lg-2 col-md-3 col-sm-4 col-5 pt-2">
                 <img src="img/laval.png" class="img-fluid" alt="Laval University logo">
@@ -29,7 +28,7 @@
             </a>
         </div>
 
-        <div class="container col-8" style="background-color:rgb(245, 245, 245);">
+        <div class="container col-12" style="background-color:rgb(245, 245, 245);">
             <div class="row justify-content-center text-center pt-3">
                 <h1 class="display-1 paper-title">
                     Shadow Harmonization for Realistic Compositing
@@ -37,11 +36,11 @@
             </div>
 
             <div class="row justify-content-around align-items-center text-center">
-                <div class="col-lg-2 col-md-3 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="https://valenca.io">Lucas Valença</a><sup>1</sup></div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="https://www.linkedin.com/in/jinsong-zhang/">Jinsong Zhang</a><sup>1</sup></div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="http://mgharbi.com/">Michaël Gharbi</a><sup>2</sup></div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="https://yannickhold.com/">Yannick Hold-Geoffroy</a><sup>2,1</sup></div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="http://vision.gel.ulaval.ca/~jflalonde/">Jean-François Lalonde</a><sup>1</sup></div>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="https://valenca.io">Lucas Valença</a><sup>1</sup></div>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="https://www.linkedin.com/in/jinsong-zhang/">Jinsong Zhang</a><sup>1</sup></div>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="http://mgharbi.com/">Michaël Gharbi</a><sup>2</sup></div>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="https://yannickhold.com/">Yannick Hold-Geoffroy</a><sup>2,1</sup></div>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="http://vision.gel.ulaval.ca/~jflalonde/">Jean-François Lalonde</a><sup>1</sup></div>
             </div>
 
             <div class="row justify-content-center text-center">
@@ -57,10 +56,10 @@
         <center>
             <div class="pt-3"></div>
             <div class="teaser">
-                <div class="teaser-bg" id="bg">
-                    <div class="teaser-fg" id="fg"></div>
-                    <div class="slider-button" id="sliderBt"></div>
-                    <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider" oninput="moveDivisor()">
+                <div class="teaser-bg" id="bg1">
+                    <div class="teaser-fg" id="fg1"></div>
+                    <div class="slider-button" id="sliderBt1"></div>
+                    <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider1" oninput="moveDivisor(1)">
                 </div>
             </div>
         </center>
@@ -70,10 +69,10 @@
                 <span class="material-icons inline-icon">description</span>
                 Paper
             </a></div>
-            <div class="col-1 m-2 p-2 disabled-btn">
+            <div class="col-1 m-2 p-2 paper-btn"><a href="https://github.com/lvsn/shadowcompositing">
                 <span class="material-icons inline-icon">terminal</span>
                 Code
-            </div>
+            </a></div>
             <div class="col-1 m-2 p-2 disabled-btn">
                 <span class="material-symbols-outlined inline-icon">database</span>
                 Assets
@@ -88,10 +87,10 @@
 
         <div class="row justify-content-center text-center pt-4">
                 <div class="h3">Abstract</div>
-                <hr class="col-8">
+                <hr class="col-12">
         </div>
         <div class="row justify-content-center text-begin">
-            <div class="col-8 paper-text">
+            <div class="col-12 paper-text">
                 <p>
                     Compositing virtual objects into real background images requires one to carefully match the scene's camera parameters, surface geometry, textures, and lighting to obtain plausible renderings. Recent learning approaches have shown many scene properties can be estimated from images, resulting in robust automatic single-image compositing systems, but many challenges remain. In particular, interactions between real and synthetic shadows are not handled gracefully by existing methods, which typically assume a shadow-free background. As a result, they tend to generate double shadows when the synthetic object's cast shadow overlaps a background shadow, and ignore shadows from the background that should be cast onto the synthetic object. In this paper, we present a compositing method for outdoor scenes that addresses these issues and produces realistic cast shadows. This requires identifying existing shadows, including soft shadow boundaries, then reasoning about the ambiguity of unknown ground albedo and scene lighting to match the color and intensity of shaded areas. Using supervision from shadow removal and detection datasets, we propose a generative adversarial pipeline and improved composition equations that simultaneously handle both shadow interaction scenarios. We evaluate our method on challenging, real outdoor images from multiple distributions and datasets. Quantitative and qualitative comparisons show our approach produces more realistic results than existing alternatives.
                 </p>
@@ -100,59 +99,68 @@
 
         <div class="row justify-content-center text-center pt-4" id="paper-stuff">
             <div class="h3">Paper</div>
-            <hr class="col-8">
+            <hr class="col-12">
         </div>
-        <div class="row justify-content-center align-items-around">
-            <div class="col-4 offset-2 p-0">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-5 col-sm-10 col-12 offset-lg-1 offset-md-1 p-0">
                 <img src="img/paper.png" class="img-fluid" alt="Paper preview">
             </div>
-            <div class="col-6 p-5 pt-3 paper-text">
-                <div class="row justify-content-begin pt-2">
-                    <span class="col-1 p-0 material-icons inline-icon">description</span>
-                    <div class="col-9 p-0 pt-1">
-                        Main article (original, x MB)
+            <div class="col-lg-5 col-md-5 col-sm-10 col-12 offset-lg-1 offset-md-1 pt-3 justify-content-begin">
+                <div class="row justify-content-begin">
+                    <div class="col-12 m-2 p-2 pt-0 pb-0 mt-0 mb-0 inline-btn">
+                        <span class="material-icons inline-icon">description</span>
+                        <a href="https://valenca.io/media/external/sa23/valenca2023shadow.pdf">
+                            Main article (original, 45.6 MB)
+                        </a>
                     </div>
                 </div>
-                <div class="row justify-content-begin pt-2">
-                    <span class="col-1 p-0 material-icons inline-icon">description</span>
-                    <div class="col-9 p-0 pt-1">
-                        Main article (compressed, x MB)
+                <div class="row justify-content-begin">
+                    <div class="col-12 m-2 p-2 pt-0 pb-0 inline-btn">
+                        <span class="material-icons inline-icon">description</span>
+                        <a href="https://valenca.io/media/external/sa23/valenca2023shadow_compressed.pdf">
+                            Main article (compressed, 4.34 MB)
+                        </a>
                     </div>
                 </div>
-                <div class="row justify-content-begin pt-4">
-                    <span class="col-1 p-0 material-icons inline-icon">note_add</span>
-                    <div class="col-9 p-0 pt-1">
-                        Supplemental (original, x MB)
+                <div class="row justify-content-begin">
+                    <div class="col-12 m-2 p-2 pt-0 pb-0 mb-0 inline-btn">
+                        <span class="material-icons inline-icon">note_add</span>
+                        <a href="https://valenca.io/media/external/sa23/valenca2023shadow_supplemental.pdf">
+                            Appendix (original, 136 MB)
+                        </a>
                     </div>
                 </div>
-                <div class="row justify-content-begin pt-2">
-                    <span class="col-1 p-0 material-icons inline-icon">note_add</span>
-                    <div class="col-9 p-0 pt-1">
-                        Supplemental (compressed, x MB)
+                <div class="row justify-content-begin">
+                    <div class="col-12 m-2 p-2 pt-0 pb-0 inline-btn">
+                        <span class="material-icons inline-icon">note_add</span>
+                        <a href="https://valenca.io/media/external/sa23/valenca2023shadow_supplemental_compressed.pdf">
+                            Appendix (compressed, 6.44 MB)
+                        </a>
                     </div>
                 </div>
-                <div class="row justify-content-begin pt-4">
-                    <span class="col-1 p-0 material-icons inline-icon">movie</span>
-                    <div class="col-9 p-0 pt-1">
-                        Fast-forward video (x MB)
+                <div class="row justify-content-begin">
+                    <div class="col-12 m-2 p-2 pt-0 pb-0 mb-0 inline-btn">
+                        <span class="material-icons inline-icon">movie</span>
+                        <a href="https://valenca.io/media/external/sa23/valenca2023shadow_fastforward.mp4">
+                            Fast-forward (38 seconds, 27.1 MB)
+                        </a>
                     </div>
                 </div>
-                <div class="row justify-content-begin pt-2">
-                    <span class="col-1 p-0 material-icons inline-icon">movie</span>
-                    <div class="col-9 p-0 pt-1">
-                        Animated demo (x MB)
+                <div class="row justify-content-begin">
+                    <div class="col-12 m-2 p-2 pb-0 mb-0 inline-btn">
+                        For technical questions and feedback, please contact
+                        <a class="col-12 p-0 m-0" href="https://valenca.io">Lucas Valença <i>(lucas@valenca.io)</i></a>.
                     </div>
                 </div>
-                <div class="row justify-content-begin pt-4">
-                    For technical questions, please contact:
-                    <a class="col-10 p-0" href="https://valenca.io">Lucas Valença <i>(lucas@valenca.io)</i></a>
-                </div>
-                <div class="row justify-content-begin pt-2">
-                    For other inquiries, please contact:
-                    <a class="col-10 p-0" href="http://vision.gel.ulaval.ca/~jflalonde/">Prof. Jean-François Lalonde <i>(jflalonde@gel.ulaval.ca)</i></a>
+                <div class="row justify-content-begin">
+                    <div class="col-12 m-2 p-2 pt-0 inline-btn">
+                        For other inquiries, please contact
+                        <a class="col-12 p-0" href="http://vision.gel.ulaval.ca/~jflalonde/">Prof. Jean-François Lalonde <i>(jflalonde@gel.ulaval.ca)</i></a>
+                    </div>
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-12">
+                <br>
                 This paper can be cited as follows:
                 <br>
                 <div class="col-12 pt-2" style="color: rgb(32, 129, 188); background-color:rgb(245, 245, 245);">
@@ -168,15 +176,72 @@
         </div>
 
         <div class="row justify-content-center text-center pt-4">
-            <div class="h3">Figures</div>
-            <hr class="col-8">
+            <div class="h3">Results</div>
+            <hr class="col-12">
         </div>
+        <div class="row justify-content-center align-items-center text-center">
+            <figure class="figure col-6">
+                <img src="img/animation.gif" class="img-fluid" alt="Animated bunny">
+                <figcaption class="figure-caption pt-1"><b>Animations over a static background</b> are possible by detecting shadows on the input image as a whole and moving the 3D render.</figcaption>
+            </figure>
+        </div>
+        <center>
+            <div class="pt-3"></div>
 
-        <div class="row justify-content-center text-center">
-            <div class="col-8 alert alert-warning" role="alert">
-                <b>Note:</b> under construction, nothing to see here!
+            <div class="row justify-content-center text-center">
+                <div class="col-8 alert alert-warning" role="alert">
+                    <b>Note:</b> from this point onward, the website is under construction.
+                </div>
             </div>
-        </div>
+
+            <div class="teaser" style="max-height: 480px; max-width: 640px; height: 37vw;">
+                <div class="teaser-bg" id="bg2" style="background-image: url(img/ours_117-13.png);">
+                    <div class="teaser-fg" id="fg2" style="background-image: url(img/naive_117-13.png);"></div>
+                    <div class="slider-button" id="sliderBt2"></div>
+                    <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider2" oninput="moveDivisor(2)">
+                </div>
+            </div>
+            <div class="pt-3"></div>
+            <div class="teaser" style="max-height: 480px; max-width: 640px; height: 37vw;">
+                <div class="teaser-bg" id="bg3" style="background-image: url(img/ours_99-4.png);">
+                    <div class="teaser-fg" id="fg3" style="background-image: url(img/naive_99-4.png);"></div>
+                    <div class="slider-button" id="sliderBt3"></div>
+                    <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider3" oninput="moveDivisor(3)">
+                </div>
+            </div>
+            <div class="pt-3"></div>
+            <div class="teaser" style="max-height: 453px; max-width: 604px; height: 37vw;">
+                <div class="teaser-bg" id="bg4" style="background-image: url(img/ours_lssd432.png);">
+                    <div class="teaser-fg" id="fg4" style="background-image: url(img/naive_lssd432.png);"></div>
+                    <div class="slider-button" id="sliderBt4"></div>
+                    <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider4" oninput="moveDivisor(4)">
+                </div>
+            </div>
+            <div class="pt-3"></div>
+            <div class="teaser" style="max-height: 391px; max-width: 482px; height: 40vw;">
+                <div class="teaser-bg" id="bg5" style="background-image: url(img/ours_60977-5325429.png);">
+                    <div class="teaser-fg" id="fg5" style="background-image: url(img/naive_60977-5325429.png);"></div>
+                    <div class="slider-button" id="sliderBt5"></div>
+                    <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider5" oninput="moveDivisor(5)">
+                </div>
+            </div>
+            <div class="pt-3"></div>
+            <div class="teaser" style="max-height: 564px; max-width: 752px; height: 37vw;">
+                <div class="teaser-bg" id="bg6" style="background-image: url(img/ours_474721840.png);">
+                    <div class="teaser-fg" id="fg6" style="background-image: url(img/naive_474721840.png);"></div>
+                    <div class="slider-button" id="sliderBt6"></div>
+                    <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider6" oninput="moveDivisor(6)">
+                </div>
+            </div>
+            <div class="pt-3"></div>
+            <div class="teaser" style="max-height: 768px; max-width: 1024px; height: 38vw;">
+                <div class="teaser-bg" id="bg7" style="background-image: url(img/ours_web-shadow0125.png);">
+                    <div class="teaser-fg" id="fg7" style="background-image: url(img/naive_web-shadow0125.png);"></div>
+                    <div class="slider-button" id="sliderBt7"></div>
+                    <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider7" oninput="moveDivisor(7)">
+                </div>
+            </div>
+        </center>
 
     </div>
 </body>
