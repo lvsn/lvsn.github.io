@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Shadow Harmonization for Realistic Compositing</title>
+    <meta name="description" content="SIGGRAPH Asia 2023 Conference Proceedings publication.">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="script.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row justify-content-center align-items-center pt-1 pb-3">
+            <a href="https://www.ulaval.ca" class="col-lg-2 col-md-3 col-sm-4 col-5 pt-2">
+                <img src="img/laval.png" class="img-fluid" alt="Laval University logo">
+            </a>
+            <a href="https://research.adobe.com" class="col-lg-2 col-md-3 col-sm-4 col-5">
+                <img src="img/adobe.png" class="img-fluid" alt="Adobe logo">
+            </a>
+        </div>
+
+        <div class="container col-8" style="background-color:rgb(245, 245, 245);">
+            <div class="row justify-content-center text-center pt-3">
+                <h1 class="display-1 paper-title">
+                    Shadow Harmonization for Realistic Compositing
+                </h1>
+            </div>
+
+            <div class="row justify-content-around align-items-center text-center">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="https://valenca.io">Lucas Valença</a><sup>1</sup></div>
+                <div class="col-lg-2 col-md-3 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="https://www.linkedin.com/in/jinsong-zhang/">Jinsong Zhang</a><sup>1</sup></div>
+                <div class="col-lg-2 col-md-3 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="http://mgharbi.com/">Michaël Gharbi</a><sup>2</sup></div>
+                <div class="col-lg-2 col-md-3 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="https://yannickhold.com/">Yannick Hold-Geoffroy</a><sup>2,1</sup></div>
+                <div class="col-lg-2 col-md-3 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="http://vision.gel.ulaval.ca/~jflalonde/">Jean-François Lalonde</a><sup>1</sup></div>
+            </div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-5 p-1 pt-3 paper-affiliation"><sup>1</sup>Université Laval</div>
+                <div class="col-lg-2 col-md-3 col-sm-4 col-5 p-1 pt-3 paper-affiliation"><sup>2</sup>Adobe</div>
+            </div>
+
+            <div class="row justify-content-center text-center pt-3 pb-2 paper-text" style="font-size: 0.9em; color: black;">
+                <i>SIGGRAPH Asia 2023 Conference Proceedings</i>
+            </div>
+        </div>
+
+        <center>
+            <div class="pt-3"></div>
+            <div class="teaser">
+                <div class="teaser-bg" id="bg">
+                    <div class="teaser-fg" id="fg"></div>
+                    <div class="slider-button" id="sliderBt"></div>
+                    <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider" oninput="moveDivisor()">
+                </div>
+            </div>
+        </center>
+
+        <div class="row justify-content-center">
+            <div class="col-1 m-2 p-2 paper-btn"><a href="#paper-stuff">
+                <span class="material-icons inline-icon">description</span>
+                Paper
+            </a></div>
+            <div class="col-1 m-2 p-2 disabled-btn">
+                <span class="material-icons inline-icon">terminal</span>
+                Code
+            </div>
+            <div class="col-1 m-2 p-2 disabled-btn">
+                <span class="material-symbols-outlined inline-icon">database</span>
+                Assets
+            </div>
+        </div>
+
+        <div class="row justify-content-center text-center">
+            <div class="col-8 alert alert-warning" role="alert">
+                <b>Note:</b> code and assets will be released soon.
+            </div>
+        </div>
+
+        <div class="row justify-content-center text-center pt-4">
+                <div class="h3">Abstract</div>
+                <hr class="col-8">
+        </div>
+        <div class="row justify-content-center text-begin">
+            <div class="col-8 paper-text">
+                <p>
+                    Compositing virtual objects into real background images requires one to carefully match the scene's camera parameters, surface geometry, textures, and lighting to obtain plausible renderings. Recent learning approaches have shown many scene properties can be estimated from images, resulting in robust automatic single-image compositing systems, but many challenges remain. In particular, interactions between real and synthetic shadows are not handled gracefully by existing methods, which typically assume a shadow-free background. As a result, they tend to generate double shadows when the synthetic object's cast shadow overlaps a background shadow, and ignore shadows from the background that should be cast onto the synthetic object. In this paper, we present a compositing method for outdoor scenes that addresses these issues and produces realistic cast shadows. This requires identifying existing shadows, including soft shadow boundaries, then reasoning about the ambiguity of unknown ground albedo and scene lighting to match the color and intensity of shaded areas. Using supervision from shadow removal and detection datasets, we propose a generative adversarial pipeline and improved composition equations that simultaneously handle both shadow interaction scenarios. We evaluate our method on challenging, real outdoor images from multiple distributions and datasets. Quantitative and qualitative comparisons show our approach produces more realistic results than existing alternatives.
+                </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center text-center pt-4" id="paper-stuff">
+            <div class="h3">Paper</div>
+            <hr class="col-8">
+        </div>
+        <div class="row justify-content-center align-items-around">
+            <div class="col-4 offset-2 p-0">
+                <img src="img/paper.png" class="img-fluid" alt="Paper preview">
+            </div>
+            <div class="col-6 p-5 pt-3 paper-text">
+                <div class="row justify-content-begin pt-2">
+                    <span class="col-1 p-0 material-icons inline-icon">description</span>
+                    <div class="col-9 p-0 pt-1">
+                        Main article (original, x MB)
+                    </div>
+                </div>
+                <div class="row justify-content-begin pt-2">
+                    <span class="col-1 p-0 material-icons inline-icon">description</span>
+                    <div class="col-9 p-0 pt-1">
+                        Main article (compressed, x MB)
+                    </div>
+                </div>
+                <div class="row justify-content-begin pt-4">
+                    <span class="col-1 p-0 material-icons inline-icon">note_add</span>
+                    <div class="col-9 p-0 pt-1">
+                        Supplemental (original, x MB)
+                    </div>
+                </div>
+                <div class="row justify-content-begin pt-2">
+                    <span class="col-1 p-0 material-icons inline-icon">note_add</span>
+                    <div class="col-9 p-0 pt-1">
+                        Supplemental (compressed, x MB)
+                    </div>
+                </div>
+                <div class="row justify-content-begin pt-4">
+                    <span class="col-1 p-0 material-icons inline-icon">movie</span>
+                    <div class="col-9 p-0 pt-1">
+                        Fast-forward video (x MB)
+                    </div>
+                </div>
+                <div class="row justify-content-begin pt-2">
+                    <span class="col-1 p-0 material-icons inline-icon">movie</span>
+                    <div class="col-9 p-0 pt-1">
+                        Animated demo (x MB)
+                    </div>
+                </div>
+                <div class="row justify-content-begin pt-4">
+                    For technical questions, please contact:
+                    <a class="col-10 p-0" href="https://valenca.io">Lucas Valença <i>(lucas@valenca.io)</i></a>
+                </div>
+                <div class="row justify-content-begin pt-2">
+                    For other inquiries, please contact:
+                    <a class="col-10 p-0" href="http://vision.gel.ulaval.ca/~jflalonde/">Prof. Jean-François Lalonde <i>(jflalonde@gel.ulaval.ca)</i></a>
+                </div>
+            </div>
+            <div class="col-8">
+                This paper can be cited as follows:
+                <br>
+                <div class="col-12 pt-2" style="color: rgb(32, 129, 188); background-color:rgb(245, 245, 245);">
+                    <pre><code>  @inproceedings{valenca2023shadow,
+                 title     = {Shadow Harmonization for Realistic Compositing},
+                 author    = {Valen{\c{c}}a, Lucas and Zhang, Jinsong and Gharbi, Micha{\"e}l and Hold-Geoffroy, Yannick and Lalonde, Jean-Fran{\c{c}}ois},
+                 booktitle = {ACM SIGGRAPH Asia 2023 Conference Proceedings},
+                 year      = {2023}
+  }
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center text-center pt-4">
+            <div class="h3">Figures</div>
+            <hr class="col-8">
+        </div>
+
+        <div class="row justify-content-center text-center">
+            <div class="col-8 alert alert-warning" role="alert">
+                <b>Note:</b> under construction, nothing to see here!
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
