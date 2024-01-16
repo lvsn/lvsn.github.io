@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Shadow Harmonization for Realistic Compositing</title>
+    <meta name="description" content="SIGGRAPH Asia 2023 Conference Proceedings publication.">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="script.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+        <i class="material-symbols-outlined pt-2">arrow_upward</i>
+    </button>
+
+    <div class="container">
+        <div class="row justify-content-center align-items-center pt-1 pb-3">
+            <a href="https://www.ulaval.ca" class="col-lg-2 col-md-3 col-sm-4 col-5 pt-2">
+                <img src="img/laval.png" class="img-fluid" alt="Laval University logo">
+            </a>
+            <a href="https://research.adobe.com" class="col-lg-2 col-md-3 col-sm-4 col-5">
+                <img src="img/adobe.png" class="img-fluid" alt="Adobe logo">
+            </a>
+        </div>
+
+        <div class="container col-12" style="background-color:rgb(245, 245, 245);">
+            <div class="row justify-content-center text-center pt-3">
+                <h1 class="display-1 paper-title">
+                    Shadow Harmonization for Realistic Compositing
+                </h1>
+            </div>
+
+            <div class="row justify-content-around align-items-center text-center">
+                <div class="col-lg-2 col-md-2 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="https://valenca.io">Lucas Valença</a><sup>1</sup></div>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="https://www.linkedin.com/in/jinsong-zhang/">Jinsong Zhang</a><sup>1</sup></div>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="http://mgharbi.com/">Michaël Gharbi</a><sup>2</sup></div>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="https://yannickhold.com/">Yannick Hold-Geoffroy</a><sup>2,1</sup></div>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-5 m-0 p-0 pt-2 paper-author"><a href="http://vision.gel.ulaval.ca/~jflalonde/">Jean-François Lalonde</a><sup>1</sup></div>
+            </div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-5 p-1 pt-3 paper-affiliation"><sup>1</sup>Université Laval</div>
+                <div class="col-lg-2 col-md-3 col-sm-4 col-5 p-1 pt-3 paper-affiliation"><sup>2</sup>Adobe</div>
+            </div>
+
+            <div class="row justify-content-center text-center pt-3 pb-2 paper-text" style="font-size: 0.9em; color: black;">
+                <i>SIGGRAPH Asia 2023 Conference Proceedings</i>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-1 m-2 p-2 paper-btn btn"><a href="#paper-stuff">
+                    <span class="material-icons inline-icon">description</span>
+                    Paper
+                </a></div>
+                <button class="col-1 m-2 p-2 paper-btn btn">
+                    <a href="https://github.com/lvsn/shadowcompositing">
+                        <span class="material-icons inline-icon">terminal</span>
+                        Code
+                    </a>
+                </button>
+            </div>
+        </div>
+
+        <center>
+            <div class="pt-3"></div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-11 alert alert-success" role="alert">
+                    <b>Tip:</b> drag the sliders in the figures below to compare the images before and after our method.
+                </div>
+            </div>
+
+            <div class="teaser">
+                <div class="teaser-bg" id="bg1">
+                    <div class="teaser-fg" id="fg1"></div>
+                    <div class="slider-button" id="sliderBt1"></div>
+                    <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider1" oninput="moveDivisor(1)">
+                </div>
+            </div>
+        </center>
+
+        <div class="row justify-content-center text-center pt-4">
+                <div class="h3">Abstract</div>
+                <hr class="col-12">
+        </div>
+        <div class="row justify-content-center text-begin">
+            <div class="col-12 paper-text">
+                <p>
+                    Compositing virtual objects into real background images requires one to carefully match the scene's camera parameters, surface geometry, textures, and lighting to obtain plausible renderings. Recent learning approaches have shown many scene properties can be estimated from images, resulting in robust automatic single-image compositing systems, but many challenges remain. In particular, interactions between real and synthetic shadows are not handled gracefully by existing methods, which typically assume a shadow-free background. As a result, they tend to generate double shadows when the synthetic object's cast shadow overlaps a background shadow, and ignore shadows from the background that should be cast onto the synthetic object. In this paper, we present a compositing method for outdoor scenes that addresses these issues and produces realistic cast shadows. This requires identifying existing shadows, including soft shadow boundaries, then reasoning about the ambiguity of unknown ground albedo and scene lighting to match the color and intensity of shaded areas. Using supervision from shadow removal and detection datasets, we propose a generative adversarial pipeline and improved composition equations that simultaneously handle both shadow interaction scenarios. We evaluate our method on challenging, real outdoor images from multiple distributions and datasets. Quantitative and qualitative comparisons show our approach produces more realistic results than existing alternatives.
+                </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center text-center pt-4" id="paper-stuff">
+            <div class="h3">Paper</div>
+            <hr class="col-12">
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-5 col-sm-10 col-12 offset-lg-1 offset-md-1 p-0">
+                <img src="img/paper.png" class="img-fluid" alt="Paper preview">
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-10 col-12 offset-lg-1 offset-md-1 pt-3 justify-content-begin">
+                <div class="row justify-content-begin">
+                    <div class="col-12 m-2 p-2 pt-0 pb-0 mt-0 mb-0 inline-btn">
+                        <span class="material-icons inline-icon">description</span>
+                        <a href="https://dl.acm.org/doi/pdf/10.1145/3610548.3618227">
+                            Main article (ACM original, 45.6 MB)
+                        </a>
+                    </div>
+                </div>
+                <div class="row justify-content-begin">
+                    <div class="col-12 m-2 p-2 pt-0 pb-0 inline-btn">
+                        <span class="material-icons inline-icon">description</span>
+                        <a href="https://hdrdb-public.s3.valeria.science/shadowcompositing/valenca2023shadow_compressed.pdf">
+                            Main article (compressed, 4.34 MB)
+                        </a>
+                    </div>
+                </div>
+                <div class="row justify-content-begin">
+                    <div class="col-12 m-2 p-2 pt-0 pb-0 mb-0 inline-btn">
+                        <span class="material-icons inline-icon">note_add</span>
+                        <a href="https://dl.acm.org/action/downloadSupplement?doi=10.1145%2F3610548.3618227&file=appendix.pdf">
+                            Appendix (ACM original, 136 MB)
+                        </a>
+                    </div>
+                </div>
+                <div class="row justify-content-begin">
+                    <div class="col-12 m-2 p-2 pt-0 pb-0 inline-btn">
+                        <span class="material-icons inline-icon">note_add</span>
+                        <a href="https://hdrdb-public.s3.valeria.science/shadowcompositing/valenca2023shadow_supplemental_compressed.pdf">
+                            Appendix (compressed, 6.44 MB)
+                        </a>
+                    </div>
+                </div>
+                <div class="row justify-content-begin">
+                    <div class="col-12 m-2 p-2 pt-0 pb-0 mb-0 inline-btn">
+                        <span class="material-icons inline-icon">movie</span>
+                        <a href="https://hdrdb-public.s3.valeria.science/shadowcompositing/valenca2023shadow_fastforward.mp4">
+                            Fast-forward (38 seconds, 27.1 MB)
+                        </a>
+                    </div>
+                </div>
+                <div class="row justify-content-begin">
+                    <div class="col-12 m-2 p-2 pt-0 pb-0 mb-0 inline-btn">
+                        <span class="material-icons inline-icon">dataset</span>
+                        <a href="https://hdrdb-public.s3.valeria.science/shadowcompositing/valenca2023shadow_slides.pptx">
+                            Presentation (PowerPoint, 61.2 MB)
+                        </a>
+                    </div>
+                </div>
+                <div class="row justify-content-begin">
+                    <div class="col-12 m-2 p-2 pb-0 mb-0 inline-btn">
+                        For technical questions and feedback, please contact
+                        <a class="col-12 p-0 m-0" href="https://valenca.io">Lucas Valença <i>(lucas@valenca.io)</i></a>
+                    </div>
+                </div>
+                <div class="row justify-content-begin">
+                    <div class="col-12 m-2 p-2 pt-0 inline-btn">
+                        For other inquiries, please contact
+                        <a class="col-12 p-0" href="http://vision.gel.ulaval.ca/~jflalonde/">Prof. Jean-François Lalonde <i>(jflalonde@gel.ulaval.ca)</i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <br>
+                This paper can be cited as follows:
+                <br>
+                <div class="col-12 pt-2" style="color: rgb(32, 129, 188); background-color:rgb(245, 245, 245);">
+                    <pre><code>  @inproceedings{valenca2023shadow,
+                 title     = {Shadow Harmonization for Realistic Compositing},
+                 author    = {Valen{\c{c}}a, Lucas and Zhang, Jinsong and Gharbi, Micha{\"e}l and Hold-Geoffroy, Yannick and Lalonde, Jean-Fran{\c{c}}ois},
+                 booktitle = {ACM SIGGRAPH Asia 2023 Conference Proceedings},
+                 year      = {2023}
+  }
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center text-center pt-4">
+            <div class="h3">Results</div>
+            <hr class="col-12">
+        </div>
+        <div class="row justify-content-center align-items-center text-center">
+            <figure class="figure col-10">
+                <img src="img/animation.gif" class="img-fluid" alt="Animated bunny">
+                <figcaption class="figure-caption pt-1"><b>Animations over a static background</b> are possible by detecting shadows on the input image as a whole and moving the 3D render.</figcaption>
+            </figure>
+        </div>
+        <center>
+            <div class="pt-3"></div>
+            <div class="teaser" style="max-height: 480px; max-width: 640px; height: 56vw;">
+                <div class="teaser-bg" id="bg2" style="background-image: url(img/ours_117-13.png);">
+                    <div class="teaser-fg" id="fg2" style="background-image: url(img/naive_117-13.png);"></div>
+                    <div class="slider-button" id="sliderBt2"></div>
+                    <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider2" oninput="moveDivisor(2)">
+                </div>
+            </div>
+            <figcaption class="figure-caption pt-1 col-6">
+                <b>Realistic shadow compositing</b>
+                must consider ground shadow interactions as well as real shadows cast on the virtual object.
+            </figcaption>
+            <div class="pt-5"></div>
+            <div class="teaser" style="max-height: 480px; max-width: 640px; height: 56vw;">
+                <div class="teaser-bg" id="bg3" style="background-image: url(img/ours_99-4.png);">
+                    <div class="teaser-fg" id="fg3" style="background-image: url(img/naive_99-4.png);"></div>
+                    <div class="slider-button" id="sliderBt3"></div>
+                    <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider3" oninput="moveDivisor(3)">
+                </div>
+            </div>
+            <figcaption class="figure-caption pt-1 col-6">
+                <b>Non-planar surfaces</b>
+                may cause the object to look less realistic if approximated as a plane. Our method can be extended to non-flat grounds given
+                the 3D surface as input.
+            </figcaption>
+            <div class="pt-5"></div>
+            <div class="teaser" style="max-height: 453px; max-width: 604px; height: 56vw;">
+                <div class="teaser-bg" id="bg4" style="background-image: url(img/ours_lssd432.png);">
+                    <div class="teaser-fg" id="fg4" style="background-image: url(img/naive_lssd432.png);"></div>
+                    <div class="slider-button" id="sliderBt4"></div>
+                    <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider4" oninput="moveDivisor(4)">
+                </div>
+            </div>
+            <figcaption class="figure-caption pt-1 col-6">
+                <b>Noise in the background image</b>
+                can cause issues. Upon closer inspection, the noisy pixels in our shadow border are similar to the noisy pixels in the sand.
+            </figcaption>
+            <div class="pt-5"></div>
+            <div class="teaser" style="max-height: 391px; max-width: 482px; height: 61vw;">
+                <div class="teaser-bg" id="bg5" style="background-image: url(img/ours_60977-5325429.png);">
+                    <div class="teaser-fg" id="fg5" style="background-image: url(img/naive_60977-5325429.png);"></div>
+                    <div class="slider-button" id="sliderBt5"></div>
+                    <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider5" oninput="moveDivisor(5)">
+                </div>
+            </div>
+            <figcaption class="figure-caption pt-1 col-6">
+                <b>Unknown geometries</b>
+                are not accounted for unless 3D data is available (e.g., the bench close to the bunny's head does not make the shadow darker).
+            </figcaption>
+            <div class="pt-5"></div>
+            <div class="teaser" style="max-height: 564px; max-width: 752px; height: 56vw;">
+                <div class="teaser-bg" id="bg6" style="background-image: url(img/ours_474721840.png);">
+                    <div class="teaser-fg" id="fg6" style="background-image: url(img/naive_474721840.png);"></div>
+                    <div class="slider-button" id="sliderBt6"></div>
+                    <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider6" oninput="moveDivisor(6)">
+                </div>
+            </div>
+            <figcaption class="figure-caption pt-1 col-6">
+                <b>Unusual surface textures</b>, like the orange ground above,
+                are more challenging to generalize to, given the scarcity of training data available.
+            </figcaption>
+            <div class="pt-5"></div>
+            <div class="teaser" style="max-height: 768px; max-width: 1024px; height: 57vw;">
+                <div class="teaser-bg" id="bg7" style="background-image: url(img/ours_web-shadow0125.png);">
+                    <div class="teaser-fg" id="fg7" style="background-image: url(img/naive_web-shadow0125.png);"></div>
+                    <div class="slider-button" id="sliderBt7"></div>
+                    <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider7" oninput="moveDivisor(7)">
+                </div>
+            </div>
+            <figcaption class="figure-caption pt-1 col-6">
+                <b>Ground textures with detailed shadow patterns</b>
+                are especially challenging to discern from unknown ground textures, causing innacuracies in shadow blending (e.g., floor gaps in the image above).
+            </figcaption>
+            <div class="pt-5"></div>
+        </center>
+
+    </div>
+</body>
+
+</html>
