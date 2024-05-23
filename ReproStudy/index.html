@@ -1,0 +1,307 @@
+<html lang="en">
+
+  <head>
+	<!-- <title>Reproducibility Study on Adversarial Attacks against Robust Transformer Trackers </title> -->
+	<!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/lightbox.min.css" rel="stylesheet">
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="./css/sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <br>
+          <center>
+          	    <br 
+		    <div  style="text-align:center">
+                        <span style="font-size:36px">Reproducibility Study on Adversarial Attacks against Robust Transformer Trackers</span> 
+                        
+                    </div>  
+	  		  <table align=center width=800px>
+	  			  <tr>
+			          
+	  	              <td align=center>
+	  					<center>  
+	  						<span style="font-size:20px"><a href="https://fatemehn.github.io/index.html">Fatemeh N. Nokabadi</a></span>&nbsp;&nbsp;
+	  						<span style="font-size:20px"><a href="http://www.jflalonde.ca/">Jean-François Lalonde</a></span>&nbsp;&nbsp;
+							<span style="font-size:20px"><a href="https://chgagne.github.io/english/">Christian Gagné</a></span>&nbsp;&nbsp;
+		  		  		</center>
+		  		  		<img src="./images/iid_logo.png" align="center" width="18%">  
+						<img src="./images/ul_logo.png" align="center" width="18%"> 
+						<img src="./images/mila_logo.png" align="center" width="18%">
+		  		  		<br>
+                  			        <br> 
+		  		  		
+		  		  	  </td> 
+		  		  </tr>
+	  			  <tr>
+		  		  </tr>
+					<tr>
+						<td width=100%>
+						  <center>
+							   <img class="round" style="width:100%" src="./images/RepStu1.png"/>  
+						  </center>
+						</td>  	              
+					</tr>
+			  </table> 
+          </center>
+   
+	  <hr>
+          <hr>
+		  <table align=center width=875px>
+	  		  <table align=center width=600px> 
+	  			  <tr>  
+	  	                <td align=center width=120px>
+							<center>
+								<span style="font-size:24px"><a href='https://openreview.net/forum?id=FEEKR0Vl9s'>[Paper]</a></span>
+							</center>
+		  		  	    </td>
+						<td align=center width=300px>
+							<center>
+								<span style="font-size:24px;"><a href="#maskbox">[Supplementary Material]</a></span>
+							</center>
+						</td>
+						<td align=center width=120px>
+							<center>
+								<span style="font-size:24px;"><a href="https://github.com/fatemehN/ReproducibilityStudy">[GitHub]</a></span>
+							</center>
+						</td>
+						<!-- <td align=center width=120px>
+							<center>
+								<span style="font-size:24px;"><a href=''>[Video]</a></span>
+							</center>
+						</td> -->
+		  		  	 </tr>
+	  			  <tr>
+	  			  
+			  </table>
+			</table> 
+		  <hr> 
+		  
+		  <table align=center width=875px>
+	  		  <table align=center width=600px> 
+	  			  <tr>  
+	  	              <td align=center width=120px>
+	  					<center>
+	  						Accepted at <span style="font-size:16px"><a href='https://openreview.net/group?id=TMLR&referrer=%5BHomepage%5D(%2F)#tab-event-certifications'>TMLR</a>, 2024!</span>
+		  		  		</center>
+		  		  	  </td>   
+	  			  <tr>
+	  			  
+			  </table>
+			</table> 
+		  <hr> 
+
+
+		<hr> 
+  		  <table align=center width=875px>
+	  		  <center><h1>Abstract</h1></center>
+	  		  <tr>
+	  		  	<td>
+					New transformer networks have been integrated into object tracking pipelines and have
+					demonstrated strong performance on the latest benchmarks. This paper focuses on un-
+					derstanding how transformer trackers behave under adversarial attacks and how different
+					attacks perform on tracking datasets as their parameters change. We conducted a series of
+					experiments to evaluate the effectiveness of existing adversarial attacks on object trackers
+					with transformer and non-transformer backbones. We experimented on 7 different trackers,
+					including 3 that are transformer-based, and 4 which leverage other architectures. These
+					trackers are tested against 4 recent attack methods to assess their performance and ro-
+					bustness on VOT2022ST, UAV123 and GOT10k datasets. Our empirical study focuses on
+					evaluating adversarial robustness of object trackers based on bounding box versus binary
+					mask predictions, and attack methods at different levels of perturbations. Interestingly,
+					our study found that altering the perturbation level may not significantly affect the overall
+					object tracking results after the attack. Similarly, the sparsity and imperceptibility of the
+					attack perturbations may remain stable against perturbation level shifts. By applying a
+					specific attack on all transformer trackers, we show that new transformer trackers having
+					a stronger cross-attention modeling achieve a greater adversarial robustness on tracking
+					datasets, such as VOT2022ST and GOT10k. Our results also indicate the necessity for new
+					attack methods to effectively tackle the latest types of transformer trackers.
+
+	  		    </td>
+	  		  </tr>
+			</table>
+  		  	<br>
+		<hr>
+
+		<div class="container">
+			<div class="mt-1">
+			  <h1> Supplementary Material </h1>
+			</div>
+			</p>
+	  
+			<div style="clear:both; height:2em;"></div>
+			<h3>Table of Contents</h3>
+			<p>
+			<ol>
+			  <li>
+				<a href="#maskbox">Bounding box vs. Binary mask (experiment 1, section 4.1)</a>
+			  </li>
+			  <li>
+				<a href="#transt">Perturbation level shifts: White-box attacks (experiment 2, section 4.2)</a>
+			  </li>
+			  <li>
+				<a href="#pvid">Perturbation level shifts: Black-box attack (experiment 3, section 4.3)</a>
+			  </li>
+			  
+			</ol>
+			</p>
+			
+		<a class="anchor" name="maskbox"></a>
+      <div style="clear:both; height:4em;"></div>
+      <h2>1. Bounding box vs. Binary mask </h2>
+      <p align="justify"> In the first experiment, we applied the adversarial attacks aginst TransT-SEG and MixFormerM, and as a result, we created a video of the output of the tracker before<font color="green"> (Green Mask/BBOX) </font> and after the attack<font color="red"> (Red Mask/BBOX) </font>.</p>
+      <p align="justify"> The white-box attacks are more effective against TransT-SEG tracker whether the evaluation is based on the bounding box or the binary mask .</p>
+
+      <p align="justify" style="text-align:center" > Black-box attacks against TransT-SEG </p>  
+
+
+      <div class="row">
+        <div class="col-md-6" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp1/transt_CSA.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+        <div class="col-md-6" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp1/transt_IoU.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp1/transt_CSA2.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+        <div class="col-md-6" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp1/transt_IoU2.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+      </div>
+
+      <p align="justify" style="text-align:center" > White-box attacks against TransT-SEG </p>
+      <div class="row">
+        <div class="col-md-6" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp1/transt_RTAA.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+        <div class="col-md-6" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp1/transt_SPARk.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+        <div class="col-md-6" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp1/transt_RTAA2.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+        <div class="col-md-6" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp1/transt_SPARk2.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+        <!-- <p align="justify" style="text-align:center"> White-box attacks against TransT </p> -->
+      </div>
+
+      <p align="justify" style="text-align:center" > Black-box attacks against MixFormerM </p>
+      <div class="row">
+        <div class="col-md-6" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp1/mixf_CSA.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+        <div class="col-md-6" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp1/mixf_IoU.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+        <div class="col-md-6" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp1/mixf_CSA2.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+        <div class="col-md-6" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp1/mixf_IoU2.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+        <!-- <p align="justify" style="text-align:center"> White-box attacks against TransT </p> -->
+      </div>
+
+
+
+      <a class="anchor" name="transt"></a>
+      <div style="clear:both; height:4em;"></div>
+      <h2>2. Perturbation level shifts: White-box attacks </h2>
+      <p align="justify"> In this section, we applied the adversarial attacks aginst TransT, and as a result, we created a series of video using the perturbed search regions and perturbation maps in different perturbation levels for the white-box approaches: SPARK and RTAA. The search regions after the attack may show different areas of the same frame, depending on the effect of each attack and bounding box degradation. </p>
+      <p aligh="justify" >  Any perturbed region with SSIM lower than 50% is considered as a super-perturbed region. In lower perturbation levels, the perceptibility of the generated perturbations are greater while in higher levels, the number of super-perturbed frames are inscreased.  </p>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp2/hand2_e1.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+          <p style="text-align:center"> Perturbed search regions and Perturbation maps: &epsilon; = 2.55 </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp2/hand2_e2.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+          <p style="text-align:center"> Perturbed search regions and Perturbation maps: &epsilon; = 5.1 </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp2/hand2_e3.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+          <p style="text-align:center"> Perturbed search regions and Perturbation maps: &epsilon; = 10.2 </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp2/hand2_e4.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+          <p style="text-align:center"> Perturbed search regions and Perturbation maps: &epsilon; = 20.4 </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp2/hand2_e5.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+          <p style="text-align:center"> Perturbed search regions and Perturbation maps: &epsilon; = 40.8 </p>
+        </div>
+      </div>
+
+
+
+	  <a class="anchor" name="pvid"></a>
+	  <div style="clear:both; height:4em;"></div>
+	  <h2>3. Perturbation level shifts: Black-box attack </h2>
+  
+	  <p align="justify"> We have created video sequences by using the original tracking sequences as a base. These videos are generated by attacking the ROMTrack tracker with IoU method in different levels of the perturbation. </p>
+	  <p align="justify">. </p>
+	  <div class="row">
+		<div class="col-md-4" style="text-align:center;">
+		  <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp3/romt_monkey8k.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+		  <p style="text-align:center"> Perturbed Frame: &zeta; = 8k </p>
+		</div>
+		<div class="col-md-4" style="text-align:center;">
+		  <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp3/romt_monkey10k.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+		  <p style="text-align:center"> Perturbed Frame: &zeta; = 10k </p>
+		</div>
+		<div class="col-md-4" style="text-align:center;">
+		  <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp3/romt_monkey12k.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+		  <p style="text-align:center"> Perturbed Frame: &zeta; = 12k </p>
+		</div>
+	  </div>
+  
+	  <div class="row">
+		<div class="col-md-4" style="text-align:center;">
+		  <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp3/romt_monkeyL8k.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+		  <p style="text-align:center"> Perturbation Map: &zeta; = 8k </p>
+		</div>
+		<div class="col-md-4" style="text-align:center;">
+		  <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp3/romt_monkeyL10k.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+		  <p style="text-align:center"> Perturbation Map: &zeta; = 10k </p>
+		</div>
+		<div class="col-md-4" style="text-align:center;">
+		  <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/exp3/romt_monkeyL12k.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+		  <p style="text-align:center"> Perturbation Map: &zeta; = 12k </p>
+		</div>
+	  </div>
+			<footer class="footer navbar-fixed-bottom">
+				<div class="container">
+				  <span class="text-muted">Reproducibility Study on Adversarial Attacks against Robust Transformer Trackers &mdash; Accepted at TMLR 2024</span>
+				</div>
+			  </footer>
+              
+	 <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./js/lightbox-plus-jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+</body>
+</html>
+ 
