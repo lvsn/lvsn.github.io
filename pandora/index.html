@@ -1,0 +1,285 @@
+
+<!-- todo page 1 -->
+<!-- todo bibtex link -->
+
+<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-weight:300;
+		font-size:18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1100px;
+	}
+	
+	h1 {
+		font-size:32px;
+		font-weight:300;
+	}
+	
+	.disclaimerbox {
+		background-color: #eee;		
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+		padding: 20px;
+	}
+
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.rounded {
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	a:link,a:visited
+	{
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+	
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+	
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		        15px 15px 0 0px #fff, /* The fourth layer */
+		        15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		        20px 20px 0 0px #fff, /* The fifth layer */
+		        20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		        25px 25px 0 0px #fff, /* The fifth layer */
+		        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+
+	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+	
+	.vert-cent {
+		position: relative;
+	    top: 50%;
+	    transform: translateY(-50%);
+	}
+	
+	hr
+	{
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+</style>
+
+<html>
+  <head>
+	<title>PanDORA: Casual HDR Radiance Acquisition for Indoor Scenes</title>
+	<meta name="description" content="EverLight is the first lighting estimation method that simultaneously produces high dynamic range, high-resolution panoramas ready to use as HDRI in rendering engines, works for both indoor and outdoor domains, and it is editable.">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
+	<link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+  </head>
+
+  <body>
+    <br>
+          <center>
+          	    <br 
+		    <div  style="text-align:center">
+                        <span style="font-size:32px"> PanDORA: Casual HDR Radiance Acquisition for Indoor Scenes </span> 
+                        
+                    </div>  
+	  		  <table align=center width=600px>
+	  			  <tr>
+			          
+	  	              <td align=center>
+	  					<center>  
+	  						<span style="font-size:20px"><a href="https://mrkarimid.github.io/">Mohammad Reza Karimi Dastjerdi</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	  						<span style="font-size:20px"><a href="https://www.linkedin.com/in/lefreud/">Frédéric Fortier-Chouinard</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	  						<span style="font-size:20px"><a href="https://yannickhold.com/">Yannick Hold-Geoffroy</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	  						<span style="font-size:20px;white-space: nowrap"><a href="https://cervo.ulaval.ca/en/marc-hebert">Marc Hébert</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+							<span style="font-size:20px;white-space: nowrap"><a href="https://www.arc.ulaval.ca/enseignants-personnel/professeurs/claude-mh-demers">Claude Demers</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+							<br>
+							<span style="font-size:20px"><a href="https://people.engr.tamu.edu/nimak/index.html/">Nima Kalantari</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+								<span style="font-size:20px"><a href="https://vision.gel.ulaval.ca/~jflalonde//">Jean-François Lalonde</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+		  		  		</center>
+		  		  		<br>
+		  		  		<img src="./assets/ul_logo.png" align="center" width="30%">  
+						<img src="./assets/adobe_logo.png" align="center" width="30%">
+						<img src="./assets/tam_logo.png" align="center" width="20%">
+		  		  		<br>
+                  			        <br> 
+		  		  		
+		  		  	  </td> 
+		  		  </tr>
+	  			  <tr>
+		  		  </tr>
+			  </table> 
+          </center>
+
+          <center>
+  		  <table align=center width=850px>
+  			  <tr>
+  	              <td width=1000px>
+  					<center>
+  	                	 <img class="round" style="width:1000px" src="./assets/teaser.png"/>  
+	  				</center>
+  	              </td>  	              
+                </tr>
+  		  </table>  		  
+  		</center>
+   
+	  <hr>
+    <hr>
+          
+          
+          
+		  
+		  <table align=center width=875px>
+	  		  <table align=center width=600px> 
+	  			  <tr>  
+	  	              <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href='https://arxiv.org/abs/2304.13207'>[Paper]</a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	             <!--  <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href='./supp/index.html'>[Supplementary]</a></span><br>
+		  		  		</center>
+		  		  	  </td>
+	  	               <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href='./assets/poster.pdf'>[Poster]</a></span><br>
+		  		  		</center>
+		  		  	  </td>   -->
+		  		  	  <!--
+		  		  	  <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href='./assets/bibtex.txt'>[Bibtex]</a></span><br>
+		  		  		</center>
+		  		  	  </td>  
+		  		  	 </tr> -->
+	  			  <tr>
+	  			  
+			  </table>
+			</table> 
+		  <hr> 
+		  <hr>
+		  
+		  <!-- <table align=center width=875px>
+	  		  <table align=center width=700px> 
+	  		  	<tr>  
+	  	              <td align=center width=150px>
+	  					<center>
+	  						Accepted in <span style="font-size:20px"><a href='https://iccv2023.thecvf.com/'>International Conference on Computer Vision (ICCV)</a>, 2023!</span>
+		  		  		</center>
+		  		  	  </td>   
+	  			  <tr>
+	  			  <tr>  
+	  			  <tr>
+	  			  
+			  </table>
+			</table> 
+	  <hr> 
+		<hr> -->
+
+		<!-- <table align=center width=875px>
+	  		  <table align=center width=700px> 
+	  		  	<tr>  
+	  	              <td width=150px>
+	  					<center>
+	  						<span style="font-size:24px">This work is featured at <a href='https://www.adobe.com/max.html'>Adobe Max Sneaks 2022</a>!</span>
+		  		  		</td>
+		  		  	
+		  		  	</tr>
+		  		  </table>
+		  		  <table align=center width=700px> 
+
+		  		  	<tr>
+		  		  	<tr>
+		  		  	<td> 
+		  		  		Media Coverage: 
+		  		  		<td> <li> <a href='https://blog.adobe.com/en/publish/2022/10/19/adobe-max-sneaks-show-how-ai-is-enhancing-future-of-creativity'>Adobe Blog</a> </li> </td>
+		  		  		<td> <li> <a href='https://www.popsci.com/technology/adobe-beyond-the-seen-ai/'>Popular Science</a> </li> </td>
+		  		  		<td> <li> <a href='https://petapixel.com/2022/10/20/adobe-can-use-ai-to-extend-photos-well-beyond-their-original-boundaries/'>PetaPixel</a> </li> </td>
+		  		  		<td> <li> <a href='https://www.digitalcameraworld.com/news/the-future-of-photoshop-is-blowing-my-mind'>DigitalCameraWorld</a> </li> </td>
+		  		  		</center>
+		  		  	  </td>   
+	  			  <tr>
+	  			  
+	  			  
+			  </table>
+			</table>
+		  <hr> 
+		  <hr> -->
+
+  		  <table align=center width=875px>
+	  		  <center><h1>Abstract</h1></center>
+	  		  <tr>
+	  		  	<td>
+					Most novel view synthesis methods such as NeRF are unable to capture the true high dynamic range (HDR) radiance of scenes since they are typically trained on photos captured with standard low dynamic range (LDR) cameras. While the traditional exposure bracketing approach which captures several images at different exposures has recently been adapted to the multi-view case, we find such methods to fall short of capturing the full dynamic range of indoor scenes, which includes very bright light sources. In this paper, we present PanDORA: a PANoramic Dual-Observer Radiance Acquisition system for the casual capture of indoor scenes in high dynamic range. Our proposed system comprises two $360^\circ$ cameras rigidly attached to a portable tripod. The cameras simultaneously acquire two 360° videos: one at a regular exposure and the other at a very fast exposure, allowing a user to simply wave the apparatus casually around the scene in a matter of minutes. The resulting images are fed to a NeRF-based algorithm that reconstructs the scene's full high dynamic range. Compared to HDR baselines from previous work, our approach reconstructs the full HDR radiance of indoor scenes without sacrificing the visual quality while retaining the ease of capture from recent NeRF-like approaches. 
+				</td>
+	  		  </tr>
+			</table>
+  		  	<br>
+		<!-- <hr> -->
+
+
+		  <!-- <div class="card mb-4 shadow-sm text-center">
+				<h3 class="text-muted">Acknowledgements </h3>
+				The name of this paper EverLight is a homage to the Critical Role’s The Legend of Vox Machina. This work was partially supported by NSERC grant ALLRP557208-20. We thank Sai Bi for his help with extending the dynamic range of the panoramas and everyone at UL who helped with proofreading.
+				</div>
+      	  <br> -->
+
+              
+</body>
+</html>
+ 
