@@ -1,0 +1,392 @@
+<html lang="en">
+
+  <head>
+	<!-- <title>TrackPGD: A White-box Attack using Binary Masks against Robust Transformer Trackers </title> -->
+	<!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/lightbox.min.css" rel="stylesheet">
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="./css/sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <br>
+          <center>
+          	    <br 
+		    <div  style="text-align:center">
+                        <span style="font-size:36px">TrackPGD: A White-box Attack using Binary Masks against Robust Transformer Trackers</span> 
+                        
+                    </div>  
+	  		  <table align=center width=800px>
+	  			  <tr>
+			          
+	  	              <td align=center>
+						<br>
+	  					<center>  
+	  						<span style="font-size:20px"><a href="https://fatemehn.github.io/index.html">Fatemeh N. Nokabadi</a></span>&nbsp;&nbsp;
+                <span style="font-size:20px"><a href="https://www.irif.fr/~pequignot/">Yann Batiste Pequignot</a></span>&nbsp;&nbsp;
+	  						<span style="font-size:20px"><a href="http://www.jflalonde.ca/">Jean-François Lalonde</a></span>&nbsp;&nbsp;
+							<span style="font-size:20px"><a href="https://chgagne.github.io/english/">Christian Gagné</a></span>&nbsp;&nbsp;
+		  		  		</center>
+							<br>
+							<br>
+		  		  		<img src="./images/iid_logo.png" align="center" width="12%">  
+						<img src="./images/DEEL.png" align="center" width="10%">
+						<img src="./images/ul_logo.png" align="center" width="12%"> 
+						<img src="./images/mila_logo.png" align="center" width="12%">
+		  		  		
+                  			        <br> 
+		  		  		
+		  		  	  </td> 
+		  		  </tr>
+	  			  <tr>
+		  		  </tr>
+					<tr>
+						<td width=100%>
+							<br>
+						  <center>
+							   <img class="round" style="width:100%" src="./images/figure3_tpgd.png"/>  
+						  </center>
+						  <br>
+						</td>  	              
+					</tr>
+			  </table> 
+          </center>
+   
+	  <hr>
+          <hr>
+		  <table align=center width=875px>
+	  		  <table align=center width=600px> 
+	  			  <tr>  
+	  	                <!-- <td align=center width=120px>
+							<center>
+								<span style="font-size:24px"><a href='https://openreview.net/forum?id=FEEKR0Vl9s'>[Paper]</a></span>
+							</center>
+		  		  	    </td> -->
+						<td align=center width=300px>
+							<center>
+								<span style="font-size:24px;"><a href="#mask_mixf">[Supplementary Material]</a></span>
+							</center>
+						</td>
+						<!-- <td align=center width=120px>
+							<center>
+								<span style="font-size:24px;"><a href="https://github.com/fatemehN/ReproducibilityStudy">[Code]</a></span>
+							</center>
+						</td> -->
+						<td align=center width=100px>
+							<center>
+								<span style="font-size:24px;"><a href="https://arxiv.org/abs/2407.03946">[ArXiv]</a></span>
+							</center>
+						</td>
+            <td align=center width=100px>
+							<center>
+								<span style="font-size:24px;"><a href="https://hal.science/hal-04635690">[HAL]</a></span>
+							</center>
+						</td>
+						<!-- <td align=center width=120px>
+							<center>
+								<span style="font-size:24px;"><a href=''>[Video]</a></span>
+							</center>
+						</td> -->
+		  		  	 </tr>
+	  			  <tr>
+	  			  
+			  </table>
+			</table> 
+		  <hr> 
+		  
+		  <!-- <table align=center width=875px>
+	  		  <table align=center width=600px> 
+	  			  <tr>  
+	  	              <td align=center width=120px>
+	  					<center>
+							<p> Accepted in <span style="font-size:16px"><a href='https://openreview.net/group?id=TMLR&referrer=%5BHomepage%5D(%2F)#tab-event-certifications'>Transactions on Machine Learning Research (TMLR)</a>, 2024!</span></p>
+							
+							<p> Winner of <span style="font-size:16px"><a href='https://reproml.org/'> ML Reproducibility Challenge (MLRC) 2023!</a></span></p>
+						</center>
+		  		  	  </td>   
+	  			  <tr>
+	  			  
+			  </table>
+			</table>  -->
+		  <hr> 
+
+
+		<hr> 
+  		  <table align="center" width=875px>
+	  		  <center><h1>Abstract</h1></center>
+	  		  <tr>
+				<td>
+					Object trackers with transformer backbones have achieved robust performance on visual object track-
+          ing datasets. However, the adversarial robustness of these trackers has not been well studied in the lit-
+          erature. Due to the backbone differences, the adversarial white-box attacks proposed for object tracking
+          are not transferable to all types of trackers. For instance, transformer trackers such as MixFormerM still
+          function well after black-box attacks, especially in predicting the object binary masks. We are proposing
+          a novel white-box attack named TrackPGD, which relies on the predicted object binary mask to attack
+          the robust transformer trackers. That new attack focuses on annotation masks by adapting the well-known
+          SegPGD segmentation attack, allowing to successfully conduct the white-box attack on trackers relying
+          on transformer backbones. The experimental results indicate that the TrackPGD is able to effectively at-
+          tack transformer-based trackers such as MixFormerM, OSTrackSTS, and TransT-SEG on several tracking
+          datasets.
+					
+
+	  		    </td>
+	  		  </tr>
+			</table>
+  		  	<br>
+				<!-- <table align=center width=600px>
+					<tr>
+						<td><span style="font-size:14pt"><center>
+							<a href="./images/bibtext.txt">[Bibtex]</a>
+						  </center></td>
+					</tr>
+				</table> -->
+		<hr>
+
+    <!-- Begin page content -->
+    <div class="container">
+      <div class="mt-1">
+        <h1> &mdash; Supplementary Material</h1>
+      </div>
+      <p align="justify" class="lead">
+        The following contents provide additional results and analysis for our proposed method in the main paper. 
+        
+      </p>
+
+      <div style="clear:both; height:2em;"></div>
+      <h3>Table of Contents</h3>
+      <p>
+      <ol>
+        <li>
+          <a href="#mask_mixf">MixFormerM Tracking with Mask after Attacks (extends fig. 2)</a>
+        </li>
+        <li>
+          <a href="#mask_ost">OSTrackSTS Tracking with Mask after Attacks (extends fig. 2)</a>
+        </li>
+        <li>
+          <a href="#transt">TransT-SEG Tracking with BBox after Attacks (extends fig. 4)</a>
+        </li>
+        <li>
+          <a href="#pvid">Perturbed Search Regions</a>
+        </li>
+        <li>
+          <a href="#valid">Parameters Tuning</a>
+        </li>
+        <!-- <li>
+          <a href="#implementation">Implementation Details</span></a>
+        </li> -->
+        
+      </ol>
+      </p>
+
+      <a class="anchor" name="mask_mixf"></a>
+      <div style="clear:both; height:4em;"></div>
+      <h2>1. MixFormerM Tracking with Mask after Attacks </h2>
+      <p align="justify"> To show the performance of our method for tracking, we apply the adversarial attacks aginst MixFormerM, and as a result, we create a video of the output of the tracker before<font color="green"> (Green Mask) </font> and after the attack<font color="red"> (Red Mask) </font>.</p>
+
+
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/masks/dance_triple.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/masks/roll_triple.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/masks/para_triple.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/masks/goat_triple.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/masks/horse_triple.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+      </div>
+
+      <a class="anchor" name="mask_ost"></a>
+      <div style="clear:both; height:4em;"></div>
+      <h2>2. OSTrackSTS Tracking with Mask after Attacks </h2>
+      <p align="justify"> To show the performance of our method for tracking, we apply the adversarial attacks aginst OSTrackSTS, and as a result, we create a video of the output of the tracker before<font color="green"> (Green Mask) </font> and after the attack<font color="red"> (Red Mask) </font>.</p>
+
+
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/masks/dance_ost.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/masks/kite_ost.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/masks/sblack_ost.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/masks/swing_ost.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/masks/elephant_ost.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+        </div>
+      </div>
+
+
+
+      <a class="anchor" name="transt"></a>
+      <div style="clear:both; height:4em;"></div>
+      <h2>3. TransT-SEG Tracking with BBox after Attacks </h2>
+      <p align="justify"> In this section, we apply the adversarial attacks aginst TransT-SEG, and as a result, we create a video of the output of the tracker before<font color="green"> (Green Mask) </font>   and after the attack<font color="red"> (Red Mask) </font>.</p>
+
+    <div class="row">
+      <div class="col-md-12" style="text-align:center;">
+        <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/bbox/matrix_transt.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12" style="text-align:center;">
+        <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/bbox/iceskater1_transt.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12" style="text-align:center;">
+        <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/bbox/godfather_transt.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12" style="text-align:center;">
+        <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/bbox/fernando_transt.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12" style="text-align:center;">
+        <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/bbox/motocross2_transt.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+      </div>
+    </div>
+
+    <a class="anchor" name="pvid"></a>
+    <div style="clear:both; height:4em;"></div>
+    <h2>4. Perturbed Search Regions </h2>
+
+    <p align="justify"> We have created video sequences by using the original tracking sequences as a base. In each frame, we perturbed the search region using an attack approach. The search regions after the attack may show different areas of the same frame, depending on the effect of each attack and bounding box degradation. These videos are generated by attacking the TransT-SEG tracker. </p>
+
+    <div class="row">
+      <div class="col-md-12" style="text-align:center;">
+        <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/perturbed_regions/Pice2_transt.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12" style="text-align:center;">
+        <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/perturbed_regions/Pcrossing_transt.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12" style="text-align:center;">
+        <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/perturbed_regions/Pflamingo1_transt.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12" style="text-align:center;">
+        <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/perturbed_regions/Pdrone_transt.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12" style="text-align:center;">
+        <video poster="" controls="" width="100%" autoplay muted preload="auto" loop poster=""> <source src="figures/perturbed_regions/Pbmx_transt.mp4" type="video/mp4"> Your browser does not support the video tag. </video> 
+      </div>
+    </div>
+
+    <a class="anchor" name="valid"></a>
+    <div style="clear:both; height:4em;"></div>
+    <h2>5. Parameters Tuning</h2>
+
+    <p align="justify">
+        As described in sec. 4.1 of the main manuscript, we used the DAVIS2016 dataset as the validation set to adjust the \( \lambda_1 \) and \( \lambda_2 \) parameters. This dataset comprises of 50 video sequences with binary mask annotations. 
+        We select the DAVIS2016 dataset and protocol as the validation set of our work. The DAVIS protocol calculates the Jaccard Index \( \mathcal{J} \) and contour accuracy \( \mathcal{F} \) via three error statistic measures: mean, recall, and decay. 
+        The Jaccard index measures the Intersection over Union (IoU) metric, while the contour accuracy is computed by calculating the F-measure of the predicted mask and the ground truth. 
+        To obtain the F-measure, the predicted mask is considered as a set of closed contours, and precision \( P_c \) and recall \( R_c \) are calculated between contour points by comparing these contours with the ground-truth contours. Then, the F-measure \( \frac{2P_c R_c}{P_c + R_c} \) is computed to represent the accuracy of the predicted mask.Finally, the mean, recall and decay is computed to measure the error statistically. The mean is simple average over computed measurements. The recall metric calculates the length of subsequences where the evaluation metric \( \mathcal{J} \) or \( \mathcal{F} \) is higher than a pre-defined threshold(0.5). The decay quantifies the performance loss over four time steps.
+    </p>
+    <p align="justify">
+        To fine-tune the TrackPGD parameters, we computed the average value of \( \mathcal{J}(R) \) and \( \mathcal{F} (R) \), represented as \( \mathcal{J}\&\mathcal{F} (R) \). This approach considers both IoU and contour accuracy over time across video frames. Since this measurement is close to the robustness definition in VOT challenge, we chose this metric to find the best hyperparameters to decrease the robustness of transformer trackers.  
+        The following heatmaps show the average values of the Jaccard index \( \mathcal{J} \) and contour accuracy \( \mathcal{F} \) for the tracker's recall metric. The better performance of the tracker is represented by the greater \( \mathcal{J}\&\mathcal{F} (R) \). As our reported numbers are based on attack results, a smaller number indicates a more effective attack. Therefore, the best parameters for MixFormerM are \( ( \lambda_1, \lambda_2)  = (10, 2.5) \), while the TrackPGD is strongest against OSTrackSTS with \( (\lambda_1, \lambda_2) = (1, 10) \) and against TransT-SEG with \( (\lambda_1, \lambda_2) = (50, 2.5) \). 
+    </p>
+    <div class="row">
+      <div class="col-md-4" style="text-align:center;"> 
+        <img style="border:20px solid white;width:400px;" src="figures/heatmaps/mixformer.png"/> 
+      <p style="text-align:center"> MixFormerM </p>
+      </div>
+      <div class="col-md-4" style="text-align:center;"> 
+        <img style="border:20px solid white;width:400px;" src="figures/heatmaps/ostrack.png"/> 
+      <p style="text-align:center"> OSTrackSTS </p>
+      </div>
+      <div class="col-md-4" style="text-align:center;"> 
+      <img style="border:20px solid white;width:400px;" src="figures/heatmaps/transt.png"/> 
+      <p style="text-align:center"> TransT-SEG </p>
+      </div>
+    </div>
+      
+    <!-- <a class="anchor" name="implementation"></a>
+      <div style="clear:both; height:4em;"></div>
+      <h2>5. Implementation Details</h2>
+
+      <p>
+        aa
+      </p>
+    
+    </div> -->
+
+    <div class="card mb-4 shadow-sm text-center">
+      <h3 class="text-muted">Acknowledgements </h3>
+      This work is supported by the DEEL Project CRDPJ 537462-18 funded by the Natural Sciences and Engineering Research Council of Canada (NSERC) and the Consortium for Research and Innovation in Aerospace in Québec (CRIAQ), together with its industrial partners Thales Canada inc, Bell Textron Canada Limited, CAE inc and Bombardier inc. <a href="https://deel.quebec/">MÉIE-Québec(DEEL project)</a>
+      <!-- This research was supported by funding from NSERC-Canada and <a href="https://deel.quebec/">MÉIE-Québec(DEEL project).</a> -->
+      </div>
+      
+
+    <footer class="footer navbar-fixed-bottom">
+      <div class="container">
+        <span class="text-muted">TrackPGD: A White-box Attack using Binary Masks against Robust Transformer Trackers</span>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./js/lightbox-plus-jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+  </body>
+</html>
