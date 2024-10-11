@@ -143,7 +143,9 @@
 
 <head>
 	<title>ZeroComp: Zero-shot Object Compositing from Image Intrinsics via Diffusion</title>
-	<!-- <meta name="description" content="EverLight is the first lighting estimation method that simultaneously produces high dynamic range, high-resolution panoramas ready to use as HDRI in rendering engines, works for both indoor and outdoor domains, and it is editable."> -->
+	<meta name="description"
+		content="
+	ZeroComp is a zero-shot 3D object compositing method that integrates virtual objects into scenes without paired training images, using ControlNet and Stable Diffusion to adjust shading and scene interactions for realistic results, and creates realistic composites.">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
 </head>
@@ -200,17 +202,13 @@
 	</center>
 
 	<hr>
-	<hr>
-
-
-
 
 	<table align=center width=875px>
 		<table align=center width=600px>
 			<tr>
 				<td align=center width=120px>
 					<center>
-						<span style="font-size:24px"><a href=''>[Paper (Coming soon)]</a></span>
+						<span style="font-size:24px"><a href='https://arxiv.org/abs/2410.08168'>[Paper]</a></span>
 					</center>
 				</td>
 				<td align=center width=120px>
@@ -223,19 +221,20 @@
 						<span style="font-size:24px"><a href='./assets/poster.pdf'>[Poster]</a></span><br>
 					</center>
 				</td>
-				<!--
-		  		  	  <td align=center width=120px>
-	  					<center>
-	  						<span style="font-size:24px"><a href='./assets/bibtex.txt'>[Bibtex]</a></span><br>
-		  		  		</center>
-		  		  	  </td>  
-		  		  	 </tr> -->
+
+				<td align=center width=120px>
+					<center>
+						<span style="font-size:24px"><a href='./assets/bibtex.txt'>[Bibtex]</a></span><br>
+					</center>
+				</td>
+			</tr>
 			<tr>
 
 		</table>
 	</table>
-	<!-- <hr>
-	<hr> -->
+
+	<hr>
+
 
 	<!-- <table align=center width=875px>
 		<table align=center width=700px>
@@ -305,7 +304,37 @@
 			</td>
 		</tr>
 	</table>
-	<br>
+
+	<hr>
+
+	<center>
+		<h1>ZeroComp Pipeline</h1>
+	</center>
+	<table align=center hight='1200' width='800px'>
+		<p align="center">
+			<img src="./assets/Pipeline1_or4.png" width="100%">
+	</table>
+
+	<hr>
+
+	<center>
+		<h1>Qualitative Comparison</h1>
+	</center>
+	<table align=center hight='1200' width='800px'>
+		<p align="center">
+			<img src="./assets/results_comparison.png" width="100%">
+	</table>
+
+	<hr>
+
+	<center>
+		<h1>Qualitative Comparison</h1>
+	</center>
+	<table align=center hight='1200' width='800px'>
+		<p align="center">
+			<img src="./assets/results_comparison.png" width="100%">
+	</table>
+
 	<hr>
 
 	<center>
@@ -321,87 +350,12 @@
 
 	<hr>
 
-
-
-	<!-- <center><h1>Code</h1></center>
-  		  <table align=center width=800px>
-			  <br>
-			  <tr><center>
-				<span style="font-size:28px">&nbsp;<a href='https://github.com/ArmanAfrasiyabi/MixtFSL-fs'>[GitHub]</a>
-		  </table>
-
-      	  <br>
-		  <hr>
-		<br>
-				   -->
-
-	<!-- <center><h1>Poster</h1></center>
-
-  		  <table align=center width=420px> 
-				    <div class="album py-5 bg-light"> 
-				    <div class="container"> 
-					<div class="row">
-					    <div class="column2"> 
-					    <center>
-						  <a  href="./assets/MixFSL_Poster.pdf" > <img style="width:650px" class="img-fluid" src="./assets/poser.PNG"></a>
-						<br> click on the figure to see .pdf version. <br>
-						<center> 
-					    </div>
-					</div>
-					<br><br>
-
-				 
-					
-    </div>
-		  </table> -->
-
-	<!-- <table align=center width=875px>
-		<center>
-			<h1>Citation</h1>
-		</center>
-		<tr>
-			<td>
-				<pre><code>@InProceedings{dastjerdi2023everlight,
-    author    = {Dastjerdi, Mohammad Reza Karimi and Eisenmann, Jonathan and Hold-Geoffroy, Yannick and Lalonde, Jean-Fran\c{c}ois},
-    title     = {EverLight: Indoor-Outdoor Editable {HDR} Lighting Estimation},
-    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
-    month     = {October},
-    year      = {2023},
-    pages     = {7420-7429}
-}</code></pre>
-			</td>
-		</tr>
-	</table>
-	<br>
-	<hr> -->
-
-	<!-- <table align=center width=875px>
-		<a name="results"></a>
-		<center>
-			<h1>Data and results</h1>
-		</center>
-		<tr>
-			<td>
-				We provide the full set of results for indoor lighting estimation reported in the paper. Specifically,
-				we compute results for 9 different lighting estimation methods from the recent literature on a test set
-				of 2240 images (extracted from the <a href="http://hdrdb.com/indoor/">Laval Indoor HDR Dataset</a>). See
-				the <a href="https://hdrdb-public.s3.valeria.science/singleimagelightestimation/README.md">README.md</a>
-				and <a
-					href="https://hdrdb-public.s3.valeria.science/singleimagelightestimation/singleimagelightpredictions.zip">download
-					the full dataset here (11 GB)</a>.
-			</td>
-		</tr>
-	</table>
-	<br>
-	<hr> -->
-
 	<div class="card mb-4 shadow-sm text-center">
 		<h3 class="text-muted">Acknowledgements </h3>
 		This research was supported by NSERC grants RGPIN 2020-04799 and ALLRP 586543-23, Mitacs and Depix. Computing
 		resources were provided by the Digital Research Alliance of Canada. The authors thank Louis-Étienne Messier and
 		Justine Giroux for their help as well as all members of the lab for discussions and proofreading help.
 	</div>
-	<br>
 
 
 </body>
