@@ -328,11 +328,52 @@
 	<hr>
 
 	<center>
-		<h1>Qualitative Comparison</h1>
+		<h1>Extensions: Material editing</h1>
 	</center>
 	<table align=center hight='1200' width='800px'>
 		<p align="center">
-			<img src="./assets/results_comparison.png" width="100%">
+			Training ZeroComp on InteriorVerse significantly enhances its performance with shiny
+			objects by allowing precise control over roughness and metallic properties.
+		<p align="center">
+			<img src="./assets/shiny_objects.png" width="100%">
+	</table>
+
+	<hr>
+
+	<center>
+		<h1>Extensions: Outdoor images</h1>
+	</center>
+	<table align=center hight='1200' width='800px'>
+		<p align="center">
+			ZeroComp generalizes to outdoor scenes, despite being trained exclusively on indoor scenes. Note how the
+			object shading and cast shadows seamlessly blend with the target background.
+		<p align="center">
+			<img src="./assets/outdoor/1.jpg" width="30%">
+			<img src="./assets/outdoor/2.jpg" width="30%">
+			<img src="./assets/outdoor/3.jpg" width="30%">
+	</table>
+
+	<hr>
+
+	<center>
+		<h1>Extensions: 2D object compositing</h1>
+	</center>
+	<table align=center hight='1200' width='800px'>
+		<p align="center">
+			ZeroComp can also be applied to 2D objects segmented from real images, where a 3D model is not available.
+			Here, we rely on intrinsic estimators to estimate the object depth and normals. We use the RGB as the albedo
+			to avoid detrimental noise in the image texture while keeping the rest of the pipeline unchanged. For
+			demonstration purposes, the object was segmented and placed in the target image manually. The following
+			figure shows several such examples, showing our method can be easily extended to the case of 2D object
+			compositing.
+		<p align="center">
+			<img src="./assets/real_world/cylinder/obj.jpg" width="30%">
+			<img src="./assets/real_world/cylinder/dst_pixel_values.jpg" width="30%">
+			<img src="./assets/real_world/cylinder/post_comp.jpg" width="30%">
+		<p align="center">
+			<img src="./assets/real_world/dog/obj_src_obj.jpg" width="30%">
+			<img src="./assets/real_world/dog/dst_pixel_values.jpg" width="30%">
+			<img src="./assets/real_world/dog/post_comp.jpg" width="30%">
 	</table>
 
 	<hr>
