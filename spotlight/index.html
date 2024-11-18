@@ -1,0 +1,354 @@
+
+<!-- todo page 1 -->
+<!-- todo bibtex link -->
+
+<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-weight:300;
+		font-size:18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1100px;
+	}
+	
+	h1 {
+		font-size:32px;
+		font-weight:300;
+	}
+	
+	.disclaimerbox {
+		background-color: #eee;		
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+		padding: 20px;
+	}
+
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.rounded {
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	a:link,a:visited
+	{
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+	
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+	
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		        15px 15px 0 0px #fff, /* The fourth layer */
+		        15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		        20px 20px 0 0px #fff, /* The fifth layer */
+		        20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		        25px 25px 0 0px #fff, /* The fifth layer */
+		        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+
+	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+	
+	.vert-cent {
+		position: relative;
+	    top: 50%;
+	    transform: translateY(-50%);
+	}
+	
+	hr
+	{
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+</style>
+
+<html>
+  <head>
+	<title>EverLight: Indoor-Outdoor Editable HDR Lighting Estimation</title>
+	<meta name="description" content="EverLight is the first lighting estimation method that simultaneously produces high dynamic range, high-resolution panoramas ready to use as HDRI in rendering engines, works for both indoor and outdoor domains, and it is editable.">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
+	<link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+  </head>
+
+  <body>
+    <br>
+          <center>
+          	    <br 
+		    <div  style="text-align:center">
+                        <span style="font-size:32px"> EverLight: Indoor-Outdoor Editable HDR Lighting Estimation </span> 
+                        
+                    </div>  
+	  		  <table align=center width=600px>
+	  			  <tr>
+			          
+	  	              <td align=center>
+	  					<center>  
+	  						<span style="font-size:20px"><a href="https://mrkarimid.github.io/">Mohammad Reza Karimi Dastjerdi</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	  						<span style="font-size:20px"><a href="https://www.linkedin.com/in/jeisenmann/">Jonathan Eisenmann</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	  						<br>
+	  						<span style="font-size:20px"><a href="https://yannickhold.com/">Yannick Hold-Geoffroy</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+								<span style="font-size:20px"><a href="http://www.jflalonde.ca/">Jean-François Lalonde</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+		  		  		</center>
+		  		  		<br>
+		  		  		<img src="./assets/ul_logo.png" align="center" width="30%">  
+						<img src="./assets/adobe_logo.png" align="center" width="30%">
+		  		  		<br>
+                  			        <br> 
+		  		  		
+		  		  	  </td> 
+		  		  </tr>
+	  			  <tr>
+		  		  </tr>
+			  </table> 
+          </center>
+
+          <center>
+  		  <table align=center width=850px>
+  			  <tr>
+  	              <td width=1000px>
+  					<center>
+  	                	 <img class="round" style="width:1000px" src="./assets/teaser.png"/>  
+	  				</center>
+  	              </td>  	              
+                </tr>
+  		  </table>  		  
+  		</center>
+   
+	  <hr>
+    <hr>
+          
+          
+          
+		  
+		  <table align=center width=875px>
+	  		  <table align=center width=600px> 
+	  			  <tr>  
+	  	              <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href='https://arxiv.org/abs/2304.13207'>[Paper]</a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href='./supp/index.html'>[Supplementary]</a></span><br>
+		  		  		</center>
+		  		  	  </td>
+	  	               <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href='./assets/poster.pdf'>[Poster]</a></span><br>
+		  		  		</center>
+		  		  	  </td>  
+		  		  	  <!--
+		  		  	  <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href='./assets/bibtex.txt'>[Bibtex]</a></span><br>
+		  		  		</center>
+		  		  	  </td>  
+		  		  	 </tr> -->
+	  			  <tr>
+	  			  
+			  </table>
+			</table> 
+		  <hr> 
+		  <hr>
+		  
+		  <table align=center width=875px>
+	  		  <table align=center width=700px> 
+	  		  	<tr>  
+	  	              <td align=center width=150px>
+	  					<center>
+	  						Accepted in <span style="font-size:20px"><a href='https://iccv2023.thecvf.com/'>International Conference on Computer Vision (ICCV)</a>, 2023!</span>
+		  		  		</center>
+		  		  	  </td>   
+	  			  <tr>
+	  			  <tr>  
+	  			  <tr>
+	  			  
+			  </table>
+			</table> 
+	  <hr> 
+		<hr>
+
+		<!-- <table align=center width=875px>
+	  		  <table align=center width=700px> 
+	  		  	<tr>  
+	  	              <td width=150px>
+	  					<center>
+	  						<span style="font-size:24px">This work is featured at <a href='https://www.adobe.com/max.html'>Adobe Max Sneaks 2022</a>!</span>
+		  		  		</td>
+		  		  	
+		  		  	</tr>
+		  		  </table>
+		  		  <table align=center width=700px> 
+
+		  		  	<tr>
+		  		  	<tr>
+		  		  	<td> 
+		  		  		Media Coverage: 
+		  		  		<td> <li> <a href='https://blog.adobe.com/en/publish/2022/10/19/adobe-max-sneaks-show-how-ai-is-enhancing-future-of-creativity'>Adobe Blog</a> </li> </td>
+		  		  		<td> <li> <a href='https://www.popsci.com/technology/adobe-beyond-the-seen-ai/'>Popular Science</a> </li> </td>
+		  		  		<td> <li> <a href='https://petapixel.com/2022/10/20/adobe-can-use-ai-to-extend-photos-well-beyond-their-original-boundaries/'>PetaPixel</a> </li> </td>
+		  		  		<td> <li> <a href='https://www.digitalcameraworld.com/news/the-future-of-photoshop-is-blowing-my-mind'>DigitalCameraWorld</a> </li> </td>
+		  		  		</center>
+		  		  	  </td>   
+	  			  <tr>
+	  			  
+	  			  
+			  </table>
+			</table>
+		  <hr> 
+		  <hr> -->
+
+  		  <table align=center width=875px>
+	  		  <center><h1>Abstract</h1></center>
+	  		  <tr>
+	  		  	<td>
+					Because of the diversity in lighting environments, existing illumination estimation techniques have been designed explicitly on indoor or outdoor environments. Methods have focused specifically on capturing accurate energy (e.g., through parametric lighting models), which emphasizes shading and strong cast shadows; or producing plausible texture (e.g., with GANs), which prioritizes plausible reflections. Approaches which provide editable lighting capabilities have been proposed, but these tend to be with simplified lighting models, offering limited realism. In this work, we propose to bridge the gap between these recent trends in the literature, and propose a method which combines a parametric light model with 360° panoramas, ready to use as HDRI in rendering engines. We leverage recent advances in GAN-based LDR panorama extrapolation from a regular image, which we extend to HDR using parametric spherical gaussians. To achieve this, we introduce a novel lighting co-modulation method that injects lighting-related features throughout the generator, tightly coupling the original or edited scene illumination within the panorama generation process. In our representation, users can easily edit light direction, intensity, number, etc. to impact shading while providing rich, complex reflections while seamlessly blending with the edits. Furthermore, our method encompasses indoor and outdoor environments, demonstrating state-of-the-art results even when compared to domain-specific methods.
+				</td>
+	  		  </tr>
+			</table>
+  		  	<br>
+		<hr>
+
+		<center><h1>Video - ICCV 2023</h1></center> 
+		   <table align=center hight='1200' width='800px'>        
+	<p align="center">
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/Mk2ZhXxzLRY?si=xEsFEI66jHF9eb2x" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+			<br>  
+	  
+		</table>
+
+		  <hr>
+			
+		
+  
+ 		<!-- <center><h1>Code</h1></center>
+  		  <table align=center width=800px>
+			  <br>
+			  <tr><center>
+				<span style="font-size:28px">&nbsp;<a href='https://github.com/ArmanAfrasiyabi/MixtFSL-fs'>[GitHub]</a>
+		  </table>
+
+      	  <br>
+		  <hr>
+		<br>
+				   -->
+				  
+	<!-- <center><h1>Poster</h1></center>
+
+  		  <table align=center width=420px> 
+				    <div class="album py-5 bg-light"> 
+				    <div class="container"> 
+					<div class="row">
+					    <div class="column2"> 
+					    <center>
+						  <a  href="./assets/MixFSL_Poster.pdf" > <img style="width:650px" class="img-fluid" src="./assets/poser.PNG"></a>
+						<br> click on the figure to see .pdf version. <br>
+						<center> 
+					    </div>
+					</div>
+					<br><br>
+
+				 
+					
+    </div>
+		  </table> -->
+
+		  <table align=center width=875px>
+				<center><h1>Citation</h1></center>
+				<tr>
+					<td>
+						<pre><code>@InProceedings{dastjerdi2023everlight,
+    author    = {Dastjerdi, Mohammad Reza Karimi and Eisenmann, Jonathan and Hold-Geoffroy, Yannick and Lalonde, Jean-Fran\c{c}ois},
+    title     = {EverLight: Indoor-Outdoor Editable {HDR} Lighting Estimation},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month     = {October},
+    year      = {2023},
+    pages     = {7420-7429}
+}</code></pre>
+					</td>
+				</tr>
+			</table>
+				<br>
+		<hr>
+
+		  <table align=center width=875px>
+		  	<a name="results"></a>
+				<center><h1>Data and results</h1></center>
+				<tr>
+					<td>
+						We provide the full set of results for indoor lighting estimation reported in the paper. Specifically, we compute results for 9 different lighting estimation methods from the recent literature on a test set of 2240 images (extracted from the <a href="http://hdrdb.com/indoor/">Laval Indoor HDR Dataset</a>). See the <a href="https://hdrdb-public.s3.valeria.science/singleimagelightestimation/README.md">README.md</a> and <a href="https://hdrdb-public.s3.valeria.science/singleimagelightestimation/singleimagelightpredictions.zip">download the full dataset here (11 GB)</a>. 
+					</td>
+				</tr>
+				</table>
+				<br>
+			<hr>
+
+		  <div class="card mb-4 shadow-sm text-center">
+				<h3 class="text-muted">Acknowledgements </h3>
+				The name of this paper EverLight is a homage to the Critical Role’s The Legend of Vox Machina. This work was partially supported by NSERC grant ALLRP557208-20. We thank Sai Bi for his help with extending the dynamic range of the panoramas and everyone at UL who helped with proofreading.
+				</div>
+      	  <br>
+
+              
+</body>
+</html>
+ 
