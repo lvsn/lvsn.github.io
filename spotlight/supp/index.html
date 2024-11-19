@@ -19,16 +19,30 @@
 
     <!-- Custom styles for this template -->
     <link href="./css/sticky-footer-navbar.css" rel="stylesheet">
-
     <style>
+      /* Center and constrain the table */
+      #results-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* Center align items horizontally */
+        max-width: 100%; /* Constrain overall width */
+        margin: 0 auto; /* Center align the container itself */
+      }
+  
       .result-cell {
-        width: 150px;
-        height: 150px;
+        flex: 1 0 180px; /* Flexible size with minimum 180px */
+        max-width: 180px; /* Prevent over-expansion */
+        margin: 0px; /* Space between cells */
         overflow: hidden;
-        position: relative;
         border: 1px solid #ddd;
         text-align: center;
-        line-height: 150px;
+        padding: 0;
+      }
+  
+      .img-container {
+        position: relative;
+        width: 100%;
+        height: 180px;
       }
   
       .result-cell img {
@@ -37,10 +51,23 @@
         position: absolute;
         top: 0;
         left: 0;
-        
+      }
+  
+      .method-label {
+        text-align: center;
+        margin-top: 5px;
+      }
+  
+      .row.mb-3 {
+        width: 100%;
+        justify-content: center; /* Align rows to center */
+      }
+
+      figurecaption {
+        text-align: center;
+        display: block;
       }
     </style>
-  
   </head>
   <body>
 
@@ -85,7 +112,7 @@
       <p>
       <ol>
         <li>
-          <a href="#qual_results_control">Additionnal results for user control (extends fig. 5)</a>
+          <a href="#qual_results_control">Additional qualitative results (extends fig. 5)</a>
         </li>
         <li>
           <a href="#light_control_video">Light control video</a>
@@ -108,20 +135,27 @@
 
       <a class="anchor" name="qual_results_control"></a>
       <div style="clear:both; height:4em;"></div>
-      <h2>1. Additionnal results on "user-controlled" dataset</h2>
-      <p align="justify">TODO.</p>
+      <h2>1. Additional qualitative results</h2>
+      <p align="justify">We present additional randomly-selected results on the "user-controlled" dataset. In this case, we rendered 8 light directions instead
+        of 5 (as used for the user study), in order to show light directions where the shadow is behind the object.
+        Move your mouse from left to right over the images to see the light direction change.
+      </p>
 
       <div id="results-container" class="row"></div>
 
 
       <a class="anchor" name="light_control_video"></a>
       <div style="clear:both; height:4em;"></div>
-      <h2>2. Lighting control videos</h2>
+      <h2>2. Additional results on classifier-free guidance weight</h2>
       <p align="justify">TODO.</p>
+
+      <a class="anchor" name="light_control_video"></a>
+      <div style="clear:both; height:4em;"></div>
+      <h2>2. Light elevation and size</h2>
 
       <a class="anchor" name="demo"></a>
       <div style="clear:both; height:4em;"></div>
-      <h2>3. demo</h2>
+      <h2>3. 2D object compositing control example</h2>
 
       <p>TODO.</p>
       
@@ -130,15 +164,38 @@
       <div style="clear:both; height:4em;"></div>
       <h2>4. Multiple lights</h2>
 
-      <p>TODO.</p>
+      <p>TODO - 2 examples.</p>
 
       
     <a class="anchor" name="implementation"></a>
       <div style="clear:both; height:4em;"></div>
       <h2>5. Background relighting</h2>
+      <p>TODO - 1 example.</p>
+
+      <a class="anchor" name="user_study"></a>
+      <div style="clear:both; height:4em;"></div>
+      <h2>6. User study</h2>
+    <div class="row">
+      <div class="col-md-12">
+        <a href="figures/user_study/instructions.png" target="_blank">
+          <img src="figures/user_study/instructions.png" class="border border-secondary" alt="User study instructions" style="width: 100%;">
+        </a>
+        <figurecaption>User study intructions page</figurecaption>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <a href="figures/user_study/question.png" target="_blank">
+          <img src="figures/user_study/question.png" class="border border-secondary" alt="User study question" style="width: 100%;">
+        </a>
+        <figurecaption>User study question page</figurecaption>
+      </div>
+    </div>
 
 
-    <footer class="footer navbar-fixed-bottom">
+    <footer class="footer navbar-fixed-bottom" style="left: 0">
       <div class="container">
         <span class="text-muted">SpotLight: Shadow-Guided Object Relighting via Diffusion &mdash; Supplementary Material</span>
       </div>
@@ -158,51 +215,74 @@
         'rgbx_cfg_3_intensity_2_inpaint_post_color_balanced_denoised', 
         'shadow_comp_v2_default_post_color_balanced_denoised'
     ]
+    const nameMapping = {
+      'shadow_comp_v2_default_post_color_balanced_denoised': "Ours (ZeroComp)",
+      'rgbx_cfg_3_intensity_2_inpaint_post_color_balanced_denoised': 'Ours (RGB-X)',
+      'ic_light_bg_guidance_denoised': 'IC Light [73]',
+      'dilightnet_denoised': 'DiLightNet [71]',
+      'neural_gaffer_denoised': 'Neural Gaffer [30]',
+      'stick-renders': 'Light direction',
+      'simulated_gt': 'Simulated GT',
+  }
+
     const lightDirections = ['0000', '0001', '0002', '0003', '0004', '0005', '0006', '0007'];
 
     const resultsContainer = document.getElementById('results-container');
-
     cropNames.forEach(crop => {
-      const row = document.createElement('div');
-      row.classList.add('row', 'mb-3');
+        const row = document.createElement('div');
+        row.classList.add('row', 'mb-3');
 
-      row.dataset.crop = crop;
+        row.dataset.crop = crop;
 
-      methods.forEach(method => {
-        const col = document.createElement('div');
-        col.classList.add('col-md', 'result-cell');
-        col.dataset.method = method;
-        col.dataset.crop = crop;
+        methods.forEach(method => {
+          const col = document.createElement('div');
+          col.classList.add('col-md', 'result-cell');
+          col.dataset.method = method;
+          col.dataset.crop = crop;
 
-        // Preload images
-        lightDirections.forEach(dir => {
-          const img = document.createElement('img');
-          img.src = `figures/qual_many_directions_html/${method}/${crop}_${dir}.jpg`;
-          img.dataset.dir = dir;
-          img.style.opacity = dir === '0000' ? 1 : 0; // Show the first light direction
-          col.appendChild(img);
+          // Create imgContainer
+          const imgContainer = document.createElement('div');
+          imgContainer.classList.add('img-container');
+
+          // Preload images
+          lightDirections.forEach(dir => {
+            const img = document.createElement('img');
+            img.src = `figures/qual_many_directions_html/${method}/${crop}_${dir}.jpg`;
+            img.dataset.dir = dir;
+            img.style.opacity = dir === '0000' ? 1 : 0; // Show the first light direction
+            imgContainer.appendChild(img);
+          });
+
+          // Append imgContainer to col
+          col.appendChild(imgContainer);
+
+          // Create label
+          const label = document.createElement('div');
+          label.classList.add('method-label');
+          label.innerText = nameMapping[method] || method;
+
+          // Append label to col
+          col.appendChild(label);
+
+          row.appendChild(col);
         });
 
-        row.appendChild(col);
-      });
+        // Add mousemove listener to the entire row
+        row.addEventListener('mousemove', e => {
+          const rect = row.getBoundingClientRect();
+          const relX = e.clientX - rect.left; // Relative X position within the row
+          const index = Math.floor(Math.max((relX / rect.width) * lightDirections.length, 0));
+          const selectedDir = lightDirections[Math.min(index, lightDirections.length - 1)];
 
-      // Add mousemove listener to the entire row
-      row.addEventListener('mousemove', e => {
-        const rect = row.getBoundingClientRect();
-        const relX = e.clientX - rect.left; // Relative X position within the row
-        const index = Math.floor((relX / rect.width) * lightDirections.length);
-        const selectedDir = lightDirections[Math.min(index, lightDirections.length - 1)];
-
-        resultsContainer.querySelectorAll('.result-cell').forEach(cell => {
-          cell.querySelectorAll('img').forEach(img => {
-            img.style.opacity = img.dataset.dir === selectedDir ? 1 : 0;
+          resultsContainer.querySelectorAll('.result-cell').forEach(cell => {
+            cell.querySelectorAll('img').forEach(img => {
+              img.style.opacity = img.dataset.dir === selectedDir ? 1 : 0;
+            });
           });
         });
+
+        resultsContainer.appendChild(row);
       });
-
-      resultsContainer.appendChild(row);
-    });
-
   </script>
     <script src="./js/lightbox-plus-jquery.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
