@@ -41,7 +41,7 @@ cropNamesFig5ext.forEach(crop => {
         // Preload images
         defaultLightDirections.forEach(dir => {
             const img = document.createElement('img');
-            img.src = `figures/qual_many_directions_html/${method}/${crop}_${dir}.jpg`;
+            img.src = `figures/ext_fig_5/${method}/${crop}_${dir}.jpg`;
             img.dataset.dir = dir;
             img.style.opacity = dir === '0000' ? 1 : 0; // Show the first light direction
             imgContainer.appendChild(img);

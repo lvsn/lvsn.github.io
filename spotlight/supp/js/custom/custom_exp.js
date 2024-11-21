@@ -54,7 +54,7 @@ const makeResultsTable2 = ({
         if (azimuthValueText !== null)
             azimuthValueText.innerText = `${azimuthIndex * 45}°`;
         
-        if (parameterValueText !== null)
+        if (parameterValueText !== null && methodsMapping !== null)
             parameterValueText.innerText = `${methodsMapping[selectedMethod]}`;
 
         resultsContainer.querySelectorAll('.result-cell').forEach(cell => {
