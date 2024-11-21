@@ -88,10 +88,13 @@
               <a class="nav-link" href="#virtual_light_source">Virtual light source</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#compositing_2d">2D object relighting</a>
+              <a class="nav-link" href="#multiple_lights">Multiple lights</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#implementation">Implementation details</span></a>
+              <a class="nav-link" href="#bg_relight">Background relighting</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#user_study">User study interface</a>
             </li>
           </ul>
         </div>
@@ -104,8 +107,7 @@
         <h1>SpotLight: Shadow-Guided Object Relighting via Diffusion &mdash; Supplementary Material</h1>
       </div>
       <p align="justify" class="lead">
-        We present additional results complementing the main paper. In sections 1-3, to adequately show the control our method offers, we use the "user-controlled" version
-        of our evaluation dataset along with pre-computed method outputs. You will be able to experience the control our method provides by hovering over the images or using
+        We present additional results complementing the main paper. You will be able to experience the control our method provides by hovering over the images or using
         sliders.
       </p>
 
@@ -123,18 +125,21 @@
           <a href="#virtual_light_source">Virtual light source adjustments</a>
         </li>
         <li>
-          <a href="#compositing_2d">2D object relighting</a>
-        </li>  
+          <a href="#multiple_lights">Multiple lights</a>
+        </li>     
         <li>
-          <a href="#background_relighting">Background relighting</span></a>
+          <a href="#bg_relight">Background relighting</a>
         </li>        
+        <li>
+          <a href="#user_study">User study interface (extends sec. 4.5)</a>
+        </li>
       </ol>
       </p>
 
       <a class="anchor" name="qual_results_control"></a>
       <div style="clear:both; height:4em;"></div>
       <h2>1. Additional qualitative results</h2>
-      <p align="justify">We present additional randomly-selected results on the "user-controlled" dataset, extending the qualitative results from fig. 5.
+      <p align="justify">We present 20 additional randomly-selected results on the "user-controlled" dataset, extending the qualitative results from fig. 5.
         In this case, we rendered 8 light directions instead
         of 5 (as used for the user study), in order to also show results where the shadow is behind the object.
         Please move your mouse from left to right over the images to see the light direction change.
@@ -147,10 +152,11 @@
       <div style="clear:both; height:4em;"></div>
       <h2>2. Additional results for parameter control</h2>
       <p align="justify">
-        We show how the two main parameters of our method can be adjusted to obtain various styles, extending sec. 4.6.
+        We show how the two main parameters of our method can be adjusted for artistic control, extending sec. 4.6.
         Here, we show the adjustment of both parameters separately, but they could easily be adjusted simultaneously for optimal results.
       </p>
       <h3>2.1. Guidance scale γ</h3>
+      <strong>TODO: divide by 2 the number of examples shown</strong>
       <p align="justify">Here, we show control over the guidance scale γ, extending fig. 6. By using the sliders, the light direction and the guidance scale can be adjusted.
         Increasing the guidance scale generally makes the dominant light source stronger.
       </p>
@@ -159,6 +165,7 @@
       <div id="results-container-cfg" class="row"></div>
 
       <h3>2.2. Latent mask weight β</h3>
+      <strong>TODO: divide by 2 the number of examples shown</strong>
       <p align="justify">Here, we show control over the latent mask weight β, extending fig. 7. 
         Increasing the latent mask weight makes the dominant shadow darker.        
       </p>
@@ -171,8 +178,9 @@
       <div style="clear:both; height:4em;"></div>
       <h2>3. Virtual light source adjustments</h2>
       <p align="justify">Here, we demonstrate the impact of adjusting two parameters of the spherical light source that generated the shadow: its elevation and its radius.
-      Even though SpotLight doesn't directly have access to those parameters, the shadow is a good proxy for correctly relighting the object.</p>
+</p>
       <h3>3.1 Light source radius</h3>
+      <strong>TODO: divide by 2 the number of examples shown</strong>
       <p align="justify">We adjust the light source radius. Small radius leads to hard shadows, whereas higher radii generate more diffuse shadows.
 
       </p>
@@ -180,33 +188,66 @@
       <p align="justify">The current light radius is <input type="range" min="0" max="2" value="1" class="slider" id="light-size-slider" draggable/> <strong id="light-size-value">γ=3.0</strong> (at a distance of 10 from the object).</p>
       <div id="results-container-light-size" class="row"></div>
 
+      <h3>3.2 Light source elevation</h3>
+      <strong>TODO</strong>
+
       <a class="anchor" name="compositing_2d"></a>
       <div style="clear:both; height:4em;"></div>
       <h2>4. 2D object relighting</h2>
-
+      <strong>TODO: remove that section</strong>
+      <p align="justify">We show additional light directions for 2D object compositing, extending fig. 8.</p>
       <p>Adjust the lighting position (shadow from left to right in pixel height space): <input type="range" min="0" max="5" value="0" class="slider" id="compositing-2d-azimuth-slider" draggable/></p>
-      <p>TODO.</p>
+      <strong>TODO show object + bg in a nice table.</strong>
       <div id="results-container-compositing-2d" class="row"></div>
 
       
       
       <a class="anchor" name="multiple_lights"></a>
       <div style="clear:both; height:4em;"></div>
-      <h2>4. Multiple lights</h2>
+      <h2>5. Multiple lights</h2>
 
-      <p>TODO - 2 examples.</p>
+      <p>In our paper, we analyze all the methods using a single dominant light source, which is sufficiently realistic in most cases.
+        Here, we show that we can linearly combine outputs from SpotLight at different light directions to simulate multiple light sources.
+        We combine a static light direction (shadow to the right of the object), with a dynamic direction (hover over the images to move this virtual light). Our combination of the two lights
+        is simply given by $$x_{\text{combined}}=0.5 \times x_{\text{light 1}} + 0.5 \times x_{\text{light 2}}.$$ Notice how the static shadow to the right remains visible
+        and affects the shading. <br><br>
+        <strong>TODO: do addition in linear space</strong>
+      </p>
+      <div id="results-container-two-lights" class="row"></div>
 
       
-    <a class="anchor" name="implementation"></a>
+    <a class="anchor" name="bg_relight"></a>
     <div style="clear:both; height:4em;"></div>
-    <h2>5. Background relighting</h2>
-    <p>TODO - 1 example.</p>
-    <p>The current light azimuth angle is <input type="range" min="0" max="7" value="0" class="slider" id="bg-relight-azimuth-slider" draggable/> <strong id="bg-relight-azimuth-value">0°</strong>.</p>
+    <h2>6. Background relighting</h2>
+    <p align="justify">In our work, we use SpotLight for object relighting. We experiment with extending SpotLight for full-scene relighting using the following approach.
+      <ol>
+        <li>We run SpotLight as-is to render the object lit with a desired shadow. We obtain the <strong>SpotLight</strong> output.</li>
+        <li>We run the backbone (in this case ZeroComp), with the inverted shading mask, feeding it only the shading of the object and its shadow 
+          (obtained by dividing the SpotLight prediction with the albedo map)
+          and letting the backbone shade the background. 
+          We obtain the <strong>relit background</strong> output.</li>
+        <li>We repeat step 2 for each of the 8 light directions, and average them, giving us the <strong>average relit background</strong>.</li>
+        <li>We find that the background relighting in step 2 and 3 poorly reconstruct the background's identity. We therefore obtain a per-pixel highlight map, by dividing 
+          the relit background prediction with the average relit background. We multiply that highlight map with the original background and obtain a more accurate output, <strong>relit background + composition</strong>. 
+        </li>
+      </ol>
+      We notice that, for some scenes, the background relighting is very convincing, and provides a good first step towards full-scene relighting.
+      Shadows and highlights are added to the background in a coherent way, with respect to the object's shadow.
+    </p>
+  
     <div id="results-container-bg-relight" class="row"></div>
+  <h6>Note about the checkpoint used for background relighting</h6>
+    <p align="justify">
+      In step 1, we use the same ZeroComp checkpoint as in all other experiments. For steps 2 and 3, in order to properly relight the background, we found that this checkpoint
+      had limited full-scene relighting capabilities.
+      We hypothesize that this is due to the fact that the network is trained to relight only a small region of an image (circles and rectangular masks at training time).
+      We therefore train a separate model from scratch for 270K iterations on inverted shading masks, where we take the inverse of the circular and rectangular masks for shading masking. Furthermore,
+      we filter out masks with more than one connected component. This leaves training examples where only a small region of the shading is known and the full background lighting needs to be inferred.
+</p>
 
     <a class="anchor" name="user_study"></a>
     <div style="clear:both; height:4em;"></div>
-    <h2>6. User study</h2>
+    <h2>7. User study interface</h2>
     <p>Here, we show the user interface used to perform our human perceptual study, as described in sec. 4.5 in the paper. The user is first shown an instructions page, followed by the questions page (which is the same for the 120 2AFC questions).</p>
     <div class="row">
       <div class="col-md-12">
@@ -239,6 +280,28 @@
   <script src="./js/custom/custom_exp.js"></script>
   <script>
     
+    makeResultsTable({
+        resultsContainer: document.getElementById('results-container-fig-5-ext'),
+        methods: [
+        'ic_light_bg_guidance_denoised',
+        'dilightnet_denoised',
+        'neural_gaffer_denoised',
+        'rgbx_cfg_3_intensity_2_inpaint_post_color_balanced_denoised', 
+        'shadow_comp_v2_default_post_color_balanced_denoised'
+        ],
+        cropNames: ["9C4A8088-1bb62eeb83_07_crop_B07B4MRLNC", "AG8A6719-fc8e1ea686_05_crop_B072Y5MZQH", "9C4A0400-e71f3506f8_00_crop_B07QC8CGKK", "9C4A0395-ef28332472_09_crop_B07YPLQ7KW", "AG8A1932-eb0d101d0e_07_crop_B00BBDF500", "9C4A3419-2e5c9b4d85_00_crop_B07B4MG2MD", "9C4A4668-16193e7517_03_crop_B072FVHS4V", "AG8A4106-248c9b6695_01_crop_B07G2WWZC5", "9C4A6765-55315335bf_09_crop_B076YFLYFR", "9C4A0400-e71f3506f8_00_crop_B07B4CZMNQ", "9C4A0566-a088c98ccf_00_crop_B07HZ6ZCW7", "9C4A0132-07352d1dd0_08_crop_B07PHP31FB", "9C4A9487-24b5ce36e4_01_crop_B07B4MDGDF", "AG8A4106-248c9b6695_00_crop_B07HZ1LZS1", "AG8A8563-e652dd5751_02_crop_B07QHYDDS1", "9C4A0132-07352d1dd0_07_crop_B07DBF3WMC", "9C4A6864-533a74ab58_04_crop_B076VF4KRN", "9C4A5673-d4ecde512a_00_crop_B07HPTBB7P", "AG8A8710-4a14a72a31_05_crop_B07B4LZQC9", "9C4A0400-e71f3506f8_00_crop_B082QBBY7R"],
+        methodsMapping: {
+        'shadow_comp_v2_default_post_color_balanced_denoised': "Ours (ZeroComp)",
+        'rgbx_cfg_3_intensity_2_inpaint_post_color_balanced_denoised': 'Ours (RGB-X)',
+        'ic_light_bg_guidance_denoised': 'IC Light [73]',
+        'dilightnet_denoised': 'DiLightNet [71]',
+        'neural_gaffer_denoised': 'Neural Gaffer [30]',
+        'stick-renders': 'Light direction',
+        'simulated_gt': 'Simulated GT',
+        },
+        folderName: 'figures/ext_fig_5',
+    });
+
     makeResultsTable2({
         resultsContainer: document.getElementById('results-container-cfg'),
         azimuthSlider: document.getElementById('cfg-azimuth-slider'),
@@ -250,7 +313,7 @@
         'shadow_comp_v2_default_post_color_balanced_denoised',
         'shadow_comp_v2_cfg_7_post_color_balanced_denoised',
         ],
-        cropNames: ["AG8A6551-16ae8050c9_06_crop_B075X4QFK2", "9C4A8239-7a9d7093e2_04_crop_B082VLJ7Y2", "9C4A0566-a088c98ccf_05_crop_B07VKM698C", "9C4A3419-2e5c9b4d85_08_crop_B07B4D8B2S", "9C4A4878-4dac321d8b_02_crop_B07HP93VDJ", "9C4A4861-19626f89e9_04_crop_B07B4MSYPS", "AG8A0630-e5622e17d2_01_crop_B07B85FJD5", "AG8A6719-fc8e1ea686_05_crop_B07DBJ1H18", "9C4A6817-e170a870c0_02_crop_B07WQ4VQ74", "9C4A0132-07352d1dd0_07_crop_B07QGG24Z5", "9C4A8239-7a9d7093e2_04_crop_B0728NWFCG", "AG8A8843-b91f89fff2_05_crop_B07B4YXNR3", "9C4A0286-fb330a56ab_08_crop_B075X4VWP4", "9C4A3359-3edd9ddf7d_02_crop_B0824F6HZ4", "9C4A4668-16193e7517_03_crop_B082VFPXGJ", "AG8A8626-28011c026e_02_crop_B07B7DFS3S", "9C4A0395-ef28332472_02_crop_B07HSKBHBT", "9C4A0307-ca23f47d11_00_crop_B01LR5S6HK", "9C4A5858-0338b2aed1_00_crop_B07HKGY4F2", "AG8A3196-8e1dfd8d95_08_crop_B07WMQ8P8Q"],
+        cropNames: ["AG8A6551-16ae8050c9_06_crop_B075X4QFK2", "9C4A8239-7a9d7093e2_04_crop_B082VLJ7Y2", "9C4A0566-a088c98ccf_05_crop_B07VKM698C", "9C4A3419-2e5c9b4d85_08_crop_B07B4D8B2S", "9C4A4878-4dac321d8b_02_crop_B07HP93VDJ", "9C4A4861-19626f89e9_04_crop_B07B4MSYPS", "AG8A0630-e5622e17d2_01_crop_B07B85FJD5", "AG8A6719-fc8e1ea686_05_crop_B07DBJ1H18", "AG8A3196-8e1dfd8d95_08_crop_B07WMQ8P8Q", "AG8A8843-b91f89fff2_05_crop_B07B4YXNR3"],
         methodsMapping: {
         'shadow_comp_v2_cfg_1_post_color_balanced_denoised': 'γ=1.0 (no guidance)',
         'shadow_comp_v2_default_post_color_balanced_denoised': 'γ=3.0 (default)',
@@ -270,7 +333,7 @@
         'shadow_comp_v2_default_post_color_balanced_denoised',
         'shadow_comp_v2_latent_weight_0.2_post_color_balanced_denoised',
         ],
-        cropNames: ["AG8A6551-16ae8050c9_06_crop_B075X4QFK2", "9C4A8239-7a9d7093e2_04_crop_B082VLJ7Y2", "9C4A0566-a088c98ccf_05_crop_B07VKM698C", "9C4A3419-2e5c9b4d85_08_crop_B07B4D8B2S", "9C4A4878-4dac321d8b_02_crop_B07HP93VDJ", "9C4A4861-19626f89e9_04_crop_B07B4MSYPS", "AG8A0630-e5622e17d2_01_crop_B07B85FJD5", "AG8A6719-fc8e1ea686_05_crop_B07DBJ1H18", "9C4A6817-e170a870c0_02_crop_B07WQ4VQ74", "9C4A0132-07352d1dd0_07_crop_B07QGG24Z5", "9C4A8239-7a9d7093e2_04_crop_B0728NWFCG", "AG8A8843-b91f89fff2_05_crop_B07B4YXNR3", "9C4A0286-fb330a56ab_08_crop_B075X4VWP4", "9C4A3359-3edd9ddf7d_02_crop_B0824F6HZ4", "9C4A4668-16193e7517_03_crop_B082VFPXGJ", "AG8A8626-28011c026e_02_crop_B07B7DFS3S", "9C4A0395-ef28332472_02_crop_B07HSKBHBT", "9C4A0307-ca23f47d11_00_crop_B01LR5S6HK", "9C4A5858-0338b2aed1_00_crop_B07HKGY4F2", "AG8A3196-8e1dfd8d95_08_crop_B07WMQ8P8Q"],
+        cropNames: ["AG8A6551-16ae8050c9_06_crop_B075X4QFK2", "9C4A8239-7a9d7093e2_04_crop_B082VLJ7Y2", "9C4A0566-a088c98ccf_05_crop_B07VKM698C", "9C4A3419-2e5c9b4d85_08_crop_B07B4D8B2S", "9C4A4878-4dac321d8b_02_crop_B07HP93VDJ", "9C4A4861-19626f89e9_04_crop_B07B4MSYPS", "AG8A0630-e5622e17d2_01_crop_B07B85FJD5", "AG8A6719-fc8e1ea686_05_crop_B07DBJ1H18", "AG8A3196-8e1dfd8d95_08_crop_B07WMQ8P8Q", "AG8A8843-b91f89fff2_05_crop_B07B4YXNR3"],
         methodsMapping: {
         'shadow_comp_v2_latent_weight_0_post_color_balanced_denoised': 'β=0 (no shadow blending)',
         'shadow_comp_v2_default_post_color_balanced_denoised': 'β=0.05 (default)',
@@ -290,7 +353,7 @@
         'shadow_comp_v2_default_post_color_balanced_denoised',
         'shadow_comp_v2_light_radius_5_post_color_balanced_denoised',
         ],
-        cropNames: ["AG8A4702-1a77809d2c_01_crop_B07DBHFDSQ", "9C4A4475-8f1167988a_07_crop_B07B4ML473", "9C4A0395-ef28332472_09_crop_B075YQ8QKT", "9C4A4878-4dac321d8b_05_crop_B07HSJY1JM", "AG8A0277-069adeb954_07_crop_B07V6M4MSN", "9C4A0132-07352d1dd0_03_crop_B07FJVXVRY", "AG8A8458-c640851baa_05_crop_B075HWR58K", "9C4A0286-fb330a56ab_03_crop_B07HZ1LXVC", "AG8A0630-e5622e17d2_02_crop_B075YMY1PD", "9C4A4878-4dac321d8b_05_crop_B07B7GQ1J2", "AG8A0630-e5622e17d2_02_crop_B0717B4RRW", "9C4A6269-ace1d48e17_00_crop_B07B85FJD5", "9C4A4878-4dac321d8b_01_crop_B075Z8KXB6", "9C4A4861-19626f89e9_08_crop_B082QCZ7YW", "9C4A0132-07352d1dd0_08_crop_B07QHYD995", "9C4A0286-fb330a56ab_03_crop_B07DBFFHXP", "9C4A2857-dc0a9513b2_04_crop_B082VLRCBX", "AG8A1285-e7ec2299e7_08_crop_B07263589M", "9C4A6948-1c80f5988a_08_crop_B07QCQ1J95", "9C4A0370-2d21311d85_05_crop_B07DBD9W9X"],
+        cropNames: ["AG8A6551-16ae8050c9_06_crop_B075X4QFK2", "9C4A8239-7a9d7093e2_04_crop_B082VLJ7Y2", "9C4A0566-a088c98ccf_05_crop_B07VKM698C", "9C4A3419-2e5c9b4d85_08_crop_B07B4D8B2S", "9C4A4878-4dac321d8b_02_crop_B07HP93VDJ", "9C4A4861-19626f89e9_04_crop_B07B4MSYPS", "AG8A0630-e5622e17d2_01_crop_B07B85FJD5", "AG8A6719-fc8e1ea686_05_crop_B07DBJ1H18", "AG8A3196-8e1dfd8d95_08_crop_B07WMQ8P8Q", "AG8A8843-b91f89fff2_05_crop_B07B4YXNR3"],
         methodsMapping: {
         'shadow_comp_v2_light_radius_0_post_color_balanced_denoised': '0',
         'shadow_comp_v2_default_post_color_balanced_denoised': '1',
@@ -307,6 +370,7 @@
         initialMethod: 'shadow_comp_v2_default_neg_no_shadow_details_transfered_post_color_balanced',
         cropNames: ['bg-3_obj-5', 'bg-9_obj-1', 'bg-10_obj-11'],
         folderName: 'figures/compositing_2d',
+        defaultMethodIndex: 0,
         lightDirections: [
           'x-511_y-300_horizon-100_softness-0.1',
           //'x-511_y-100_horizon-300_softness-0.1',
@@ -320,19 +384,56 @@
         initialDirection: 'x-384_y-100_horizon-100_softness-0.1',
         cropSubfolder: true
     });
-    makeResultsTable2({
-        resultsContainer: document.getElementById('results-container-bg-relight'),
-        azimuthSlider: document.getElementById('bg-relight-azimuth-slider'),
-        azimuthValueText: document.getElementById('bg-relight-azimuth-value'),
+    // makeResultsTable2({
+    //     resultsContainer: document.getElementById('results-container-bg-relight'),
+    //     azimuthSlider: document.getElementById('bg-relight-azimuth-slider'),
+    //     azimuthValueText: document.getElementById('bg-relight-azimuth-value'),
+    //     methods: [
+    //     'relight_shadow_comp_v2_default_composed',
+    //     ],
+    //     cropNames: ["9C4A0132-07352d1dd0_01_crop_B07JVNBJTB", '9C4A0132-07352d1dd0_01_crop_B075X5HBB2'],
+    //     folderName: 'figures/bg_relight',
+    //     cropSubfolder: true
+    // });
+    makeResultsTable({
+        resultsContainer: document.getElementById('results-container-two-lights'),
         methods: [
-        'relight_shadow_comp_v2_default_composed',
+          'two_lights_shadow_comp_v2_default_post_color_balanced_denoised',
+          'two_lights_shadow_comp_v2_default_full_composite',
         ],
-        cropNames: ["9C4A0132-07352d1dd0_01_crop_B07JVNBJTB", '9C4A0132-07352d1dd0_01_crop_B075X5HBB2'],
-        folderName: 'figures/bg_relight',
+        cropNames: ["AG8A0630-e5622e17d2_02_crop_B0717B4RRW", "9C4A6765-55315335bf_00_crop_B07B4GSNB1"],
+        methodsMapping: {
+          'two_lights_shadow_comp_v2_default_post_color_balanced_denoised': 'Single light',
+          'two_lights_shadow_comp_v2_default_full_composite': 'Combination of two lights',
+        },
+        folderName: 'figures/two_lights',
         cropSubfolder: true
     });
-    
 
+    makeResultsTable({
+        resultsContainer: document.getElementById('results-container-bg-relight'),
+        methods: [
+          'shadow_comp_v2_default',
+          'relight_shadow_comp_v2_default_default',
+          'relight_shadow_comp_v2_default_avg',
+          'relight_shadow_comp_v2_default_composed'
+        ],
+        cropNames: ["9C4A0132-07352d1dd0_01_crop_B07JVNBJTB", "AG8A6551-16ae8050c9_06_crop_B075X4QFK2", "9C4A6765-55315335bf_07_crop_B07DBDN79B", "9C4A2563-d4a99744c5_00_crop_B07DBGWFGY"],
+        methodsMapping: {
+          'shadow_comp_v2_default' : 'SpotLight',
+          'relight_shadow_comp_v2_default_default' : 'Relit background',
+          'relight_shadow_comp_v2_default_avg' : 'Average relit background',
+          'relight_shadow_comp_v2_default_composed': 'Relit background + composition'
+        },
+        folderName: 'figures/bg_relight',
+        cropSubfolder: false
+    });
+   // D:\Documents\Projets\maitrise-code\compositing-blender\outputs\c_o\jpg\relight_shadow_comp_v2_default_composed\AG8A6719-fc8e1ea686_05_crop_B072Y5MZQH\0005.jpg
+   // D:\Documents\Projets\maitrise-code\compositing-blender\outputs\c_o\jpg\relight_shadow_comp_v2_default_composed\AG8A6551-16ae8050c9_06_crop_B075X4QFK2\0006.jpg
+   // D:\Documents\Projets\maitrise-code\compositing-blender\outputs\c_o\jpg\relight_shadow_comp_v2_default_composed\AG8A4106-248c9b6695_00_crop_B075X33SC6\0003.jpg
+   // D:\Documents\Projets\maitrise-code\compositing-blender\outputs\c_o\jpg\relight_shadow_comp_v2_default_composed\9C4A6765-55315335bf_07_crop_B07DBDN79B\gt_dir.jpg
+   // D:\Documents\Projets\maitrise-code\compositing-blender\outputs\c_o\jpg\relight_shadow_comp_v2_default_composed\9C4A2563-d4a99744c5_00_crop_B07DBGWFGY\0000.jpg
+   // D:\Documents\Projets\maitrise-code\compositing-blender\outputs\c_o\jpg\relight_shadow_comp_v2_default_composed\9C4A0566-a088c98ccf_00_crop_B07J2R9Y4W\gt_dir.jpg
   </script>
     <script src="./js/lightbox-plus-jquery.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>

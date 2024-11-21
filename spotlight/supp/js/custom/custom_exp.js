@@ -8,9 +8,11 @@ const makeResultsTable2 = ({
     initialMethod='shadow_comp_v2_default_post_color_balanced_denoised',
     cropNames,
     methodsMapping,
+    defaultMethodIndex=1,
+    defaultAzimuthIndex=0,
     folderName,
     lightDirections=defaultLightDirections,
-    initialDirection='0000',
+    initialDirection='0006',
     cropSubfolder=false} = {}) => {
       const row = document.createElement('div');
       cropNames.forEach(crop => {
@@ -38,7 +40,7 @@ const makeResultsTable2 = ({
             img.dataset.dir = dir;
             img.dataset.method = method;
             img.style.opacity = ((dir === initialDirection) && (method === initialMethod)) ? 1 : 0; // Show the first light direction
-            img.style.opacity = 0;
+            // img.style.opacity = 0;
             imgContainer.appendChild(img);
           });
         });
@@ -63,9 +65,9 @@ const makeResultsTable2 = ({
           });
         });
       }
-      let parameterValueIndex = 0;
+      let parameterValueIndex = defaultMethodIndex;
       let selectedMethod = methods[parameterValueIndex];
-      let azimuthIndex = 0;
+      let azimuthIndex = defaultAzimuthIndex;
       let azimuth = lightDirections[azimuthIndex];
       // add event listerner for the azimuth slider
       updateTable(selectedMethod, azimuth);
