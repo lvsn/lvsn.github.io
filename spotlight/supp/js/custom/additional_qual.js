@@ -79,7 +79,7 @@ cropNamesFig5ext.forEach(crop => {
     resultsContainerFig5ext.appendChild(row);
 });
 */
-const defaultLightDirections = ['0000', '0001', '0002', '0003', '0004', '0005', '0006', '0007'];
+const defaultLightDirections = ['0001', '0000', '0007', '0006', '0005', '0004', '0003', '0002'];
 const makeResultsTable = ({
     resultsContainer,
     methods,
@@ -87,7 +87,8 @@ const makeResultsTable = ({
     methodsMapping,
     folderName,
     lightDirections=defaultLightDirections,
-    initialDirection='0000',
+    initialDirection='0006',
+    imageSize=220,
     cropSubfolder=false} = {}) => {
       cropNames.forEach(crop => {
         const row = document.createElement('div');
@@ -97,10 +98,13 @@ const makeResultsTable = ({
         methods.forEach(method => {
           const col = document.createElement('div');
           col.classList.add('col-md', 'result-cell');
+          col.style.maxWidth = `${imageSize}px`;
+          col.style.flex = `1 0 ${imageSize}px`;
 
           // Create imgContainer
           const imgContainer = document.createElement('div');
           imgContainer.classList.add('img-container');
+          imgContainer.style.height = `${imageSize}px`;
           // Preload images
           lightDirections.forEach(dir => {
             const img = document.createElement('img');
@@ -125,20 +129,20 @@ const makeResultsTable = ({
           // Append label to col
           col.appendChild(label);
           // Add mousemove listener to the entire row
-          col.addEventListener('mousemove', e => {
-              const rect = col.getBoundingClientRect();
-              const relX = e.clientX - rect.left; // Relative X position within the row
-              const index = Math.floor(Math.max((relX / rect.width) * lightDirections.length, 0));
-              const selectedDir = lightDirections[Math.min(index, lightDirections.length - 1)];
-  
-              resultsContainer.querySelectorAll('.result-cell').forEach(cell => {
-                  cell.querySelectorAll('img').forEach(img => {
-                  img.style.opacity = img.dataset.dir === selectedDir ? 1 : 0;
-                  });
-              });
-          });
           row.appendChild(col);
   
+        });
+        row.addEventListener('mousemove', e => {
+            const rect = row.getBoundingClientRect();
+            const relX = e.clientX - rect.left; // Relative X position within the row
+            const index = Math.floor(Math.max((relX / rect.width) * lightDirections.length, 0));
+            const selectedDir = lightDirections[Math.min(index, lightDirections.length - 1)];
+
+            resultsContainer.querySelectorAll('.result-cell').forEach(cell => {
+                cell.querySelectorAll('img').forEach(img => {
+                img.style.opacity = img.dataset.dir === selectedDir ? 1 : 0;
+                });
+            });
         });
         resultsContainer.appendChild(row);
 
