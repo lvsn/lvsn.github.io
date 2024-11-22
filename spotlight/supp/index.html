@@ -6,7 +6,6 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="./favicon.ico">
 
     <title>SpotLight: Shadow-Guided Object Relighting via Diffusion &mdash; Supplementary Material</title>
 
@@ -30,8 +29,6 @@
       }
   
       .result-cell {
-        /* flex: 1 0 220px; /* Flexible size with minimum 220px */
-        /* max-width: 220px; /* Prevent over-expansion */
         margin: 0px; /* Space between cells */
         overflow: hidden;
         border: 1px solid #ddd;
@@ -42,7 +39,6 @@
       .img-container {
         position: relative;
         width: 100%;
-        /* height: 220px; */
       }
   
       .result-cell img {
@@ -82,10 +78,10 @@
               <a class="nav-link" href="#qual_results_control">Qualitative results</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#parameter_control">Parameter control</a>
+              <a class="nav-link" href="#parameter_control">Parameters control</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#virtual_light_source">Virtual light source</a>
+              <a class="nav-link" href="#virtual_light_source">Light radius</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#multiple_lights">Multiple lights</a>
@@ -115,16 +111,15 @@
 
       <div style="clear:both; height:2em;"></div>
       <h3>Table of Contents</h3>
-      <p>
       <ol>
         <li>
           <a href="#qual_results_control">Additional qualitative results (extends fig. 5)</a>
         </li>
         <li>
-          <a href="#parameter_control">Parameter control (extends sec. 4.6)</a>
+          <a href="#parameter_control">Parameters control (extends sec. 4.6)</a>
         </li>
         <li>
-          <a href="#virtual_light_source">Virtual light source adjustments</a>
+          <a href="#virtual_light_source">Light radius</a>
         </li>
         <li>
           <a href="#multiple_lights">Multiple lights</a>
@@ -136,8 +131,6 @@
           <a href="#user_study">User study interface (extends sec. 4.5)</a>
         </li>
       </ol>
-      </p>
-
       <a class="anchor" name="qual_results_control"></a>
       <div style="clear:both; height:4em;"></div>
       <h2>1. Additional qualitative results</h2>
@@ -153,10 +146,10 @@
 
       <a class="anchor" name="parameter_control"></a>
       <div style="clear:both; height:4em;"></div>
-      <h2>2. Additional results for parameter control</h2>
+      <h2>2. Additional results for parameters control</h2>
       <p align="justify">
         We show how the two main parameters of our method can be adjusted for enhanced artistic control, extending sec. 4.6.
-        Here, we show the adjustment of both parameters separately, but they could be adjusted simultaneously for optimal results.
+        Here, both parameters are modified separately, but they could be modified simultaneously for optimal results.
       </p>
       <h3>2.1. Guidance scale γ</h3>
       <p align="justify">Here, we show control over the guidance scale γ, extending fig. 6. 
@@ -184,32 +177,32 @@
       <h2>3. Light source radius</h2>
 
       <p align="justify">We adjust the light source radius used to generate the coarse shadow fed to SpotLight.
-        Small radius leads to hard shadows, whereas higher radiuses generate more diffuse shadows.
+        Small radii lead to hard shadows, whereas higher radii generate more diffuse shadows.
         <br>
         <strong>Move the mouse vertically to adjust the light source radius</strong>, and horizontally to adjust the light azimuth angle. 
 
       </p>
       <p>The current light azimuth angle is <strong id="light-size-azimuth-value">0°</strong>.</p>
-      <p align="justify">The current light radius is <strong id="light-size-value">γ=3.0</strong> (at a distance of 10 from the object).</p>
+      <p align="justify">The current light radius is <strong id="light-size-value">1 (default)</strong>.</p>
       <div id="results-container-light-size" class="row"></div>
 
       <a class="anchor" name="multiple_lights"></a>
       <div style="clear:both; height:4em;"></div>
       <h2>4. Multiple lights</h2>
 
-      <p>In our paper, we analyze all the methods using a single dominant light source, which is sufficiently realistic in most cases.
-        Here, we show that we can linearly combine outputs from SpotLight at different light directions to simulate multiple light sources.
+      <p>In our paper, we analyze all the methods by conditioning on a single dominant light source, which is sufficiently realistic in most cases.
+        Here, we show that we can combine outputs from SpotLight at different light directions to simulate multiple light sources.
         We combine a static light direction (shadow to the right of the object), with a dynamic direction (hover over the images to move this virtual light). We combine the two lightings
         in linear space (by using the gamma of 2.2) using the following equation:
         $$x_{\text{combined}}=(0.5 \times {x_{\text{light 1}}}^{2.2} + 0.5 \times {x_{\text{light 2}}}^{2.2})^{\frac{1}{2.2}}.$$ 
-        Notice how the static shadow and shading has an effect on the combined output. <br><br>
+        Notice how the static shadow and shading have a clear effect on the combined output. <br><br>
       <div id="results-container-two-lights" class="row"></div>
 
       
     <a class="anchor" name="bg_relight"></a>
     <div style="clear:both; height:4em;"></div>
     <h2>5. Background relighting</h2>
-    <p align="justify">In our work, we use SpotLight for object relighting. We experiment with extending SpotLight for full-scene relighting using the following approach.
+    <p align="justify">In our work, we use SpotLight for <i>object</i> relighting. We experiment with extending SpotLight for full-scene relighting using the following approach.
       <ol>
         <li>We run SpotLight as-is to render the object lit with a desired shadow. We obtain the <strong>SpotLight</strong> output.</li>
         <li>We run the backbone (in this case ZeroComp), with the inverted shading mask, feeding it only the shading of the object and its shadow 
@@ -243,7 +236,7 @@
         <a href="figures/user_study/instructions.png" target="_blank">
           <img src="figures/user_study/instructions.png" class="border border-secondary" alt="User study instructions" style="width: 100%;">
         </a>
-        <figurecaption>User study intructions page</figurecaption>
+        <figurecaption>User study instructions page</figurecaption>
       </div>
     </div>
     <br>
@@ -260,11 +253,12 @@
     <br>
 
 
-    <footer class="footer navbar-fixed-bottom" style="left: 0">
+    <footer class="footer fixed-bottom" style="left: 0">
       <div class="container">
         <span class="text-muted">SpotLight: Shadow-Guided Object Relighting via Diffusion &mdash; Supplementary Material</span>
       </div>
     </footer>
+  </body>
   <script src="./js/custom/additional_qual.js"></script>
   <script src="./js/custom/custom_exp.js"></script>
   <script>
@@ -339,7 +333,7 @@
         cropNames: ["AG8A6551-16ae8050c9_06_crop_B075X4QFK2", "9C4A8239-7a9d7093e2_04_crop_B082VLJ7Y2", "9C4A0566-a088c98ccf_05_crop_B07VKM698C", "9C4A3419-2e5c9b4d85_08_crop_B07B4D8B2S", "9C4A4878-4dac321d8b_02_crop_B07HP93VDJ", "9C4A4861-19626f89e9_04_crop_B07B4MSYPS", "AG8A0630-e5622e17d2_01_crop_B07B85FJD5", "AG8A6719-fc8e1ea686_05_crop_B07DBJ1H18", "AG8A3196-8e1dfd8d95_08_crop_B07WMQ8P8Q", "AG8A8843-b91f89fff2_05_crop_B07B4YXNR3"],
         methodsMapping: {
         'shadow_comp_v2_light_radius_0_post_color_balanced_denoised': '0',
-        'shadow_comp_v2_default_post_color_balanced_denoised': '1',
+        'shadow_comp_v2_default_post_color_balanced_denoised': '1 (default)',
         'shadow_comp_v2_light_radius_5_post_color_balanced_denoised': '5',
         },
         folderName: 'figures/light_size',
@@ -382,14 +376,7 @@
         cropSubfolder: false,
         imageSize: 250
     });
-   // D:\Documents\Projets\maitrise-code\compositing-blender\outputs\c_o\jpg\relight_shadow_comp_v2_default_composed\AG8A6719-fc8e1ea686_05_crop_B072Y5MZQH\0005.jpg
-   // D:\Documents\Projets\maitrise-code\compositing-blender\outputs\c_o\jpg\relight_shadow_comp_v2_default_composed\AG8A6551-16ae8050c9_06_crop_B075X4QFK2\0006.jpg
-   // D:\Documents\Projets\maitrise-code\compositing-blender\outputs\c_o\jpg\relight_shadow_comp_v2_default_composed\AG8A4106-248c9b6695_00_crop_B075X33SC6\0003.jpg
-   // D:\Documents\Projets\maitrise-code\compositing-blender\outputs\c_o\jpg\relight_shadow_comp_v2_default_composed\9C4A6765-55315335bf_07_crop_B07DBDN79B\gt_dir.jpg
-   // D:\Documents\Projets\maitrise-code\compositing-blender\outputs\c_o\jpg\relight_shadow_comp_v2_default_composed\9C4A2563-d4a99744c5_00_crop_B07DBGWFGY\0000.jpg
-   // D:\Documents\Projets\maitrise-code\compositing-blender\outputs\c_o\jpg\relight_shadow_comp_v2_default_composed\9C4A0566-a088c98ccf_00_crop_B07J2R9Y4W\gt_dir.jpg
   </script>
     <script src="./js/lightbox-plus-jquery.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-  </body>
 </html>

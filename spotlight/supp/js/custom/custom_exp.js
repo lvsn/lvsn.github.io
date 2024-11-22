@@ -38,7 +38,6 @@ const makeResultsTable2 = ({
             } else {
               img.src = `${folderName}/${method}/${crop}_${dir}.jpg`;
             }
-            // img.src = `${folderName}/${method}/${crop}_${dir}.jpg`;
             img.dataset.dir = dir;
             img.dataset.method = method;
             img.style.opacity = ((dir === initialDirection) && (method === initialMethod)) ? 1 : 0; // Show the first light direction
@@ -84,22 +83,4 @@ const makeResultsTable2 = ({
         selectedMethod = methods[parameterValueIndex];
         updateTable();
       });
-      // // add event listerner for the azimuth slider
-      // updateTable(selectedMethod, azimuth);
-// 
-      // if (azimuthSlider !== null) {
-      //   azimuthSlider.addEventListener('input', e => {
-      //       azimuthIndex = parseInt(e.target.value);
-      //       azimuth = lightDirections[azimuthIndex];
-      //       updateTable(selectedMethod, azimuth);
-      //   });
-      // }
-      // if (parameterSlider !== null) {
-      //   // add event listerner for the gamma slider
-      //   parameterSlider.addEventListener('input', e => {
-      //     parameterValueIndex = parseInt(e.target.value);
-      //     selectedMethod = methods[parameterValueIndex];
-      //     updateTable(selectedMethod, azimuth);
-      //   });
-      // }
   }
