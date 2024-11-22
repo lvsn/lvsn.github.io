@@ -107,8 +107,9 @@
         <h1>SpotLight: Shadow-Guided Object Relighting via Diffusion &mdash; Supplementary Material</h1>
       </div>
       <p align="justify" class="lead">
-        We present additional results complementing the main paper. You will be able to experience the control our method provides by hovering over the images or using
-        sliders.
+        We present additional results complementing the main paper. You will be able to experience the control our method provides by 
+        <span class="font-weight-bold">hovering over the images or using
+        sliders</span>.
       </p>
 
       <div style="clear:both; height:2em;"></div>
@@ -156,7 +157,6 @@
         Here, we show the adjustment of both parameters separately, but they could easily be adjusted simultaneously for optimal results.
       </p>
       <h3>2.1. Guidance scale γ</h3>
-      <strong>TODO: divide by 2 the number of examples shown</strong>
       <p align="justify">Here, we show control over the guidance scale γ, extending fig. 6. By using the sliders, the light direction and the guidance scale can be adjusted.
         Increasing the guidance scale generally makes the dominant light source stronger.
       </p>
@@ -165,7 +165,6 @@
       <div id="results-container-cfg" class="row"></div>
 
       <h3>2.2. Latent mask weight β</h3>
-      <strong>TODO: divide by 2 the number of examples shown</strong>
       <p align="justify">Here, we show control over the latent mask weight β, extending fig. 7. 
         Increasing the latent mask weight makes the dominant shadow darker.        
       </p>
@@ -180,8 +179,7 @@
       <p align="justify">Here, we demonstrate the impact of adjusting two parameters of the spherical light source that generated the shadow: its elevation and its radius.
 </p>
       <h3>3.1 Light source radius</h3>
-      <strong>TODO: divide by 2 the number of examples shown</strong>
-      <p align="justify">We adjust the light source radius. Small radius leads to hard shadows, whereas higher radii generate more diffuse shadows.
+      <p align="justify">We adjust the light source radius. Small radius leads to hard shadows, whereas higher radiuses generate more diffuse shadows.
 
       </p>
       <p>The current light azimuth angle is <input type="range" min="0" max="7" value="0" class="slider" id="light-size-azimuth-slider" draggable/> <strong id="light-size-azimuth-value">0°</strong>.</p>
@@ -190,35 +188,23 @@
 
       <h3>3.2 Light source elevation</h3>
       <strong>TODO</strong>
-
-      <a class="anchor" name="compositing_2d"></a>
-      <div style="clear:both; height:4em;"></div>
-      <h2>4. 2D object relighting</h2>
-      <strong>TODO: remove that section</strong>
-      <p align="justify">We show additional light directions for 2D object compositing, extending fig. 8.</p>
-      <p>Adjust the lighting position (shadow from left to right in pixel height space): <input type="range" min="0" max="5" value="0" class="slider" id="compositing-2d-azimuth-slider" draggable/></p>
-      <strong>TODO show object + bg in a nice table.</strong>
-      <div id="results-container-compositing-2d" class="row"></div>
-
-      
       
       <a class="anchor" name="multiple_lights"></a>
       <div style="clear:both; height:4em;"></div>
-      <h2>5. Multiple lights</h2>
+      <h2>4. Multiple lights</h2>
 
       <p>In our paper, we analyze all the methods using a single dominant light source, which is sufficiently realistic in most cases.
         Here, we show that we can linearly combine outputs from SpotLight at different light directions to simulate multiple light sources.
-        We combine a static light direction (shadow to the right of the object), with a dynamic direction (hover over the images to move this virtual light). Our combination of the two lights
-        is simply given by $$x_{\text{combined}}=0.5 \times x_{\text{light 1}} + 0.5 \times x_{\text{light 2}}.$$ Notice how the static shadow to the right remains visible
-        and affects the shading. <br><br>
-        <strong>TODO: do addition in linear space</strong>
-      </p>
+        We combine a static light direction (shadow to the right of the object), with a dynamic direction (hover over the images to move this virtual light). We combine the two lightings
+        in linear space (by using the gamma of 2.2) using the following equation:
+        $$x_{\text{combined}}=(0.5 \times {x_{\text{light 1}}}^{2.2} + 0.5 \times {x_{\text{light 2}}}^{2.2})^{\frac{1}{2.2}}.$$ 
+        Notice how the static shadow and shading has an effect on the combined output. <br><br>
       <div id="results-container-two-lights" class="row"></div>
 
       
     <a class="anchor" name="bg_relight"></a>
     <div style="clear:both; height:4em;"></div>
-    <h2>6. Background relighting</h2>
+    <h2>5. Background relighting</h2>
     <p align="justify">In our work, we use SpotLight for object relighting. We experiment with extending SpotLight for full-scene relighting using the following approach.
       <ol>
         <li>We run SpotLight as-is to render the object lit with a desired shadow. We obtain the <strong>SpotLight</strong> output.</li>
@@ -231,8 +217,7 @@
           the relit background prediction with the average relit background. We multiply that highlight map with the original background and obtain a more accurate output, <strong>relit background + composition</strong>. 
         </li>
       </ol>
-      We notice that, for some scenes, the background relighting is very convincing, and provides a good first step towards full-scene relighting.
-      Shadows and highlights are added to the background in a coherent way, with respect to the object's shadow.
+      We observe in the following example that background shadows and highlights are added in a consistent manner with respect to the object's shadow.
     </p>
   
     <div id="results-container-bg-relight" class="row"></div>
@@ -240,14 +225,14 @@
     <p align="justify">
       In step 1, we use the same ZeroComp checkpoint as in all other experiments. For steps 2 and 3, in order to properly relight the background, we found that this checkpoint
       had limited full-scene relighting capabilities.
-      We hypothesize that this is due to the fact that the network is trained to relight only a small region of an image (circles and rectangular masks at training time).
+      We hypothesize that this is due to the fact that the neural renderer backbone is trained to relight only a small region of an image (circular and rectangular masks at training time).
       We therefore train a separate model from scratch for 270K iterations on inverted shading masks, where we take the inverse of the circular and rectangular masks for shading masking. Furthermore,
-      we filter out masks with more than one connected component. This leaves training examples where only a small region of the shading is known and the full background lighting needs to be inferred.
+      we only keep the largest connected component in the mask. This leaves training examples where only a small region of the shading is known and the full background lighting needs to be inferred.
 </p>
 
     <a class="anchor" name="user_study"></a>
     <div style="clear:both; height:4em;"></div>
-    <h2>7. User study interface</h2>
+    <h2>6. User study interface</h2>
     <p>Here, we show the user interface used to perform our human perceptual study, as described in sec. 4.5 in the paper. The user is first shown an instructions page, followed by the questions page (which is the same for the 120 2AFC questions).</p>
     <div class="row">
       <div class="col-md-12">
@@ -362,52 +347,21 @@
         folderName: 'figures/light_size',
     });
     
-    makeResultsTable2({
-        resultsContainer:  document.getElementById('results-container-compositing-2d'),
-        azimuthSlider: document.getElementById('compositing-2d-azimuth-slider'),
-        // azimuthValueText: document.getElementById('compositing-2d-azimuth-value'),
-        methods: ['shadow_comp_v2_default_neg_no_shadow_details_transfered_post_color_balanced'],
-        initialMethod: 'shadow_comp_v2_default_neg_no_shadow_details_transfered_post_color_balanced',
-        cropNames: ['bg-3_obj-5', 'bg-9_obj-1', 'bg-10_obj-11'],
-        folderName: 'figures/compositing_2d',
-        defaultMethodIndex: 0,
-        lightDirections: [
-          'x-511_y-300_horizon-100_softness-0.1',
-          //'x-511_y-100_horizon-300_softness-0.1',
-          'x-511_y-100_horizon-100_softness-0.1',
-          'x-384_y-100_horizon-100_softness-0.1',
-        // 'x-256_y-300_horizon-100_softness-0.1',
-          'x-128_y-100_horizon-100_softness-0.1',
-          'x-128_y-300_horizon-100_softness-0.1',
-          'x-0_y-300_horizon-100_softness-0.1'
-        ],
-        initialDirection: 'x-384_y-100_horizon-100_softness-0.1',
-        cropSubfolder: true
-    });
-    // makeResultsTable2({
-    //     resultsContainer: document.getElementById('results-container-bg-relight'),
-    //     azimuthSlider: document.getElementById('bg-relight-azimuth-slider'),
-    //     azimuthValueText: document.getElementById('bg-relight-azimuth-value'),
-    //     methods: [
-    //     'relight_shadow_comp_v2_default_composed',
-    //     ],
-    //     cropNames: ["9C4A0132-07352d1dd0_01_crop_B07JVNBJTB", '9C4A0132-07352d1dd0_01_crop_B075X5HBB2'],
-    //     folderName: 'figures/bg_relight',
-    //     cropSubfolder: true
-    // });
     makeResultsTable({
         resultsContainer: document.getElementById('results-container-two-lights'),
         methods: [
+          'two_lights_shadow_comp_v2_default_post_color_balanced_static_denoised',
           'two_lights_shadow_comp_v2_default_post_color_balanced_denoised',
           'two_lights_shadow_comp_v2_default_full_composite',
         ],
-        cropNames: ["AG8A0630-e5622e17d2_02_crop_B0717B4RRW", "9C4A6765-55315335bf_00_crop_B07B4GSNB1"],
+        cropNames: ["AG8A0630-e5622e17d2_02_crop_B0717B4RRW", "AG8A8563-e652dd5751_02_crop_B07B78RCT5", "AG8A6551-16ae8050c9_06_crop_B075X4QFK2", "AG8A4106-248c9b6695_00_crop_B075X33SC6"],
         methodsMapping: {
-          'two_lights_shadow_comp_v2_default_post_color_balanced_denoised': 'Single light',
-          'two_lights_shadow_comp_v2_default_full_composite': 'Combination of two lights',
+          'two_lights_shadow_comp_v2_default_post_color_balanced_static_denoised': '$$x_{\\text{light 1}}$$',
+          'two_lights_shadow_comp_v2_default_post_color_balanced_denoised': '$$x_{\\text{light 2}}$$',
+          'two_lights_shadow_comp_v2_default_full_composite': '$$x_{\\text{combined}}$$',
         },
         folderName: 'figures/two_lights',
-        cropSubfolder: true
+        cropSubfolder: false
     });
 
     makeResultsTable({
