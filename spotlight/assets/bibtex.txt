@@ -1,6 +1,0 @@
-@article{karimi2022ImmerseGAN,
-  title={Guided Co-Modulated \uppercase{GAN} for 360\degree{} Field of View Extrapolation},
-  author={Karimi Dastjerdi, Mohammad Reza and Hold-Geoffroy, Yannick and Eisenmann, Jonathan and Khodadadeh, Siavash and Lalonde, Jean-Fran{\c{c}}ois},
-  journal={International Conference on 3D Vision (3DV)},
-  year={2022}
-}

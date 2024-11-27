@@ -122,7 +122,7 @@
 
 <html>
   <head>
-	<title>EverLight: Indoor-Outdoor Editable HDR Lighting Estimation</title>
+	<title>SpotLight: Shadow-Guided Object Relighting via Diffusion</title>
 	<meta name="description" content="EverLight is the first lighting estimation method that simultaneously produces high dynamic range, high-resolution panoramas ready to use as HDRI in rendering engines, works for both indoor and outdoor domains, and it is editable.">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
 	<link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
@@ -133,7 +133,7 @@
           <center>
           	    <br 
 		    <div  style="text-align:center">
-                        <span style="font-size:32px"> EverLight: Indoor-Outdoor Editable HDR Lighting Estimation </span> 
+                        <span style="font-size:32px">SpotLight: Shadow-Guided Object Relighting via Diffusion</span> 
                         
                     </div>  
 	  		  <table align=center width=600px>
@@ -141,15 +141,18 @@
 			          
 	  	              <td align=center>
 	  					<center>  
-	  						<span style="font-size:20px"><a href="https://mrkarimid.github.io/">Mohammad Reza Karimi Dastjerdi</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
-	  						<span style="font-size:20px"><a href="https://www.linkedin.com/in/jeisenmann/">Jonathan Eisenmann</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	  						<span style="font-size:20px"><a href="https://www.linkedin.com/in/lefreud/">Frédéric Fortier-Chouinard</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	  						<span style="font-size:20px"><a href="https://zzt76.github.io/">Zitian Zhang</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	  						<span style="font-size:20px"><a href="https://www.linkedin.com/in/louis-etienne-messier-2361311ba/">Louis-Etienne Messier</a></span>
 	  						<br>
-	  						<span style="font-size:20px"><a href="https://yannickhold.com/">Yannick Hold-Geoffroy</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
-								<span style="font-size:20px"><a href="http://www.jflalonde.ca/">Jean-François Lalonde</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	  						<span style="font-size:20px"><a href="https://scholar.google.ca/citations?user=C7ueIMwAAAAJ">Mathieu Garon</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	  						<span style="font-size:20px"><a href="https://anandbhattad.github.io/">Anand Bhattad</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+							<span style="font-size:20px"><a href="http://www.jflalonde.ca/">Jean-François Lalonde</a></span>
 		  		  		</center>
 		  		  		<br>
-		  		  		<img src="./assets/ul_logo.png" align="center" width="30%">  
-						<img src="./assets/adobe_logo.png" align="center" width="30%">
+		  		  		<img src="./assets/ul_logo.png" align="center" style="height: 100px;">  
+						<img src="./assets/depix_logo.png" align="center"  style="height: 150px; margin-right: 19px;">
+						<img src="./assets/ttic_logo.jpg" align="center" style="height: 90px;">
 		  		  		<br>
                   			        <br> 
 		  		  		
@@ -183,7 +186,7 @@
 	  			  <tr>  
 	  	              <td align=center width=120px>
 	  					<center>
-	  						<span style="font-size:24px"><a href='https://arxiv.org/abs/2304.13207'>[Paper]</a></span>
+	  						<span style="font-size:24px"><a href=''>[Paper (COMING SOON)]</a></span>
 		  		  		</center>
 		  		  	  </td>
 	  	              <td align=center width=120px>
@@ -191,18 +194,6 @@
 	  						<span style="font-size:24px"><a href='./supp/index.html'>[Supplementary]</a></span><br>
 		  		  		</center>
 		  		  	  </td>
-	  	               <td align=center width=120px>
-	  					<center>
-	  						<span style="font-size:24px"><a href='./assets/poster.pdf'>[Poster]</a></span><br>
-		  		  		</center>
-		  		  	  </td>  
-		  		  	  <!--
-		  		  	  <td align=center width=120px>
-	  					<center>
-	  						<span style="font-size:24px"><a href='./assets/bibtex.txt'>[Bibtex]</a></span><br>
-		  		  		</center>
-		  		  	  </td>  
-		  		  	 </tr> -->
 	  			  <tr>
 	  			  
 			  </table>
@@ -210,141 +201,34 @@
 		  <hr> 
 		  <hr>
 		  
-		  <table align=center width=875px>
-	  		  <table align=center width=700px> 
-	  		  	<tr>  
-	  	              <td align=center width=150px>
-	  					<center>
-	  						Accepted in <span style="font-size:20px"><a href='https://iccv2023.thecvf.com/'>International Conference on Computer Vision (ICCV)</a>, 2023!</span>
-		  		  		</center>
-		  		  	  </td>   
-	  			  <tr>
-	  			  <tr>  
-	  			  <tr>
-	  			  
-			  </table>
-			</table> 
-	  <hr> 
-		<hr>
-
-		<!-- <table align=center width=875px>
-	  		  <table align=center width=700px> 
-	  		  	<tr>  
-	  	              <td width=150px>
-	  					<center>
-	  						<span style="font-size:24px">This work is featured at <a href='https://www.adobe.com/max.html'>Adobe Max Sneaks 2022</a>!</span>
-		  		  		</td>
-		  		  	
-		  		  	</tr>
-		  		  </table>
-		  		  <table align=center width=700px> 
-
-		  		  	<tr>
-		  		  	<tr>
-		  		  	<td> 
-		  		  		Media Coverage: 
-		  		  		<td> <li> <a href='https://blog.adobe.com/en/publish/2022/10/19/adobe-max-sneaks-show-how-ai-is-enhancing-future-of-creativity'>Adobe Blog</a> </li> </td>
-		  		  		<td> <li> <a href='https://www.popsci.com/technology/adobe-beyond-the-seen-ai/'>Popular Science</a> </li> </td>
-		  		  		<td> <li> <a href='https://petapixel.com/2022/10/20/adobe-can-use-ai-to-extend-photos-well-beyond-their-original-boundaries/'>PetaPixel</a> </li> </td>
-		  		  		<td> <li> <a href='https://www.digitalcameraworld.com/news/the-future-of-photoshop-is-blowing-my-mind'>DigitalCameraWorld</a> </li> </td>
-		  		  		</center>
-		  		  	  </td>   
-	  			  <tr>
-	  			  
-	  			  
-			  </table>
-			</table>
-		  <hr> 
-		  <hr> -->
 
   		  <table align=center width=875px>
 	  		  <center><h1>Abstract</h1></center>
 	  		  <tr>
 	  		  	<td>
-					Because of the diversity in lighting environments, existing illumination estimation techniques have been designed explicitly on indoor or outdoor environments. Methods have focused specifically on capturing accurate energy (e.g., through parametric lighting models), which emphasizes shading and strong cast shadows; or producing plausible texture (e.g., with GANs), which prioritizes plausible reflections. Approaches which provide editable lighting capabilities have been proposed, but these tend to be with simplified lighting models, offering limited realism. In this work, we propose to bridge the gap between these recent trends in the literature, and propose a method which combines a parametric light model with 360° panoramas, ready to use as HDRI in rendering engines. We leverage recent advances in GAN-based LDR panorama extrapolation from a regular image, which we extend to HDR using parametric spherical gaussians. To achieve this, we introduce a novel lighting co-modulation method that injects lighting-related features throughout the generator, tightly coupling the original or edited scene illumination within the panorama generation process. In our representation, users can easily edit light direction, intensity, number, etc. to impact shading while providing rich, complex reflections while seamlessly blending with the edits. Furthermore, our method encompasses indoor and outdoor environments, demonstrating state-of-the-art results even when compared to domain-specific methods.
+					Recent work has shown that diffusion models can be used as powerful neural rendering engines that can be leveraged for inserting virtual objects into images. Unlike typical physics-based renderers, however, neural rendering engines are limited by the lack of manual control over the lighting setup, which is often essential for improving or personalizing the desired image outcome. In this paper, we show that precise lighting control can be achieved for object relighting simply by specifying the desired shadows of the object. Rather surprisingly, we show that injecting only the shadow of the object into a pre-trained diffusion-based neural renderer enables it to accurately shade the object according to the desired light position, while properly harmonizing the object (and its shadow) within the target background image. Our method, SpotLight, leverages existing neural rendering approaches and achieves controllable relighting results with no additional training. Specifically, we demonstrate its use with two neural renderers from the recent literature. We show that SpotLight achieves superior object compositing results, both quantitatively and perceptually, as confirmed by a user study, outperforming existing diffusion-based models specifically designed for relighting.
 				</td>
 	  		  </tr>
 			</table>
   		  	<br>
 		<hr>
 
-		<center><h1>Video - ICCV 2023</h1></center> 
-		   <table align=center hight='1200' width='800px'>        
-	<p align="center">
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/Mk2ZhXxzLRY?si=xEsFEI66jHF9eb2x" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-			<br>  
-	  
-		</table>
-
-		  <hr>
-			
-		
-  
- 		<!-- <center><h1>Code</h1></center>
-  		  <table align=center width=800px>
-			  <br>
-			  <tr><center>
-				<span style="font-size:28px">&nbsp;<a href='https://github.com/ArmanAfrasiyabi/MixtFSL-fs'>[GitHub]</a>
-		  </table>
-
-      	  <br>
-		  <hr>
-		<br>
-				   -->
-				  
-	<!-- <center><h1>Poster</h1></center>
-
-  		  <table align=center width=420px> 
-				    <div class="album py-5 bg-light"> 
-				    <div class="container"> 
-					<div class="row">
-					    <div class="column2"> 
-					    <center>
-						  <a  href="./assets/MixFSL_Poster.pdf" > <img style="width:650px" class="img-fluid" src="./assets/poser.PNG"></a>
-						<br> click on the figure to see .pdf version. <br>
-						<center> 
-					    </div>
-					</div>
-					<br><br>
-
-				 
-					
-    </div>
-		  </table> -->
-
 		  <table align=center width=875px>
 				<center><h1>Citation</h1></center>
 				<tr>
 					<td>
-						<pre><code>@InProceedings{dastjerdi2023everlight,
-    author    = {Dastjerdi, Mohammad Reza Karimi and Eisenmann, Jonathan and Hold-Geoffroy, Yannick and Lalonde, Jean-Fran\c{c}ois},
-    title     = {EverLight: Indoor-Outdoor Editable {HDR} Lighting Estimation},
-    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
-    month     = {October},
-    year      = {2023},
-    pages     = {7420-7429}
-}</code></pre>
+						<pre><code>TODO</code></pre>
 					</td>
 				</tr>
 			</table>
 				<br>
 		<hr>
 
-		  <table align=center width=875px>
-		  	<a name="results"></a>
-				<center><h1>Data and results</h1></center>
-				<tr>
-					<td>
-						We provide the full set of results for indoor lighting estimation reported in the paper. Specifically, we compute results for 9 different lighting estimation methods from the recent literature on a test set of 2240 images (extracted from the <a href="http://hdrdb.com/indoor/">Laval Indoor HDR Dataset</a>). See the <a href="https://hdrdb-public.s3.valeria.science/singleimagelightestimation/README.md">README.md</a> and <a href="https://hdrdb-public.s3.valeria.science/singleimagelightestimation/singleimagelightpredictions.zip">download the full dataset here (11 GB)</a>. 
-					</td>
-				</tr>
-				</table>
-				<br>
-			<hr>
-
 		  <div class="card mb-4 shadow-sm text-center">
 				<h3 class="text-muted">Acknowledgements </h3>
-				The name of this paper EverLight is a homage to the Critical Role’s The Legend of Vox Machina. This work was partially supported by NSERC grant ALLRP557208-20. We thank Sai Bi for his help with extending the dynamic range of the panoramas and everyone at UL who helped with proofreading.
+				This research was supported by NSERC grants RGPIN 2020-04799 and ALLRP 586543-23, Mitacs and Depix.
+				Computing resources were provided by the Digital Research Alliance of Canada.
+				The authors thank Zheng Zeng, Yannick Hold-Geoffroy and Justine Giroux for their help as well as all members of the lab for discussions and proofreading help.
 				</div>
       	  <br>
 
