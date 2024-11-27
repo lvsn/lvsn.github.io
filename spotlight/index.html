@@ -1,0 +1,238 @@
+
+<!-- todo page 1 -->
+<!-- todo bibtex link -->
+
+<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-weight:300;
+		font-size:18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1100px;
+	}
+	
+	h1 {
+		font-size:32px;
+		font-weight:300;
+	}
+	
+	.disclaimerbox {
+		background-color: #eee;		
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+		padding: 20px;
+	}
+
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.rounded {
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	a:link,a:visited
+	{
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+	
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+	
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		        15px 15px 0 0px #fff, /* The fourth layer */
+		        15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		        20px 20px 0 0px #fff, /* The fifth layer */
+		        20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		        25px 25px 0 0px #fff, /* The fifth layer */
+		        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+
+	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+	
+	.vert-cent {
+		position: relative;
+	    top: 50%;
+	    transform: translateY(-50%);
+	}
+	
+	hr
+	{
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+</style>
+
+<html>
+  <head>
+	<title>SpotLight: Shadow-Guided Object Relighting via Diffusion</title>
+	<meta name="description" content="EverLight is the first lighting estimation method that simultaneously produces high dynamic range, high-resolution panoramas ready to use as HDRI in rendering engines, works for both indoor and outdoor domains, and it is editable.">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
+	<link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+  </head>
+
+  <body>
+    <br>
+          <center>
+          	    <br 
+		    <div  style="text-align:center">
+                        <span style="font-size:32px">SpotLight: Shadow-Guided Object Relighting via Diffusion</span> 
+                        
+                    </div>  
+	  		  <table align=center width=600px>
+	  			  <tr>
+			          
+	  	              <td align=center>
+	  					<center>  
+	  						<span style="font-size:20px"><a href="https://www.linkedin.com/in/lefreud/">Frédéric Fortier-Chouinard</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	  						<span style="font-size:20px"><a href="https://zzt76.github.io/">Zitian Zhang</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	  						<span style="font-size:20px"><a href="https://www.linkedin.com/in/louis-etienne-messier-2361311ba/">Louis-Etienne Messier</a></span>
+	  						<br>
+	  						<span style="font-size:20px"><a href="https://scholar.google.ca/citations?user=C7ueIMwAAAAJ">Mathieu Garon</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	  						<span style="font-size:20px"><a href="https://anandbhattad.github.io/">Anand Bhattad</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+							<span style="font-size:20px"><a href="http://www.jflalonde.ca/">Jean-François Lalonde</a></span>
+		  		  		</center>
+		  		  		<br>
+		  		  		<img src="./assets/ul_logo.png" align="center" style="height: 100px;">  
+						<img src="./assets/depix_logo.png" align="center"  style="height: 150px; margin-right: 19px;">
+						<img src="./assets/ttic_logo.jpg" align="center" style="height: 90px;">
+		  		  		<br>
+                  			        <br> 
+		  		  		
+		  		  	  </td> 
+		  		  </tr>
+	  			  <tr>
+		  		  </tr>
+			  </table> 
+          </center>
+
+          <center>
+  		  <table align=center width=850px>
+  			  <tr>
+  	              <td width=1000px>
+  					<center>
+  	                	 <img class="round" style="width:1000px" src="./assets/teaser.png"/>  
+	  				</center>
+  	              </td>  	              
+                </tr>
+  		  </table>  		  
+  		</center>
+   
+	  <hr>
+    <hr>
+          
+          
+          
+		  
+		  <table align=center width=875px>
+	  		  <table align=center width=600px> 
+	  			  <tr>  
+	  	              <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href=''>[Paper (COMING SOON)]</a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=120px>
+	  					<center>
+	  						<span style="font-size:24px"><a href='./supp/index.html'>[Supplementary]</a></span><br>
+		  		  		</center>
+		  		  	  </td>
+	  			  <tr>
+	  			  
+			  </table>
+			</table> 
+		  <hr> 
+		  <hr>
+		  
+
+  		  <table align=center width=875px>
+	  		  <center><h1>Abstract</h1></center>
+	  		  <tr>
+	  		  	<td>
+					Recent work has shown that diffusion models can be used as powerful neural rendering engines that can be leveraged for inserting virtual objects into images. Unlike typical physics-based renderers, however, neural rendering engines are limited by the lack of manual control over the lighting setup, which is often essential for improving or personalizing the desired image outcome. In this paper, we show that precise lighting control can be achieved for object relighting simply by specifying the desired shadows of the object. Rather surprisingly, we show that injecting only the shadow of the object into a pre-trained diffusion-based neural renderer enables it to accurately shade the object according to the desired light position, while properly harmonizing the object (and its shadow) within the target background image. Our method, SpotLight, leverages existing neural rendering approaches and achieves controllable relighting results with no additional training. Specifically, we demonstrate its use with two neural renderers from the recent literature. We show that SpotLight achieves superior object compositing results, both quantitatively and perceptually, as confirmed by a user study, outperforming existing diffusion-based models specifically designed for relighting.
+				</td>
+	  		  </tr>
+			</table>
+  		  	<br>
+		<hr>
+
+		  <table align=center width=875px>
+				<center><h1>Citation</h1></center>
+				<tr>
+					<td>
+						<pre><code>TODO</code></pre>
+					</td>
+				</tr>
+			</table>
+				<br>
+		<hr>
+
+		  <div class="card mb-4 shadow-sm text-center">
+				<h3 class="text-muted">Acknowledgements </h3>
+				This research was supported by NSERC grants RGPIN 2020-04799 and ALLRP 586543-23, Mitacs and Depix.
+				Computing resources were provided by the Digital Research Alliance of Canada.
+				The authors thank Zheng Zeng, Yannick Hold-Geoffroy and Justine Giroux for their help as well as all members of the lab for discussions and proofreading help.
+				</div>
+      	  <br>
+
+              
+</body>
+</html>
+ 
