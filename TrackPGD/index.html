@@ -121,17 +121,7 @@
 	  		  <center><h1>Abstract</h1></center>
 	  		  <tr>
 				<td>
-					Object trackers with transformer backbones have achieved robust performance on visual object track-
-          ing datasets. However, the adversarial robustness of these trackers has not been well studied in the lit-
-          erature. Due to the backbone differences, the adversarial white-box attacks proposed for object tracking
-          are not transferable to all types of trackers. For instance, transformer trackers such as MixFormerM still
-          function well after black-box attacks, especially in predicting the object binary masks. We are proposing
-          a novel white-box attack named TrackPGD, which relies on the predicted object binary mask to attack
-          the robust transformer trackers. That new attack focuses on annotation masks by adapting the well-known
-          SegPGD segmentation attack, allowing to successfully conduct the white-box attack on trackers relying
-          on transformer backbones. The experimental results indicate that the TrackPGD is able to effectively at-
-          tack transformer-based trackers such as MixFormerM, OSTrackSTS, and TransT-SEG on several tracking
-          datasets.
+		Adversarial perturbations can deceive neural networks by adding small, imperceptible noise to the input. Recent object trackers with transformer backbones have shown strong performance on tracking datasets, but their adversarial robustness has not been thoroughly evaluated. While transformer trackers are resilient to black-box attacks, existing white-box adversarial attacks are not universally applicable against these new transformer trackers due to differences in backbone architecture. In this work, we introduce TrackPGD, a novel white-box attack that utilizes predicted object binary masks to target robust transformer trackers. Built upon the powerful segmentation attack SegPGD, our proposed TrackPGD effectively influences the decisions of transformer-based trackers. Our method addresses two primary challenges in adapting a segmentation attack for trackers: limited class numbers and extreme pixel class imbalance. TrackPGD uses the same number of iterations as other attack methods for tracker networks and produces competitive adversarial examples that mislead transformer and non-transformer trackers such as MixFormerM, OSTrackSTS, TransT-SEG, and RTS on datasets including VOT2022STS, DAVIS2016, UAV123, and GOT-10k.
 					
 
 	  		    </td>
