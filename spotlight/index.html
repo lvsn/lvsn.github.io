@@ -190,45 +190,69 @@
 	</center>
 
 	<center>
-		<table align=center width=850px>
+		<table align=center width=1000px>
 			<tr>
-				<td width=1000px>
+				<img class="round" style="width:250px" src="./assets/teaser/bg-chair.jpg" />
+				<img class="round" style="width:250px" src="./assets/teaser/zerocomp-chair.jpg" />
+				<img class="round" style="width:500px" id="gif1" />
+			</tr>
+	
+			<tr>
+				<img class="round" style="width:250px" src="./assets/teaser/bg-ottoman.jpg" />
+				<img class="round" style="width:250px" src="./assets/teaser/zerocomp-ottoman.jpg" />
+				<img class="round" style="width:500px" id="gif2" />
+			</tr>
+			<tr>
+				<td width="300px">
 					<center>
-						<img class="round" style="width:1000px" src="./assets/teaser.png" />
+						<span style="font-size:14pt">Target background</span>
 					</center>
+
+				</td>
+				<td width="300px">
+					<center>
+						<span style="font-size:14pt">Static object insertion (ZeroComp)</span>
+					</center>
+
+				</td>
+				<td width="300px">
+					<center>
+						<span style="font-size:14pt">Coarse desired shadow (shadowmapped or hand-drawn)</span>
+					</center>
+
+				</td>
+				<td width="300px">
+					<center>
+						<span style="font-size:14pt">Shadow-conditionned object insertion (Ours)</span>
+					</center>
+
 				</td>
 			</tr>
 		</table>
 	</center>
 
+	<br>
 	<hr>
 	<hr>
-
-
-
-
-	<table align=center width=875px>
-		<table align=center width=600px>
-			<tr>
-				<td align=center width=120px>
-					<center>
-						<span style="font-size:24px"><a href='https://arxiv.org/abs/2411.18665'>[Paper]</a></span>
-					</center>
-				</td>
-				<td align=center width=120px>
-					<center>
-						<span style="font-size:24px"><a href='./supp/index.html'>[Interactive
-								Supplementary]</a></span><br>
-					</center>
-				</td>
-				<td align=center width=120px>
-					<center>
-						<span style="font-size:24px"><a href=''>[Dataset (coming soon)]</a></span><br>
-					</center>
-				</td>
-			<tr>
-
-		</table>
+	<table align=center width=1000px>
+		<tr>
+			<td align=center width=120px>
+				<center>
+					<span style="font-size:24px"><a href='https://arxiv.org/abs/2411.18665'>[Paper]</a></span>
+				</center>
+			</td>
+			<td align=center width=120px>
+				<center>
+					<span style="font-size:24px"><a href='./supp/index.html'>[Interactive
+							Supplementary]</a></span><br>
+				</center>
+			</td>
+			<td align=center width=120px>
+				<center>
+					<span style="font-size:24px"><a href=''>[Dataset (coming soon)]</a></span><br>
+				</center>
+			</td>
+		<tr>
 	</table>
 	<hr>
 	<hr>
@@ -270,6 +294,7 @@
 				<br>
 		<hr>-->
 
+		<br>
 	<div class="card mb-4 shadow-sm text-center">
 		<h3 class="text-muted">Acknowledgements</h3>
 		This research was supported by NSERC grants RGPIN 2020-04799 and ALLRP 586543-23, Mitacs and Depix.
@@ -281,5 +306,12 @@
 
 
 </body>
+<script>
+  // Wait until everything else is loaded to synchronize the two GIFs
+  window.addEventListener('load', () => {
+	document.getElementById('gif1').src = './assets/teaser/spotlight-chair.gif';
+	document.getElementById('gif2').src = './assets/teaser/spotlight-ottoman.gif';
+  });
+</script>
 
 </html>
