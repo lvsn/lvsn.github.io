@@ -1,9 +1,6 @@
-@misc{zhang2024zerocomp,
+@misc{zhang2025zerocomp,
   title={ZeroComp: Zero-shot Object Compositing from Image Intrinsics via Diffusion}, 
   author={Zitian Zhang and Frédéric Fortier-Chouinard and Mathieu Garon and Anand Bhattad and Jean-François Lalonde},
-  year={2024},
-  eprint={2410.08168},
-  archivePrefix={arXiv},
-  primaryClass={cs.CV},
-  url={https://arxiv.org/abs/2410.08168}, 
+  booktitle=WACV,
+  year={2025}
 }
