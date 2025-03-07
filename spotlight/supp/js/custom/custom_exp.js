@@ -49,6 +49,16 @@ const makeResultsTable2 = ({
         col.appendChild(imgContainer);
         row.appendChild(col);
 
+        col.addEventListener('mousemove', e => {
+          const rect = col.getBoundingClientRect();
+          const relX = e.clientX - rect.left;
+          const relY = e.clientY - rect.top;
+          azimuthIndex = Math.floor(Math.max((relX / rect.width) * lightDirections.length, 0));
+          azimuth = lightDirections[azimuthIndex];
+          parameterValueIndex = Math.floor(Math.max((relY / rect.height) * methods.length, 0));
+          selectedMethod = methods[parameterValueIndex];
+          updateTable();
+        });
       });
       resultsContainer.appendChild(row);
       
@@ -73,14 +83,4 @@ const makeResultsTable2 = ({
 
       updateTable();
       
-      row.addEventListener('mousemove', e => {
-        const rect = row.getBoundingClientRect();
-        const relX = e.clientX - rect.left;
-        const relY = e.clientY - rect.top;
-        azimuthIndex = Math.floor(Math.max((relX / rect.width) * lightDirections.length, 0));
-        azimuth = lightDirections[azimuthIndex];
-        parameterValueIndex = Math.floor(Math.max((relY / rect.height) * methods.length, 0));
-        selectedMethod = methods[parameterValueIndex];
-        updateTable();
-      });
   }
