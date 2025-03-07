@@ -92,6 +92,9 @@
             <li class="nav-item">
               <a class="nav-link" href="#user_study">User study interface</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#real_world">Real world results</a>
+            </li>
           </ul>
         </div>
       </nav>
@@ -129,6 +132,9 @@
         </li>        
         <li>
           <a href="#user_study">User study interface (extends sec. 4.5)</a>
+        </li>
+        <li>
+          <a href="#real_world">Real world results</a>
         </li>
       </ol>
       <a class="anchor" name="qual_results_control"></a>
@@ -265,6 +271,110 @@
       \end{equation}
       %
       where $\mathbf{c}_\text{light}$ and $\mathbf{c}_\text{amb}$ are the RGB colors of the light and ambient terms resp., $\mathbf{v}$ is the dominant light source direction, and $\lambda$ is the bandwidth. $\mathbf{c}_\text{amb}$ is obtained by computing the average color over the background image. Panoramas from the Laval Indoor HDR dataset (excluding those in our test set) are used to estimate a single average intensity of the dominant light source, $k$, which is set to the ratio of the integral of the brightest pixels in the panoramas, divided by the integral over all pixels. We further divide this integral by 2 to consider a single hemisphere and avoid overly bright dominant light sources. The light color is defined by $\mathbf{c}_\text{light} = k \mathbf{c}_\text{amb}'$, where $\mathbf{c}_\text{amb}'$ is the normalized ambient color $\mathbf{c}_\text{amb}$. We found that the bandwidth parameter $\lambda$ did not advantage any specific method and therefore fixed it to $\lambda = 300$, which we typically observe for an indoor light.</p>
+    <br>
+    <br>
+    <a class="anchor" name="real_world"></a>
+    <div style="clear:both; height:4em;"></div>
+    <h2>8. Real world results</h2>
+    <p>We demonstrate that SpotLight can be applied to 2D images by leveraging a ZeroComp backbone trained without depth
+      maps, using the normals (Stable Normal) and albedo (IID) estimators. Without access to a 3D model, we cannot rely on a
+      rendering engine to cast shadows. Instead, we employ PixHt-Lab to generate realistic soft shadows from a controllable
+      point light coordinate. Here, a sample without shadow is provided for negative guidance $\mathbf{v}_{t, \text{neg}}$,
+      see \cref{sec:method-enhancing}. </p>
+    
+    <!-- \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/1_obj.jpg} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/9_bg.jpg} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/bg-9_obj-1/x-384_y-300_horizon-100_softness-0.1.jpg} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/bg-9_obj-1/x-384_y-300_horizon-300_softness-0.1.jpg} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/bg-9_obj-1/x-128_y-300_horizon-100_softness-0.1.jpg} \\
+                
+              \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/11_obj.png} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/2_bg.png} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/bg-2_obj-11/x-256_y-300_horizon-100_softness-0.1.jpg} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/bg-2_obj-11/x-0_y-300_horizon-300_softness-0.1.jpg} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/bg-2_obj-11/x-128_y-300_horizon-100_softness-0.1.jpg} \\ -->
+    
+    <div class="row">
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-9_obj-1/1_obj.jpg" target="_blank">
+          <img src="./figures/iccv_real_world/bg-9_obj-1/1_obj.jpg" alt="Background" style="width:100%">
+        </a>
+        <br>
+        <figurecaption>2D object</figurecaption>
+      </div>
+    
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-9_obj-1/9_bg.jpg" target="_blank">
+          <img src="./figures/iccv_real_world/bg-9_obj-1/9_bg.jpg" alt="Background" style="width:100%">
+        </a>
+        <br>
+        <figurecaption>Target background</figurecaption>
+      </div>
+    
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-9_obj-1/x-384_y-300_horizon-100_softness-0.1.jpg" target="_blank">
+          <img src="./figures/iccv_real_world/bg-9_obj-1/x-384_y-300_horizon-100_softness-0.1.jpg" alt="Background"
+            style="width:100%">
+        </a>
+        <br>
+        <figurecaption>Light direction 1</figurecaption>
+      </div>
+    
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-9_obj-1/x-384_y-300_horizon-300_softness-0.1.jpg" target="_blank">
+          <img src="./figures/iccv_real_world/bg-9_obj-1/x-384_y-300_horizon-300_softness-0.1.jpg" alt="Background"
+            style="width:100%">
+        </a>
+        <br>
+        <figurecaption>Light direction 2</figurecaption>
+      </div>
+    
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-9_obj-1/x-128_y-300_horizon-100_softness-0.1.jpg" target="_blank">
+          <img src="./figures/iccv_real_world/bg-9_obj-1/x-128_y-300_horizon-100_softness-0.1.jpg" alt="Background"
+            style="width:100%">
+        </a>
+        <br>
+        <figurecaption>Light direction 3</figurecaption>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-2_obj-11/11_obj.png" target="_blank">
+          <img src="./figures/iccv_real_world/bg-2_obj-11/11_obj.png" alt="Background" style="width:100%">
+        </a>
+        <br>
+        <figurecaption>2D object</figurecaption>
+      </div>
+    
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-2_obj-11/2_bg.png" target="_blank">
+          <img src="./figures/iccv_real_world/bg-2_obj-11/2_bg.png" alt="Background" style="width:100%">
+        </a>
+        <br>
+        <figurecaption>Target background</figurecaption>
+      </div>
+    
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-2_obj-11/x-256_y-300_horizon-100_softness-0.1.jpg" target="_blank">
+          <img src="./figures/iccv_real_world/bg-2_obj-11/x-256_y-300_horizon-100_softness-0.1.jpg" alt="Background"
+            style="width:100%">
+        </a>
+        <br>
+        <figurecaption>Light direction 1</figurecaption>
+      </div>
+    
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-2_obj-11/x-0_y-300_horizon-300_softness-0.1.jpg" target="_blank">
+          <img src="./figures/iccv_real_world/bg-2_obj-11/x-0_y-300_horizon-300_softness-0.1.jpg" alt="Background"
+            style="width:100%">
+        </a>
+        <br>
+        <figurecaption>Light direction 2</figurecaption>
+      </div>
+    
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-2_obj-11/x-128_y-300_horizon-100_softness-0.1.jpg" target="_blank">
+          <img src="./figures/iccv_real_world/bg-2_obj-11/x-128_y-300_horizon-100_softness-0.1.jpg" alt="Background"
+            style="width:100%">
+        </a>
+        <br>
+        <figurecaption>Light direction 3</figurecaption>
+      </div>
+    </div>
     <br>
     <br>
 
