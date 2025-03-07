@@ -252,6 +252,21 @@
     <br>
     <br>
 
+    <a class="anchor" name="user_study"></a>
+    <div style="clear:both; height:4em;"></div>
+    <h2>7. Envmap-based methods details</h2>
+    <p>
+      In order to ensure fairness in evaluation, we aim to provide each method with a light parametrization that is as close as possible to the ground truth dominant light direction available in the evaluation dataset. 
+      
+      Both DiLightNet~\cite{zeng2024dilightnet} and Neural Gaffer~\cite{jin2024neural_gaffer} require an environment map for lighting. We construct such an environment map with radiance $L_{\text{env}}$ along direction $\omega$ defined as the sum of a spherical gaussian and a constant term
+      %
+      \begin{equation}
+          L_{\text{env}}(\omega) = \mathbf{c}_\text{light} e^{\lambda (\omega \cdot \mathbf{v} - 1)} + \mathbf{c}_\text{amb} \,,
+      \end{equation}
+      %
+      where $\mathbf{c}_\text{light}$ and $\mathbf{c}_\text{amb}$ are the RGB colors of the light and ambient terms resp., $\mathbf{v}$ is the dominant light source direction, and $\lambda$ is the bandwidth. $\mathbf{c}_\text{amb}$ is obtained by computing the average color over the background image. Panoramas from the Laval Indoor HDR dataset (excluding those in our test set) are used to estimate a single average intensity of the dominant light source, $k$, which is set to the ratio of the integral of the brightest pixels in the panoramas, divided by the integral over all pixels. We further divide this integral by 2 to consider a single hemisphere and avoid overly bright dominant light sources. The light color is defined by $\mathbf{c}_\text{light} = k \mathbf{c}_\text{amb}'$, where $\mathbf{c}_\text{amb}'$ is the normalized ambient color $\mathbf{c}_\text{amb}$. We found that the bandwidth parameter $\lambda$ did not advantage any specific method and therefore fixed it to $\lambda = 300$, which we typically observe for an indoor light.</p>
+    <br>
+    <br>
 
     <footer class="footer fixed-bottom" style="left: 0">
       <div class="container">
@@ -266,23 +281,25 @@
     makeResultsTable({
         resultsContainer: document.getElementById('results-container-fig-5-ext'),
         methods: [
-        'ic_light_bg_guidance_denoised',
-        'dilightnet_denoised',
-        'neural_gaffer_denoised',
-        'rgbx_cfg_3_intensity_2_inpaint_post_color_balanced_denoised', 
-        'shadow_comp_v2_default_post_color_balanced_denoised'
+        'ic_light_bg_guidance_ambiant_eevee_denoised',
+        'dilightnet_ambiant_eevee_denoised',
+        'neural_gaffer_erode5_ambiant_eevee_denoised',
+        'zerocomp_coarse_shadow_sd_edit_0.5_post_color_balanced_denoised',
+        'rgbx_cfg_3_intensity_2_inpaint_iccv_post_color_balanced_denoised', 
+        'shadow_comp_v3_kornia_3x3_edge_2_post_color_balanced_denoised'
         ],
         cropNames: ["9C4A8088-1bb62eeb83_07_crop_B07B4MRLNC", "AG8A6719-fc8e1ea686_05_crop_B072Y5MZQH", "9C4A0400-e71f3506f8_00_crop_B07QC8CGKK", "9C4A0395-ef28332472_09_crop_B07YPLQ7KW", "AG8A1932-eb0d101d0e_07_crop_B00BBDF500", "9C4A3419-2e5c9b4d85_00_crop_B07B4MG2MD", "9C4A4668-16193e7517_03_crop_B072FVHS4V", "AG8A4106-248c9b6695_01_crop_B07G2WWZC5", "9C4A6765-55315335bf_09_crop_B076YFLYFR", "9C4A0400-e71f3506f8_00_crop_B07B4CZMNQ", "9C4A0566-a088c98ccf_00_crop_B07HZ6ZCW7", "9C4A0132-07352d1dd0_08_crop_B07PHP31FB", "9C4A9487-24b5ce36e4_01_crop_B07B4MDGDF", "AG8A4106-248c9b6695_00_crop_B07HZ1LZS1", "AG8A8563-e652dd5751_02_crop_B07QHYDDS1", "9C4A0132-07352d1dd0_07_crop_B07DBF3WMC", "9C4A6864-533a74ab58_04_crop_B076VF4KRN", "9C4A5673-d4ecde512a_00_crop_B07HPTBB7P", "AG8A8710-4a14a72a31_05_crop_B07B4LZQC9", "9C4A0400-e71f3506f8_00_crop_B082QBBY7R"],
         methodsMapping: {
-        'shadow_comp_v2_default_post_color_balanced_denoised': "Ours (ZeroComp)",
-        'rgbx_cfg_3_intensity_2_inpaint_post_color_balanced_denoised': 'Ours (RGB-X)',
-        'ic_light_bg_guidance_denoised': 'IC Light [73]',
-        'dilightnet_denoised': 'DiLightNet [71]',
-        'neural_gaffer_denoised': 'Neural Gaffer [30]',
+        'shadow_comp_v3_kornia_3x3_edge_2_post_color_balanced_denoised': "SpotLight (ZeroComp backbone)",
+        'rgbx_cfg_3_intensity_2_inpaint_iccv_post_color_balanced_denoised': 'SpotLight (RGB-X backbone)',
+        'ic_light_bg_guidance_ambiant_eevee_denoised': 'IC-Light [TODO]',
+        'dilightnet_ambiant_eevee_denoised': 'DiLightNet [TODO]',
+        'neural_gaffer_erode5_ambiant_eevee_denoised': 'Neural Gaffer [TODO]',
+        'zerocomp_coarse_shadow_sd_edit_0.5_post_color_balanced_denoised': 'ZeroComp+SDEdit [TODO]',
         'stick-renders': 'Light direction',
-        'simulated_gt': 'Simulated GT',
+        'simulated_gt': 'Ground truth',
         },
-        folderName: 'figures/ext_fig_5',
+        folderName: 'figures/iccv_ext_fig_qual',
     });
 
     makeResultsTable2({
@@ -290,17 +307,17 @@
         azimuthValueText: document.getElementById('cfg-azimuth-value'),
         parameterValueText: document.getElementById('cfg-gamma-value'),
         methods: [
-        'shadow_comp_v2_cfg_1_post_color_balanced_denoised',
-        'shadow_comp_v2_default_post_color_balanced_denoised',
-        'shadow_comp_v2_cfg_7_post_color_balanced_denoised',
+        'shadow_comp_v3_cfg_1_post_color_balanced_denoised',
+        'shadow_comp_v3_kornia_3x3_edge_2_post_color_balanced_denoised',
+        'shadow_comp_v3_cfg_7_post_color_balanced_denoised',
         ],
         cropNames: ["AG8A6551-16ae8050c9_06_crop_B075X4QFK2", "9C4A8239-7a9d7093e2_04_crop_B082VLJ7Y2", "9C4A0566-a088c98ccf_05_crop_B07VKM698C", "9C4A3419-2e5c9b4d85_08_crop_B07B4D8B2S", "9C4A4878-4dac321d8b_02_crop_B07HP93VDJ", "9C4A4861-19626f89e9_04_crop_B07B4MSYPS", "AG8A0630-e5622e17d2_01_crop_B07B85FJD5", "AG8A6719-fc8e1ea686_05_crop_B07DBJ1H18", "AG8A3196-8e1dfd8d95_08_crop_B07WMQ8P8Q", "AG8A8843-b91f89fff2_05_crop_B07B4YXNR3"],
         methodsMapping: {
-        'shadow_comp_v2_cfg_1_post_color_balanced_denoised': 'γ=1.0 (no guidance)',
-        'shadow_comp_v2_default_post_color_balanced_denoised': 'γ=3.0 (default)',
-        'shadow_comp_v2_cfg_7_post_color_balanced_denoised': 'γ=7.0',
+        'shadow_comp_v3_cfg_1_post_color_balanced_denoised': 'γ=1.0 (no guidance)',
+        'shadow_comp_v3_kornia_3x3_edge_2_post_color_balanced_denoised': 'γ=3.0 (default)',
+        'shadow_comp_v3_cfg_7_post_color_balanced_denoised': 'γ=7.0',
         },
-        folderName: 'figures/ext_cfg',
+        folderName: 'figures/iccv_ext_cfg',
     });
 
     makeResultsTable2({
@@ -308,17 +325,17 @@
         azimuthValueText: document.getElementById('latent-weight-azimuth-value'),
         parameterValueText: document.getElementById('latent-weight-value'),
         methods: [
-        'shadow_comp_v2_latent_weight_0_post_color_balanced_denoised',
-        'shadow_comp_v2_default_post_color_balanced_denoised',
-        'shadow_comp_v2_latent_weight_0.2_post_color_balanced_denoised',
+        'shadow_comp_v3_latent_weight_0_post_color_balanced_denoised',
+        'shadow_comp_v3_kornia_3x3_edge_2_post_color_balanced_denoised',
+        'shadow_comp_v3_latent_weight_0.2_post_color_balanced_denoised',
         ],
         cropNames: ["AG8A6551-16ae8050c9_06_crop_B075X4QFK2", "9C4A8239-7a9d7093e2_04_crop_B082VLJ7Y2", "9C4A0566-a088c98ccf_05_crop_B07VKM698C", "9C4A3419-2e5c9b4d85_08_crop_B07B4D8B2S", "9C4A4878-4dac321d8b_02_crop_B07HP93VDJ", "9C4A4861-19626f89e9_04_crop_B07B4MSYPS", "AG8A0630-e5622e17d2_01_crop_B07B85FJD5", "AG8A6719-fc8e1ea686_05_crop_B07DBJ1H18", "AG8A3196-8e1dfd8d95_08_crop_B07WMQ8P8Q", "AG8A8843-b91f89fff2_05_crop_B07B4YXNR3"],
         methodsMapping: {
-        'shadow_comp_v2_latent_weight_0_post_color_balanced_denoised': 'β=0 (no shadow blending)',
-        'shadow_comp_v2_default_post_color_balanced_denoised': 'β=0.05 (default)',
-        'shadow_comp_v2_latent_weight_0.2_post_color_balanced_denoised': 'β=0.2',
+        'shadow_comp_v3_latent_weight_0_post_color_balanced_denoised': 'β=0 (no shadow blending)',
+        'shadow_comp_v3_kornia_3x3_edge_2_post_color_balanced_denoised': 'β=0.05 (default)',
+        'shadow_comp_v3_latent_weight_0.2_post_color_balanced_denoised': 'β=0.2',
         },
-        folderName: 'figures/ext_latent_weight',
+        folderName: 'figures/iccv_ext_latent_weight',
     });
 
     makeResultsTable2({
@@ -326,19 +343,20 @@
         azimuthValueText: document.getElementById('light-size-azimuth-value'),
         parameterValueText: document.getElementById('light-size-value'),
         methods: [
-        'shadow_comp_v2_light_radius_0_post_color_balanced_denoised',
-        'shadow_comp_v2_default_post_color_balanced_denoised',
-        'shadow_comp_v2_light_radius_5_post_color_balanced_denoised',
+        'shadow_comp_v3_light_radius_0_post_color_balanced_denoised',
+        'shadow_comp_v3_kornia_3x3_edge_2_post_color_balanced_denoised',
+        'shadow_comp_v3_light_radius_5_post_color_balanced_denoised',
         ],
         cropNames: ["AG8A6551-16ae8050c9_06_crop_B075X4QFK2", "9C4A8239-7a9d7093e2_04_crop_B082VLJ7Y2", "9C4A0566-a088c98ccf_05_crop_B07VKM698C", "9C4A3419-2e5c9b4d85_08_crop_B07B4D8B2S", "9C4A4878-4dac321d8b_02_crop_B07HP93VDJ", "9C4A4861-19626f89e9_04_crop_B07B4MSYPS", "AG8A0630-e5622e17d2_01_crop_B07B85FJD5", "AG8A6719-fc8e1ea686_05_crop_B07DBJ1H18", "AG8A3196-8e1dfd8d95_08_crop_B07WMQ8P8Q", "AG8A8843-b91f89fff2_05_crop_B07B4YXNR3"],
         methodsMapping: {
-        'shadow_comp_v2_light_radius_0_post_color_balanced_denoised': '0',
-        'shadow_comp_v2_default_post_color_balanced_denoised': '1 (default)',
-        'shadow_comp_v2_light_radius_5_post_color_balanced_denoised': '5',
+        'shadow_comp_v3_light_radius_0_post_color_balanced_denoised': '0',
+        'shadow_comp_v3_kornia_3x3_edge_2_post_color_balanced_denoised': '1 (default)',
+        'shadow_comp_v3_light_radius_5_post_color_balanced_denoised': '5',
         },
-        folderName: 'figures/light_size',
+        folderName: 'figures/iccv_light_size',
     });
     
+    //TODO
     makeResultsTable({
         resultsContainer: document.getElementById('results-container-two-lights'),
         methods: [

@@ -8,7 +8,7 @@ const makeResultsTable = ({
     folderName,
     lightDirections=defaultLightDirections,
     initialDirection='0006',
-    imageSize=220,
+    imageSize=180,
     cropSubfolder=false} = {}) => {
       cropNames.forEach(crop => {
         const row = document.createElement('div');
@@ -50,9 +50,8 @@ const makeResultsTable = ({
           // Add mousemove listener to the entire row
           row.appendChild(col);
   
-        });
-        row.addEventListener('mousemove', e => {
-            const rect = row.getBoundingClientRect();
+          col.addEventListener('mousemove', e => {
+            const rect = col.getBoundingClientRect();
             const relX = e.clientX - rect.left; // Relative X position within the row
             const index = Math.floor(Math.max((relX / rect.width) * lightDirections.length, 0));
             const selectedDir = lightDirections[Math.min(index, lightDirections.length - 1)];
@@ -62,6 +61,7 @@ const makeResultsTable = ({
                 img.style.opacity = img.dataset.dir === selectedDir ? 1 : 0;
                 });
             });
+        });
         });
         resultsContainer.appendChild(row);
 
