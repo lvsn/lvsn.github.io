@@ -267,6 +267,167 @@
       where $\mathbf{c}_\text{light}$ and $\mathbf{c}_\text{amb}$ are the RGB colors of the light and ambient terms resp., $\mathbf{v}$ is the dominant light source direction, and $\lambda$ is the bandwidth. $\mathbf{c}_\text{amb}$ is obtained by computing the average color over the background image. Panoramas from the Laval Indoor HDR dataset (excluding those in our test set) are used to estimate a single average intensity of the dominant light source, $k$, which is set to the ratio of the integral of the brightest pixels in the panoramas, divided by the integral over all pixels. We further divide this integral by 2 to consider a single hemisphere and avoid overly bright dominant light sources. The light color is defined by $\mathbf{c}_\text{light} = k \mathbf{c}_\text{amb}'$, where $\mathbf{c}_\text{amb}'$ is the normalized ambient color $\mathbf{c}_\text{amb}$. We found that the bandwidth parameter $\lambda$ did not advantage any specific method and therefore fixed it to $\lambda = 300$, which we typically observe for an indoor light.</p>
     <br>
     <br>
+    <h2>Additionnal quantitative results</h2>
+    <p>
+      We extend the quantitative results from tab. 1. First, we compute metrics separately for the foreground 
+      (evaluating the fidelity of the object's shading compared to the ground truth) and the background (evaluating the fidelity of the background shadows compared to the ground truth).
+      Then, we include additionnal results, including SpotLight applied to the RGB-X backbone, and the ablations on the strength of the guiding shadow β.
+    </p>
+    <table border="1" class="dataframe table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th colspan="5" halign="left">Full image</th>
+          <th colspan="3" halign="left">Foreground only</th>
+          <th colspan="2" halign="left">Background only</th>
+        </tr>
+        <tr>
+          <th></th>
+          <th>PSNR</th>
+          <th>SSIM</th>
+          <th>RMSE</th>
+          <th>MAE</th>
+          <th>LPIPS</th>
+          <th>RMSE</th>
+          <th>MAE</th>
+          <th>SI-RMSE</th>
+          <th>RMSE</th>
+          <th>MAE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>DiLightNet</td>
+          <td>24.67</td>
+          <td>0.948</td>
+          <td>0.064</td>
+          <td>0.022</td>
+          <td>0.042</td>
+          <td>0.207</td>
+          <td>0.192</td>
+          <td>0.055</td>
+          <td>0.03</td>
+          <td>0.009</td>
+        </tr>
+        <tr>
+          <td>Neural Gaffer</td>
+          <td>28.44</td>
+          <td>0.963</td>
+          <td>0.042</td>
+          <td>0.015</td>
+          <td>0.038</td>
+          <td>0.102</td>
+          <td>0.088</td>
+          <td>0.049</td>
+          <td>0.03</td>
+          <td>0.009</td>
+        </tr>
+        <tr>
+          <td>IC-Light</td>
+          <td>26.87</td>
+          <td>0.959</td>
+          <td>0.054</td>
+          <td>0.019</td>
+          <td>0.04</td>
+          <td>0.153</td>
+          <td>0.13</td>
+          <td>0.062</td>
+          <td>0.03</td>
+          <td>0.009</td>
+        </tr>
+        <tr>
+          <td>ZeroComp+SDEdit</td>
+          <td>26.0</td>
+          <td>0.938</td>
+          <td>0.053</td>
+          <td>0.025</td>
+          <td>0.079</td>
+          <td><b>0.079</b></td>
+          <td><b>0.064</b></td>
+          <td>0.048</td>
+          <td>0.048</td>
+          <td>0.022</td>
+        </tr>
+        <tr>
+          <td>SpotLight</td>
+          <td>30.68</td>
+          <td>0.974</td>
+          <td>0.033</td>
+          <td>0.012</td>
+          <td>0.03</td>
+          <td>0.1</td>
+          <td>0.085</td>
+          <td>0.05</td>
+          <td>0.018</td>
+          <td><b>0.006</b></td>
+        </tr>
+        <tr>
+          <td>SpotLight (RGB-X backbone)</td>
+          <td>26.56</td>
+          <td>0.955</td>
+          <td>0.051</td>
+          <td>0.018</td>
+          <td>0.042</td>
+          <td>0.176</td>
+          <td>0.155</td>
+          <td>0.06</td>
+          <td>0.02</td>
+          <td>0.007</td>
+        </tr>
+        <tr>
+          <td>SpotLight (γ=1, no guidance)</td>
+          <td><b>31.69</b></td>
+          <td><b>0.976</b></td>
+          <td><b>0.029</b></td>
+          <td><b>0.011</b></td>
+          <td><b>0.029</b></td>
+          <td>0.086</td>
+          <td>0.073</td>
+          <td><b>0.046</b></td>
+          <td><b>0.017</b></td>
+          <td>0.006</td>
+        </tr>
+        <tr>
+          <td>SpotLight (γ=7)</td>
+          <td>28.68</td>
+          <td>0.966</td>
+          <td>0.043</td>
+          <td>0.015</td>
+          <td>0.036</td>
+          <td>0.138</td>
+          <td>0.116</td>
+          <td>0.062</td>
+          <td>0.019</td>
+          <td>0.006</td>
+        </tr>
+        <tr>
+          <td>SpotLight (β=0.2)</td>
+          <td>29.24</td>
+          <td>0.969</td>
+          <td>0.039</td>
+          <td>0.014</td>
+          <td>0.034</td>
+          <td>0.102</td>
+          <td>0.086</td>
+          <td>0.051</td>
+          <td>0.025</td>
+          <td>0.008</td>
+        </tr>
+        <tr>
+          <td>SpotLight (β=0, no blending)</td>
+          <td>30.81</td>
+          <td>0.974</td>
+          <td>0.032</td>
+          <td>0.012</td>
+          <td>0.029</td>
+          <td>0.098</td>
+          <td>0.083</td>
+          <td>0.05</td>
+          <td>0.018</td>
+          <td>0.006</td>
+        </tr>
+      </tbody>
+    </table>
 
     <footer class="footer fixed-bottom" style="left: 0">
       <div class="container">
