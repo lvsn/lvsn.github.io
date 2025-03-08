@@ -89,20 +89,39 @@
           <a href="#parameter_control">Parameters control (extends sec. 4.6)</a>
         </li>
         <li>
-          <a href="#virtual_light_source">Light radius</a>
+          <a href="#virtual_light_source">Light source radius</a>
         </li>
         <li>
           <a href="#multiple_lights">Multiple lights</a>
-        </li>     
+        </li>
         <li>
           <a href="#bg_relight">Background relighting</a>
-        </li>        
+        </li>
         <li>
-          <a href="#user_study">User study interface (extends sec. 4.5)</a>
+        <a href="#envmap_methods">Envmap-based methods details</a>
+        </li>
+        <li>
+          <a href="#user_study_on_shading_shadows">User studies on shading and shadows</a>
+        </li>
+        <li>
+          <a href="#user_study">User studies</a>
+        </li>
+        <li>
+          <a href="#evaluation_dataset">Evaluation dataset</a>
+        </li>
+        <li>
+          <a href="#rgb_x_backbone">RGB-X backbone</a>
+        </li>
+        <li>
+          <a href="#latent_mask_details">Latent mask details</a>
+        </li>
+        <li>
+          <a href="#additional_results">Additional quantitative results</a>
         </li>
         <li>
           <a href="#real_world">Real world results</a>
         </li>
+
       </ol>
       <a class="anchor" name="qual_results_control"></a>
       <h2>1. Additional qualitative results</h2>
@@ -199,9 +218,9 @@
       we only keep the largest connected component in the mask. This leaves training examples where only a small region of the shading is known and the full background lighting needs to be inferred.
 </p>
 
-    <a class="anchor" name="user_study"></a>
+    <a class="anchor" name="envmap_methods"></a>
     <div style="clear:both; height:4em;"></div>
-    <h2>7. Envmap-based methods details</h2>
+    <h2>6. Envmap-based methods details</h2>
     <p>
       In order to ensure fairness in evaluation, we aim to provide each method with a light parametrization that is as close as possible to the ground truth dominant light direction available in the evaluation dataset. 
       
@@ -214,8 +233,9 @@
       where $\mathbf{c}_\text{light}$ and $\mathbf{c}_\text{amb}$ are the RGB colors of the light and ambient terms resp., $\mathbf{v}$ is the dominant light source direction, and $\lambda$ is the bandwidth. $\mathbf{c}_\text{amb}$ is obtained by computing the average color over the background image. Panoramas from the Laval Indoor HDR dataset (excluding those in our test set) are used to estimate a single average intensity of the dominant light source, $k$, which is set to the ratio of the integral of the brightest pixels in the panoramas, divided by the integral over all pixels. We further divide this integral by 2 to consider a single hemisphere and avoid overly bright dominant light sources. The light color is defined by $\mathbf{c}_\text{light} = k \mathbf{c}_\text{amb}'$, where $\mathbf{c}_\text{amb}'$ is the normalized ambient color $\mathbf{c}_\text{amb}$. We found that the bandwidth parameter $\lambda$ did not advantage any specific method and therefore fixed it to $\lambda = 300$, which we typically observe for an indoor light.</p>
     <br>
     <br>
-
-    <h2>Additionnal user studies on shading and shadows</h2>
+    
+    <a class="anchor" name="user_study_on_shading_shadows"></a>
+    <h2>7. Additionnal user studies on shading and shadows</h2>
     <p>
     In addition to the overall realism and lighting control user studies, we conducted two user studies to disentangle the shadow from the shading realism.
     To evaluate shading realism, the shadow needs to be fixed for all methods. To do so, for all methods, we replace the region outside the object mask by the output of SpotLight, containing a refined shadow.
@@ -256,7 +276,8 @@
     On the task of refining the guiding shadow into a realistic one, SpotLight ahieves higher results than both ZeroComp+SDEdit and using the guiding shadow directly.
     We attribute this to our shadow blending strategy, which acts as a soft contraint over the shadow generation at each denoising timestep.
     
-    <h2>User studies details</h2>
+    <a class="anchor" name="user_study_details"></a>
+    <h2>8. User studies details</h2>
     <p>
       To use the Thurstone case V Law of comparative judgement, we need a fixed set of comparisons, shown to all observers.
       This set of comparison is randomly sampled and reused for all users.
@@ -365,21 +386,28 @@
     <br>
     <br>
 
-    <h2>Rendering the evaluation dataset</h2>
+    <a class="anchor" name="evaluation_dataset"></a>
+    <h2>9. Rendering the evaluation dataset</h2>
     <p>
       - The dataset is rendered using the physically-based Cycles renderer with 2048 samples per pixel, a noise threshold of 0.01, and denoised using OpenImageDenoise~\cite{OpenImageDenoise}
 - Blender EEVEE details of shadow generation and light source parametrization.
 
     </p>
 
-    <h2>0. RGB-X backbone</h2>
+    <a class="anchor" name="rgb_x_backbone"></a>
+    <h2>10. RGB-X backbone</h2>
     <p>
-      \myparagraph{RGB$\leftrightarrow$X backbone}
-We employ the checkpoint of their X$\rightarrow$RGB model finetuned for inpainting rectangular masks, and mask out the bounding box including both the object and shadow region. 
-To estimate intrinsic properties of test images (normals, metallic, roughness, and albedo), we use the RGB$\rightarrow$X model. We observe that results are generally overly bright, likely due to a domain gap between the training and evaluation images. To address this, we re-expose the background by a factor of 2 before feeding it to the network, then divide the output by 2, in linear space.% We apply the same background preservation strategy as in ZeroComp.
+    <b>RGB<->X backbone</b>
+    We employ the checkpoint of their X->RGB model finetuned for inpainting rectangular masks, and mask out the bounding box
+    including both the object and shadow region.
+    To estimate intrinsic properties of test images (normals, metallic, roughness, and albedo), we use the RGB->X model. We
+    observe that results are generally overly bright, likely due to a domain gap between the training and evaluation images.
+    To address this, we re-expose the background by a factor of 2 before feeding it to the network, then divide the output
+    by 2, in linear space. We apply the same background preservation strategy as in ZeroComp.
     </p>
     
-    <h2>Latent mask details</h2>
+    <a class="anchor" name="latent_mask_details"></a>
+    <h2>11. Latent mask details</h2>
     <p>
       We find that increasing the latent mask weight at the edge helps to maintain the shadow's sharpness, as well as thin shadows.
       See here a comparison
@@ -387,7 +415,8 @@ To estimate intrinsic properties of test images (normals, metallic, roughness, a
       The latent mask is dilated by a 3x3 kernel
     </p>
 
-    <h2>Additional quantitative results</h2>
+    <a class="anchor" name="additional_results"></a>
+    <h2>12. Additional quantitative results</h2>
     <p>
       We extend the quantitative results from tab. 1. First, we compute metrics separately for the foreground 
       (evaluating the fidelity of the object's shading compared to the ground truth) and the background (evaluating the fidelity of the background shadows compared to the ground truth).
@@ -647,7 +676,7 @@ To estimate intrinsic properties of test images (normals, metallic, roughness, a
     </table>
     <a class="anchor" name="real_world"></a>
     <div style="clear:both; height:4em;"></div>
-    <h2>8. Real world results</h2>
+    <h2>13. Real world results</h2>
     <p>We demonstrate that SpotLight can be applied to 2D images by leveraging a ZeroComp backbone trained without depth
       maps, using the normals (Stable Normal) and albedo (IID) estimators. Without access to a 3D model, we cannot rely on a
       rendering engine to cast shadows. Instead, we employ PixHt-Lab to generate realistic soft shadows from a controllable
