@@ -101,6 +101,9 @@
           <a href="#bg_relight">Background relighting (extends fig. 7)</a>
         </li>
         <li>
+          <a href="#envmap_methods">Envmap-based methods details</a>
+          </li>
+          <li>
           <a href="#user_study">User studies (extends sec. 5.5)</a>
         </li>
         <li>
@@ -225,18 +228,18 @@
       we only keep the largest connected component in the mask. This leaves training examples where only a small region of the shading is known and the full background lighting needs to be inferred.
 </p>
 
-
-    <!--
+    <a class="anchor" name="envmap_methods"></a>
     <h2>7. Envmap-based methods details</h2>
     <p>
-      In order to ensure fairness in evaluation, we aim to provide each method with a light parametrization that is as close as possible to the ground truth dominant light direction available in the evaluation dataset. 
-      
+      In order to ensure fairness in evaluation, we aim to provide each method with a light parametrization that is as close
+      as possible to the ground truth dominant light direction available in the evaluation dataset.
       Both DiLightNet and Neural Gaffer require an environment map for lighting. We construct such an environment map with
       radiance \(L_{\text{env}}\) along direction \(\omega\) defined as the sum of a spherical gaussian and a constant term
       \begin{equation}
-          L_{\text{env}}(\omega) = \mathbf{c}_\text{light} e^{\lambda (\omega \cdot \mathbf{v} - 1)} + \mathbf{c}_\text{amb} \,,
+      L_{\text{env}}(\omega) = \mathbf{c}_\text{light} e^{\lambda (\omega \cdot \mathbf{v} - 1)} + \mathbf{c}_\text{amb} \,,
       \end{equation}
-      where \(\mathbf{c}_\text{light}\) and \(\mathbf{c}_\text{amb}\) are the RGB colors of the light and ambient terms resp.,
+      where \(\mathbf{c}_\text{light}\) and \(\mathbf{c}_\text{amb}\) are the RGB colors of the light and ambient terms
+      resp.,
       \(\mathbf{v}\) is the dominant light source direction, and \(\lambda\) is the bandwidth. \(\mathbf{c}_\text{amb}\) is
       obtained by computing the average color over the background image. Panoramas from the Laval Indoor HDR dataset
       (excluding those in our test set) are used to estimate a single average intensity of the dominant light source, \(k\),
@@ -248,11 +251,11 @@
       typically observe for an indoor light.</p>
     <br>
     <br>
-    -->
+  
     
     <a class="anchor" name="user_study"></a>
-    <h2>7. User studies</h2>
-    <h3>7.1 Additionnal user studies on object shading and shadows only</h2>
+    <h2>8. User studies</h2>
+    <h3>8.1 Additionnal user studies on object shading and shadows only</h2>
     <p>
     In addition to the overall realism and lighting control user studies, we conducted two user studies to disentangle the shadow from the shading realism.
     To evaluate shading realism, the shadow needs to be fixed for all methods. To do so, for all methods, we replace the region outside the object mask by the output of SpotLight, containing a refined shadow.
@@ -293,7 +296,7 @@
     On the task of refining the guiding shadow into a realistic one, SpotLight ahieves higher results than both ZeroComp+SDEdit and using the guiding shadow directly.
     We attribute this to our shadow blending strategy, which acts as a soft contraint over the shadow generation at each denoising timestep.
     <br><br>
-    <h3>7.2 Additionnal lighting control study</h3>
+    <h3>8.2 Additionnal lighting control study</h3>
     <p>In addition to the lighting control user study in fig. 4(b), that compared our method to the ZeroComp+SDEdit,
       we show here that disabling the guidance term yields a similar degradation in perceptual scores for the lighting
       control setting.  
@@ -325,7 +328,7 @@
         </div>
       </div>
     </div>
-    <h3>7.3 Further details</h3>
+    <h3>8.3 Further details</h3>
     <h4>User study randomization</h4>
     <p>
       To use the Thurstone case V Law of comparative judgement, we need a fixed set of comparisons, shown to all observers.
@@ -392,7 +395,7 @@
         </tr>
       </tbody>
     </table>
-    <h3>7.4 User study interface</h3>
+    <h3>8.4 User study interface</h3>
     <h4>Realism study interface</h4>
     <p>
     Below, we show the instructions page of the overall realism user study and a question from it.
@@ -440,7 +443,7 @@
     <br>
     <br>
     <a class="anchor" name="rgb_x_backbone"></a>
-    <h2>8. RGB-X backbone</h2>
+    <h2>9. RGB-X backbone</h2>
     <p>
     We employ the checkpoint of their X->RGB model finetuned for inpainting rectangular masks, and mask out the bounding box
     including both the object and shadow region.
@@ -451,7 +454,7 @@
     </p>
 
     <a class="anchor" name="additional_results"></a>
-    <h2>9. Additional quantitative results</h2>
+    <h2>10. Additional quantitative results</h2>
     <p>
       We extend the quantitative results from tab. 1. First, we compute metrics separately for the foreground 
       (evaluating the fidelity of the object's shading compared to the ground truth) and the background (evaluating the fidelity of the background shadows compared to the ground truth).
@@ -711,7 +714,7 @@
     </table>
 
     <a class="anchor" name="real_world"></a>
-    <h2>10. Real world results</h2>
+    <h2>11. Real world results</h2>
     <p>We demonstrate that SpotLight can be applied to 2D images by leveraging a ZeroComp backbone trained without depth
       maps, using the normals (Stable Normal) and albedo (IID) estimators. Without access to a 3D model, we cannot rely on a
       rendering engine to cast shadows. Instead, we employ PixHt-Lab to generate realistic soft shadows from a controllable
