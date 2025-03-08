@@ -67,36 +67,6 @@
   </head>
   <body>
 
-    <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Supplementary Material</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-expanded="false" aria-controls="navbarCollapse" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <!-- <a class="navbar-brand" href="#">Sticky footer</a> -->
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#qual_results_control">Qualitative results</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#parameter_control">Parameters control</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#virtual_light_source">Light radius</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#multiple_lights">Multiple lights</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#bg_relight">Background relighting</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#user_study">User study interface</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-
     <!-- Begin page content -->
     <div class="container">
       <div class="mt-1">
@@ -132,7 +102,6 @@
         </li>
       </ol>
       <a class="anchor" name="qual_results_control"></a>
-      <div style="clear:both; height:4em;"></div>
       <h2>1. Additional qualitative results</h2>
       <p align="justify">We present 20 additional randomly-selected results on the "user-controlled" dataset, extending the qualitative results from fig. 5.
         In this case, we rendered 8 light directions instead
@@ -145,7 +114,7 @@
 
 
       <a class="anchor" name="parameter_control"></a>
-      <div style="clear:both; height:4em;"></div>
+
       <h2>2. Additional results for parameters control</h2>
       <p align="justify">
         We show how the two main parameters of our method can be adjusted for enhanced artistic control, extending sec. 4.6.
@@ -173,7 +142,7 @@
        
 
       <a class="anchor" name="virtual_light_source"></a>
-      <div style="clear:both; height:4em;"></div>
+
       <h2>3. Light source radius</h2>
 
       <p align="justify">We adjust the light source radius used to generate the coarse shadow fed to SpotLight.
@@ -187,7 +156,7 @@
       <div id="results-container-light-size" class="row"></div>
 
       <a class="anchor" name="multiple_lights"></a>
-      <div style="clear:both; height:4em;"></div>
+
       <h2>4. Multiple lights</h2>
 
       <p>In our paper, we analyze all the methods by conditioning on a single dominant light source, which is sufficiently realistic in most cases.
@@ -229,31 +198,6 @@
 
     <a class="anchor" name="user_study"></a>
     <div style="clear:both; height:4em;"></div>
-    <h2>6. User study interface</h2>
-    <p>Here, we show the user interface used to perform our human perceptual study, as described in sec. 4.5 in the paper. The user is first shown an instructions page, followed by the questions page (which is the same for the 120 2AFC questions).</p>
-    <div class="row">
-      <div class="col-md-12">
-        <a href="figures/user_study/instructions.png" target="_blank">
-          <img src="figures/user_study/instructions.png" class="border border-secondary" alt="User study instructions" style="width: 100%;">
-        </a>
-        <figurecaption>User study instructions page</figurecaption>
-      </div>
-    </div>
-    <br>
-    <br>
-    <div class="row">
-      <div class="col-md-12">
-        <a href="figures/user_study/question.png" target="_blank">
-          <img src="figures/user_study/question.png" class="border border-secondary" alt="User study question" style="width: 100%;">
-        </a>
-        <figurecaption>User study question page</figurecaption>
-      </div>
-    </div>
-    <br>
-    <br>
-
-    <a class="anchor" name="user_study"></a>
-    <div style="clear:both; height:4em;"></div>
     <h2>7. Envmap-based methods details</h2>
     <p>
       In order to ensure fairness in evaluation, we aim to provide each method with a light parametrization that is as close as possible to the ground truth dominant light direction available in the evaluation dataset. 
@@ -267,6 +211,179 @@
       where $\mathbf{c}_\text{light}$ and $\mathbf{c}_\text{amb}$ are the RGB colors of the light and ambient terms resp., $\mathbf{v}$ is the dominant light source direction, and $\lambda$ is the bandwidth. $\mathbf{c}_\text{amb}$ is obtained by computing the average color over the background image. Panoramas from the Laval Indoor HDR dataset (excluding those in our test set) are used to estimate a single average intensity of the dominant light source, $k$, which is set to the ratio of the integral of the brightest pixels in the panoramas, divided by the integral over all pixels. We further divide this integral by 2 to consider a single hemisphere and avoid overly bright dominant light sources. The light color is defined by $\mathbf{c}_\text{light} = k \mathbf{c}_\text{amb}'$, where $\mathbf{c}_\text{amb}'$ is the normalized ambient color $\mathbf{c}_\text{amb}$. We found that the bandwidth parameter $\lambda$ did not advantage any specific method and therefore fixed it to $\lambda = 300$, which we typically observe for an indoor light.</p>
     <br>
     <br>
+
+    <h2>Additionnal user studies on shading and shadows</h2>
+    <p>
+    In addition to the overall realism and lighting control user studies, we conducted two user studies to disentangle the shadow from the shading realism.
+    To evaluate shading realism, the shadow needs to be fixed for all methods. To do so, for all methods, we replace the region outside the object mask by the output of SpotLight, containing a refined shadow.
+    To evaluate shadow realism, we do the opposite. We replace the region within the objext mask by the output of SpotLight, containing the shaded object.
+    We show the results of these two user studies below.
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <!-- Use <figure> and <figcaption> for semantics, if desired -->
+          <figure class="figure">
+            <img 
+              src="figures/user_study/thurstone_ICCV User Study (shading only).svg"
+              class="figure-img img-fluid w-100"
+              alt="Shading realism user study results"
+            >
+            <figcaption class="text-center"> 
+              Shading realism user study results (N=13)
+            </figcaption>
+          </figure>
+        </div>
+        <div class="col-md-6">
+          <figure class="figure">
+            <img
+              src="figures/user_study/thurstone_ICCV User Study (shadows only).svg"
+              class="figure-img img-fluid w-100"
+              alt="Shadow realism user study results"
+            >
+            <figcaption class="text-center">
+              Shadow realism user study results (N=11)
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+    We observe that ZeroComp+SDEdit achieves similar results to SpotLight in terms of shading realism, when the user is not asked about the controllability of the lighting. However,
+    SpotLight generates more realistic shading than Neural Gaffer with statistical significance, even if Neural Graffer is trained to shade objects correctly.
+    <br>
+    On the task of refining the guiding shadow into a realistic one, SpotLight ahieves higher results than both ZeroComp+SDEdit and using the guiding shadow directly.
+    We attribute this to our shadow blending strategy, which acts as a soft contraint over the shadow generation at each denoising timestep.
+    
+    <h2>User studies details</h2>
+    <p>
+      To use the Thurstone case V Law of comparative judgement, we need a fixed set of comparisons, shown to all observers.
+      This set of comparison is randomly sampled and reused for all users.
+      To limit bias, the method left/right ordering is randomized, and the order of comparisons was randomized for each observer.
+      All user studies were conducted using different sets of observers, to avoid bias.
+    </p>
+
+    <p>
+      For each study, three sentinels images were randomly placed in the questions. Incorrectly selecting one of the sentinel answers led to exclusion.
+      In the realism user studies, the sentinels corresponded to the object set to be full white, therefore having highly unrealistic shading.
+      For the light control user studies, the sentinels corresponded to an objet where the object's lighting doesn't change as the shadow moves.
+    </p>
+    <p>Here, we show the details of each user study. "Filtered observers" represents the number of observers that ended up contributing to the scores, which were selected since they didn't click the sentinels.
+      Also note that the number of questions shown includes the three sentinel questions asked to the users.
+    </p>
+    <table border="1" class="dataframe table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>User study name</th>
+          <th>Original observers</th>
+          <th>Filtered observers (N)</th>
+          <th>Questions per method pairs</th>
+          <th>Total questions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Overall realism</td>
+          <td>40</td>
+          <td>35</td>
+          <td>20</td>
+          <td>123</td>
+        </tr>
+        <tr>
+          <td>Shadow realism</td>
+          <td>14</td>
+          <td>13</td>
+          <td>40</td>
+          <td>123</td>
+        </tr>
+        <tr>
+          <td>Shading realism</td>
+          <td>14</td>
+          <td>11</td>
+          <td>40</td>
+          <td>123</td>
+        </tr>
+        <tr>
+          <td>Lighting control (vs. ZeroComp+SDEdit)</td>
+          <td>10</td>
+          <td>8</td>
+          <td>40</td>
+          <td>43</td>
+        </tr>
+        <tr>
+          <td>Lighting control (vs. no guidance)</td>
+          <td>10</td>
+          <td>7</td>
+          <td>40</td>
+          <td>43</td>
+        </tr>
+      </tbody>
+    </table>
+
+    Below, we show the instructions page of the overall realism user study and a question from it.
+    </p>
+
+    <div class="row">
+      <div class="col-md-12">
+        <a href="figures/user_study/user_study_realism_instructions.png" target="_blank">
+          <img src="figures/user_study/user_study_realism_instructions.png" class="border border-secondary" alt="User study instructions" style="width: 100%;">
+        </a>
+        <figurecaption>Overall realism user study instructions</figurecaption>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <a href="figures/user_study/user_study_realism_question.png" target="_blank">
+          <img src="figures/user_study/user_study_realism_question.png" class="border border-secondary" alt="User study question" style="width: 100%;">
+        </a>
+        <figurecaption>Overall realism user study question</figurecaption>
+      </div>
+    </div>
+    <br>
+    <br>
+
+    <p>
+      And here, we show a video demonstration of the lighting control user study.
+    </p>
+    <div class="col-12">
+      <figure class="figure w-100">
+        <video
+          class="figure-img img-fluid w-100"
+          controls>
+          <source src="figures/user_study/control_user_study_vs_cfg_1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <figcaption class="text-center">
+          Lighting control user study demonstration
+        </figcaption>
+      </figure>
+    </div>
+    
+    <br>
+    <br>
+
+    <h2>Rendering the evaluation dataset</h2>
+    <p>
+      - The dataset is rendered using the physically-based Cycles renderer with 2048 samples per pixel, a noise threshold of 0.01, and denoised using OpenImageDenoise~\cite{OpenImageDenoise}
+- Blender EEVEE details of shadow generation and light source parametrization.
+
+    </p>
+
+    <h2>0. RGB-X backbone</h2>
+    <p>
+      \myparagraph{RGB$\leftrightarrow$X backbone}
+We employ the checkpoint of their X$\rightarrow$RGB model finetuned for inpainting rectangular masks, and mask out the bounding box including both the object and shadow region. 
+To estimate intrinsic properties of test images (normals, metallic, roughness, and albedo), we use the RGB$\rightarrow$X model. We observe that results are generally overly bright, likely due to a domain gap between the training and evaluation images. To address this, we re-expose the background by a factor of 2 before feeding it to the network, then divide the output by 2, in linear space.% We apply the same background preservation strategy as in ZeroComp.
+    </p>
+    
+    <h2>Latent mask details</h2>
+    <p>
+      We find that increasing the latent mask weight at the edge helps to maintain the shadow's sharpness, as well as thin shadows.
+      See here a comparison
+
+      The latent mask is dilated by a 3x3 kernel
+    </p>
+
     <h2>Additionnal quantitative results</h2>
     <p>
       We extend the quantitative results from tab. 1. First, we compute metrics separately for the foreground 
