@@ -435,11 +435,11 @@ We employ the checkpoint of their X$\rightarrow$RGB model finetuned for inpainti
 To estimate intrinsic properties of test images (normals, metallic, roughness, and albedo), we use the RGB$\rightarrow$X model. We observe that results are generally overly bright, likely due to a domain gap between the training and evaluation images. To address this, we re-expose the background by a factor of 2 before feeding it to the network, then divide the output by 2, in linear space.% We apply the same background preservation strategy as in ZeroComp.
     </p>
 
-    <h2>Additionnal quantitative results</h2>
+    <h2>Additional quantitative results</h2>
     <p>
       We extend the quantitative results from tab. 1. First, we compute metrics separately for the foreground 
       (evaluating the fidelity of the object's shading compared to the ground truth) and the background (evaluating the fidelity of the background shadows compared to the ground truth).
-      Then, we include additionnal results, including SpotLight applied to the RGB-X backbone, and the ablations on the strength of the guiding shadow β.
+      Then, we include additionnal results, including SpotLight applied to the RGB-X backbone.
     </p>
     <table border="1" class="dataframe table table-striped table-bordered">
       <thead>
@@ -517,7 +517,20 @@ To estimate intrinsic properties of test images (normals, metallic, roughness, a
           <td>0.022</td>
         </tr>
         <tr>
-          <td>SpotLight</td>
+          <td>SpotLight (no guidance)</td>
+          <td><b>31.69</b></td>
+          <td><b>0.976</b></td>
+          <td><b>0.029</b></td>
+          <td><b>0.011</b></td>
+          <td><b>0.029</b></td>
+          <td>0.086</td>
+          <td>0.073</td>
+          <td><b>0.046</b></td>
+          <td><b>0.017</b></td>
+          <td><b>0.006</b></td>
+          </tr>
+          <tr>
+            <td>SpotLight (with guidance, ours)</td>
           <td>30.68</td>
           <td>0.974</td>
           <td>0.033</td>
@@ -542,17 +555,62 @@ To estimate intrinsic properties of test images (normals, metallic, roughness, a
           <td>0.02</td>
           <td>0.007</td>
         </tr>
+      </tbody>
+      </table>
+      
+      <p>
+        We also extend the results from tab. 2, showing the results of the full image, foreground only, and background only
+        for the latent mask weight β and guidance scale γ in the following two tables. We observe that some changes in
+        parameters, like using no blending (β=0), or using no guidance (γ=1) may provide better quantitative results. However,
+        we also observe that these changes diminish the level of light control over the object. Our selected parameter
+        combination provides good quantitative performance and adequate lighting control.
+      </p>
+      <table border="1" class="dataframe table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th colspan="5" halign="left">Full image</th>
+            <th colspan="3" halign="left">Foreground only</th>
+            <th colspan="2" halign="left">Background only</th>
+          </tr>
+          <tr>
+            <th></th>
+            <th>PSNR</th>
+            <th>SSIM</th>
+            <th>RMSE</th>
+            <th>MAE</th>
+            <th>LPIPS</th>
+            <th>RMSE</th>
+            <th>MAE</th>
+            <th>SI-RMSE</th>
+            <th>RMSE</th>
+            <th>MAE</th>
+          </tr>
+        </thead>
+        <tbody>
         <tr>
           <td>SpotLight (γ=1, no guidance)</td>
-          <td><b>31.69</b></td>
-          <td><b>0.976</b></td>
-          <td><b>0.029</b></td>
-          <td><b>0.011</b></td>
-          <td><b>0.029</b></td>
+          <td>31.69</td>
+          <td>0.976</td>
+          <td>0.029</td>
+          <td>0.011</td>
+          <td>0.029</td>
           <td>0.086</td>
           <td>0.073</td>
-          <td><b>0.046</b></td>
-          <td><b>0.017</b></td>
+          <td>0.046</td>
+          <td>0.017</td>
+          <td>0.006</td>
+          </tr>
+          <td>SpotLight (γ=3, with guidance, ours)</td>
+          <td>30.68</td>
+          <td>0.974</td>
+          <td>0.033</td>
+          <td>0.012</td>
+          <td>0.03</td>
+          <td>0.1</td>
+          <td>0.085</td>
+          <td>0.05</td>
+          <td>0.018</td>
           <td>0.006</td>
         </tr>
         <tr>
@@ -567,7 +625,34 @@ To estimate intrinsic properties of test images (normals, metallic, roughness, a
           <td>0.062</td>
           <td>0.019</td>
           <td>0.006</td>
-        </tr>
+          </tr>
+          </tbody>
+          </table>
+          
+          
+          <table border="1" class="dataframe table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th colspan="5" halign="left">Full image</th>
+                <th colspan="3" halign="left">Foreground only</th>
+                <th colspan="2" halign="left">Background only</th>
+              </tr>
+              <tr>
+                <th></th>
+                <th>PSNR</th>
+                <th>SSIM</th>
+                <th>RMSE</th>
+                <th>MAE</th>
+                <th>LPIPS</th>
+                <th>RMSE</th>
+                <th>MAE</th>
+                <th>SI-RMSE</th>
+                <th>RMSE</th>
+                <th>MAE</th>
+              </tr>
+            </thead>
+            <tbody>
         <tr>
           <td>SpotLight (β=0.2)</td>
           <td>29.24</td>
@@ -580,6 +665,18 @@ To estimate intrinsic properties of test images (normals, metallic, roughness, a
           <td>0.051</td>
           <td>0.025</td>
           <td>0.008</td>
+        </tr>
+        <td>SpotLight (β=0.05, ours)</td>
+        <td>30.68</td>
+        <td>0.974</td>
+        <td>0.033</td>
+        <td>0.012</td>
+        <td>0.03</td>
+        <td>0.1</td>
+        <td>0.085</td>
+        <td>0.05</td>
+        <td>0.018</td>
+        <td>0.006</td>
         </tr>
         <tr>
           <td>SpotLight (β=0, no blending)</td>
