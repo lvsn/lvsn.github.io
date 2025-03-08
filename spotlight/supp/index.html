@@ -181,7 +181,7 @@
         We extend the quantitative results from tab. 1. First, we compute metrics separately for the foreground
         (evaluating the fidelity of the object's shading compared to the ground truth) and the background (evaluating the
         fidelity of the background shadows compared to the ground truth).
-        Then, we include additionnal results, including SpotLight applied to the RGB-X backbone.
+        Then, we include additional results, including SpotLight applied to the RGB-X backbone.
         </p>
         <table border="1" class="dataframe table table-striped table-bordered">
           <thead>
@@ -453,7 +453,7 @@
       <br>
       <a class="anchor" name="user_study"></a>
       <h2>6. User studies</h2>
-      <h3>6.1 Additionnal user studies on object shading and shadows only</h2>
+      <h3>6.1 Additional user studies on object shading and shadows only</h3>
         <p>
           In addition to the overall realism and lighting control user studies, we conducted two user studies to disentangle
           the shadow from the shading realism.
@@ -490,12 +490,12 @@
         SpotLight generates more realistic shading than Neural Gaffer with statistical significance, even if Neural Graffer is
         trained to shade objects correctly.
         <br>
-        On the task of refining the guiding shadow into a realistic one, SpotLight ahieves higher results than both
+        On the task of refining the guiding shadow into a realistic one, SpotLight achieves higher results than both
         ZeroComp+SDEdit and using the guiding shadow directly.
-        We attribute this to our shadow blending strategy, which acts as a soft contraint over the shadow generation at each
+        We attribute this to our shadow blending strategy, which acts as a soft constraint over the shadow generation at each
         denoising timestep.
         <br><br>
-        <h3>6.2 Additionnal lighting control study</h3>
+        <h3>6.2 Additional lighting control study</h3>
         <p>In addition to the lighting control user study in fig. 4(b), that compared our method to the ZeroComp+SDEdit,
           we show here that disabling the guidance term yields a similar degradation in perceptual scores for the lighting
           control setting.
@@ -540,7 +540,7 @@
           sentinel answers led to exclusion.
           In the realism user studies, the sentinels corresponded to the object set to be full white, therefore having highly
           unrealistic shading.
-          For the light control user studies, the sentinels corresponded to an objet where the object's lighting doesn't
+          For the light control user studies, the sentinels corresponded to an object where the object's lighting doesn't
           change as the shadow moves.
         </p>
         <h4>Per-study details</h4>
