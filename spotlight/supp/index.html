@@ -83,10 +83,13 @@
       <h3>Table of Contents</h3>
       <ol>
         <li>
-          <a href="#qual_results_control">Additional qualitative results (extends fig. 5)</a>
+          <a href="#technical_details">Technical details on the method (extends sec. 4)</a>
         </li>
         <li>
-          <a href="#parameter_control">Parameters control (extends sec. 4.6)</a>
+          <a href="#qual_results_control">Additional qualitative results (extends fig. 3)</a>
+        </li>
+        <li>
+          <a href="#parameter_control">Parameters control (extends sec. 5.6)</a>
         </li>
         <li>
           <a href="#virtual_light_source">Light radius</a>
@@ -95,7 +98,7 @@
           <a href="#multiple_lights">Multiple lights</a>
         </li>     
         <li>
-          <a href="#bg_relight">Background relighting</a>
+          <a href="#bg_relight">Background relighting (extends fig. 7)</a>
         </li>        
         <li>
           <a href="#user_study">User study interface (extends sec. 4.5)</a>
@@ -104,10 +107,10 @@
           <a href="#real_world">Real world results</a>
         </li>
       </ol>
-      <a class="anchor" name="qual_results_control"></a>
 
-      <h2>X. Technical details on the method</h2>
-      <h3>X.1 Shadow blending</h3>
+      <a class="anchor" name="technical_details"></a>
+      <h2>1. Technical details on the method</h2>
+      <h3>1.1 Shadow blending</h3>
       <p>
         Here we further detail how we obtain the latent shadow mask \(\mathbf{m}_{\text{shw},\downarrow}\) from the full resolution guiding shadow \(\mathbf{m}_{\text{shw}}\).
         We first downsample the shadow \(\mathbf{m}_{\text{shw}}\)
@@ -116,14 +119,15 @@
         We dilate the mask using a \(3\times 3\) kernel to include the details at the edge, and further multiply by two the mask value at the edge.
         Finally, we remove from the shadow mask its intersection with the downsampled object mask, to avoid the shadow from leaking in the object shading, in the latent space.
       </p>
-      <h3>X.2 Negative branch of the dual-branch guidance</h3>
+      <h3>1.2 Negative branch of the dual-branch guidance</h3>
       <p>
         Many possible negative shadow conditioning can be used to enhance the lighting control of the object.
         In our case, when the shadow is obtained from shadow mapping, we cast a shadow with the light shifted by 180° in azimuth.
         For the hand drawn shadows, we use a conditioning where no shadow is drawn for the negative branch.
       </p>
       
-      <h2>1. Additional qualitative results</h2>
+      <a class="anchor" name="qual_results_control"></a>
+      <h2>2. Additional qualitative results</h2>
       <p align="justify">We present 20 additional randomly-selected results on the "user-controlled" dataset, extending the qualitative results from fig. 5.
         In this case, we rendered 8 light directions instead
         of 5 (as used for the user study), in order to also show results where the shadow is behind the object.
@@ -135,13 +139,12 @@
 
 
       <a class="anchor" name="parameter_control"></a>
-
-      <h2>2. Additional results for parameters control</h2>
+      <h2>3. Additional results for parameters control</h2>
       <p align="justify">
         We show how the two main parameters of our method can be adjusted for enhanced artistic control, extending sec. 4.6.
         Here, both parameters are modified separately, but they could be modified simultaneously for optimal results.
       </p>
-      <h3>2.1. Guidance scale γ</h3>
+      <h3>3.1. Guidance scale γ</h3>
       <p align="justify">Here, we show control over the guidance scale γ, extending fig. 6. 
         Increasing the guidance scale generally makes the dominant light source stronger.
         <br>
@@ -151,7 +154,7 @@
       <p align="justify">The current guidance scale is <strong id="cfg-gamma-value">γ=3.0</strong>.</p>
       <div id="results-container-cfg" class="row"></div>
 
-      <h3>2.2. Latent mask weight β</h3>
+      <h3>3.2. Latent mask weight β</h3>
       <p align="justify">Here, we show control over the latent mask weight β, extending fig. 7. 
         Increasing the latent mask weight makes the dominant shadow darker.        
         <br>
@@ -164,7 +167,7 @@
 
       <a class="anchor" name="virtual_light_source"></a>
 
-      <h2>3. Light source radius</h2>
+      <h2>4. Light source radius</h2>
 
       <p align="justify">We adjust the light source radius used to generate the coarse shadow fed to SpotLight.
         Small radii lead to hard shadows, whereas higher radii generate more diffuse shadows.
@@ -177,8 +180,7 @@
       <div id="results-container-light-size" class="row"></div>
 
       <a class="anchor" name="multiple_lights"></a>
-
-      <h2>4. Multiple lights</h2>
+      <h2>5. Multiple lights</h2>
 
       <p>In our paper, we analyze all the methods by conditioning on a single dominant light source, which is sufficiently realistic in most cases.
         Here, we show that we can combine outputs from SpotLight at different light directions to simulate multiple light sources.
@@ -191,7 +193,7 @@
       
     <a class="anchor" name="bg_relight"></a>
 
-    <h2>5. Background relighting</h2>
+    <h2>6. Background relighting</h2>
     <p align="justify">In our work, we use SpotLight for <i>object</i> relighting. We experiment with extending SpotLight for full-scene relighting using the following approach.
       <ol>
         <li>We run SpotLight as-is to render the object lit with a desired shadow. We obtain the <strong>SpotLight</strong> output.</li>
@@ -217,8 +219,8 @@
       we only keep the largest connected component in the mask. This leaves training examples where only a small region of the shading is known and the full background lighting needs to be inferred.
 </p>
 
-    <a class="anchor" name="user_study"></a>
 
+    <!--
     <h2>7. Envmap-based methods details</h2>
     <p>
       In order to ensure fairness in evaluation, we aim to provide each method with a light parametrization that is as close as possible to the ground truth dominant light direction available in the evaluation dataset. 
@@ -232,9 +234,11 @@
       where $\mathbf{c}_\text{light}$ and $\mathbf{c}_\text{amb}$ are the RGB colors of the light and ambient terms resp., $\mathbf{v}$ is the dominant light source direction, and $\lambda$ is the bandwidth. $\mathbf{c}_\text{amb}$ is obtained by computing the average color over the background image. Panoramas from the Laval Indoor HDR dataset (excluding those in our test set) are used to estimate a single average intensity of the dominant light source, $k$, which is set to the ratio of the integral of the brightest pixels in the panoramas, divided by the integral over all pixels. We further divide this integral by 2 to consider a single hemisphere and avoid overly bright dominant light sources. The light color is defined by $\mathbf{c}_\text{light} = k \mathbf{c}_\text{amb}'$, where $\mathbf{c}_\text{amb}'$ is the normalized ambient color $\mathbf{c}_\text{amb}$. We found that the bandwidth parameter $\lambda$ did not advantage any specific method and therefore fixed it to $\lambda = 300$, which we typically observe for an indoor light.</p>
     <br>
     <br>
+    -->
     
-    <h2>X. User studies</h2>
-    <h3>X.1 Additionnal user studies on object shading and shadows only</h2>
+    <a class="anchor" name="user_study"></a>
+    <h2>7. User studies</h2>
+    <h3>7.1 Additionnal user studies on object shading and shadows only</h2>
     <p>
     In addition to the overall realism and lighting control user studies, we conducted two user studies to disentangle the shadow from the shading realism.
     To evaluate shading realism, the shadow needs to be fixed for all methods. To do so, for all methods, we replace the region outside the object mask by the output of SpotLight, containing a refined shadow.
@@ -275,7 +279,7 @@
     On the task of refining the guiding shadow into a realistic one, SpotLight ahieves higher results than both ZeroComp+SDEdit and using the guiding shadow directly.
     We attribute this to our shadow blending strategy, which acts as a soft contraint over the shadow generation at each denoising timestep.
     <br><br>
-    <h3>X.2 Additionnal lighting control study</h3>
+    <h3>7.2 Additionnal lighting control study</h3>
     <p>In addition to the lighting control user study in fig. 4(b), that compared our method to the ZeroComp+SDEdit,
       we show here that disabling the guidance term yields a similar degradation in perceptual scores for the lighting
       control setting.  
@@ -307,7 +311,7 @@
         </div>
       </div>
     </div>
-    <h3>X.3 Further details</h3>
+    <h3>7.3 Further details</h3>
     <h4>User study randomization</h4>
     <p>
       To use the Thurstone case V Law of comparative judgement, we need a fixed set of comparisons, shown to all observers.
@@ -374,7 +378,7 @@
         </tr>
       </tbody>
     </table>
-    <h3>X.4 User study interface</h3>
+    <h3>7.4 User study interface</h3>
     <h4>Realism study interface</h4>
     <p>
     Below, we show the instructions page of the overall realism user study and a question from it.
@@ -421,21 +425,16 @@
     <br>
     <br>
 
-    <h2>Rendering the evaluation dataset</h2>
-    <p>
-      - The dataset is rendered using the physically-based Cycles renderer with 2048 samples per pixel, a noise threshold of 0.01, and denoised using OpenImageDenoise~\cite{OpenImageDenoise}
-- Blender EEVEE details of shadow generation and light source parametrization.
-
     </p>
 
-    <h2>0. RGB-X backbone</h2>
+    <h2>8. RGB-X backbone</h2>
     <p>
       \myparagraph{RGB$\leftrightarrow$X backbone}
 We employ the checkpoint of their X$\rightarrow$RGB model finetuned for inpainting rectangular masks, and mask out the bounding box including both the object and shadow region. 
 To estimate intrinsic properties of test images (normals, metallic, roughness, and albedo), we use the RGB$\rightarrow$X model. We observe that results are generally overly bright, likely due to a domain gap between the training and evaluation images. To address this, we re-expose the background by a factor of 2 before feeding it to the network, then divide the output by 2, in linear space.% We apply the same background preservation strategy as in ZeroComp.
     </p>
 
-    <h2>Additional quantitative results</h2>
+    <h2>9. Additional quantitative results</h2>
     <p>
       We extend the quantitative results from tab. 1. First, we compute metrics separately for the foreground 
       (evaluating the fidelity of the object's shading compared to the ground truth) and the background (evaluating the fidelity of the background shadows compared to the ground truth).
@@ -695,7 +694,7 @@ To estimate intrinsic properties of test images (normals, metallic, roughness, a
     </table>
     <a class="anchor" name="real_world"></a>
 
-    <h2>8. Real world results</h2>
+    <h2>10. Real world results</h2>
     <p>We demonstrate that SpotLight can be applied to 2D images by leveraging a ZeroComp backbone trained without depth
       maps, using the normals (Stable Normal) and albedo (IID) estimators. Without access to a 3D model, we cannot rely on a
       rendering engine to cast shadows. Instead, we employ PixHt-Lab to generate realistic soft shadows from a controllable
