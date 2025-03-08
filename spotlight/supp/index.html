@@ -135,7 +135,8 @@
         In our case, when the shadow is obtained from shadow mapping, we cast a shadow with the light shifted by 180° in azimuth.
         For the hand drawn shadows, we use a conditioning where no shadow is drawn for the negative branch.
       </p>
-
+      <br>
+      <br>
       <a class="anchor" name="rgb_x_backbone"></a>
       <h2>2. RGB-X backbone</h2>
       <p>
@@ -149,7 +150,8 @@
         To address this, we re-expose the background by a factor of 2 before feeding it to the network, then divide the output
         by 2, in linear space. We apply the same background preservation strategy as in ZeroComp.
       </p>
-
+      <br>
+      <br>
       <a class="anchor" name="envmap_methods"></a>
       <h2>3. Envmap-based methods details</h2>
       <p>
@@ -173,7 +175,6 @@
         typically observe for an indoor light.</p>
       <br>
       <br>
-
       <a class="anchor" name="additional_results"></a>
       <h2>4. Additional quantitative results</h2>
       <p>
@@ -436,6 +437,8 @@
           </tbody>
         </table>
       <a class="anchor" name="qual_results_control"></a>
+      <br>
+      <br>
       <h2>5. Additional qualitative results</h2>
       <p align="justify">We present 20 additional randomly-selected results on the "user-controlled" dataset, extending the
         qualitative results from fig. 5.
@@ -446,7 +449,8 @@
       </p>
       
       <div id="results-container-fig-5-ext" class="row"></div>
-      
+      <br>
+      <br>
       <a class="anchor" name="user_study"></a>
       <h2>6. User studies</h2>
       <h3>6.1 Additionnal user studies on object shading and shadows only</h2>
@@ -635,12 +639,9 @@
             </figcaption>
           </figure>
         </div>
-      
         </p>
         <br>
         <br>
-      
-      
         <a class="anchor" name="parameter_control"></a>
         <h2>7. Additional results for parameters control</h2>
         <p align="justify">
@@ -671,8 +672,8 @@
         <p>The current light azimuth angle is <strong id="latent-weight-azimuth-value">0°</strong>.</p>
         <p align="justify">The current latent weight is <strong id="latent-weight-value">β=0.05</strong>.</p>
         <div id="results-container-latent-weight" class="row"></div>
-      
-      
+        <br>
+        <br>
         <a class="anchor" name="virtual_light_source"></a>
         <h2>8. Light source radius</h2>
       
@@ -688,8 +689,9 @@
         <div id="results-container-light-size" class="row"></div>
       
         <a class="anchor" name="multiple_lights"></a>
+        <br>
+        <br>
         <h2>9. Multiple lights</h2>
-      
         <p>In our paper, we analyze all the methods by conditioning on a single dominant light source, which is sufficiently
           realistic in most cases.
           Here, we show that we can combine outputs from SpotLight at different light directions to simulate multiple light
@@ -701,8 +703,8 @@
           2}}}^{2.2})^{\frac{1}{2.2}}.$$
           Notice how the static shadow and shading have a clear effect on the combined output. <br><br>
         <div id="results-container-two-lights" class="row"></div>
-      
-      
+        <br>
+        <br>
         <a class="anchor" name="bg_relight"></a>
         <h2>10. Full image relighting</h2>
         <p align="justify">In our work, we use SpotLight for <i>object</i> relighting. We experiment with extending SpotLight
@@ -743,7 +745,8 @@
           we only keep the largest connected component in the mask. This leaves training examples where only a small region of
           the shading is known and the full background lighting needs to be inferred.
         </p>
-      
+        <br>
+        <br>
     <a class="anchor" name="real_world"></a>
     <h2>11. Real world results</h2>
     <p>We demonstrate that SpotLight can be applied to 2D images by leveraging a ZeroComp backbone trained without depth
