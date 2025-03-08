@@ -92,20 +92,27 @@
           <a href="#parameter_control">Parameters control (extends sec. 5.6)</a>
         </li>
         <li>
-          <a href="#virtual_light_source">Light radius</a>
+          <a href="#virtual_light_source">Light source radius</a>
         </li>
         <li>
           <a href="#multiple_lights">Multiple lights</a>
-        </li>     
+        </li>
         <li>
           <a href="#bg_relight">Background relighting (extends fig. 7)</a>
-        </li>        
+        </li>
         <li>
-          <a href="#user_study">User study interface (extends sec. 4.5)</a>
+          <a href="#user_study">User studies</a>
+        </li>
+        <li>
+          <a href="#rgb_x_backbone">RGB-X backbone</a>
+        </li>
+        <li>
+          <a href="#additional_results">Additional quantitative results</a>
         </li>
         <li>
           <a href="#real_world">Real world results</a>
         </li>
+
       </ol>
 
       <a class="anchor" name="technical_details"></a>
@@ -166,7 +173,6 @@
        
 
       <a class="anchor" name="virtual_light_source"></a>
-
       <h2>4. Light source radius</h2>
 
       <p align="justify">We adjust the light source radius used to generate the coarse shadow fed to SpotLight.
@@ -192,7 +198,6 @@
 
       
     <a class="anchor" name="bg_relight"></a>
-
     <h2>6. Background relighting</h2>
     <p align="justify">In our work, we use SpotLight for <i>object</i> relighting. We experiment with extending SpotLight for full-scene relighting using the following approach.
       <ol>
@@ -427,13 +432,18 @@
 
     </p>
 
+    <a class="anchor" name="rgb_x_backbone"></a>
     <h2>8. RGB-X backbone</h2>
     <p>
-      \myparagraph{RGB$\leftrightarrow$X backbone}
-We employ the checkpoint of their X$\rightarrow$RGB model finetuned for inpainting rectangular masks, and mask out the bounding box including both the object and shadow region. 
-To estimate intrinsic properties of test images (normals, metallic, roughness, and albedo), we use the RGB$\rightarrow$X model. We observe that results are generally overly bright, likely due to a domain gap between the training and evaluation images. To address this, we re-expose the background by a factor of 2 before feeding it to the network, then divide the output by 2, in linear space.% We apply the same background preservation strategy as in ZeroComp.
+    We employ the checkpoint of their X->RGB model finetuned for inpainting rectangular masks, and mask out the bounding box
+    including both the object and shadow region.
+    To estimate intrinsic properties of test images (normals, metallic, roughness, and albedo), we use the RGB->X model. We
+    observe that results are generally overly bright, likely due to a domain gap between the training and evaluation images.
+    To address this, we re-expose the background by a factor of 2 before feeding it to the network, then divide the output
+    by 2, in linear space. We apply the same background preservation strategy as in ZeroComp.
     </p>
 
+    <a class="anchor" name="additional_results"></a>
     <h2>9. Additional quantitative results</h2>
     <p>
       We extend the quantitative results from tab. 1. First, we compute metrics separately for the foreground 
@@ -692,18 +702,14 @@ To estimate intrinsic properties of test images (normals, metallic, roughness, a
         </tr>
       </tbody>
     </table>
+    
     <a class="anchor" name="real_world"></a>
-
     <h2>10. Real world results</h2>
     <p>We demonstrate that SpotLight can be applied to 2D images by leveraging a ZeroComp backbone trained without depth
       maps, using the normals (Stable Normal) and albedo (IID) estimators. Without access to a 3D model, we cannot rely on a
       rendering engine to cast shadows. Instead, we employ PixHt-Lab to generate realistic soft shadows from a controllable
-      point light coordinate. Here, a sample without shadow is provided for negative guidance $\mathbf{v}_{t, \text{neg}}$,
-      see \cref{sec:method-enhancing}. </p>
-    
-    <!-- \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/1_obj.jpg} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/9_bg.jpg} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/bg-9_obj-1/x-384_y-300_horizon-100_softness-0.1.jpg} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/bg-9_obj-1/x-384_y-300_horizon-300_softness-0.1.jpg} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/bg-9_obj-1/x-128_y-300_horizon-100_softness-0.1.jpg} \\
-                
-              \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/11_obj.png} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/2_bg.png} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/bg-2_obj-11/x-256_y-300_horizon-100_softness-0.1.jpg} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/bg-2_obj-11/x-0_y-300_horizon-300_softness-0.1.jpg} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/bg-2_obj-11/x-128_y-300_horizon-100_softness-0.1.jpg} \\ -->
+      point light coordinate. Here, a sample without shadow is provided for negative guidance \(\mathbf{v}_{t, \text{neg}}\).
+      </p>
     
     <div class="row">
       <div class="col p-1">
