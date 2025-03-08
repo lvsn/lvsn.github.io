@@ -389,15 +389,14 @@
     <a class="anchor" name="evaluation_dataset"></a>
     <h2>9. Rendering the evaluation dataset</h2>
     <p>
-      - The dataset is rendered using the physically-based Cycles renderer with 2048 samples per pixel, a noise threshold of 0.01, and denoised using OpenImageDenoise~\cite{OpenImageDenoise}
-- Blender EEVEE details of shadow generation and light source parametrization.
-
+    - The dataset is rendered using the physically-based Cycles renderer with 2048 samples per pixel, a noise threshold of
+    0.01, and denoised using OpenImageDenoise
+    - Blender EEVEE details of shadow generation and light source parametrization.
     </p>
 
     <a class="anchor" name="rgb_x_backbone"></a>
     <h2>10. RGB-X backbone</h2>
     <p>
-    <b>RGB<->X backbone</b>
     We employ the checkpoint of their X->RGB model finetuned for inpainting rectangular masks, and mask out the bounding box
     including both the object and shadow region.
     To estimate intrinsic properties of test images (normals, metallic, roughness, and albedo), we use the RGB->X model. We
@@ -680,12 +679,8 @@
     <p>We demonstrate that SpotLight can be applied to 2D images by leveraging a ZeroComp backbone trained without depth
       maps, using the normals (Stable Normal) and albedo (IID) estimators. Without access to a 3D model, we cannot rely on a
       rendering engine to cast shadows. Instead, we employ PixHt-Lab to generate realistic soft shadows from a controllable
-      point light coordinate. Here, a sample without shadow is provided for negative guidance $\mathbf{v}_{t, \text{neg}}$,
-      see \cref{sec:method-enhancing}. </p>
-    
-    <!-- \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/1_obj.jpg} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/9_bg.jpg} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/bg-9_obj-1/x-384_y-300_horizon-100_softness-0.1.jpg} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/bg-9_obj-1/x-384_y-300_horizon-300_softness-0.1.jpg} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/bg-9_obj-1/x-128_y-300_horizon-100_softness-0.1.jpg} \\
-                
-              \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/11_obj.png} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/2_bg.png} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/bg-2_obj-11/x-256_y-300_horizon-100_softness-0.1.jpg} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/bg-2_obj-11/x-0_y-300_horizon-300_softness-0.1.jpg} & \includegraphics[width=\mywidth]{figs/2d_object_compositing_v2/bg-2_obj-11/x-128_y-300_horizon-100_softness-0.1.jpg} \\ -->
+      point light coordinate. Here, a sample without shadow is provided for negative guidance \(\mathbf{v}_{t, \text{neg}}\).
+      </p>
     
     <div class="row">
       <div class="col p-1">
