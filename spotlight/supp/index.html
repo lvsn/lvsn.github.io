@@ -105,6 +105,24 @@
         </li>
       </ol>
       <a class="anchor" name="qual_results_control"></a>
+
+      <h2>X. Technical details on the method</h2>
+      <h3>X.1 Shadow blending</h3>
+      <p>
+        Here we further detail how we obtain the latent shadow mask \(\mathbf{m}_{\text{shw},\downarrow}\) from the full resolution guiding shadow \(\mathbf{m}_{\text{shw}}\).
+        We first downsample the shadow \(\mathbf{m}_{\text{shw}}\)
+        by simple bilinear interpolation.
+        We then binarize the downsampled shadow using a threshold of 0.05 (to include the softer parts of the shadow in the mask).
+        We dilate the mask using a \(3\times 3\) kernel to include the details at the edge, and further multiply by two the mask value at the edge.
+        Finally, we remove from the shadow mask its intersection with the downsampled object mask, to avoid the shadow from leaking in the object shading, in the latent space.
+      </p>
+      <h3>X.2 Negative branch of the dual-branch guidance</h3>
+      <p>
+        Many possible negative shadow conditioning can be used to enhance the lighting control of the object.
+        In our case, when the shadow is obtained from shadow mapping, we cast a shadow with the light shifted by 180° in azimuth.
+        For the hand drawn shadows, we use a conditioning where no shadow is drawn for the negative branch.
+      </p>
+      
       <h2>1. Additional qualitative results</h2>
       <p align="justify">We present 20 additional randomly-selected results on the "user-controlled" dataset, extending the qualitative results from fig. 5.
         In this case, we rendered 8 light directions instead
@@ -415,14 +433,6 @@
       \myparagraph{RGB$\leftrightarrow$X backbone}
 We employ the checkpoint of their X$\rightarrow$RGB model finetuned for inpainting rectangular masks, and mask out the bounding box including both the object and shadow region. 
 To estimate intrinsic properties of test images (normals, metallic, roughness, and albedo), we use the RGB$\rightarrow$X model. We observe that results are generally overly bright, likely due to a domain gap between the training and evaluation images. To address this, we re-expose the background by a factor of 2 before feeding it to the network, then divide the output by 2, in linear space.% We apply the same background preservation strategy as in ZeroComp.
-    </p>
-    
-    <h2>Latent mask details</h2>
-    <p>
-      We find that increasing the latent mask weight at the edge helps to maintain the shadow's sharpness, as well as thin shadows.
-      See here a comparison
-
-      The latent mask is dilated by a 3x3 kernel
     </p>
 
     <h2>Additionnal quantitative results</h2>
