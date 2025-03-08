@@ -125,7 +125,8 @@
       </ol>
       <a class="anchor" name="qual_results_control"></a>
       <h2>1. Additional qualitative results</h2>
-      <p align="justify">We present 20 additional randomly-selected results on the "user-controlled" dataset, extending the qualitative results from fig. 5.
+      <p align="justify">We present 20 additional randomly-selected results on the "user-controlled" dataset, extending the
+        qualitative results from fig. 3.
         In this case, we rendered 8 light directions instead
         of 5 (as used for the user study), in order to also show results where the shadow is behind the object.
         <br>
@@ -139,7 +140,8 @@
 
       <h2>2. Additional results for parameters control</h2>
       <p align="justify">
-        We show how the two main parameters of our method can be adjusted for enhanced artistic control, extending sec. 4.6.
+        We show how the two main parameters of our method can be adjusted for enhanced artistic control, extending sec. 4.2 and
+        sec. 4.3.
         Here, both parameters are modified separately, but they could be modified simultaneously for optimal results.
       </p>
       <h3>2.1. Guidance scale γ</h3>
@@ -224,16 +226,23 @@
     <p>
       In order to ensure fairness in evaluation, we aim to provide each method with a light parametrization that is as close as possible to the ground truth dominant light direction available in the evaluation dataset. 
       
-      Both DiLightNet~\cite{zeng2024dilightnet} and Neural Gaffer~\cite{jin2024neural_gaffer} require an environment map for lighting. We construct such an environment map with radiance $L_{\text{env}}$ along direction $\omega$ defined as the sum of a spherical gaussian and a constant term
-      %
+      Both DiLightNet and Neural Gaffer require an environment map for lighting. We construct such an environment map with
+      radiance \(L_{\text{env}}\) along direction \(\omega\) defined as the sum of a spherical gaussian and a constant term
       \begin{equation}
           L_{\text{env}}(\omega) = \mathbf{c}_\text{light} e^{\lambda (\omega \cdot \mathbf{v} - 1)} + \mathbf{c}_\text{amb} \,,
       \end{equation}
-      %
-      where $\mathbf{c}_\text{light}$ and $\mathbf{c}_\text{amb}$ are the RGB colors of the light and ambient terms resp., $\mathbf{v}$ is the dominant light source direction, and $\lambda$ is the bandwidth. $\mathbf{c}_\text{amb}$ is obtained by computing the average color over the background image. Panoramas from the Laval Indoor HDR dataset (excluding those in our test set) are used to estimate a single average intensity of the dominant light source, $k$, which is set to the ratio of the integral of the brightest pixels in the panoramas, divided by the integral over all pixels. We further divide this integral by 2 to consider a single hemisphere and avoid overly bright dominant light sources. The light color is defined by $\mathbf{c}_\text{light} = k \mathbf{c}_\text{amb}'$, where $\mathbf{c}_\text{amb}'$ is the normalized ambient color $\mathbf{c}_\text{amb}$. We found that the bandwidth parameter $\lambda$ did not advantage any specific method and therefore fixed it to $\lambda = 300$, which we typically observe for an indoor light.</p>
+      where \(\mathbf{c}_\text{light}\) and \(\mathbf{c}_\text{amb}\) are the RGB colors of the light and ambient terms resp.,
+      \(\mathbf{v}\) is the dominant light source direction, and \(\lambda\) is the bandwidth. \(\mathbf{c}_\text{amb}\) is
+      obtained by computing the average color over the background image. Panoramas from the Laval Indoor HDR dataset
+      (excluding those in our test set) are used to estimate a single average intensity of the dominant light source, \(k\),
+      which is set to the ratio of the integral of the brightest pixels in the panoramas, divided by the integral over all
+      pixels. We further divide this integral by 2 to consider a single hemisphere and avoid overly bright dominant light
+      sources. The light color is defined by \(\mathbf{c}_\text{light} = k \mathbf{c}_\text{amb}'\), where
+      \(\mathbf{c}_\text{amb}'\) is the normalized ambient color \(\mathbf{c}_\text{amb}\). We found that the bandwidth
+      parameter \(\lambda\) did not advantage any specific method and therefore fixed it to \(\lambda = 300\), which we
+      typically observe for an indoor light.</p>
     <br>
     <br>
-    
     <a class="anchor" name="user_study_on_shading_shadows"></a>
     <h2>7. Additionnal user studies on shading and shadows</h2>
     <p>
@@ -277,6 +286,8 @@
     We attribute this to our shadow blending strategy, which acts as a soft contraint over the shadow generation at each denoising timestep.
     
     <a class="anchor" name="user_study_details"></a>
+    <br>
+    <br>
     <h2>8. User studies details</h2>
     <p>
       To use the Thurstone case V Law of comparative judgement, we need a fixed set of comparisons, shown to all observers.
@@ -382,10 +393,9 @@
         </figcaption>
       </figure>
     </div>
-    
-    <br>
-    <br>
 
+    <br>
+    <br>
     <a class="anchor" name="evaluation_dataset"></a>
     <h2>9. Rendering the evaluation dataset</h2>
     <p>
@@ -393,7 +403,8 @@
     0.01, and denoised using OpenImageDenoise
     - Blender EEVEE details of shadow generation and light source parametrization.
     </p>
-
+    <br>
+    <br>
     <a class="anchor" name="rgb_x_backbone"></a>
     <h2>10. RGB-X backbone</h2>
     <p>
@@ -404,7 +415,8 @@
     To address this, we re-expose the background by a factor of 2 before feeding it to the network, then divide the output
     by 2, in linear space. We apply the same background preservation strategy as in ZeroComp.
     </p>
-    
+    <br>
+    <br>
     <a class="anchor" name="latent_mask_details"></a>
     <h2>11. Latent mask details</h2>
     <p>
@@ -413,7 +425,8 @@
 
       The latent mask is dilated by a 3x3 kernel
     </p>
-
+    <br>
+    <br>
     <a class="anchor" name="additional_results"></a>
     <h2>12. Additional quantitative results</h2>
     <p>
@@ -673,6 +686,8 @@
         </tr>
       </tbody>
     </table>
+    <br>
+    <br>
     <a class="anchor" name="real_world"></a>
     <div style="clear:both; height:4em;"></div>
     <h2>13. Real world results</h2>
