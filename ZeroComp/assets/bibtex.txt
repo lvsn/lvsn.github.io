@@ -1,6 +1,8 @@
-@misc{zhang2025zerocomp,
-  title={ZeroComp: Zero-shot Object Compositing from Image Intrinsics via Diffusion}, 
-  author={Zitian Zhang and Frédéric Fortier-Chouinard and Mathieu Garon and Anand Bhattad and Jean-François Lalonde},
-  booktitle=WACV,
-  year={2025}
+@InProceedings{zhang2025zerocomp,
+  author    = {Zhang, Zitian and Fortier-Chouinard, Fr\'ed\'eric and Garon, Mathieu and Bhattad, Anand and Lalonde, Jean-Fran\c{c}ois},
+  title     = {ZeroComp: Zero-Shot Object Compositing from Image Intrinsics via Diffusion},
+  booktitle = {Proceedings of the Winter Conference on Applications of Computer Vision (WACV)},
+  month     = {February},
+  year      = {2025},
+  pages     = {483-494}
 }
