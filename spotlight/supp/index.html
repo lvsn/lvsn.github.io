@@ -89,7 +89,7 @@
           <a href="#rgb_x_backbone">RGB-X backbone (extends sec. 5.2)</a>
         </li>
         <li>
-          <a href="#envmap_methods">Envmap-based methods details (extends sec. 5.3.2)</a>
+          <a href="#envmap_methods">Lighting-conditioned methods parametrization (extends sec. 5.3.2)</a>
         </li>
         <li>
           <a href="#additional_results">Additional quantitative results (extends sec. 5.4, tab. 1 and tab. 2)</a>
@@ -150,13 +150,12 @@
         To address this, we re-expose the background by a factor of 2 before feeding it to the network, then divide the output
         by 2, in linear space. We apply the same background preservation strategy as in ZeroComp.
       </p>
+      <p>We show quantitative and qualitative results of the RGB-X backbone in sections 4 and 5 of this supplementary material.</p>
       <br>
       <br>
       <a class="anchor" name="envmap_methods"></a>
-      <h2>3. Envmap-based methods details</h2>
+      <h2>3. Lighting-conditioned methods parametrization</h2>
       <p>
-        In order to ensure fairness in evaluation, we aim to provide each method with a light parametrization that is as close
-        as possible to the ground truth dominant light direction available in the evaluation dataset.
         Both DiLightNet and Neural Gaffer require an environment map for lighting. We construct such an environment map with
         radiance \(L_{\text{env}}\) along direction \(\omega\) defined as the sum of a spherical gaussian and a constant term
         \begin{equation}
@@ -495,8 +494,8 @@
         We attribute this to our shadow blending strategy, which acts as a soft constraint over the shadow generation at each
         denoising timestep.
         <br><br>
-        <h3>6.2 Additional lighting control study</h3>
-        <p>In addition to the lighting control user study in fig. 4(b), that compared our method to the ZeroComp+SDEdit,
+        <h3>6.2 Additionnal lighting control study</h3>
+        <p>In addition to the lighting control user study in fig. 4b, that compared our method to the ZeroComp+SDEdit,
           we show here that disabling the guidance term yields a similar degradation in perceptual scores for the lighting
           control setting.
         </p>
