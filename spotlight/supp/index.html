@@ -67,36 +67,6 @@
   </head>
   <body>
 
-    <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Supplementary Material</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-expanded="false" aria-controls="navbarCollapse" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <!-- <a class="navbar-brand" href="#">Sticky footer</a> -->
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#qual_results_control">Qualitative results</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#parameter_control">Parameters control</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#virtual_light_source">Light radius</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#multiple_lights">Multiple lights</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#bg_relight">Background relighting</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#user_study">User study interface</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-
     <!-- Begin page content -->
     <div class="container">
       <div class="mt-1">
@@ -113,158 +83,766 @@
       <h3>Table of Contents</h3>
       <ol>
         <li>
-          <a href="#qual_results_control">Additional qualitative results (extends fig. 5)</a>
+          <a href="#technical_details">Technical details on the method (extends sec. 4)</a>
         </li>
         <li>
-          <a href="#parameter_control">Parameters control (extends sec. 4.6)</a>
+          <a href="#rgb_x_backbone">RGB-X backbone (extends sec. 5.2)</a>
         </li>
         <li>
-          <a href="#virtual_light_source">Light radius</a>
+          <a href="#envmap_methods">Lighting-conditioned methods parametrization (extends sec. 5.3.2)</a>
         </li>
         <li>
-          <a href="#multiple_lights">Multiple lights</a>
-        </li>     
-        <li>
-          <a href="#bg_relight">Background relighting</a>
-        </li>        
-        <li>
-          <a href="#user_study">User study interface (extends sec. 4.5)</a>
+          <a href="#additional_results">Additional quantitative results (extends sec. 5.4, tab. 1 and tab. 2)</a>
         </li>
+        <li>
+          <a href="#qual_results_control">Additional qualitative results (extends sec. 5.4, fig. 3) <b>(Interactive)</b></a>
+        </li>
+        <li>
+          <a href="#user_study">User studies (extends sec. 5.5)</a>
+        </li>
+        <li>
+          <a href="#parameter_control">Parameters control (extends sec. 5.6) <b>(Interactive)</b></a>
+          </li>
+          <li>
+          <a href="#virtual_light_source">Light source radius <b>(Interactive)</b></a>
+          </li>
+        <li>
+          <a href="#multiple_lights">Multiple lights <b>(Interactive)</b></a>
+        </li>
+        <li>
+          <a href="#bg_relight">Full image relighting (extends sec. 6, fig. 7) <b>(Interactive)</b></a>
+        </li>
+        <li>
+          <a href="#real_world">Real world results (extends sec. 6)</a>
+        </li>
+
       </ol>
+
+      <a class="anchor" name="technical_details"></a>
+      <h2>1. Technical details on the method</h2>
+      <h3>1.1 Shadow blending</h3>
+      <p>
+        Here we further detail how we obtain the latent shadow mask \(\mathbf{m}_{\text{shw},\downarrow}\) from the full resolution guiding shadow \(\mathbf{m}_{\text{shw}}\).
+        We first downsample the shadow \(\mathbf{m}_{\text{shw}}\)
+        by simple bilinear interpolation.
+        We then binarize the downsampled shadow using a threshold of 0.05 (to include the softer parts of the shadow in the mask).
+        We dilate the mask using a \(3\times 3\) kernel to include the details at the edge, and further multiply by two the mask value at the edge.
+        Finally, we remove from the shadow mask its intersection with the downsampled object mask, to avoid the shadow from leaking in the object shading, in the latent space.
+      </p>
+      <h3>1.2 Negative branch of the dual-branch guidance</h3>
+      <p>
+        Many possible negative shadow conditioning can be used to enhance the lighting control of the object.
+        In our case, when the shadow is obtained from shadow mapping, we cast a shadow with the light shifted by 180° in azimuth.
+        For the hand drawn shadows, we use a conditioning where no shadow is drawn for the negative branch.
+      </p>
+      <br>
+      <br>
+      <a class="anchor" name="rgb_x_backbone"></a>
+      <h2>2. RGB-X backbone</h2>
+      <p>
+        We employ the checkpoint of their X->RGB model finetuned for inpainting rectangular masks, and mask out the bounding
+        box
+        including both the object and shadow region.
+        To estimate intrinsic properties of test images (normals, metallic, roughness, and albedo), we use the RGB->X model.
+        We
+        observe that results are generally overly bright, likely due to a domain gap between the training and evaluation
+        images.
+        To address this, we re-expose the background by a factor of 2 before feeding it to the network, then divide the output
+        by 2, in linear space. We apply the same background preservation strategy as in ZeroComp.
+      </p>
+      <p>We show quantitative and qualitative results of the RGB-X backbone in sections 4 and 5 of this supplementary material.</p>
+      <br>
+      <br>
+      <a class="anchor" name="envmap_methods"></a>
+      <h2>3. Lighting-conditioned methods parametrization</h2>
+      <p>
+        Both DiLightNet and Neural Gaffer require an environment map for lighting. We construct such an environment map with
+        radiance \(L_{\text{env}}\) along direction \(\omega\) defined as the sum of a spherical gaussian and a constant term
+        \begin{equation}
+        L_{\text{env}}(\omega) = \mathbf{c}_\text{light} e^{\lambda (\omega \cdot \mathbf{v} - 1)} + \mathbf{c}_\text{amb} \,,
+        \end{equation}
+        where \(\mathbf{c}_\text{light}\) and \(\mathbf{c}_\text{amb}\) are the RGB colors of the light and ambient terms
+        resp.,
+        \(\mathbf{v}\) is the dominant light source direction, and \(\lambda\) is the bandwidth. \(\mathbf{c}_\text{amb}\) is
+        obtained by computing the average color over the background image. Panoramas from the Laval Indoor HDR dataset
+        (excluding those in our test set) are used to estimate a single average intensity of the dominant light source, \(k\),
+        which is set to the ratio of the integral of the brightest pixels in the panoramas, divided by the integral over all
+        pixels. We further divide this integral by 2 to consider a single hemisphere and avoid overly bright dominant light
+        sources. The light color is defined by \(\mathbf{c}_\text{light} = k \mathbf{c}_\text{amb}'\), where
+        \(\mathbf{c}_\text{amb}'\) is the normalized ambient color \(\mathbf{c}_\text{amb}\). We found that the bandwidth
+        parameter \(\lambda\) did not advantage any specific method and therefore fixed it to \(\lambda = 300\), which we
+        typically observe for an indoor light.</p>
+      <br>
+      <br>
+      <a class="anchor" name="additional_results"></a>
+      <h2>4. Additional quantitative results</h2>
+      <p>
+        We extend the quantitative results from tab. 1. First, we compute metrics separately for the foreground
+        (evaluating the fidelity of the object's shading compared to the ground truth) and the background (evaluating the
+        fidelity of the background shadows compared to the ground truth).
+        Then, we include additional results, including SpotLight applied to the RGB-X backbone.
+        </p>
+        <table border="1" class="dataframe table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th colspan="5" halign="left">Full image</th>
+              <th colspan="3" halign="left">Foreground only</th>
+              <th colspan="2" halign="left">Background only</th>
+            </tr>
+            <tr>
+              <th></th>
+              <th>PSNR</th>
+              <th>SSIM</th>
+              <th>RMSE</th>
+              <th>MAE</th>
+              <th>LPIPS</th>
+              <th>RMSE</th>
+              <th>MAE</th>
+              <th>SI-RMSE</th>
+              <th>RMSE</th>
+              <th>MAE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DiLightNet</td>
+              <td>24.67</td>
+              <td>0.948</td>
+              <td>0.064</td>
+              <td>0.022</td>
+              <td>0.042</td>
+              <td>0.207</td>
+              <td>0.192</td>
+              <td>0.055</td>
+              <td>0.03</td>
+              <td>0.009</td>
+            </tr>
+            <tr>
+              <td>Neural Gaffer</td>
+              <td>28.44</td>
+              <td>0.963</td>
+              <td>0.042</td>
+              <td>0.015</td>
+              <td>0.038</td>
+              <td>0.102</td>
+              <td>0.088</td>
+              <td>0.049</td>
+              <td>0.03</td>
+              <td>0.009</td>
+            </tr>
+            <tr>
+              <td>IC-Light</td>
+              <td>26.87</td>
+              <td>0.959</td>
+              <td>0.054</td>
+              <td>0.019</td>
+              <td>0.04</td>
+              <td>0.153</td>
+              <td>0.13</td>
+              <td>0.062</td>
+              <td>0.03</td>
+              <td>0.009</td>
+            </tr>
+            <tr>
+              <td>ZeroComp+SDEdit</td>
+              <td>26.0</td>
+              <td>0.938</td>
+              <td>0.053</td>
+              <td>0.025</td>
+              <td>0.079</td>
+              <td><b>0.079</b></td>
+              <td><b>0.064</b></td>
+              <td>0.048</td>
+              <td>0.048</td>
+              <td>0.022</td>
+            </tr>
+            <tr>
+              <td>SpotLight (no guidance)</td>
+              <td><b>31.69</b></td>
+              <td><b>0.976</b></td>
+              <td><b>0.029</b></td>
+              <td><b>0.011</b></td>
+              <td><b>0.029</b></td>
+              <td>0.086</td>
+              <td>0.073</td>
+              <td><b>0.046</b></td>
+              <td><b>0.017</b></td>
+              <td><b>0.006</b></td>
+          </tr>
+          <tr>
+            <td>SpotLight (with guidance, ours)</td>
+            <td>30.68</td>
+            <td>0.974</td>
+            <td>0.033</td>
+            <td>0.012</td>
+            <td>0.03</td>
+            <td>0.1</td>
+            <td>0.085</td>
+            <td>0.05</td>
+            <td>0.018</td>
+            <td><b>0.006</b></td>
+            </tr>
+            <tr>
+              <td>SpotLight (RGB-X backbone)</td>
+              <td>26.56</td>
+              <td>0.955</td>
+              <td>0.051</td>
+              <td>0.018</td>
+              <td>0.042</td>
+              <td>0.176</td>
+              <td>0.155</td>
+              <td>0.06</td>
+              <td>0.02</td>
+              <td>0.007</td>
+            </tr>
+            </tbody>
+      </table>
+      
+      <p>
+        We also extend the results from tab. 2, showing the results of the full image, foreground only, and background only
+        for the latent mask weight β and guidance scale γ in the following two tables. We observe that some changes in
+        parameters, like using no blending (β=0), or using no guidance (γ=1) may provide better quantitative results. However,
+        we observe in our qualitative evaluation and user studies that these changes diminish the level of light control over
+        the object. Our selected parameter
+        combination provides good quantitative performance and adequate lighting control.
+      </p>
+      <table border="1" class="dataframe table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th colspan="5" halign="left">Full image</th>
+            <th colspan="3" halign="left">Foreground only</th>
+            <th colspan="2" halign="left">Background only</th>
+          </tr>
+          <tr>
+            <th></th>
+            <th>PSNR</th>
+            <th>SSIM</th>
+            <th>RMSE</th>
+            <th>MAE</th>
+            <th>LPIPS</th>
+            <th>RMSE</th>
+            <th>MAE</th>
+            <th>SI-RMSE</th>
+            <th>RMSE</th>
+            <th>MAE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SpotLight (γ=1, no guidance)</td>
+            <td>31.69</td>
+            <td>0.976</td>
+            <td>0.029</td>
+            <td>0.011</td>
+            <td>0.029</td>
+            <td>0.086</td>
+            <td>0.073</td>
+            <td>0.046</td>
+            <td>0.017</td>
+            <td>0.006</td>
+          </tr>
+          <td>SpotLight (γ=3, with guidance, ours)</td>
+          <td>30.68</td>
+          <td>0.974</td>
+          <td>0.033</td>
+          <td>0.012</td>
+          <td>0.03</td>
+          <td>0.1</td>
+          <td>0.085</td>
+          <td>0.05</td>
+          <td>0.018</td>
+          <td>0.006</td>
+          </tr>
+          <tr>
+            <td>SpotLight (γ=7)</td>
+            <td>28.68</td>
+            <td>0.966</td>
+            <td>0.043</td>
+            <td>0.015</td>
+            <td>0.036</td>
+            <td>0.138</td>
+            <td>0.116</td>
+            <td>0.062</td>
+            <td>0.019</td>
+            <td>0.006</td>
+          </tr>
+        </tbody>
+        </table>
+        
+        
+        <table border="1" class="dataframe table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th colspan="5" halign="left">Full image</th>
+              <th colspan="3" halign="left">Foreground only</th>
+              <th colspan="2" halign="left">Background only</th>
+            </tr>
+            <tr>
+              <th></th>
+              <th>PSNR</th>
+              <th>SSIM</th>
+              <th>RMSE</th>
+              <th>MAE</th>
+              <th>LPIPS</th>
+              <th>RMSE</th>
+              <th>MAE</th>
+              <th>SI-RMSE</th>
+              <th>RMSE</th>
+              <th>MAE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SpotLight (β=0.2)</td>
+              <td>29.24</td>
+              <td>0.969</td>
+              <td>0.039</td>
+              <td>0.014</td>
+              <td>0.034</td>
+              <td>0.102</td>
+              <td>0.086</td>
+              <td>0.051</td>
+              <td>0.025</td>
+              <td>0.008</td>
+            </tr>
+            <td>SpotLight (β=0.05, ours)</td>
+            <td>30.68</td>
+            <td>0.974</td>
+            <td>0.033</td>
+            <td>0.012</td>
+            <td>0.03</td>
+            <td>0.1</td>
+            <td>0.085</td>
+            <td>0.05</td>
+            <td>0.018</td>
+            <td>0.006</td>
+            </tr>
+            <tr>
+              <td>SpotLight (β=0, no blending)</td>
+              <td>30.81</td>
+              <td>0.974</td>
+              <td>0.032</td>
+              <td>0.012</td>
+              <td>0.029</td>
+              <td>0.098</td>
+              <td>0.083</td>
+              <td>0.05</td>
+              <td>0.018</td>
+              <td>0.006</td>
+            </tr>
+          </tbody>
+        </table>
       <a class="anchor" name="qual_results_control"></a>
-      <div style="clear:both; height:4em;"></div>
-      <h2>1. Additional qualitative results</h2>
-      <p align="justify">We present 20 additional randomly-selected results on the "user-controlled" dataset, extending the qualitative results from fig. 5.
+      <br>
+      <br>
+      <h2>5. Additional qualitative results</h2>
+      <p align="justify">We present 20 additional randomly-selected results on the "user-controlled" dataset, extending the
+        qualitative results from fig. 5.
         In this case, we rendered 8 light directions instead
         of 5 (as used for the user study), in order to also show results where the shadow is behind the object.
         <br>
         <strong>Move your mouse from left to right over the images to see the light direction change.</strong>
       </p>
-
+      
       <div id="results-container-fig-5-ext" class="row"></div>
-
-
-      <a class="anchor" name="parameter_control"></a>
-      <div style="clear:both; height:4em;"></div>
-      <h2>2. Additional results for parameters control</h2>
-      <p align="justify">
-        We show how the two main parameters of our method can be adjusted for enhanced artistic control, extending sec. 4.6.
-        Here, both parameters are modified separately, but they could be modified simultaneously for optimal results.
-      </p>
-      <h3>2.1. Guidance scale γ</h3>
-      <p align="justify">Here, we show control over the guidance scale γ, extending fig. 6. 
-        Increasing the guidance scale generally makes the dominant light source stronger.
+      <br>
+      <br>
+      <a class="anchor" name="user_study"></a>
+      <h2>6. User studies</h2>
+      <h3>6.1 Additional user studies on object shading and shadows only</h3>
+        <p>
+          In addition to the overall realism and lighting control user studies, we conducted two user studies to disentangle
+          the shadow from the shading realism.
+          To evaluate shading realism, the shadow needs to be fixed for all methods. To do so, for all methods, we replace the
+          region outside the object mask by the output of SpotLight, containing a refined shadow.
+          To evaluate shadow realism, we do the opposite. We replace the region within the object mask by the output of
+          SpotLight, containing the shaded object.
+          We show the results of these two user studies below.
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <!-- Use <figure> and <figcaption> for semantics, if desired -->
+              <figure class="figure">
+                <img src="figures/user_study/thurstone_ICCV User Study (shading only).svg" class="figure-img img-fluid w-100"
+                  alt="Shading realism user study results">
+                <figcaption class="text-center">
+                  Shading realism user study results (N=13)
+                </figcaption>
+              </figure>
+            </div>
+            <div class="col-md-6">
+              <figure class="figure">
+                <img src="figures/user_study/thurstone_ICCV User Study (shadows only).svg" class="figure-img img-fluid w-100"
+                  alt="Shadow realism user study results">
+                <figcaption class="text-center">
+                  Shadow realism user study results (N=11)
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+        We observe that ZeroComp+SDEdit achieves similar results to SpotLight in terms of shading realism, when the user is
+        not asked about the controllability of the lighting. However,
+        SpotLight generates more realistic shading than Neural Gaffer with statistical significance, even if Neural Graffer is
+        trained to shade objects correctly.
         <br>
-        <strong>Move the mouse vertically to adjust the guidance scale</strong>, and horizontally to adjust the light azimuth angle.
-      </p>
-      <p>The current light azimuth angle is <strong id="cfg-azimuth-value">0°</strong>.</p>
-      <p align="justify">The current guidance scale is <strong id="cfg-gamma-value">γ=3.0</strong>.</p>
-      <div id="results-container-cfg" class="row"></div>
-
-      <h3>2.2. Latent mask weight β</h3>
-      <p align="justify">Here, we show control over the latent mask weight β, extending fig. 7. 
-        Increasing the latent mask weight makes the dominant shadow darker.        
-        <br>
-        <strong>Move the mouse vertically to adjust the latent mask weight</strong>, and horizontally to adjust the light azimuth angle.
-      </p>
-      <p>The current light azimuth angle is <strong id="latent-weight-azimuth-value">0°</strong>.</p>
-      <p align="justify">The current latent weight is <strong id="latent-weight-value">β=0.05</strong>.</p>
-      <div id="results-container-latent-weight" class="row"></div>
-       
-
-      <a class="anchor" name="virtual_light_source"></a>
-      <div style="clear:both; height:4em;"></div>
-      <h2>3. Light source radius</h2>
-
-      <p align="justify">We adjust the light source radius used to generate the coarse shadow fed to SpotLight.
-        Small radii lead to hard shadows, whereas higher radii generate more diffuse shadows.
-        <br>
-        <strong>Move the mouse vertically to adjust the light source radius</strong>, and horizontally to adjust the light azimuth angle. 
-
-      </p>
-      <p>The current light azimuth angle is <strong id="light-size-azimuth-value">0°</strong>.</p>
-      <p align="justify">The current light radius is <strong id="light-size-value">1 (default)</strong>.</p>
-      <div id="results-container-light-size" class="row"></div>
-
-      <a class="anchor" name="multiple_lights"></a>
-      <div style="clear:both; height:4em;"></div>
-      <h2>4. Multiple lights</h2>
-
-      <p>In our paper, we analyze all the methods by conditioning on a single dominant light source, which is sufficiently realistic in most cases.
-        Here, we show that we can combine outputs from SpotLight at different light directions to simulate multiple light sources.
-        We combine a static light direction (shadow to the right of the object), with a dynamic direction (hover over the images to move this virtual light). We combine the two lightings
-        in linear space (by using the gamma of 2.2) using the following equation:
-        $$x_{\text{combined}}=(0.5 \times {x_{\text{light 1}}}^{2.2} + 0.5 \times {x_{\text{light 2}}}^{2.2})^{\frac{1}{2.2}}.$$ 
-        Notice how the static shadow and shading have a clear effect on the combined output. <br><br>
-      <div id="results-container-two-lights" class="row"></div>
-
+        On the task of refining the guiding shadow into a realistic one, SpotLight achieves higher results than both
+        ZeroComp+SDEdit and using the guiding shadow directly.
+        We attribute this to our shadow blending strategy, which acts as a soft constraint over the shadow generation at each
+        denoising timestep.
+        <br><br>
+        <h3>6.2 Additionnal lighting control study</h3>
+        <p>In addition to the lighting control user study in fig. 4b, that compares our method to the ZeroComp+SDEdit,
+          we show here that disabling the guidance term yields a similar degradation in perceptual scores for the lighting
+          control setting.
+        </p>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <!-- Use <figure> and <figcaption> for semantics, if desired -->
+              <figure class="figure">
+                <img src="figures/user_study/thurstone_ICCV User Study (control, shading only) vs SDEdit.svg"
+                  class="figure-img img-fluid w-100">
+                <figcaption class="text-center">
+                  Lighting control user study against ZeroComp+SDEdit (N=8)
+                </figcaption>
+              </figure>
+            </div>
+            <div class="col-md-6">
+              <figure class="figure">
+                <img src="figures/user_study/thurstone_ICCV User Study (control, shading only) vs CFG=1.svg"
+                  class="figure-img img-fluid w-100">
+                <figcaption class="text-center">
+                  Shadow realism user study against no guidance (N=7)
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+        <h3>6.3 Further details</h3>
+        <h4>User study randomization</h4>
+        <p>
+          To use the Thurstone case V Law of comparative judgement, we need a fixed set of comparisons, shown to all
+          observers.
+          This set of comparison is randomly sampled and reused for all users.
+          To limit bias, the method left/right ordering is randomized, and the order of comparisons was randomized for each
+          observer.
+          All user studies were conducted using different sets of observers, to avoid bias.
+        </p>
       
-    <a class="anchor" name="bg_relight"></a>
-    <div style="clear:both; height:4em;"></div>
-    <h2>5. Background relighting</h2>
-    <p align="justify">In our work, we use SpotLight for <i>object</i> relighting. We experiment with extending SpotLight for full-scene relighting using the following approach.
-      <ol>
-        <li>We run SpotLight as-is to render the object lit with a desired shadow. We obtain the <strong>SpotLight</strong> output.</li>
-        <li>We run the backbone (in this case ZeroComp), with the inverted shading mask, feeding it only the shading of the object and its shadow 
-          (obtained by dividing the SpotLight prediction with the albedo map)
-          and letting the backbone shade the background. 
-          We obtain the <strong>relit background</strong> output.</li>
-        <li>We repeat step 2 for each of the 8 light directions, and average them, giving us the <strong>average relit background</strong>.</li>
-        <li>We find that the background relighting in step 2 and 3 poorly reconstruct the background's identity. We therefore obtain a per-pixel highlight map, by dividing 
-          the relit background prediction with the average relit background. We multiply that highlight map with the original background and obtain a more accurate output, <strong>relit background + composition</strong>. 
-        </li>
-      </ol>
-      We observe in the following example that background shadows and highlights are added in a consistent manner with respect to the object's shadow.
-    </p>
-  
-    <div id="results-container-bg-relight" class="row"></div>
-  <h6>Note about the checkpoint used for background relighting</h6>
-    <p align="justify">
-      In step 1, we use the same ZeroComp checkpoint as in all other experiments. For steps 2 and 3, in order to properly relight the background, we found that this checkpoint
-      had limited full-scene relighting capabilities.
-      We hypothesize that this is due to the fact that the neural renderer backbone is trained to relight only a small region of an image (circular and rectangular masks at training time).
-      We therefore train a separate model from scratch for 270K iterations on inverted shading masks, where we take the inverse of the circular and rectangular masks for shading masking. Furthermore,
-      we only keep the largest connected component in the mask. This leaves training examples where only a small region of the shading is known and the full background lighting needs to be inferred.
-</p>
-
-    <a class="anchor" name="user_study"></a>
-    <div style="clear:both; height:4em;"></div>
-    <h2>6. User study interface</h2>
-    <p>Here, we show the user interface used to perform our human perceptual study, as described in sec. 4.5 in the paper. The user is first shown an instructions page, followed by the questions page (which is the same for the 120 2AFC questions).</p>
+        <h4>Observer filtering</h4>
+        <p>
+          For each study, three sentinels images were randomly placed in the questions. Incorrectly selecting one of the
+          sentinel answers led to exclusion.
+          In the realism user studies, the sentinels corresponded to the object set to be full white, therefore having highly
+          unrealistic shading.
+          For the light control user studies, the sentinels corresponded to an object where the object's lighting doesn't
+          change as the shadow moves.
+        </p>
+        <h4>Per-study details</h4>
+        <p>Here, we show the details of each user study. "Filtered observers" represents the number of observers that ended up
+          contributing to the scores, which were selected since they didn't click the sentinels.
+          Also note that the number of questions shown includes the three sentinel questions asked to the users.
+        </p>
+        <table border="1" class="dataframe table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>User study name</th>
+              <th>Original observers</th>
+              <th>Filtered observers (N)</th>
+              <th>Questions per method pairs</th>
+              <th>Total questions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Overall realism</td>
+              <td>40</td>
+              <td>35</td>
+              <td>20</td>
+              <td>123</td>
+            </tr>
+            <tr>
+              <td>Shadow realism</td>
+              <td>14</td>
+              <td>13</td>
+              <td>40</td>
+              <td>123</td>
+            </tr>
+            <tr>
+              <td>Shading realism</td>
+              <td>14</td>
+              <td>11</td>
+              <td>40</td>
+              <td>123</td>
+            </tr>
+            <tr>
+              <td>Lighting control (vs. ZeroComp+SDEdit)</td>
+              <td>10</td>
+              <td>8</td>
+              <td>40</td>
+              <td>43</td>
+            </tr>
+            <tr>
+              <td>Lighting control (vs. no guidance)</td>
+              <td>10</td>
+              <td>7</td>
+              <td>40</td>
+              <td>43</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>6.4 User study interface</h3>
+        <h4>Realism study interface</h4>
+        <p>
+          Below, we show the instructions page of the overall realism user study and a question from it.
+        </p>
+      
+        <div class="row">
+          <div class="col-md-12">
+            <a href="figures/user_study/user_study_realism_instructions.png" target="_blank">
+              <img src="figures/user_study/user_study_realism_instructions.png" class="border border-secondary"
+                alt="User study instructions" style="width: 100%;">
+            </a>
+            <figurecaption>Overall realism user study instructions</figurecaption>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <a href="figures/user_study/user_study_realism_question.png" target="_blank">
+              <img src="figures/user_study/user_study_realism_question.png" class="border border-secondary"
+                alt="User study question" style="width: 100%;">
+            </a>
+            <figurecaption>Overall realism user study question</figurecaption>
+          </div>
+        </div>
+        <br>
+        <br>
+        <h4>Lighting control study interface</h4>
+        <p>
+          And here, we show a video demonstration of the lighting control user study.
+        </p>
+        <div class="col-12">
+          <figure class="figure w-100">
+            <video class="figure-img img-fluid w-100" controls>
+              <source src="figures/user_study/control_user_study_vs_cfg_1.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <figcaption class="text-center">
+              Lighting control user study demonstration
+            </figcaption>
+          </figure>
+        </div>
+        </p>
+        <br>
+        <br>
+        <a class="anchor" name="parameter_control"></a>
+        <h2>7. Additional results for parameters control</h2>
+        <p align="justify">
+          We show how the two main parameters of our method can be adjusted for enhanced artistic control, extending sec. 4.2
+          and
+          sec. 4.3.
+          Here, both parameters are modified separately, but they could be modified simultaneously for optimal results.
+        </p>
+        <h3>7.1. Guidance scale γ</h3>
+        <p align="justify">Here, we show control over the guidance scale γ, extending fig. 6.
+          Increasing the guidance scale generally makes the dominant light source stronger.
+          <br>
+          <strong>Move the mouse vertically to adjust the guidance scale</strong>, and horizontally to adjust the light
+          azimuth
+          angle.
+        </p>
+        <p>The current light azimuth angle is <strong id="cfg-azimuth-value">0°</strong>.</p>
+        <p align="justify">The current guidance scale is <strong id="cfg-gamma-value">γ=3.0</strong>.</p>
+        <div id="results-container-cfg" class="row"></div>
+      
+        <h3>7.2. Latent mask weight β</h3>
+        <p align="justify">Here, we show control over the latent mask weight β, extending fig. 7.
+          Increasing the latent mask weight makes the dominant shadow darker.
+          <br>
+          <strong>Move the mouse vertically to adjust the latent mask weight</strong>, and horizontally to adjust the light
+          azimuth angle.
+        </p>
+        <p>The current light azimuth angle is <strong id="latent-weight-azimuth-value">0°</strong>.</p>
+        <p align="justify">The current latent weight is <strong id="latent-weight-value">β=0.05</strong>.</p>
+        <div id="results-container-latent-weight" class="row"></div>
+        <br>
+        <br>
+        <a class="anchor" name="virtual_light_source"></a>
+        <h2>8. Light source radius</h2>
+      
+        <p align="justify">We adjust the light source radius used to generate the coarse shadow fed to SpotLight.
+          Small radii lead to hard shadows, whereas higher radii generate more diffuse shadows.
+          <br>
+          <strong>Move the mouse vertically to adjust the light source radius</strong>, and horizontally to adjust the light
+          azimuth angle.
+      
+        </p>
+        <p>The current light azimuth angle is <strong id="light-size-azimuth-value">0°</strong>.</p>
+        <p align="justify">The current light radius is <strong id="light-size-value">1 (default)</strong>.</p>
+        <div id="results-container-light-size" class="row"></div>
+      
+        <a class="anchor" name="multiple_lights"></a>
+        <br>
+        <br>
+        <h2>9. Multiple lights</h2>
+        <p>In our paper, we analyze all the methods by conditioning on a single dominant light source, which is sufficiently
+          realistic in most cases.
+          Here, we show that we can combine outputs from SpotLight at different light directions to simulate multiple light
+          sources.
+          We combine a static light direction (shadow to the right of the object), with a dynamic direction (hover over the
+          images to move this virtual light). We combine the two lightings
+          in linear space (by using the gamma of 2.2) using the following equation:
+          $$x_{\text{combined}}=(0.5 \times {x_{\text{light 1}}}^{2.2} + 0.5 \times {x_{\text{light
+          2}}}^{2.2})^{\frac{1}{2.2}}.$$
+          Notice how the static shadow and shading have a clear effect on the combined output. <br><br>
+        <div id="results-container-two-lights" class="row"></div>
+        <br>
+        <br>
+        <a class="anchor" name="bg_relight"></a>
+        <h2>10. Full image relighting</h2>
+        <p align="justify">In our work, we use SpotLight for <i>object</i> relighting. We experiment with extending SpotLight
+          for full-scene relighting using the following approach.
+        <ol>
+          <li>We run SpotLight as-is to render the object lit with a desired shadow. We obtain the <strong>SpotLight</strong>
+            output.</li>
+          <li>We run the backbone (in this case ZeroComp), with the inverted shading mask, feeding it only the shading of the
+            object and its shadow
+            (obtained by dividing the SpotLight prediction with the albedo map)
+            and letting the backbone shade the background.
+            We obtain the <strong>relit background</strong> output.</li>
+          <li>We repeat step 2 for each of the 8 light directions, and average them, giving us the <strong>average relit
+              background</strong>.</li>
+          <li>We find that the background relighting in step 2 and 3 poorly reconstruct the background's identity. We
+            therefore
+            obtain a per-pixel highlight map, by dividing
+            the relit background prediction with the average relit background. We multiply that highlight map with the
+            original
+            background and obtain a more accurate output, <strong>relit background + composition</strong>.
+          </li>
+        </ol>
+        We observe in the following example that background shadows and highlights are added in a consistent manner with
+        respect
+        to the object's shadow.
+        </p>
+      
+        <div id="results-container-bg-relight" class="row"></div>
+        <h6>Note about the checkpoint used for background relighting</h6>
+        <p align="justify">
+          In step 1, we use the same ZeroComp checkpoint as in all other experiments. For steps 2 and 3, in order to properly
+          relight the background, we found that this checkpoint
+          had limited full-scene relighting capabilities.
+          We hypothesize that this is due to the fact that the neural renderer backbone is trained to relight only a small
+          region of an image (circular and rectangular masks at training time).
+          We therefore train a separate model from scratch for 270K iterations on inverted shading masks, where we take the
+          inverse of the circular and rectangular masks for shading masking. Furthermore,
+          we only keep the largest connected component in the mask. This leaves training examples where only a small region of
+          the shading is known and the full background lighting needs to be inferred.
+        </p>
+        <br>
+        <br>
+    <a class="anchor" name="real_world"></a>
+    <h2>11. Real world results</h2>
+    <p>We demonstrate that SpotLight can be applied to 2D images by leveraging a ZeroComp backbone trained without depth
+      maps, using the normals (Stable Normal) and albedo (IID) estimators. Without access to a 3D model, we cannot rely on a
+      rendering engine to cast shadows. Instead, we employ PixHt-Lab to generate realistic soft shadows from a controllable
+      point light coordinate. Here, a sample without shadow is provided for negative guidance \(\mathbf{v}_{t, \text{neg}}\).
+      </p>
+    
     <div class="row">
-      <div class="col-md-12">
-        <a href="figures/user_study/instructions.png" target="_blank">
-          <img src="figures/user_study/instructions.png" class="border border-secondary" alt="User study instructions" style="width: 100%;">
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-9_obj-1/1_obj.jpg" target="_blank">
+          <img src="./figures/iccv_real_world/bg-9_obj-1/1_obj.jpg" alt="Background" style="width:100%">
         </a>
-        <figurecaption>User study instructions page</figurecaption>
+        <br>
+        <figurecaption>2D object</figurecaption>
+      </div>
+    
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-9_obj-1/9_bg.jpg" target="_blank">
+          <img src="./figures/iccv_real_world/bg-9_obj-1/9_bg.jpg" alt="Background" style="width:100%">
+        </a>
+        <br>
+        <figurecaption>Target background</figurecaption>
+      </div>
+    
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-9_obj-1/x-384_y-300_horizon-100_softness-0.1.jpg" target="_blank">
+          <img src="./figures/iccv_real_world/bg-9_obj-1/x-384_y-300_horizon-100_softness-0.1.jpg" alt="Background"
+            style="width:100%">
+        </a>
+        <br>
+        <figurecaption>Light direction 1</figurecaption>
+      </div>
+    
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-9_obj-1/x-384_y-300_horizon-300_softness-0.1.jpg" target="_blank">
+          <img src="./figures/iccv_real_world/bg-9_obj-1/x-384_y-300_horizon-300_softness-0.1.jpg" alt="Background"
+            style="width:100%">
+        </a>
+        <br>
+        <figurecaption>Light direction 2</figurecaption>
+      </div>
+    
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-9_obj-1/x-128_y-300_horizon-100_softness-0.1.jpg" target="_blank">
+          <img src="./figures/iccv_real_world/bg-9_obj-1/x-128_y-300_horizon-100_softness-0.1.jpg" alt="Background"
+            style="width:100%">
+        </a>
+        <br>
+        <figurecaption>Light direction 3</figurecaption>
       </div>
     </div>
-    <br>
-    <br>
+    
     <div class="row">
-      <div class="col-md-12">
-        <a href="figures/user_study/question.png" target="_blank">
-          <img src="figures/user_study/question.png" class="border border-secondary" alt="User study question" style="width: 100%;">
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-2_obj-11/11_obj.png" target="_blank">
+          <img src="./figures/iccv_real_world/bg-2_obj-11/11_obj.png" alt="Background" style="width:100%">
         </a>
-        <figurecaption>User study question page</figurecaption>
+        <br>
+        <figurecaption>2D object</figurecaption>
+      </div>
+    
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-2_obj-11/2_bg.png" target="_blank">
+          <img src="./figures/iccv_real_world/bg-2_obj-11/2_bg.png" alt="Background" style="width:100%">
+        </a>
+        <br>
+        <figurecaption>Target background</figurecaption>
+      </div>
+    
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-2_obj-11/x-256_y-300_horizon-100_softness-0.1.jpg" target="_blank">
+          <img src="./figures/iccv_real_world/bg-2_obj-11/x-256_y-300_horizon-100_softness-0.1.jpg" alt="Background"
+            style="width:100%">
+        </a>
+        <br>
+        <figurecaption>Light direction 1</figurecaption>
+      </div>
+    
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-2_obj-11/x-0_y-300_horizon-300_softness-0.1.jpg" target="_blank">
+          <img src="./figures/iccv_real_world/bg-2_obj-11/x-0_y-300_horizon-300_softness-0.1.jpg" alt="Background"
+            style="width:100%">
+        </a>
+        <br>
+        <figurecaption>Light direction 2</figurecaption>
+      </div>
+    
+      <div class="col p-1">
+        <a href="./figures/iccv_real_world/bg-2_obj-11/x-128_y-300_horizon-100_softness-0.1.jpg" target="_blank">
+          <img src="./figures/iccv_real_world/bg-2_obj-11/x-128_y-300_horizon-100_softness-0.1.jpg" alt="Background"
+            style="width:100%">
+        </a>
+        <br>
+        <figurecaption>Light direction 3</figurecaption>
       </div>
     </div>
-    <br>
-    <br>
-
-    <a class="anchor" name="user_study"></a>
-    <div style="clear:both; height:4em;"></div>
-    <h2>7. Envmap-based methods details</h2>
-    <p>
-      In order to ensure fairness in evaluation, we aim to provide each method with a light parametrization that is as close as possible to the ground truth dominant light direction available in the evaluation dataset. 
-      
-      Both DiLightNet~\cite{zeng2024dilightnet} and Neural Gaffer~\cite{jin2024neural_gaffer} require an environment map for lighting. We construct such an environment map with radiance $L_{\text{env}}$ along direction $\omega$ defined as the sum of a spherical gaussian and a constant term
-      %
-      \begin{equation}
-          L_{\text{env}}(\omega) = \mathbf{c}_\text{light} e^{\lambda (\omega \cdot \mathbf{v} - 1)} + \mathbf{c}_\text{amb} \,,
-      \end{equation}
-      %
-      where $\mathbf{c}_\text{light}$ and $\mathbf{c}_\text{amb}$ are the RGB colors of the light and ambient terms resp., $\mathbf{v}$ is the dominant light source direction, and $\lambda$ is the bandwidth. $\mathbf{c}_\text{amb}$ is obtained by computing the average color over the background image. Panoramas from the Laval Indoor HDR dataset (excluding those in our test set) are used to estimate a single average intensity of the dominant light source, $k$, which is set to the ratio of the integral of the brightest pixels in the panoramas, divided by the integral over all pixels. We further divide this integral by 2 to consider a single hemisphere and avoid overly bright dominant light sources. The light color is defined by $\mathbf{c}_\text{light} = k \mathbf{c}_\text{amb}'$, where $\mathbf{c}_\text{amb}'$ is the normalized ambient color $\mathbf{c}_\text{amb}$. We found that the bandwidth parameter $\lambda$ did not advantage any specific method and therefore fixed it to $\lambda = 300$, which we typically observe for an indoor light.</p>
     <br>
     <br>
 
@@ -292,10 +870,10 @@
         methodsMapping: {
         'shadow_comp_v3_kornia_3x3_edge_2_post_color_balanced_denoised': "SpotLight (ZeroComp backbone)",
         'rgbx_cfg_3_intensity_2_inpaint_iccv_post_color_balanced_denoised': 'SpotLight (RGB-X backbone)',
-        'ic_light_bg_guidance_ambiant_eevee_denoised': 'IC-Light [TODO]',
-        'dilightnet_ambiant_eevee_denoised': 'DiLightNet [TODO]',
-        'neural_gaffer_erode5_ambiant_eevee_denoised': 'Neural Gaffer [TODO]',
-        'zerocomp_coarse_shadow_sd_edit_0.5_post_color_balanced_denoised': 'ZeroComp+SDEdit [TODO]',
+        'ic_light_bg_guidance_ambiant_eevee_denoised': 'IC-Light',
+        'dilightnet_ambiant_eevee_denoised': 'DiLightNet',
+        'neural_gaffer_erode5_ambiant_eevee_denoised': 'Neural Gaffer',
+        'zerocomp_coarse_shadow_sd_edit_0.5_post_color_balanced_denoised': 'ZeroComp+SDEdit',
         'stick-renders': 'Light direction',
         'simulated_gt': 'Ground truth',
         },
