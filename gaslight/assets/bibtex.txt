@@ -1,0 +1,6 @@
+@article{bolduc2025GaSLight,
+	title={GaSLight: Gaussian Splats for Spatially-Varying Lighting in HDR},
+	author={Bolduc, Christophe and Hold-Geoffroy, Yannick and Shu, Zhixin and Lalonde, Jean-Fran{\c{c}}ois},
+	journal={ArXiv},
+	year={2025}
+}
