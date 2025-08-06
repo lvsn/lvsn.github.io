@@ -229,9 +229,9 @@
 								<span class="material-icons"> assignment </span> 
 								Supplementary
 							</a></span>
-							<span><a class="paper-btn" href=''>
+							<span><a class="paper-btn" href='https://github.com/lvsn/gaslight'>
 								<span class="material-icons"> code </span> 
-								Code Coming Soon
+								Code
 							</a></span>
 							<span><a class="paper-btn" href='assets/bibtex.txt'>
 								<span class="material-icons"> insert_comment </span> 
@@ -351,6 +351,42 @@
 					<center>
 						<img class="round" style="width:100%; max-width:500px;" src="./assets/3D_pipeline.png" />
 					  </center>
+				</td>
+			</tr>
+		</table>
+			<br>
+		<hr>
+
+		<table align=center width=875px>
+			<center><h1>Evaluation Datasets</h1></center>
+			<tr>
+				<td>
+					<!-- <center> -->
+						<ul>
+							<li style="margin-bottom: 1em;">
+								<strong>SI-HDR:</strong> We share our reconstructions for the clip_95 images of the 
+								<a href="https://www.repository.cam.ac.uk/items/c02ccdde-db20-4acd-8941-7816ef6b7dc7">SI-HDR dataset</a>
+								using our gaslight method 
+								<a href="https://hdrdb-public.s3.valeria.science/gaslight/si-hdr_gaslight.tar.gz">here</a>. 
+								We found some HDR images to be saturated 
+								<a href="./assets/saturated_si_hdr.txt">list</a>
+							</li>
+
+							<li>
+								<strong>BtP-HDR:</strong> We adapt the Theta Dataset from 
+								<a href="https://lvsn.github.io/beyondthepixel/">Beyond the Pixel</a> 
+								to obtain a HDR dataset with <strong>reference</strong> HDR images, 
+								<strong>input</strong> LDR images directly produced by the camera and 
+								<strong>reconstructions</strong> from publicly available methods 
+								(<a href="https://github.com/dmarnerides/hdr-expandnet">ExpandNet</a>, 
+								<a href="https://github.com/gabrieleilertsen/hdrcnn">HDRCNN</a>, 
+								<a href="https://github.com/marcelsan/Deep-HdrReconstruction">MaskHDR</a>, 
+								<a href="https://github.com/alex04072000/SingleHDR">SingleHDR</a>) 
+								as well as our own gaslight. The full dataset is available 
+								<a href="https://hdrdb-public.s3.valeria.science/gaslight/BtP-hdr.tar.gz">here</a>.
+							</li>
+							</ul>
+					  <!-- </center> -->
 				</td>
 			</tr>
 		</table>
