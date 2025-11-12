@@ -1,0 +1,6 @@
+@article{athwale2025darswin-unet,
+  title={DarSwin-Unet: Distortion Aware Encoder-Decoder Architecture},
+  author={Athwale, Akshaya and Shili, Ichrak and Bergeron, Émile and Ahmad, Ola and Lalonde, Jean-Fran{\c{c}}ois},
+  journal={IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+  year={2025}
+}
