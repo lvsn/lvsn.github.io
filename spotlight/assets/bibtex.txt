@@ -1,7 +1,7 @@
 @inproceedings{fortier2026spotlight,
       title={SpotLight: Shadow-Guided Object Relighting via Diffusion}, 
       author={Fr\'ed\'eric Fortier-Chouinard and Zitian Zhang and Louis-Etienne Messier and Mathieu Garon and Anand Bhattad and Jean-Fran\c{c}ois Lalonde},
-      booktitle={2026 International Conference on 3D Vision (3DV)},
+      booktitle={International Conference on 3D Vision (3DV)},
       month={March},
       year={2026},
       organization={IEEE}
