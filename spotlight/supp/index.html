@@ -83,7 +83,7 @@
       <h3>Table of Contents</h3>
       <ol>
         <li>
-          <a href="#technical_details">Technical details on the method (extends sec. 4)</a>
+          <a href="#technical_details">Technical details on the shadow blending (extends sec. 4.2)</a>
         </li>
         <li>
           <a href="#rgb_x_backbone">RGB-X backbone (extends sec. 5.2)</a>
@@ -102,25 +102,27 @@
         </li>
         <li>
           <a href="#parameter_control">Parameters control (extends sec. 5.6) <b>(Interactive)</b></a>
-          </li>
-          <li>
-          <a href="#virtual_light_source">Light source radius <b>(Interactive)</b></a>
-          </li>
-        <li>
-          <a href="#multiple_lights">Multiple lights <b>(Interactive)</b></a>
         </li>
         <li>
-          <a href="#bg_relight">Full image relighting (extends sec. 6, fig. 7) <b>(Interactive)</b></a>
+          <a href="#virtual_light_source">Light source radius (extends sec. 5.6) <b>(Interactive)</b></a>
         </li>
         <li>
-          <a href="#real_world">Real world results (extends sec. 6)</a>
+          <a href="#outdoor">Outdoor scenes (extends sec. 6)</a>
+        </li>
+        <li>
+          <a href="#exotic_objects">Diverse objects (extends sec. 6)</a>
+        </li>
+        <li>
+          <a href="#multiple_lights">Multiple lights (extends sec. 6) <b>(Interactive)</b></a>
+        </li>
+        <li>
+          <a href="#bg_relight">Full image relighting (extends sec. 6) <b>(Interactive)</b></a>
         </li>
 
       </ol>
 
       <a class="anchor" name="technical_details"></a>
-      <h2>1. Technical details on the method</h2>
-      <h3>1.1 Shadow blending</h3>
+      <h2>1. Technical details on the shadow blending</h2>
       <p>
         Here we further detail how we obtain the latent shadow mask \(\mathbf{m}_{\text{shw},\downarrow}\) from the full resolution guiding shadow \(\mathbf{m}_{\text{shw}}\).
         We first downsample the shadow \(\mathbf{m}_{\text{shw}}\)
@@ -128,12 +130,6 @@
         We then binarize the downsampled shadow using a threshold of 0.05 (to include the softer parts of the shadow in the mask).
         We dilate the mask using a \(3\times 3\) kernel to include the details at the edge, and further multiply by two the mask value at the edge.
         Finally, we remove from the shadow mask its intersection with the downsampled object mask, to avoid the shadow from leaking in the object shading, in the latent space.
-      </p>
-      <h3>1.2 Negative branch of the dual-branch guidance</h3>
-      <p>
-        Many possible negative shadow conditioning can be used to enhance the lighting control of the object.
-        In our case, when the shadow is obtained from shadow mapping, we cast a shadow with the light shifted by 180° in azimuth.
-        For the hand drawn shadows, we use a conditioning where no shadow is drawn for the negative branch.
       </p>
       <br>
       <br>
@@ -466,7 +462,7 @@
             <div class="col-md-6">
               <!-- Use <figure> and <figcaption> for semantics, if desired -->
               <figure class="figure">
-                <img src="figures/user_study/thurstone_ICCV User Study (shading only).svg" class="figure-img img-fluid w-100"
+                <img src="figures/user_study/thurstone_User Study (shading only).svg" class="figure-img img-fluid w-100"
                   alt="Shading realism user study results">
                 <figcaption class="text-center">
                   Shading realism user study results (N=13)
@@ -475,7 +471,7 @@
             </div>
             <div class="col-md-6">
               <figure class="figure">
-                <img src="figures/user_study/thurstone_ICCV User Study (shadows only).svg" class="figure-img img-fluid w-100"
+                <img src="figures/user_study/thurstone_User Study (shadows only).svg" class="figure-img img-fluid w-100"
                   alt="Shadow realism user study results">
                 <figcaption class="text-center">
                   Shadow realism user study results (N=11)
@@ -504,7 +500,7 @@
             <div class="col-md-6">
               <!-- Use <figure> and <figcaption> for semantics, if desired -->
               <figure class="figure">
-                <img src="figures/user_study/thurstone_ICCV User Study (control, shading only) vs SDEdit.svg"
+                <img src="figures/user_study/thurstone_User Study (control, shading only) vs SDEdit.svg"
                   class="figure-img img-fluid w-100">
                 <figcaption class="text-center">
                   Lighting control user study against ZeroComp+SDEdit (N=8)
@@ -513,7 +509,7 @@
             </div>
             <div class="col-md-6">
               <figure class="figure">
-                <img src="figures/user_study/thurstone_ICCV User Study (control, shading only) vs CFG=1.svg"
+                <img src="figures/user_study/thurstone_User Study (control, shading only) vs CFG=1.svg"
                   class="figure-img img-fluid w-100">
                 <figcaption class="text-center">
                   Shadow realism user study against no guidance (N=7)
@@ -687,10 +683,105 @@
         <p align="justify">The current light radius is <strong id="light-size-value">1 (default)</strong>.</p>
         <div id="results-container-light-size" class="row"></div>
       
+        <a class="anchor" name="outdoor"></a>
+        <br>
+        <br>
+        <h2>9. Outdoor scenes</h2>
+        <p align="justify">
+          Even though SpotLight relies on a diffusion renderer trained exclusively on indoor data,
+          it can generalize to outdoor scenes well.
+        </p>
+        <div class="row">
+
+          <div class="col p-1">
+            <a href="./figures/outdoor/cardboardbox/frame0.jpg" target="_blank">
+              <img src="./figures/outdoor/cardboardbox/frame0.jpg" alt="Background" style="width:100%">
+            </a>
+          </div>
+          <div class="col p-1">
+            <a href="./figures/outdoor/concrete/frame0.jpg" target="_blank">
+              <img src="./figures/outdoor/concrete/frame0.jpg" alt="Background" style="width:100%">
+            </a>
+          </div>
+          <div class="col p-1">
+            <a href="./figures/outdoor/cat2/frame0.jpg" target="_blank">
+              <img src="./figures/outdoor/cat2/frame0.jpg" alt="Background" style="width:100%">
+            </a>
+          </div>
+          <div class="col p-1">
+            <a href="./figures/outdoor/vase/frame0.jpg" target="_blank">
+              <img src="./figures/outdoor/vase/frame0.jpg" alt="Background" style="width:100%">
+            </a>
+          </div>
+        </div>
+        <br>
+
+        <a class="anchor" name="exotic_objects"></a>
+        <br>
+        <br>
+        <h2>10. Diverse objects</h2>
+        <p align="justify">
+          SpotLight is not restricted to furniture and can handle many kinds of virtual objects.
+        </p>
+          
+        <div class="row">
+
+          <div class="col p-1">
+            <a href="./figures/exotic_objects/teapot/frame0.jpg" target="_blank">
+              <img src="./figures/exotic_objects/teapot/frame0.jpg" alt="Background" style="width:100%">
+            </a>
+          </div>
+          <div class="col p-1">
+            <a href="./figures/exotic_objects/cow/frame0.jpg" target="_blank">
+              <img src="./figures/exotic_objects/cow/frame0.jpg" alt="Background" style="width:100%">
+            </a>
+          </div>
+          <div class="col p-1">
+            <a href="./figures/exotic_objects/fox/0012.jpg" target="_blank">
+              <img src="./figures/exotic_objects/fox/0012.jpg" alt="Background" style="width:100%">
+            </a>
+          </div>
+          <div class="col p-1">
+            <a href="./figures/exotic_objects/boot/0012.jpg" target="_blank">
+              <img src="./figures/exotic_objects/boot/0012.jpg" alt="Background" style="width:100%">
+            </a>
+          </div>
+        </div>
+        <br>
+
+        <!--
+        <div class="row">
+
+          <div class="col p-1">
+            <a href="./figures/soft_hard/soft/0006.jpg" target="_blank">
+              <img src="./figures/soft_hard/soft/0006.jpg" alt="Background" style="width:100%">
+            </a>
+          </div>
+          <div class="col p-1">
+            <a href="./figures/soft_hard/hard/0006.jpg" target="_blank">
+              <img src="./figures/soft_hard/hard/0006.jpg" alt="Background" style="width:100%">
+            </a>
+          </div>
+          <div class="col p-1">
+            <a href="./figures/non_planar_shadows/9C4A0307-ca23f47d11_00_crop_B075X5HB1D/0007.jpg" target="_blank">
+              <img src="./figures/non_planar_shadows/9C4A0307-ca23f47d11_00_crop_B075X5HB1D/0007.jpg" alt="Background" style="width:100%">
+            </a>
+          </div>
+          <div class="col p-1">
+            <a href="./figures/non_planar_shadows/9C4A2551-3436caaf51_00_crop_B082QB3D8Y/0004.jpg" target="_blank">
+              <img src="./figures/non_planar_shadows/9C4A2551-3436caaf51_00_crop_B082QB3D8Y/0004.jpg" alt="Background" style="width:100%">
+            </a>
+          </div>
+        </div>
+        <br>
+        <br>
+        
+-->
+
         <a class="anchor" name="multiple_lights"></a>
         <br>
         <br>
-        <h2>9. Multiple lights</h2>
+        <h2>11. Multiple lights</h2>
         <p>In our paper, we analyze all the methods by conditioning on a single dominant light source, which is sufficiently
           realistic in most cases.
           Here, we show that we can combine outputs from SpotLight at different light directions to simulate multiple light
@@ -705,7 +796,7 @@
         <br>
         <br>
         <a class="anchor" name="bg_relight"></a>
-        <h2>10. Full image relighting</h2>
+        <h2>12. Full image relighting</h2>
         <p align="justify">In our work, we use SpotLight for <i>object</i> relighting. We experiment with extending SpotLight
           for full-scene relighting using the following approach.
         <ol>
@@ -746,105 +837,6 @@
         </p>
         <br>
         <br>
-    <a class="anchor" name="real_world"></a>
-    <h2>11. Real world results</h2>
-    <p>We demonstrate that SpotLight can be applied to 2D images by leveraging a ZeroComp backbone trained without depth
-      maps, using the normals (Stable Normal) and albedo (IID) estimators. Without access to a 3D model, we cannot rely on a
-      rendering engine to cast shadows. Instead, we employ PixHt-Lab to generate realistic soft shadows from a controllable
-      point light coordinate. Here, a sample without shadow is provided for negative guidance \(\mathbf{v}_{t, \text{neg}}\).
-      </p>
-    
-    <div class="row">
-      <div class="col p-1">
-        <a href="./figures/iccv_real_world/bg-9_obj-1/1_obj.jpg" target="_blank">
-          <img src="./figures/iccv_real_world/bg-9_obj-1/1_obj.jpg" alt="Background" style="width:100%">
-        </a>
-        <br>
-        <figurecaption>2D object</figurecaption>
-      </div>
-    
-      <div class="col p-1">
-        <a href="./figures/iccv_real_world/bg-9_obj-1/9_bg.jpg" target="_blank">
-          <img src="./figures/iccv_real_world/bg-9_obj-1/9_bg.jpg" alt="Background" style="width:100%">
-        </a>
-        <br>
-        <figurecaption>Target background</figurecaption>
-      </div>
-    
-      <div class="col p-1">
-        <a href="./figures/iccv_real_world/bg-9_obj-1/x-384_y-300_horizon-100_softness-0.1.jpg" target="_blank">
-          <img src="./figures/iccv_real_world/bg-9_obj-1/x-384_y-300_horizon-100_softness-0.1.jpg" alt="Background"
-            style="width:100%">
-        </a>
-        <br>
-        <figurecaption>Light direction 1</figurecaption>
-      </div>
-    
-      <div class="col p-1">
-        <a href="./figures/iccv_real_world/bg-9_obj-1/x-384_y-300_horizon-300_softness-0.1.jpg" target="_blank">
-          <img src="./figures/iccv_real_world/bg-9_obj-1/x-384_y-300_horizon-300_softness-0.1.jpg" alt="Background"
-            style="width:100%">
-        </a>
-        <br>
-        <figurecaption>Light direction 2</figurecaption>
-      </div>
-    
-      <div class="col p-1">
-        <a href="./figures/iccv_real_world/bg-9_obj-1/x-128_y-300_horizon-100_softness-0.1.jpg" target="_blank">
-          <img src="./figures/iccv_real_world/bg-9_obj-1/x-128_y-300_horizon-100_softness-0.1.jpg" alt="Background"
-            style="width:100%">
-        </a>
-        <br>
-        <figurecaption>Light direction 3</figurecaption>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col p-1">
-        <a href="./figures/iccv_real_world/bg-2_obj-11/11_obj.png" target="_blank">
-          <img src="./figures/iccv_real_world/bg-2_obj-11/11_obj.png" alt="Background" style="width:100%">
-        </a>
-        <br>
-        <figurecaption>2D object</figurecaption>
-      </div>
-    
-      <div class="col p-1">
-        <a href="./figures/iccv_real_world/bg-2_obj-11/2_bg.png" target="_blank">
-          <img src="./figures/iccv_real_world/bg-2_obj-11/2_bg.png" alt="Background" style="width:100%">
-        </a>
-        <br>
-        <figurecaption>Target background</figurecaption>
-      </div>
-    
-      <div class="col p-1">
-        <a href="./figures/iccv_real_world/bg-2_obj-11/x-256_y-300_horizon-100_softness-0.1.jpg" target="_blank">
-          <img src="./figures/iccv_real_world/bg-2_obj-11/x-256_y-300_horizon-100_softness-0.1.jpg" alt="Background"
-            style="width:100%">
-        </a>
-        <br>
-        <figurecaption>Light direction 1</figurecaption>
-      </div>
-    
-      <div class="col p-1">
-        <a href="./figures/iccv_real_world/bg-2_obj-11/x-0_y-300_horizon-300_softness-0.1.jpg" target="_blank">
-          <img src="./figures/iccv_real_world/bg-2_obj-11/x-0_y-300_horizon-300_softness-0.1.jpg" alt="Background"
-            style="width:100%">
-        </a>
-        <br>
-        <figurecaption>Light direction 2</figurecaption>
-      </div>
-    
-      <div class="col p-1">
-        <a href="./figures/iccv_real_world/bg-2_obj-11/x-128_y-300_horizon-100_softness-0.1.jpg" target="_blank">
-          <img src="./figures/iccv_real_world/bg-2_obj-11/x-128_y-300_horizon-100_softness-0.1.jpg" alt="Background"
-            style="width:100%">
-        </a>
-        <br>
-        <figurecaption>Light direction 3</figurecaption>
-      </div>
-    </div>
-    <br>
-    <br>
 
     <footer class="footer fixed-bottom" style="left: 0">
       <div class="container">
@@ -877,7 +869,7 @@
         'stick-renders': 'Light direction',
         'simulated_gt': 'Ground truth',
         },
-        folderName: 'figures/iccv_ext_fig_qual',
+        folderName: 'figures/ext_fig_qual',
     });
 
     makeResultsTable2({
@@ -895,7 +887,7 @@
         'shadow_comp_v3_kornia_3x3_edge_2_post_color_balanced_denoised': 'γ=3.0 (default)',
         'shadow_comp_v3_cfg_7_post_color_balanced_denoised': 'γ=7.0',
         },
-        folderName: 'figures/iccv_ext_cfg',
+        folderName: 'figures/ext_cfg',
     });
 
     makeResultsTable2({
@@ -913,7 +905,7 @@
         'shadow_comp_v3_kornia_3x3_edge_2_post_color_balanced_denoised': 'β=0.05 (default)',
         'shadow_comp_v3_latent_weight_0.2_post_color_balanced_denoised': 'β=0.2',
         },
-        folderName: 'figures/iccv_ext_latent_weight',
+        folderName: 'figures/ext_latent_weight',
     });
 
     makeResultsTable2({
@@ -931,7 +923,7 @@
         'shadow_comp_v3_kornia_3x3_edge_2_post_color_balanced_denoised': '1 (default)',
         'shadow_comp_v3_light_radius_5_post_color_balanced_denoised': '5',
         },
-        folderName: 'figures/iccv_light_size',
+        folderName: 'figures/light_size',
     });
     
     //TODO
