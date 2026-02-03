@@ -1,145 +1,22 @@
-<script src="https://www.google.com/jsapi" type="text/javascript"></script>
-<script type="text/javascript">google.load("jquery", "1.3.2");</script>
-
-<style type="text/css">
-	body {
-		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-		font-weight: 300;
-		font-size: 18px;
-		margin-left: auto;
-		margin-right: auto;
-		width: 1100px;
-	}
-
-	h1 {
-		font-size: 32px;
-		font-weight: 300;
-	}
-
-	.disclaimerbox {
-		background-color: #eee;
-		border: 1px solid #eeeeee;
-		border-radius: 10px;
-		-moz-border-radius: 10px;
-		-webkit-border-radius: 10px;
-		padding: 20px;
-	}
-
-	video.header-vid {
-		height: 140px;
-		border: 1px solid black;
-		border-radius: 10px;
-		-moz-border-radius: 10px;
-		-webkit-border-radius: 10px;
-	}
-
-	img.header-img {
-		height: 140px;
-		border: 1px solid black;
-		border-radius: 10px;
-		-moz-border-radius: 10px;
-		-webkit-border-radius: 10px;
-	}
-
-	img.rounded {
-		border: 1px solid #eeeeee;
-		border-radius: 10px;
-		-moz-border-radius: 10px;
-		-webkit-border-radius: 10px;
-	}
-
-	a:link,
-	a:visited {
-		color: #1367a7;
-		text-decoration: none;
-	}
-
-	a:hover {
-		color: #208799;
-	}
-
-	td.dl-link {
-		height: 160px;
-		text-align: center;
-		font-size: 22px;
-	}
-
-	.layered-paper-big {
-		/* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
-		box-shadow:
-			0px 0px 1px 1px rgba(0, 0, 0, 0.35),
-			/* The top layer shadow */
-			5px 5px 0 0px #fff,
-			/* The second layer */
-			5px 5px 1px 1px rgba(0, 0, 0, 0.35),
-			/* The second layer shadow */
-			10px 10px 0 0px #fff,
-			/* The third layer */
-			10px 10px 1px 1px rgba(0, 0, 0, 0.35),
-			/* The third layer shadow */
-			15px 15px 0 0px #fff,
-			/* The fourth layer */
-			15px 15px 1px 1px rgba(0, 0, 0, 0.35),
-			/* The fourth layer shadow */
-			20px 20px 0 0px #fff,
-			/* The fifth layer */
-			20px 20px 1px 1px rgba(0, 0, 0, 0.35),
-			/* The fifth layer shadow */
-			25px 25px 0 0px #fff,
-			/* The fifth layer */
-			25px 25px 1px 1px rgba(0, 0, 0, 0.35);
-		/* The fifth layer shadow */
-		margin-left: 10px;
-		margin-right: 45px;
-	}
-
-	.paper-big {
-		/* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
-		box-shadow:
-			0px 0px 1px 1px rgba(0, 0, 0, 0.35);
-		/* The top layer shadow */
-
-		margin-left: 10px;
-		margin-right: 45px;
-	}
-
-
-	.layered-paper {
-		/* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
-		box-shadow:
-			0px 0px 1px 1px rgba(0, 0, 0, 0.35),
-			/* The top layer shadow */
-			5px 5px 0 0px #fff,
-			/* The second layer */
-			5px 5px 1px 1px rgba(0, 0, 0, 0.35),
-			/* The second layer shadow */
-			10px 10px 0 0px #fff,
-			/* The third layer */
-			10px 10px 1px 1px rgba(0, 0, 0, 0.35);
-		/* The third layer shadow */
-		margin-top: 5px;
-		margin-left: 10px;
-		margin-right: 30px;
-		margin-bottom: 5px;
-	}
-
-	.vert-cent {
-		position: relative;
-		top: 50%;
-		transform: translateY(-50%);
-	}
-
-	hr {
-		border: 0;
-		height: 1px;
-		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-	}
-</style>
-
+<!DOCTYPE html>
 <html>
 
 <head>
-	<!-- Google tag (gtag.js) -->
+  <meta charset="utf-8">
+  <meta name="description" content="UniLight: A Unified Representation for Lighting">
+  <meta name="keywords" content="Light Representation, CLIP, Contrastive Learning, Lighting Decomposition, Retrieval, Envmap Generation, Relighting, Indoor Scenes, Outdoor Scenes">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UniLight: A Unified Representation for Lighting</title>
+  <link rel="icon" type="image" href="icon.png">
+
+  <!-- Resource hints for performance optimization -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://unpkg.com">
+
+  <!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5MHP9GKZ4"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
@@ -149,130 +26,887 @@
 		gtag('config', 'G-X5MHP9GKZ4');
 	</script>
 
-	<title>UniLight: A Unified Representation for Lighting</title>
-	<meta name="description" content="">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <style>
+    body {
+      font-family: 'Noto Sans', sans-serif;
+    }
+
+    /* Make containers wider - override Bulma's is-max-desktop */
+    .container.is-max-desktop {
+      max-width: 1200px;
+    }
+
+    .title.is-1 {
+      font-family: 'Google Sans', sans-serif;
+      font-weight: 700;
+    }
+
+    .publication-title {
+      font-family: 'Google Sans', sans-serif;
+    }
+
+    .publication-authors {
+      font-family: 'Google Sans', sans-serif;
+      font-size: 1.2rem;
+    }
+
+    .author-block {
+      margin-right: 1.5em;
+    }
+
+    .publication-venue {
+      font-family: 'Google Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .publication-links {
+      margin-top: 10px;
+    }
+
+    .publication-links .link-block {
+      margin-right: 10px;
+      display: inline-block;
+    }
+
+    .hero-body {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .teaser .hero-body {
+      padding-top: 0;
+      padding-bottom: 3rem;
+    }
+
+    .content h2 {
+      font-family: 'Google Sans', sans-serif;
+      margin-bottom: 1rem;
+    }
+
+    .bibtex-section {
+      background-color: #f5f5f5;
+      padding: 1.5rem;
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+
+    pre {
+      background-color: transparent;
+      padding: 0;
+    }
+
+    footer {
+      padding: 3rem 0;
+      background-color: #f5f5f5;
+      margin-top: 3rem;
+    }
+
+    /* Retrieval Visualization Styles */
+    #retrieval-viewer-container {
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .retrieval-controls {
+      margin-bottom: 20px;
+    }
+
+    .modality-selectors {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .selector-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .selector-group label {
+      font-weight: 600;
+      color: #4a4a4a;
+      font-size: 0.9rem;
+    }
+
+    .modality-select {
+      padding: 8px 12px;
+      border: 2px solid #dbdbdb;
+      border-radius: 6px;
+      background: white;
+      font-size: 0.9rem;
+      color: #4a4a4a;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+      min-width: 180px;
+    }
+
+    .modality-select:hover,
+    .modality-select:focus {
+      border-color: #3273dc;
+      outline: none;
+    }
+
+    .arrow-separator {
+      font-size: 1.5rem;
+      color: #666;
+      font-weight: bold;
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 40px 20px;
+      color: #666;
+      font-style: italic;
+    }
+
+    .retrieval-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .retrieval-tab {
+      padding: 10px 16px;
+      border: 2px solid #dbdbdb;
+      border-radius: 6px;
+      background: white;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #4a4a4a;
+      transition: all 0.2s ease;
+    }
+
+    .retrieval-tab:hover {
+      border-color: #3273dc;
+      color: #3273dc;
+    }
+
+    .retrieval-tab.active {
+      background: #3273dc;
+      border-color: #3273dc;
+      color: white;
+    }
+
+    .retrieval-pair-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .modality-badge {
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .modality-badge.source {
+      background: #e74c3c;
+      color: white;
+    }
+
+    .modality-badge.target {
+      background: #27ae60;
+      color: white;
+    }
+
+    .retrieval-pair-header .arrow {
+      font-size: 1.5rem;
+      color: #666;
+    }
+
+    .retrieval-examples {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .retrieval-example {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .retrieval-row {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 768px) {
+      .retrieval-row {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    .retrieval-query {
+      flex-shrink: 0;
+      text-align: center;
+      min-width: 180px;
+    }
+
+    .query-label {
+      font-weight: 700;
+      color: #e74c3c;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .retrieval-query img,
+    .retrieval-query .text-content {
+      width: 180px;
+      height: 180px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+
+    .retrieval-query img {
+      border: 3px solid #e74c3c;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .retrieval-query img:hover {
+      transform: scale(1.05);
+    }
+
+    .retrieval-results {
+      flex: 1;
+    }
+
+    .results-label {
+      font-weight: 700;
+      color: #27ae60;
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+
+    .results-grid {
+      display: flex;
+      gap: 20px;
+      flex-wrap: nowrap;
+    }
+
+    .result-item {
+      text-align: center;
+      flex: 0 0 auto;
+    }
+
+    .result-item img,
+    .result-item .text-content {
+      width: 180px;
+      height: 180px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+
+    .result-item img {
+      border: 2px solid #ddd;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .result-item img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .text-content {
+      border: 2px solid #ddd;
+      padding: 10px;
+      font-size: 11px;
+      line-height: 1.4;
+      overflow-y: auto;
+      background: #fafafa;
+      text-align: left;
+    }
+
+    .text-content.query-text {
+      border-color: #e74c3c;
+    }
+
+    .rank {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .rank-1 { background: #3498db; }
+    .rank-2 { background: #2980b9; }
+    .rank-3 { background: #1a5276; }
+
+    /* Worst results styles */
+    .rank-worst-1 { background: #e74c3c; }
+    .rank-worst-2 { background: #c0392b; }
+    .rank-worst-3 { background: #a93226; }
+
+    .worst-results-section {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .worst-row {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 2px dashed #e0e0e0;
+    }
+
+    .retrieval-query-placeholder {
+      flex-shrink: 0;
+      min-width: 180px;
+      width: 180px;
+    }
+
+    .worst-results-label {
+      color: #e74c3c !important;
+    }
+
+    .best-results-label {
+      color: #27ae60 !important;
+    }
+
+    .worst-result {
+      opacity: 0.9;
+    }
+
+    .sim-score {
+      font-size: 11px;
+      color: #7f8c8d;
+      margin-top: 5px;
+    }
+
+    .item-info {
+      font-size: 10px;
+      color: #95a5a6;
+      margin-top: 3px;
+      max-width: 180px;
+      word-break: break-all;
+    }
+
+    /* Retrieval Modal */
+    .retrieval-modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.85);
+    }
+
+    .retrieval-modal .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .retrieval-modal .modal-content img {
+      max-width: 100%;
+      max-height: 85vh;
+      border-radius: 8px;
+    }
+
+    .retrieval-modal .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2001;
+    }
+
+    .retrieval-modal .modal-close:hover {
+      color: #ccc;
+    }
+
+    /* Light Control Styles */
+    #light-control-container {
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 30px;
+      margin-top: 20px;
+    }
+
+    .light-control-content {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .sample-row {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .sample-title {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #4a4a4a;
+      margin-bottom: 10px;
+    }
+
+    .sample-subtitle {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #7f8c8d;
+      margin-bottom: 25px;
+    }
+
+    .dual-display {
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+      align-items: flex-start;
+      margin-bottom: 25px;
+    }
+
+    .image-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .panel-title {
+      font-weight: 600;
+      color: #4a4a4a;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .panel-title.original {
+      color: #9b59b6;
+    }
+
+    .panel-title.envmap {
+      color: #e74c3c;
+    }
+
+    .panel-title.relighting {
+      color: #27ae60;
+    }
+
+    .rotation-image {
+      width: 300px;
+      height: 300px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      object-fit: cover;
+      border: 3px solid #ddd;
+    }
+
+    .rotation-image.original {
+      border-color: #9b59b6;
+    }
+
+    .rotation-image.envmap {
+      border-color: #e74c3c;
+    }
+
+    .rotation-image.relighting {
+      border-color: #27ae60;
+    }
+
+    .rotation-controls {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin: 0 auto;
+    }
+
+    .slider-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .slider-label {
+      font-weight: 600;
+      color: #4a4a4a;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .rotation-slider {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: #ddd;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .rotation-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #3273dc;
+      cursor: pointer;
+      border: 2px solid white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .rotation-slider::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #3273dc;
+      cursor: pointer;
+      border: 2px solid white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .slider-values {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    .current-rotation {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #3273dc;
+    }
+
+    .scene-info {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #7f8c8d;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .dual-display {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      
+      .rotation-image {
+        width: 250px;
+        height: 250px;
+      }
+      
+      .sample-row {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .rotation-image {
+        width: 260px;
+        height: 260px;
+      }
+      
+      .dual-display {
+        gap: 15px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-	<br>
-	<center>
-		<br <div style="text-align:center">
-		<span style="font-size:32px"> UniLight: A Unified Representation for Lighting </span>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">UniLight: A Unified Representation for Lighting
+            </h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://zzt76.github.io/">Zitian Zhang</a><sup>1,2</sup></span>
+              <span class="author-block">
+                <a href="https://iliyan.com/">Iliyan Georgiev</a><sup>1</sup></span>
+              <span class="author-block">
+                <a href="https://mfischer-ucl.github.io/">Michael Fischer</a><sup>1</sup></span>
+              <span class="author-block">
+                <a href="https://yannickhold.com/">Yannick Hold-Geoffroy</a><sup>1</sup></span>
+              <br>
+              <span class="author-block">
+                <a href="http://www.jflalonde.ca/">Jean-François Lalonde</a><sup>1,2</sup></span>
+              <span class="author-block">
+                <a href="https://valentin.deschaintre.fr/">Valentin Deschaintre</a><sup>2*</sup></span>
+              </span>
+            </div>
 
-		</div>
-		<table align=center width=60%>
-			<tr>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Université Laval</span>
+              <span class="author-block"><sup>2</sup>Adobe Research</span>
+            </div>
 
-				<td align=center>
-					<center>
-						<span style="font-size:20px"><a href="https://zzt76.github.io/">Zitian
-								Zhang</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
-						<span style="font-size:20px"><a href="https://iliyan.com/">Iliyan
-								Georgiev</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
-						<span style="font-size:20px"><a href="https://mfischer-ucl.github.io/">Michael
-								Fischer</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
-						<br>
-						<span style="font-size:20px"><a href="https://yannickhold.com/">Yannick
-								Hold-Geoffroy</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
-						<span style="font-size:20px"><a href="http://www.jflalonde.ca/">Jean-François
-								Lalonde</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
-						<span style="font-size:20px"><a href="https://valentin.deschaintre.fr/">Valentin Deschaintre
-							</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
-					</center>
-					<br>
-					<img src="./assets/ul_logo.png" align="center" width="20%">
-					<img src="./assets/adobe_logo.png" align="center" width="20%">
-					<br>
-					<br>
+            <div class="is-size-5 publication-venue">
+              <span class="author-block">preprint</span>
+            </div>
 
-				</td>
-			</tr>
-			<tr>
-			</tr>
-		</table>
-	</center>
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2512.04267v1" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Video Link. -->
+                <!-- <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+                <!-- Code Link. -->
+                <span class="link-block">
+                <a href="https://github.com/lvsn/UniLight"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (coming soon)</span>
+                  </a>
+                </span>
+                <!-- Supp Link. -->
+                <span class="link-block">
+                <a href="https://hdrdb-public.s3.valeria.science/UniLight/UniLight-supp.zip"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-photo-video"></i>
+                  </span>
+                  <span>Supp</span>
+                  </a>
+                </span>
+                <!-- Data Link. -->
+                <!-- <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+                </span> -->
+                <!-- BibTeX Link. -->
+                <span class="link-block">
+                  <a href="#BibTeX" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-alt"></i>
+                    </span>
+                    <span>BibTeX</span>
+                  </a>
+                </span>
+              </div>
 
-	<center>
-		<table align=center width=850px>
-			<tr>
-				<td width=1000px>
-					<center>
-						<img class="round" style="width:1000px" src="./assets/teaser.png" />
-					</center>
-				</td>
-			</tr>
-		</table>
-	</center>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<hr>
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <style>
+        @keyframes blink-blue {
 
-	<table align=center width=875px>
-		<table align=center width=600px>
-			<tr>
-				<td align=center width=120px>
-					<center>
-						<span style="font-size:24px"><a href='https://arxiv.org/abs/2512.04267v1'>[Paper]</a></span>
-					</center>
-				</td>
-				<!-- <td align=center width=120px>
-					<center>
-						<span style="font-size:24px"><a href='https://github.com/lvsn/UniLight'>[Code]</a></span><br>
-					</center>
-				</td> -->
-				<td align=center width=120px>
-					<center>
-						<span style="font-size:24px"><a href='./UniLight-supp/index.html'>[Supplementary]</a></span><br>
-					</center>
-				</td>
-				<!-- 
-				<td align=center width=120px>
-					<center>
-						<span style="font-size:24px"><a href='./assets/poster.pdf'>[Poster]</a></span><br>
-					</center>
-				</td>
-				<td align=center width=120px>
-					<center>
-						<span style="font-size:24px"><a href='./assets/bibtex.txt'>[Bibtex]</a></span><br>
-					</center>
-				</td> -->
-			</tr>
-			<tr>
+          0%,
+          100% {
+            color: #000000;
+            opacity: 1;
+          }
 
-		</table>
-	</table>
+          50% {
+            color: #2980b9;
+            opacity: 1;
+          }
+        }
 
-	<hr>
-	<!-- <div style="text-align: center;">
-		<span style="font-size:20px">Accepted as an <strong>Oral</strong> presentation in ... </span>
-	</div> -->
+        .blinking-blue {
+          animation: blink-blue 2s infinite;
+        }
+      </style>
+      <p class="content has-text-centered blinking-blue"></p>
+      <div class="hero-body">
+        <div style="display: flex; width: 100%; gap: 5px;">
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 5px;">
+            <img src="./static/images/teaser.png" alt="UniLight Teaser" style="width: 100%;">
+          </div>
 
-	<hr>
+        </div>
+        <p class="content has-text-justified is-size-6">
+          <span class="dnerf">UniLight</span> introduces a joint latent space to unify previously incompatible lighting representation - environment maps, images, irradiance and text descriptions. Our joint lighting
+          embedding enables applications such as retrieval, example-based light control during image generation, and environment map generation
+          from various modalities.
+        </p>
+      </div>
+    </div>
+  </section>
 
 
-	<table align=center width=875px>
-		<center>
-			<h1>Abstract</h1>
-		</center>
-		<tr>
-			<td>
-				Lighting has a strong influence on visual appearance, yet understanding and representing
-				lighting in images remains notoriously difficult. Various lighting representations exist,
-				such as environment maps, irradiance, spherical harmonics, or text, but they are
-				incompatible, which limits cross-modal transfer. We thus propose UniLight, a joint latent
-				space as lighting representation, that unifies multiple modalities within a shared
-				embedding. Modality-specific encoders for text, images, irradiance, and environment maps are
-				trained contrastively to align their representations, with an auxiliary spherical-harmonics
-				prediction task reinforcing directional understanding. Our multi-modal data pipeline enables
-				large-scale training and evaluation across three tasks: lighting-based retrieval,
-				environment-map generation, and lighting control in diffusion-based image synthesis.
-				Experiments show that our representation captures consistent and transferable lighting
-				features, enabling flexible manipulation across modalities.
-			</td>
-		</tr>
-	</table>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified is-size-5.5">
+            <p>
+              Lighting has a strong influence on visual appearance, yet understanding and representing
+			lighting in images remains notoriously difficult. Various lighting representations exist,
+			such as environment maps, irradiance, spherical harmonics, or text, but they are
+			incompatible, which limits cross-modal transfer. We thus propose UniLight, a joint latent
+			space as lighting representation, that unifies multiple modalities within a shared
+			embedding. Modality-specific encoders for text, images, irradiance, and environment maps are
+			trained contrastively to align their representations, with an auxiliary spherical-harmonics
+			prediction task reinforcing directional understanding. Our multi-modal data pipeline enables
+			large-scale training and evaluation across three tasks: lighting-based retrieval,
+			environment-map generation, and lighting control in diffusion-based image synthesis.
+			Experiments show that our representation captures consistent and transferable lighting
+			features, enabling flexible manipulation across modalities.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+    </div>
+  </section>  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Multi-modal Embedding</h2>
+          <div class="content has-text-justified is-size-6">
+            <img src="./static/images/contrastive_learning.svg" alt="LuxRemix Pipeline" style="width: 100%;">
+            <p>
+              Overview of our embedding approach. Image- and text-based lighting modalities are first embedded using DINOv2 and Qwen3, respectively. All modalities are then processed by lightweight fusion modules which are trained contrastively to output into our joint latent space, \method. To improve latent-space coherence, a linear-probing head estimates spherical-harmonics (SH) coefficients from the latents, and a dedicated loss aligns these coefficients to ground-truth coefficients extracted from the environment map.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section class="section" id="retrieval">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Cross-Modal Lighting Retrieval</h2>
+      <div class="content has-text-justified">
+        <p>
+          UniLight learns a unified embedding space that enables cross-modal retrieval between different lighting representations.
+          Given a query in one modality (e.g., an RGB image or text description), the system retrieves the most similar
+          samples from a different modality (e.g., environment maps). Click on the tabs below to explore different
+          retrieval pairs and see the top-3 most similar matches for each query.
+        </p>
+      </div>
+      <div id="retrieval-viewer-container">
+        <!-- Retrieval viewer will be initialized here -->
+        <p class="has-text-centered">Loading retrieval visualization...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Light Control Section -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="content has-text-centered">
+        <h2 class="title is-3">Lighting Control</h2>
+        <div class="content has-text-justified is-size-6">
+          <img src="./static/images/relighting_pipeline_vert.svg" alt="LuxRemix Pipeline" style="width: 100%;">
+          <p>
+UniLight embeddings enable light editing and control in X->RGB image synthesis. The input image is first decomposed to intrinsic maps (depth, normals, albedo), and then relit using an X->RGB diffusion model conditioned on UniLight embeddings, which supports various lighting modalities.          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>
+            The following is a set of relighting samples where the environment map is rotated interactively. From left to right, it shows the original image, the envmap with different rotations, and the relit image generated by UniLight. Please use the slider to rotate the environment map from -180° to +180°. 
+          </p>
+        </div>
+        
+        <div id="light-control-container">
+          <div class="light-control-content" id="light-control-content">
+            <!-- Sample rows will be dynamically generated here -->
+            <div class="has-text-centered">Loading lighting control samples...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <div class="bibtex-section">
+        <pre><code>@article{zhang2025unilight,
+  title={UniLight: A Unified Representation for Lighting},
+  author={Zhang, Zitian and Georgiev, Iliyan and Fischer, Michael and Hold-Geoffroy, Yannick and Lalonde, Jean-Fran{\c{c}}ois and Deschaintre, Valentin},
+  journal={arXiv preprint arXiv:2512.04267},
+  year={2025}
+}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="./static/retrieval/retrieval_viewer.js" defer></script>
+  <script type="module" src="./static/light_control_config.js" defer></script>
+  <script type="module" src="./static/light_control.js" defer></script>
 
 </body>
 
