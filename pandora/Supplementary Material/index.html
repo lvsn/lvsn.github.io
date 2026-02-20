@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PanDORA: Casual HDR Radiance Acquisition for Indoor Scenes — Supplementary Material</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="assets/css/bootstrap-icons.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #0f3460;
+            --highlight-color: #e94560;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --gradient-start: #667eea;
+            --gradient-end: #764ba2;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+        
+        .main-container {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
+            margin: 2rem auto;
+            padding: 3rem;
+            max-width: 1200px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 3px solid var(--highlight-color);
+            position: relative;
+        }
+        
+        .github-button {
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 1.5rem;
+        }
+        
+        .github-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .github-button i {
+            font-size: 1.1rem;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--highlight-color), var(--accent-color));
+            border-radius: 2px;
+        }
+        
+        .header h1 {
+            color: var(--primary-color);
+            font-weight: 800;
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header p {
+            color: #6c757d;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .scene-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 0;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .scene-thumb {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .scene-card-body {
+            padding: 1.25rem 1.5rem 1.5rem;
+        }
+        
+        .scene-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--highlight-color), var(--accent-color));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .scene-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+            border-color: var(--highlight-color);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        .scene-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .scene-icon {
+            font-size: 3.5rem;
+            color: var(--highlight-color);
+            margin-bottom: 1.5rem;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .scene-card:hover .scene-icon {
+            transform: scale(1.1);
+            color: var(--accent-color);
+        }
+        
+        .scene-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-transform: capitalize;
+        }
+        
+        .scene-description {
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .btn-view {
+            background: linear-gradient(135deg, #4a4a4a, #6b6b6b);
+            border: none;
+            color: white;
+            padding: 0.875rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-view::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-view:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(30, 58, 138, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .btn-view:hover::before {
+            left: 100%;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid rgba(233, 69, 96, 0.1);
+            color: #6c757d;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(233, 69, 96, 0.08);
+            border-radius: 16px;
+            min-width: 140px;
+            border: 1px solid rgba(233, 69, 96, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            background: rgba(233, 69, 96, 0.12);
+            transform: translateY(-2px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--highlight-color);
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                margin: 1rem;
+                padding: 2rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .github-button {
+                margin: 1.5rem auto 0 auto;
+                width: fit-content;
+            }
+            
+            .scene-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="main-container">
+            <div class="header">
+                <h1>PanDORA: Casual HDR Radiance Acquisition for Indoor Scenes</h1>
+                <h2 style="font-size:1.4rem; font-weight:500; color:#6c757d; margin-bottom:1rem;">Supplementary Material</h2>
+                <p style="font-size:1.05rem; color:#444; margin-bottom:0.5rem;">
+                    <a href="https://mrkarimid.github.io/" style="color:inherit">Mohammad Reza Karimi Dastjerdi</a> &nbsp;&middot;&nbsp;
+                    <a href="https://www.linkedin.com/in/dominique-tanguay-gaudreau-072101322/" style="color:inherit">Dominique Tanguay-Gaudreau</a> &nbsp;&middot;&nbsp;
+                    <a href="https://lefreud.github.io/" style="color:inherit">Frédéric Fortier-Chouinard</a> &nbsp;&middot;&nbsp;
+                    <a href="https://yannickhold.com/" style="color:inherit">Yannick Hold-Geoffroy</a> &nbsp;&middot;&nbsp;
+                    <a href="https://www.arc.ulaval.ca/enseignants-personnel/professeurs/claude-mh-demers" style="color:inherit">Claude Demers</a> &nbsp;&middot;&nbsp;
+                    <a href="https://people.engr.tamu.edu/nimak/index.html/" style="color:inherit">Nima Kalantari</a> &nbsp;&middot;&nbsp;
+                    <a href="https://vision.gel.ulaval.ca/~jflalonde//" style="color:inherit">Jean-François Lalonde</a>
+                </p>
+                <p style="color:#6c757d; font-size:0.95rem; margin-bottom:1rem;">Université Laval &nbsp;&bull;&nbsp; Adobe &nbsp;&bull;&nbsp; Texas A&amp;M University</p>
+                <p>Comprehensive evaluation results and qualitative comparisons across multiple indoor scenes</p>
+                <div style="margin-top:1rem; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+                    <a href="../index.html" class="github-button"><i class="bi bi-house"></i> Project Page</a>
+                    <a href="https://arxiv.org/abs/2407.06150" class="github-button"><i class="bi bi-file-earmark-text"></i> Paper</a>
+                    <a href="2625_PanDORA_supp.pdf" class="github-button"><i class="bi bi-file-earmark-pdf"></i> Supplementary PDF</a>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">14</span>
+                        <span class="stat-label">Scenes</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Methods</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15</span>
+                        <span class="stat-label">Ground Truth per Scene</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scene-grid">
+                <div class="scene-card">
+                    <img src="auditorium/GT/GT_exr_renders/GT1.jpg" class="scene-thumb" alt="Auditorium GT">
+                    <div class="scene-card-body">
+                        <h3 class="scene-title">Auditorium</h3>
+                        <a href="auditorium/results_qualitative_index.html" class="btn btn-view">
+                            <i class="bi bi-eye"></i> View Results
+                        </a>
+                    </div>
+                </div>
+
+                <div class="scene-card">
+                    <img src="class_w_win/GT/GT_exr_renders/GT1.jpg" class="scene-thumb" alt="Class with Windows GT">
+                    <div class="scene-card-body">
+                        <h3 class="scene-title">Class with Windows</h3>
+                        <a href="class_w_win/results_qualitative_index.html" class="btn btn-view">
+                            <i class="bi bi-eye"></i> View Results
+                        </a>
+                    </div>
+                </div>
+
+                <div class="scene-card">
+                    <img src="class_wo_win/GT/GT_exr_renders/GT1.jpg" class="scene-thumb" alt="Class without Windows GT">
+                    <div class="scene-card-body">
+                        <h3 class="scene-title">Class without Windows</h3>
+                        <a href="class_wo_win/results_qualitative_index.html" class="btn btn-view">
+                            <i class="bi bi-eye"></i> View Results
+                        </a>
+                    </div>
+                </div>
+
+                <div class="scene-card">
+                    <img src="clubhouse/GT/GT_exr_renders/GT1.jpg" class="scene-thumb" alt="Clubhouse GT">
+                    <div class="scene-card-body">
+                        <h3 class="scene-title">Clubhouse</h3>
+                        <a href="clubhouse/results_qualitative_index.html" class="btn btn-view">
+                            <i class="bi bi-eye"></i> View Results
+                        </a>
+                    </div>
+                </div>
+
+                <div class="scene-card">
+                    <img src="livingroom/GT/GT_exr_renders/GT1.jpg" class="scene-thumb" alt="Living Room GT">
+                    <div class="scene-card-body">
+                        <h3 class="scene-title">Living Room</h3>
+                        <a href="livingroom/results_qualitative_index.html" class="btn btn-view">
+                            <i class="bi bi-eye"></i> View Results
+                        </a>
+                    </div>
+                </div>
+
+                <div class="scene-card">
+                    <img src="lobby/GT/GT_exr_renders/GT1.jpg" class="scene-thumb" alt="Lobby GT">
+                    <div class="scene-card-body">
+                        <h3 class="scene-title">Lobby</h3>
+                        <a href="lobby/results_qualitative_index.html" class="btn btn-view">
+                            <i class="bi bi-eye"></i> View Results
+                        </a>
+                    </div>
+                </div>
+
+                <div class="scene-card">
+                    <img src="meetingroom/GT/GT_exr_renders/GT1.jpg" class="scene-thumb" alt="Meeting Room GT">
+                    <div class="scene-card-body">
+                        <h3 class="scene-title">Meeting Room</h3>
+                        <a href="meetingroom/results_qualitative_index.html" class="btn btn-view">
+                            <i class="bi bi-eye"></i> View Results
+                        </a>
+                    </div>
+                </div>
+
+                <div class="scene-card">
+                    <img src="small_office/GT/GT_exr_renders/GT1.jpg" class="scene-thumb" alt="Small Office GT">
+                    <div class="scene-card-body">
+                        <h3 class="scene-title">Small Office</h3>
+                        <a href="small_office/results_qualitative_index.html" class="btn btn-view">
+                            <i class="bi bi-eye"></i> View Results
+                        </a>
+                    </div>
+                </div>
+
+                <div class="scene-card">
+                    <img src="basement/GT/GT_exr_renders/GT1.jpg" class="scene-thumb" alt="Basement GT">
+                    <div class="scene-card-body">
+                        <h3 class="scene-title">Basement</h3>
+                        <a href="basement/results_qualitative_index.html" class="btn btn-view">
+                            <i class="bi bi-eye"></i> View Results
+                        </a>
+                    </div>
+                </div>
+
+                <div class="scene-card">
+                    <img src="blue_bedroom/GT/GT_exr_renders/GT1.jpg" class="scene-thumb" alt="Blue Bedroom GT">
+                    <div class="scene-card-body">
+                        <h3 class="scene-title">Blue Bedroom</h3>
+                        <a href="blue_bedroom/results_qualitative_index.html" class="btn btn-view">
+                            <i class="bi bi-eye"></i> View Results
+                        </a>
+                    </div>
+                </div>
+
+                <div class="scene-card">
+                    <img src="office/GT/GT_exr_renders/GT1.jpg" class="scene-thumb" alt="Office GT">
+                    <div class="scene-card-body">
+                        <h3 class="scene-title">Office</h3>
+                        <a href="office/results_qualitative_index.html" class="btn btn-view">
+                            <i class="bi bi-eye"></i> View Results
+                        </a>
+                    </div>
+                </div>
+
+                <div class="scene-card">
+                    <img src="auditorium_dark/GT/GT_exr_renders/GT1.jpg" class="scene-thumb" alt="Auditorium Dark GT">
+                    <div class="scene-card-body">
+                        <h3 class="scene-title">Auditorium - Dark</h3>
+                        <a href="auditorium_dark/results_qualitative_index.html" class="btn btn-view">
+                            <i class="bi bi-eye"></i> View Results
+                        </a>
+                    </div>
+                </div>
+
+                <div class="scene-card">
+                    <img src="coffee_room/GT/GT_exr_renders/GT1.jpg" class="scene-thumb" alt="Coffee Room GT">
+                    <div class="scene-card-body">
+                        <h3 class="scene-title">Coffee Room</h3>
+                        <a href="coffee_room/results_qualitative_index.html" class="btn btn-view">
+                            <i class="bi bi-eye"></i> View Results
+                        </a>
+                    </div>
+                </div>
+
+                <div class="scene-card">
+                    <img src="lab_office/GT/GT_exr_renders/GT1.jpg" class="scene-thumb" alt="Lab Office GT">
+                    <div class="scene-card-body">
+                        <h3 class="scene-title">Lab Office</h3>
+                        <a href="lab_office/results_qualitative_index.html" class="btn btn-view">
+                            <i class="bi bi-eye"></i> View Results
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="footer">
+                <p><i class="bi bi-info-circle"></i> Each scene contains comprehensive comparisons between Ground Truth, Pandora, LDR-NeRFacto, PanoHDR-NeRFacto, and HDR-NeRFacto methods.</p>
+                <p class="mt-3"><strong>PanDORA — Supplementary Material</strong></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap 5 JS -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

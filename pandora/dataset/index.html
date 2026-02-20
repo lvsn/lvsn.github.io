@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PanDORA Dataset</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      font-size: 17px;
+      color: #e0e0e0;
+      background: #111;
+    }
+
+    a { color: #5b9bd5; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ── Header ── */
+    header {
+      text-align: center;
+      padding: 52px 20px 36px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    header h1 {
+      font-size: 2.4em;
+      font-weight: 300;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    header .subtitle {
+      font-size: 1.15em;
+      color: #999;
+      margin-bottom: 22px;
+    }
+
+    .badges {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 18px;
+      border-radius: 5px;
+      font-size: 0.88em;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      transition: opacity .15s;
+    }
+    .badge:hover { opacity: .82; text-decoration: none; }
+
+    .badge-paper   { background: #1367a7; color: #fff; }
+    .badge-project { background: #555;    color: #fff; }
+
+    /* ── Sections ── */
+    section {
+      padding: 42px 0;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    section h2 {
+      font-size: 1.45em;
+      font-weight: 400;
+      margin-bottom: 16px;
+    }
+
+    section p, section li {
+      line-height: 1.75;
+      color: #ccc;
+    }
+
+    /* ── Apparatus image ── */
+    .apparatus {
+      margin-top: 28px;
+      text-align: center;
+    }
+
+    .apparatus img {
+      max-width: 100%;
+      max-height: 420px;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 2px 4px 16px rgba(0,0,0,.4);
+    }
+
+    .apparatus figcaption {
+      margin-top: 10px;
+      font-size: 0.83em;
+      color: #888;
+    }
+
+    /* ── Stats bar ── */
+    .stats {
+      display: flex;
+      gap: 0;
+      border: 1px solid #2e2e2e;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 24px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,.3);
+    }
+
+    .stat {
+      flex: 1;
+      text-align: center;
+      padding: 22px 10px;
+      border-right: 1px solid #2e2e2e;
+    }
+    .stat:last-child { border-right: none; }
+
+    .stat .num {
+      display: block;
+      font-size: 2em;
+      font-weight: 400;
+      color: #5b9bd5;
+    }
+
+    .stat .label {
+      font-size: 0.82em;
+      color: #999;
+      margin-top: 4px;
+    }
+
+    /* ── Structure box ── */
+    .structure-box {
+      background: #1a1a1a;
+      border: 1px solid #2e2e2e;
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-top: 20px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,.3);
+    }
+
+    .structure-box pre {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.84em;
+      line-height: 1.7;
+      color: #ccc;
+      white-space: pre;
+    }
+
+    .structure-box .comment {
+      color: #666;
+    }
+
+    /* ── Scene grid ── */
+    .scene-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .scene-card {
+      border: 1px solid #2e2e2e;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 2px 4px 12px rgba(0,0,0,.3);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .scene-card:hover {
+      box-shadow: 4px 8px 22px rgba(0,0,0,.5);
+      transform: translateY(-2px);
+    }
+
+    .scene-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      background: #2a2a2a;
+    }
+
+    .scene-info {
+      padding: 12px 15px 14px;
+      background: #1a1a1a;
+    }
+
+    .scene-info .name {
+      font-size: 0.95em;
+      font-weight: 400;
+      color: #e8e8e8;
+      margin-bottom: 5px;
+    }
+
+    .scene-info .meta {
+      font-size: 0.78em;
+      color: #888;
+    }
+
+    .scene-info .meta span {
+      margin-right: 10px;
+    }
+
+    /* ── Teaser grid ── */
+    .teaser-grid {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 130px 1fr 1fr 1fr;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .teaser-row-label {
+      font-size: 0.78em;
+      color: #999;
+      font-style: italic;
+      padding-right: 10px;
+      line-height: 1.4;
+      text-align: right;
+    }
+
+    .teaser-grid img {
+      width: 100%;
+      aspect-ratio: 2 / 1;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+    }
+
+    .teaser-divider {
+      grid-column: 1 / -1;
+      height: 6px;
+    }
+
+    /* ── File desc table ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      font-size: 0.9em;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    th {
+      background: #1e1e1e;
+      font-weight: 400;
+      color: #aaa;
+    }
+
+    td code {
+      font-family: "Courier New", monospace;
+      font-size: 0.9em;
+      color: #5b9bd5;
+    }
+
+    /* ── Citation ── */
+    .citation-box {
+      background: #1a1a1a;
+      border: 1px solid #2e2e2e;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-top: 20px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,.3);
+    }
+
+    /* ── Coming soon banner ── */
+    .coming-soon {
+      margin-top: 28px;
+      padding: 18px 24px;
+      background: #0d1e35;
+      border: 1px solid #1e3a5a;
+      border-radius: 10px;
+      color: #5b9bd5;
+      font-size: 0.92em;
+      line-height: 1.6;
+    }
+
+    .coming-soon strong {
+      font-weight: 500;
+    }
+
+    .citation-box pre {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.83em;
+      line-height: 1.7;
+      color: #ccc;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.82em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div style="display:flex; align-items:center; justify-content:center; gap:28px; margin-bottom:14px;">
+      <h1>PanDORA Dataset</h1>
+      <img src="thumbnails/ul_logo.png" alt="Université Laval" style="height:140px; opacity:.85;">
+    </div>
+    <p class="subtitle">Real indoor scenes with HDR ground truth &mdash; captured with dual 360° cameras</p>
+    <div class="badges">
+      <a class="badge badge-paper"   href="https://arxiv.org/pdf/2407.06150" target="_blank">&#128196; Paper (arXiv)</a>
+      <a class="badge badge-project" href="https://lvsn.github.io/pandora/"  target="_blank">&#127760; Project Page</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- About -->
+  <section>
+    <h2>About</h2>
+    <p>
+      This dataset accompanies the paper <em>PanDORA: Casual HDR Radiance Acquisition for Indoor Scenes</em>.
+      It contains <strong>14 real indoor scenes</strong> captured with a portable rig of two synchronized 360° cameras
+      recording simultaneously at two exposure settings. Each scene includes dual-exposure panoramic video frames,
+      binary masks, structure-from-motion reconstruction, and HDR ground-truth panoramas captured with a
+      professional exposure-bracketing pipeline.
+    </p>
+    <figure class="apparatus">
+      <img src="thumbnails/PanDORA_apparatus.png" alt="The PanDORA capture apparatus — two synchronized 360° cameras mounted on a portable monopod" />
+      <figcaption>The PanDORA capture apparatus: two synchronized 360° cameras recording simultaneously at two exposure levels.</figcaption>
+    </figure>
+
+    <div class="stats">
+      <div class="stat"><span class="num">14</span><span class="label">Scenes</span></div>
+      <div class="stat"><span class="num">2</span><span class="label">Camera streams</span></div>
+      <div class="stat"><span class="num">2</span><span class="label">Exposure levels</span></div>
+      <div class="stat"><span class="num">195</span><span class="label">GT panoramas (EXR)</span></div>
+      <div class="stat"><span class="num">3,509</span><span class="label">Input frames per camera</span></div>
+    </div>
+  </section>
+
+  <!-- Dataset Structure -->
+  <section>
+    <h2>Dataset Structure</h2>
+    <p>Each scene folder follows the layout below.</p>
+    <div class="structure-box"><pre>
+&lt;scene&gt;/
+├── data/
+│   ├── left_e1/          <span class="comment"># Left camera, regular exposure (panoramic frames)</span>
+│   ├── left_sfm/         <span class="comment"># Left camera, frames for self-calibration</span>
+│   ├── right_sfm/        <span class="comment"># Right camera, frames for self-calibration</span>
+│   ├── right_e2/         <span class="comment"># Right camera, fast exposure (panoramic frames)</span>
+│   ├── masks/            <span class="comment"># Binary masks (per camera stream)</span>
+│   │   ├── left_e1/
+│   │   ├── left_sfm/
+│   │   ├── right_e2/
+│   │   └── right_sfm/
+│   └── capture_settings.json
+├── GT/
+│   ├── GT_exr/           <span class="comment"># HDR ground-truth panoramas (.exr + .png previews)</span>
+│   └── GT_exr_renders/   <span class="comment"># Rendered HDR views (.exr + .png previews)</span>
+└── sfm/
+    └── reconstruction.json
+</pre></div>
+
+    <table>
+      <thead>
+        <tr><th>Path</th><th>Description</th><th>Format</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>data/left_e1/</code></td><td>Left 360° camera, regular exposure — input frames</td><td>PNG</td></tr>
+        <tr><td><code>data/left_sfm/</code></td><td>Left camera frames used for self-calibration</td><td>PNG</td></tr>
+        <tr><td><code>data/right_sfm/</code></td><td>Right camera frames used for self-calibration</td><td>PNG</td></tr>
+        <tr><td><code>data/right_e2/</code></td><td>Right 360° camera, fast (dark) exposure — input frames</td><td>PNG</td></tr>
+        <tr><td><code>data/masks/</code></td><td>Binary masks aligned to each camera stream</td><td>PNG</td></tr>
+        <tr><td><code>data/capture_settings.json</code></td><td>Camera exposure and capture parameters</td><td>JSON</td></tr>
+        <tr><td><code>GT/GT_exr/</code></td><td>HDR ground-truth panoramas (one per GT viewpoint)</td><td>EXR + PNG</td></tr>
+        <tr><td><code>GT/GT_exr_renders/</code></td><td>Rendered perspective views from GT panoramas</td><td>EXR + PNG</td></tr>
+        <tr><td><code>sfm/reconstruction.json</code></td><td>Structure-from-motion camera poses and sparse point cloud</td><td>JSON</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Teaser -->
+  <section>
+    <h2>Data Preview &mdash; Auditorium</h2>
+    <p>Sample frames from each data stream for the <em>Auditorium</em> scene. Left and right columns share the same timestamps.</p>
+    <div class="teaser-grid">
+
+      <!-- t=0010 -->
+      <div class="teaser-row-label">Left camera<br>(regular exposure)</div>
+      <img src="thumbnails/auditorium_left_e1_0010.png" alt="Left e1 t=0010" loading="lazy" />
+      <img src="thumbnails/auditorium_left_e1_0780.png" alt="Left e1 t=0780" loading="lazy" />
+      <img src="thumbnails/auditorium_left_e1_1550.png" alt="Left e1 t=1550" loading="lazy" />
+
+      <div class="teaser-divider"></div>
+
+      <div class="teaser-row-label">Left binary mask</div>
+      <img src="thumbnails/auditorium_mask_left_0010.png" alt="Left mask t=0010" loading="lazy" />
+      <img src="thumbnails/auditorium_mask_left_0780.png" alt="Left mask t=0780" loading="lazy" />
+      <img src="thumbnails/auditorium_mask_left_1550.png" alt="Left mask t=1550" loading="lazy" />
+
+      <div class="teaser-divider"></div>
+
+      <div class="teaser-row-label">Right camera<br>(fast exposure)</div>
+      <img src="thumbnails/auditorium_right_e2_0010.png" alt="Right e2 t=0010" loading="lazy" />
+      <img src="thumbnails/auditorium_right_e2_0780.png" alt="Right e2 t=0780" loading="lazy" />
+      <img src="thumbnails/auditorium_right_e2_1550.png" alt="Right e2 t=1550" loading="lazy" />
+
+      <div class="teaser-divider"></div>
+
+      <!-- GT renders -->
+      <div class="teaser-row-label">HDR ground-truth renders</div>
+      <img src="thumbnails/auditorium_GT1.png"  alt="GT render 1"  loading="lazy" />
+      <img src="thumbnails/auditorium_GT8.png"  alt="GT render 8"  loading="lazy" />
+      <img src="thumbnails/auditorium_GT15.png" alt="GT render 15" loading="lazy" />
+
+    </div>
+  </section>
+
+  <!-- Scenes -->
+  <section>
+    <h2>Scenes</h2>
+    <div class="scene-grid">
+
+      <div class="scene-card">
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/lab_office.zip" title="Download lab_office.zip"><img src="thumbnails/lab_office.png" alt="Lab office" loading="lazy" /></a>
+        <div class="scene-info">
+          <div class="name">Lab office</div>
+          <div class="meta"><span>930 input frames</span><span>18 GT views</span></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/meeting_room.zip" title="Download meeting_room.zip"><img src="thumbnails/meeting_room.png" alt="Meeting room" loading="lazy" /></a>
+        <div class="scene-info">
+          <div class="name">Meeting room</div>
+          <div class="meta"><span>510 input frames</span><span>15 GT views</span></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/auditorium_dark.zip" title="Download auditorium_dark.zip"><img src="thumbnails/auditorium_dark.png" alt="Auditorium-dark" loading="lazy" /></a>
+        <div class="scene-info">
+          <div class="name">Auditorium-dark</div>
+          <div class="meta"><span>326 input frames</span><span>15 GT views</span></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/auditorium.zip" title="Download auditorium.zip"><img src="thumbnails/auditorium.png" alt="Auditorium" loading="lazy" /></a>
+        <div class="scene-info">
+          <div class="name">Auditorium</div>
+          <div class="meta"><span>384 input frames</span><span>15 GT views</span></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/blue_bedroom.zip" title="Download blue_bedroom.zip"><img src="thumbnails/blue_bedroom.png" alt="Blue bedroom" loading="lazy" /></a>
+        <div class="scene-info">
+          <div class="name">Blue bedroom</div>
+          <div class="meta"><span>308 input frames</span><span>15 GT views</span></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/classroom_windows.zip" title="Download classroom_windows.zip"><img src="thumbnails/classroom_windows.png" alt="Classroom-windows" loading="lazy" /></a>
+        <div class="scene-info">
+          <div class="name">Classroom-windows</div>
+          <div class="meta"><span>1,550 input frames</span><span>15 GT views</span></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/classroom_no_windows.zip" title="Download classroom_no_windows.zip"><img src="thumbnails/classroom_no_windows.png" alt="Classroom-no windows" loading="lazy" /></a>
+        <div class="scene-info">
+          <div class="name">Classroom-no windows</div>
+          <div class="meta"><span>708 input frames</span><span>15 GT views</span></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/coffee_room.zip" title="Download coffee_room.zip"><img src="thumbnails/coffee_room.png" alt="Coffee room" loading="lazy" /></a>
+        <div class="scene-info">
+          <div class="name">Coffee room</div>
+          <div class="meta"><span>302 input frames</span><span>15 GT views</span></div>
+        </div>
+      </div>
+
+<div class="scene-card">
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/basement.zip" title="Download basement.zip"><img src="thumbnails/basement.png" alt="Basement" loading="lazy" /></a>
+        <div class="scene-info">
+          <div class="name">Basement</div>
+          <div class="meta"><span>516 input frames</span><span>15 GT views</span></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/office.zip" title="Download office.zip"><img src="thumbnails/office.png" alt="Office" loading="lazy" /></a>
+        <div class="scene-info">
+          <div class="name">Office</div>
+          <div class="meta"><span>406 input frames</span><span>15 GT views</span></div>
+        </div>
+      </div>
+
+<div class="scene-card">
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/clubhouse.zip" title="Download clubhouse.zip"><img src="thumbnails/clubhouse.png" alt="Clubhouse" loading="lazy" /></a>
+        <div class="scene-info">
+          <div class="name">Clubhouse</div>
+          <div class="meta"><span>880 input frames</span><span>15 GT views</span></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/living_room.zip" title="Download living_room.zip"><img src="thumbnails/living_room.png" alt="Living room" loading="lazy" /></a>
+        <div class="scene-info">
+          <div class="name">Living room</div>
+          <div class="meta"><span>822 input frames</span><span>15 GT views</span></div>
+        </div>
+      </div>
+
+<div class="scene-card">
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/lobby.zip" title="Download lobby.zip"><img src="thumbnails/lobby.png" alt="Lobby" loading="lazy" /></a>
+        <div class="scene-info">
+          <div class="name">Lobby</div>
+          <div class="meta"><span>552 input frames</span><span>15 GT views</span></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/small_office.zip" title="Download small_office.zip"><img src="thumbnails/small_office.png" alt="Small office" loading="lazy" /></a>
+        <div class="scene-info">
+          <div class="name">Small office</div>
+          <div class="meta"><span>402 input frames</span><span>12 GT views</span></div>
+        </div>
+      </div>
+
+
+</div>
+    <div class="coming-soon">
+      &#128336; <strong>More scenes coming soon.</strong> Additional indoor environments are currently being processed and will be added to this dataset in future releases.
+    </div>
+  </section>
+
+  <!-- Code -->
+  <section>
+    <h2>Code</h2>
+    <p>
+      The training and evaluation code for PanDORA is currently being prepared for public release.
+      It will include the full NeRF-based pipeline for HDR radiance acquisition from dual-exposure
+      panoramic video, along with preprocessing scripts and evaluation utilities.
+    </p>
+    <div class="coming-soon" style="margin-top: 20px;">
+      &#128196; <strong>Code release coming soon.</strong> The source code will be made publicly available shortly. Stay tuned via the <a href="https://lvsn.github.io/pandora/">project page</a>.
+    </div>
+  </section>
+
+  <!-- Citation -->
+  <section>
+    <h2>Citation</h2>
+    <p>If you use this dataset, please cite:</p>
+    <div class="citation-box"><pre>@misc{dastjerdi2025pandoracasualhdrradiance,
+  title         = {PanDORA: Casual HDR Radiance Acquisition for Indoor Scenes},
+  author        = {Mohammad Reza Karimi Dastjerdi and Dominique Tanguay-Gaudreau and Fr&#xe9;d&#xe9;ric Fortier-Chouinard and Yannick Hold-Geoffroy and Claude Demers and Nima Kalantari and Jean-Fran&#xe7;ois Lalonde},
+  year          = {2025},
+  eprint        = {2407.06150},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2407.06150}
+}</pre></div>
+  </section>
+
+  <!-- Contact -->
+  <section>
+    <h2>Contact</h2>
+    <p>For questions about the dataset, feel free to reach out to:</p>
+    <ul style="margin-top:14px; padding-left:22px; line-height:2.2;">
+      <li><a href="https://mrkarimid.github.io/" target="_blank">Mohammad Reza Karimi Dastjerdi</a></li>
+      <li><a href="https://vision.gel.ulaval.ca/~jflalonde//" target="_blank">Jean-François Lalonde</a></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <p>
+    <a href="https://lvsn.github.io/pandora/">Project page</a> &nbsp;&middot;&nbsp;
+    <a href="https://arxiv.org/pdf/2407.06150">Paper</a> &nbsp;&middot;&nbsp;
+    Université Laval &nbsp;&middot;&nbsp; Adobe &nbsp;&middot;&nbsp; Texas A&amp;M University
+  </p>
+</footer>
+
+</body>
+</html>

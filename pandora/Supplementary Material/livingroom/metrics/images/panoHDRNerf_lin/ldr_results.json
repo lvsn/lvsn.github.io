@@ -1,0 +1,5 @@
+{
+    "SSIM": "tensor(0.5758)",
+    "PSNR": "tensor(17.5763)",
+    "LPIPS": "tensor(0.4760)"
+}
