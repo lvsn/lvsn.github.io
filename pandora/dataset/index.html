@@ -310,7 +310,7 @@
 <header>
   <div class="container">
     <div style="display:flex; align-items:center; justify-content:center; gap:28px; margin-bottom:14px;">
-      <h1>PanDORA Dataset</h1>
+      <h1>Laval PanDORA HDR Dataset</h1>
       <img src="thumbnails/ul_logo.png" alt="Université Laval" style="height:140px; opacity:.85;">
     </div>
     <p class="subtitle">Real indoor scenes with HDR ground truth &mdash; captured with dual 360° cameras</p>
@@ -327,11 +327,7 @@
   <section>
     <h2>About</h2>
     <p>
-      This dataset accompanies the paper <em>PanDORA: Casual HDR Radiance Acquisition for Indoor Scenes</em>.
-      It contains <strong>14 real indoor scenes</strong> captured with a portable rig of two synchronized 360° cameras
-      recording simultaneously at two exposure settings. Each scene includes dual-exposure panoramic video frames,
-      binary masks, structure-from-motion reconstruction, and HDR ground-truth panoramas captured with a
-      professional exposure-bracketing pipeline.
+      We propose the Laval PanDORA HDR Dataset, which accompanies the paper <em>PanDORA: Casual HDR Radiance Acquisition for Indoor Scenes</em>. The dataset comprises <strong>14 real-world indoor environments</strong> acquired using a portable rig equipped with two synchronized 360° cameras simultaneously recording at two exposure settings. For each scene, the dataset provides dual-exposure panoramic video frames, validity masks excluding the camera operator and the secondary camera, structure-from-motion reconstructions, and reference, unsaturated HDR panoramas obtained using an exposure-bracketing acquisition pipeline.
     </p>
     <figure class="apparatus">
       <img src="thumbnails/PanDORA_apparatus.png" alt="The PanDORA capture apparatus — two synchronized 360° cameras mounted on a portable monopod" />
@@ -342,7 +338,7 @@
       <div class="stat"><span class="num">14</span><span class="label">Scenes</span></div>
       <div class="stat"><span class="num">2</span><span class="label">Camera streams</span></div>
       <div class="stat"><span class="num">2</span><span class="label">Exposure levels</span></div>
-      <div class="stat"><span class="num">195</span><span class="label">GT panoramas (EXR)</span></div>
+      <div class="stat"><span class="num">195</span><span class="label">GT HDR panoramas (EXR)</span></div>
       <div class="stat"><span class="num">3,509</span><span class="label">Input frames per camera</span></div>
     </div>
   </section>
@@ -350,7 +346,7 @@
   <!-- Dataset Structure -->
   <section>
     <h2>Dataset Structure</h2>
-    <p>Each scene folder follows the layout below.</p>
+    <p>Each scene folder follows the layout below. Structure-from-motion reconstruction was performed using <a href="https://opensfm.org/" target="_blank">OpenSfM</a>.</p>
     <div class="structure-box"><pre>
 &lt;scene&gt;/
 ├── data/
@@ -384,7 +380,7 @@
         <tr><td><code>data/capture_settings.json</code></td><td>Camera exposure and capture parameters</td><td>JSON</td></tr>
         <tr><td><code>GT/GT_exr/</code></td><td>HDR ground-truth panoramas (one per GT viewpoint)</td><td>EXR + PNG</td></tr>
         <tr><td><code>GT/GT_exr_renders/</code></td><td>Rendered perspective views from GT panoramas</td><td>EXR + PNG</td></tr>
-        <tr><td><code>sfm/reconstruction.json</code></td><td>Structure-from-motion camera poses and sparse point cloud</td><td>JSON</td></tr>
+        <tr><td><code>sfm/reconstruction.json</code></td><td>OpenSfM reconstruction. See <a href="https://opensfm.org/docs/dataset.html#reconstruction-file-format" target="_blank">OpenSfM format docs</a>.</td><td>JSON</td></tr>
       </tbody>
     </table>
   </section>
@@ -436,7 +432,7 @@
         <a href="https://hdrdb-public.s3.valeria.science/pandora/lab_office.zip" title="Download lab_office.zip"><img src="thumbnails/lab_office.jpg" alt="Lab office" loading="lazy" /></a>
         <div class="scene-info">
           <div class="name">Lab office</div>
-          <div class="meta"><span>930 input frames</span><span>18 GT views</span></div>
+          <div class="meta"><span>930 input frames</span><span>18 GT HDR views</span></div>
         </div>
       </div>
 
@@ -444,7 +440,7 @@
         <a href="https://hdrdb-public.s3.valeria.science/pandora/meeting_room.zip" title="Download meeting_room.zip"><img src="thumbnails/meeting_room.jpg" alt="Meeting room" loading="lazy" /></a>
         <div class="scene-info">
           <div class="name">Meeting room</div>
-          <div class="meta"><span>510 input frames</span><span>15 GT views</span></div>
+          <div class="meta"><span>510 input frames</span><span>15 GT HDR views</span></div>
         </div>
       </div>
 
@@ -452,7 +448,7 @@
         <a href="https://hdrdb-public.s3.valeria.science/pandora/auditorium_dark.zip" title="Download auditorium_dark.zip"><img src="thumbnails/auditorium_dark.jpg" alt="Auditorium-dark" loading="lazy" /></a>
         <div class="scene-info">
           <div class="name">Auditorium-dark</div>
-          <div class="meta"><span>326 input frames</span><span>15 GT views</span></div>
+          <div class="meta"><span>326 input frames</span><span>15 GT HDR views</span></div>
         </div>
       </div>
 
@@ -460,7 +456,7 @@
         <a href="https://hdrdb-public.s3.valeria.science/pandora/auditorium.zip" title="Download auditorium.zip"><img src="thumbnails/auditorium.jpg" alt="Auditorium" loading="lazy" /></a>
         <div class="scene-info">
           <div class="name">Auditorium</div>
-          <div class="meta"><span>384 input frames</span><span>15 GT views</span></div>
+          <div class="meta"><span>384 input frames</span><span>15 GT HDR views</span></div>
         </div>
       </div>
 
@@ -468,7 +464,7 @@
         <a href="https://hdrdb-public.s3.valeria.science/pandora/blue_bedroom.zip" title="Download blue_bedroom.zip"><img src="thumbnails/blue_bedroom.jpg" alt="Blue bedroom" loading="lazy" /></a>
         <div class="scene-info">
           <div class="name">Blue bedroom</div>
-          <div class="meta"><span>308 input frames</span><span>15 GT views</span></div>
+          <div class="meta"><span>308 input frames</span><span>15 GT HDR views</span></div>
         </div>
       </div>
 
@@ -476,7 +472,7 @@
         <a href="https://hdrdb-public.s3.valeria.science/pandora/classroom_windows.zip" title="Download classroom_windows.zip"><img src="thumbnails/classroom_windows.jpg" alt="Classroom-windows" loading="lazy" /></a>
         <div class="scene-info">
           <div class="name">Classroom-windows</div>
-          <div class="meta"><span>1,550 input frames</span><span>15 GT views</span></div>
+          <div class="meta"><span>1,550 input frames</span><span>15 GT HDR views</span></div>
         </div>
       </div>
 
@@ -484,7 +480,7 @@
         <a href="https://hdrdb-public.s3.valeria.science/pandora/classroom_no_windows.zip" title="Download classroom_no_windows.zip"><img src="thumbnails/classroom_no_windows.jpg" alt="Classroom-no windows" loading="lazy" /></a>
         <div class="scene-info">
           <div class="name">Classroom-no windows</div>
-          <div class="meta"><span>708 input frames</span><span>15 GT views</span></div>
+          <div class="meta"><span>708 input frames</span><span>15 GT HDR views</span></div>
         </div>
       </div>
 
@@ -492,7 +488,7 @@
         <a href="https://hdrdb-public.s3.valeria.science/pandora/coffee_room.zip" title="Download coffee_room.zip"><img src="thumbnails/coffee_room.jpg" alt="Coffee room" loading="lazy" /></a>
         <div class="scene-info">
           <div class="name">Coffee room</div>
-          <div class="meta"><span>302 input frames</span><span>15 GT views</span></div>
+          <div class="meta"><span>302 input frames</span><span>15 GT HDR views</span></div>
         </div>
       </div>
 
@@ -500,7 +496,7 @@
         <a href="https://hdrdb-public.s3.valeria.science/pandora/basement.zip" title="Download basement.zip"><img src="thumbnails/basement.jpg" alt="Basement" loading="lazy" /></a>
         <div class="scene-info">
           <div class="name">Basement</div>
-          <div class="meta"><span>516 input frames</span><span>15 GT views</span></div>
+          <div class="meta"><span>516 input frames</span><span>15 GT HDR views</span></div>
         </div>
       </div>
 
@@ -508,7 +504,7 @@
         <a href="https://hdrdb-public.s3.valeria.science/pandora/office.zip" title="Download office.zip"><img src="thumbnails/office.jpg" alt="Office" loading="lazy" /></a>
         <div class="scene-info">
           <div class="name">Office</div>
-          <div class="meta"><span>406 input frames</span><span>15 GT views</span></div>
+          <div class="meta"><span>406 input frames</span><span>15 GT HDR views</span></div>
         </div>
       </div>
 
@@ -516,7 +512,7 @@
         <a href="https://hdrdb-public.s3.valeria.science/pandora/clubhouse.zip" title="Download clubhouse.zip"><img src="thumbnails/clubhouse.jpg" alt="Clubhouse" loading="lazy" /></a>
         <div class="scene-info">
           <div class="name">Clubhouse</div>
-          <div class="meta"><span>880 input frames</span><span>15 GT views</span></div>
+          <div class="meta"><span>880 input frames</span><span>15 GT HDR views</span></div>
         </div>
       </div>
 
@@ -524,7 +520,7 @@
         <a href="https://hdrdb-public.s3.valeria.science/pandora/living_room.zip" title="Download living_room.zip"><img src="thumbnails/living_room.jpg" alt="Living room" loading="lazy" /></a>
         <div class="scene-info">
           <div class="name">Living room</div>
-          <div class="meta"><span>822 input frames</span><span>15 GT views</span></div>
+          <div class="meta"><span>822 input frames</span><span>15 GT HDR views</span></div>
         </div>
       </div>
 
@@ -532,7 +528,7 @@
         <a href="https://hdrdb-public.s3.valeria.science/pandora/lobby.zip" title="Download lobby.zip"><img src="thumbnails/lobby.jpg" alt="Lobby" loading="lazy" /></a>
         <div class="scene-info">
           <div class="name">Lobby</div>
-          <div class="meta"><span>552 input frames</span><span>15 GT views</span></div>
+          <div class="meta"><span>552 input frames</span><span>15 GT HDR views</span></div>
         </div>
       </div>
 
@@ -540,7 +536,7 @@
         <a href="https://hdrdb-public.s3.valeria.science/pandora/small_office.zip" title="Download small_office.zip"><img src="thumbnails/small_office.jpg" alt="Small office" loading="lazy" /></a>
         <div class="scene-info">
           <div class="name">Small office</div>
-          <div class="meta"><span>402 input frames</span><span>12 GT views</span></div>
+          <div class="meta"><span>402 input frames</span><span>12 GT HDR views</span></div>
         </div>
       </div>
 
