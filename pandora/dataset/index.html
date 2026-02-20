@@ -285,6 +285,28 @@
       color: #5b9bd5;
     }
 
+    /* ── Header title row ── */
+    .header-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .logo-ul {
+      height: 140px;
+      opacity: 0.85;
+      flex-shrink: 0;
+    }
+
+    /* ── Scrollable wrappers ── */
+    .table-scroll, .teaser-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
     /* ── Citation ── */
     .citation-box {
       background: #1a1a1a;
@@ -326,15 +348,41 @@
       font-size: 0.82em;
       color: #555;
     }
+
+    /* ── Mobile ── */
+    @media (max-width: 680px) {
+      header { padding: 32px 16px 24px; }
+      header h1 { font-size: 1.55em; }
+      .header-title-row { flex-direction: column-reverse; gap: 16px; }
+      .logo-ul { height: 80px; }
+
+      .stats { display: grid; grid-template-columns: 1fr 1fr; overflow: visible; }
+      .stat { border-right: 1px solid #2e2e2e; border-bottom: 1px solid #2e2e2e; flex: none; }
+      .stat:nth-child(even) { border-right: none; }
+      .stat:last-child { border-bottom: none; border-right: none; }
+
+      section { padding: 28px 0; }
+
+      .structure-box { overflow-x: auto; padding: 16px 14px; }
+
+      .teaser-grid { min-width: 540px; }
+
+      table { min-width: 480px; }
+
+      .scene-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+
+      .citation-box { padding: 16px 18px; }
+      .structure-box { padding: 16px 14px; }
+    }
   </style>
 </head>
 <body>
 
 <header>
   <div class="container">
-    <div style="display:flex; align-items:center; justify-content:center; gap:28px; margin-bottom:14px;">
+    <div class="header-title-row">
       <h1>Laval PanDORA HDR Dataset</h1>
-      <img src="thumbnails/ul_logo.png" alt="Université Laval" style="height:140px; opacity:.85;">
+      <img src="thumbnails/ul_logo.png" alt="Université Laval" class="logo-ul">
     </div>
     <p class="subtitle">Real indoor scenes with HDR ground truth &mdash; captured with dual 360° cameras</p>
     <div class="badges">
@@ -390,6 +438,7 @@
     └── reconstruction.json
 </pre></div>
 
+    <div class="table-scroll">
     <table>
       <thead>
         <tr><th>Path</th><th>Description</th><th>Format</th></tr>
@@ -406,12 +455,14 @@
         <tr><td><code>sfm/reconstruction.json</code></td><td>OpenSfM reconstruction. See <a href="https://opensfm.org/docs/dataset.html#reconstruction-file-format" target="_blank">OpenSfM format docs</a>.</td><td>JSON</td></tr>
       </tbody>
     </table>
+    </div><!-- /.table-scroll -->
   </section>
 
   <!-- Teaser -->
   <section>
     <h2>Data Preview &mdash; Auditorium</h2>
     <p>Sample frames from each data stream for the <em>Auditorium</em> scene. Left and right columns share the same timestamps.</p>
+    <div class="teaser-scroll">
     <div class="teaser-grid">
 
       <!-- t=0010 -->
@@ -443,6 +494,7 @@
       <img src="thumbnails/auditorium_GT15.png" alt="GT render 15" loading="lazy" />
 
     </div>
+    </div><!-- /.teaser-scroll -->
   </section>
 
   <!-- Scenes -->
