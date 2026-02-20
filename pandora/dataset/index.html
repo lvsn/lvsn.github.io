@@ -176,12 +176,35 @@
       transform: translateY(-2px);
     }
 
-    .scene-card img {
+    .scene-card-img {
+      position: relative;
+      display: block;
       width: 100%;
       height: 180px;
+      overflow: hidden;
+    }
+
+    .scene-card-img img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       display: block;
       background: #2a2a2a;
+      transition: opacity 0.35s ease;
+    }
+
+    .scene-card-img .img-gt {
+      opacity: 0;
+    }
+
+    .scene-card:hover .img-gt {
+      opacity: 1;
+    }
+
+    .scene-card:hover .img-normal {
+      opacity: 0;
     }
 
     .scene-info {
@@ -429,7 +452,10 @@
     <div class="scene-grid">
 
       <div class="scene-card">
-        <a href="https://hdrdb-public.s3.valeria.science/pandora/lab_office.zip" title="Download lab_office.zip"><img src="thumbnails/lab_office.jpg" alt="Lab office" loading="lazy" /></a>
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/lab_office.zip" title="Download lab_office.zip" class="scene-card-img">
+          <img class="img-normal" src="thumbnails/lab_office.jpg" alt="Lab office" loading="lazy" />
+          <img class="img-gt" src="../Supplementary%20Material/lab_office/GT/GT_exr_renders/GT10.jpg" alt="Lab office GT" loading="lazy" />
+        </a>
         <div class="scene-info">
           <div class="name">Lab office</div>
           <div class="meta"><span>930 input frames</span><span>18 GT HDR views</span></div>
@@ -437,7 +463,10 @@
       </div>
 
       <div class="scene-card">
-        <a href="https://hdrdb-public.s3.valeria.science/pandora/meeting_room.zip" title="Download meeting_room.zip"><img src="thumbnails/meeting_room.jpg" alt="Meeting room" loading="lazy" /></a>
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/meeting_room.zip" title="Download meeting_room.zip" class="scene-card-img">
+          <img class="img-normal" src="thumbnails/meeting_room.jpg" alt="Meeting room" loading="lazy" />
+          <img class="img-gt" src="../Supplementary%20Material/meetingroom/GT/GT_exr_renders/GT8.jpg" alt="Meeting room GT" loading="lazy" />
+        </a>
         <div class="scene-info">
           <div class="name">Meeting room</div>
           <div class="meta"><span>510 input frames</span><span>15 GT HDR views</span></div>
@@ -445,7 +474,10 @@
       </div>
 
       <div class="scene-card">
-        <a href="https://hdrdb-public.s3.valeria.science/pandora/auditorium_dark.zip" title="Download auditorium_dark.zip"><img src="thumbnails/auditorium_dark.jpg" alt="Auditorium-dark" loading="lazy" /></a>
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/auditorium_dark.zip" title="Download auditorium_dark.zip" class="scene-card-img">
+          <img class="img-normal" src="thumbnails/auditorium_dark.jpg" alt="Auditorium-dark" loading="lazy" />
+          <img class="img-gt" src="../Supplementary%20Material/auditorium_dark/GT/GT_exr_renders/GT8.jpg" alt="Auditorium-dark GT" loading="lazy" />
+        </a>
         <div class="scene-info">
           <div class="name">Auditorium-dark</div>
           <div class="meta"><span>326 input frames</span><span>15 GT HDR views</span></div>
@@ -453,7 +485,10 @@
       </div>
 
       <div class="scene-card">
-        <a href="https://hdrdb-public.s3.valeria.science/pandora/auditorium.zip" title="Download auditorium.zip"><img src="thumbnails/auditorium.jpg" alt="Auditorium" loading="lazy" /></a>
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/auditorium.zip" title="Download auditorium.zip" class="scene-card-img">
+          <img class="img-normal" src="thumbnails/auditorium.jpg" alt="Auditorium" loading="lazy" />
+          <img class="img-gt" src="../Supplementary%20Material/auditorium/GT/GT_exr_renders/GT8.jpg" alt="Auditorium GT" loading="lazy" />
+        </a>
         <div class="scene-info">
           <div class="name">Auditorium</div>
           <div class="meta"><span>384 input frames</span><span>15 GT HDR views</span></div>
@@ -461,7 +496,10 @@
       </div>
 
       <div class="scene-card">
-        <a href="https://hdrdb-public.s3.valeria.science/pandora/blue_bedroom.zip" title="Download blue_bedroom.zip"><img src="thumbnails/blue_bedroom.jpg" alt="Blue bedroom" loading="lazy" /></a>
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/blue_bedroom.zip" title="Download blue_bedroom.zip" class="scene-card-img">
+          <img class="img-normal" src="thumbnails/blue_bedroom.jpg" alt="Blue bedroom" loading="lazy" />
+          <img class="img-gt" src="../Supplementary%20Material/blue_bedroom/GT/GT_exr_renders/GT8.jpg" alt="Blue bedroom GT" loading="lazy" />
+        </a>
         <div class="scene-info">
           <div class="name">Blue bedroom</div>
           <div class="meta"><span>308 input frames</span><span>15 GT HDR views</span></div>
@@ -469,7 +507,10 @@
       </div>
 
       <div class="scene-card">
-        <a href="https://hdrdb-public.s3.valeria.science/pandora/classroom_windows.zip" title="Download classroom_windows.zip"><img src="thumbnails/classroom_windows.jpg" alt="Classroom-windows" loading="lazy" /></a>
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/classroom_windows.zip" title="Download classroom_windows.zip" class="scene-card-img">
+          <img class="img-normal" src="thumbnails/classroom_windows.jpg" alt="Classroom-windows" loading="lazy" />
+          <img class="img-gt" src="../Supplementary%20Material/class_w_win/GT/GT_exr_renders/GT8.jpg" alt="Classroom-windows GT" loading="lazy" />
+        </a>
         <div class="scene-info">
           <div class="name">Classroom-windows</div>
           <div class="meta"><span>1,550 input frames</span><span>15 GT HDR views</span></div>
@@ -477,7 +518,10 @@
       </div>
 
       <div class="scene-card">
-        <a href="https://hdrdb-public.s3.valeria.science/pandora/classroom_no_windows.zip" title="Download classroom_no_windows.zip"><img src="thumbnails/classroom_no_windows.jpg" alt="Classroom-no windows" loading="lazy" /></a>
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/classroom_no_windows.zip" title="Download classroom_no_windows.zip" class="scene-card-img">
+          <img class="img-normal" src="thumbnails/classroom_no_windows.jpg" alt="Classroom-no windows" loading="lazy" />
+          <img class="img-gt" src="../Supplementary%20Material/class_wo_win/GT/GT_exr_renders/GT8.jpg" alt="Classroom-no windows GT" loading="lazy" />
+        </a>
         <div class="scene-info">
           <div class="name">Classroom-no windows</div>
           <div class="meta"><span>708 input frames</span><span>15 GT HDR views</span></div>
@@ -485,7 +529,10 @@
       </div>
 
       <div class="scene-card">
-        <a href="https://hdrdb-public.s3.valeria.science/pandora/coffee_room.zip" title="Download coffee_room.zip"><img src="thumbnails/coffee_room.jpg" alt="Coffee room" loading="lazy" /></a>
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/coffee_room.zip" title="Download coffee_room.zip" class="scene-card-img">
+          <img class="img-normal" src="thumbnails/coffee_room.jpg" alt="Coffee room" loading="lazy" />
+          <img class="img-gt" src="../Supplementary%20Material/coffee_room/GT/GT_exr_renders/GT8.jpg" alt="Coffee room GT" loading="lazy" />
+        </a>
         <div class="scene-info">
           <div class="name">Coffee room</div>
           <div class="meta"><span>302 input frames</span><span>15 GT HDR views</span></div>
@@ -493,7 +540,10 @@
       </div>
 
 <div class="scene-card">
-        <a href="https://hdrdb-public.s3.valeria.science/pandora/basement.zip" title="Download basement.zip"><img src="thumbnails/basement.jpg" alt="Basement" loading="lazy" /></a>
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/basement.zip" title="Download basement.zip" class="scene-card-img">
+          <img class="img-normal" src="thumbnails/basement.jpg" alt="Basement" loading="lazy" />
+          <img class="img-gt" src="../Supplementary%20Material/basement/GT/GT_exr_renders/GT8.jpg" alt="Basement GT" loading="lazy" />
+        </a>
         <div class="scene-info">
           <div class="name">Basement</div>
           <div class="meta"><span>516 input frames</span><span>15 GT HDR views</span></div>
@@ -501,7 +551,10 @@
       </div>
 
       <div class="scene-card">
-        <a href="https://hdrdb-public.s3.valeria.science/pandora/office.zip" title="Download office.zip"><img src="thumbnails/office.jpg" alt="Office" loading="lazy" /></a>
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/office.zip" title="Download office.zip" class="scene-card-img">
+          <img class="img-normal" src="thumbnails/office.jpg" alt="Office" loading="lazy" />
+          <img class="img-gt" src="../Supplementary%20Material/office/GT/GT_exr_renders/GT8.jpg" alt="Office GT" loading="lazy" />
+        </a>
         <div class="scene-info">
           <div class="name">Office</div>
           <div class="meta"><span>406 input frames</span><span>15 GT HDR views</span></div>
@@ -509,7 +562,10 @@
       </div>
 
 <div class="scene-card">
-        <a href="https://hdrdb-public.s3.valeria.science/pandora/clubhouse.zip" title="Download clubhouse.zip"><img src="thumbnails/clubhouse.jpg" alt="Clubhouse" loading="lazy" /></a>
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/clubhouse.zip" title="Download clubhouse.zip" class="scene-card-img">
+          <img class="img-normal" src="thumbnails/clubhouse.jpg" alt="Clubhouse" loading="lazy" />
+          <img class="img-gt" src="../Supplementary%20Material/clubhouse/GT/GT_exr_renders/GT8.jpg" alt="Clubhouse GT" loading="lazy" />
+        </a>
         <div class="scene-info">
           <div class="name">Clubhouse</div>
           <div class="meta"><span>880 input frames</span><span>15 GT HDR views</span></div>
@@ -517,7 +573,10 @@
       </div>
 
       <div class="scene-card">
-        <a href="https://hdrdb-public.s3.valeria.science/pandora/living_room.zip" title="Download living_room.zip"><img src="thumbnails/living_room.jpg" alt="Living room" loading="lazy" /></a>
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/living_room.zip" title="Download living_room.zip" class="scene-card-img">
+          <img class="img-normal" src="thumbnails/living_room.jpg" alt="Living room" loading="lazy" />
+          <img class="img-gt" src="../Supplementary%20Material/livingroom/GT/GT_exr_renders/GT3.jpg" alt="Living room GT" loading="lazy" />
+        </a>
         <div class="scene-info">
           <div class="name">Living room</div>
           <div class="meta"><span>822 input frames</span><span>15 GT HDR views</span></div>
@@ -525,7 +584,10 @@
       </div>
 
 <div class="scene-card">
-        <a href="https://hdrdb-public.s3.valeria.science/pandora/lobby.zip" title="Download lobby.zip"><img src="thumbnails/lobby.jpg" alt="Lobby" loading="lazy" /></a>
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/lobby.zip" title="Download lobby.zip" class="scene-card-img">
+          <img class="img-normal" src="thumbnails/lobby.jpg" alt="Lobby" loading="lazy" />
+          <img class="img-gt" src="../Supplementary%20Material/lobby/GT/GT_exr_renders/GT8.jpg" alt="Lobby GT" loading="lazy" />
+        </a>
         <div class="scene-info">
           <div class="name">Lobby</div>
           <div class="meta"><span>552 input frames</span><span>15 GT HDR views</span></div>
@@ -533,7 +595,10 @@
       </div>
 
       <div class="scene-card">
-        <a href="https://hdrdb-public.s3.valeria.science/pandora/small_office.zip" title="Download small_office.zip"><img src="thumbnails/small_office.jpg" alt="Small office" loading="lazy" /></a>
+        <a href="https://hdrdb-public.s3.valeria.science/pandora/small_office.zip" title="Download small_office.zip" class="scene-card-img">
+          <img class="img-normal" src="thumbnails/small_office.jpg" alt="Small office" loading="lazy" />
+          <img class="img-gt" src="../Supplementary%20Material/small_office/GT/GT_exr_renders/GT7.jpg" alt="Small office GT" loading="lazy" />
+        </a>
         <div class="scene-info">
           <div class="name">Small office</div>
           <div class="meta"><span>402 input frames</span><span>12 GT HDR views</span></div>
@@ -557,6 +622,27 @@
     </p>
     <div class="coming-soon" style="margin-top: 20px;">
       &#128196; <strong>Code release coming soon.</strong> The source code will be made publicly available shortly. Stay tuned via the <a href="https://lvsn.github.io/pandora/">project page</a>.
+    </div>
+  </section>
+
+  <!-- License -->
+  <section>
+    <h2>License</h2>
+    <p>The Laval PanDORA HDR Dataset is released under a custom research license. By downloading or using this dataset, you agree to the following terms:</p>
+    <div class="structure-box" style="margin-top:18px;">
+      <p style="line-height:1.8; color:#ccc; margin-bottom:1rem;">
+        <strong style="color:#e0e0e0;">You are free to:</strong><br>
+        Use, process, and build upon this dataset for any purpose, including academic research, education, and commercial research, provided that you cite the original paper (see Citation below).
+      </p>
+      <p style="line-height:1.8; color:#ccc; margin-bottom:1rem;">
+        <strong style="color:#e0e0e0;">You may not:</strong><br>
+        Redistribute, re-host, mirror, or otherwise make this dataset publicly available from a source other than the official project page. Users must download the data directly from this page.
+      </p>
+      <p style="line-height:1.8; color:#ccc; margin:0;">
+        <strong style="color:#e0e0e0;">Attribution:</strong><br>
+        Any publication or work that uses this dataset must cite:<br>
+        <em>PanDORA: Casual HDR Radiance Acquisition for Indoor Scenes</em>, Karimi Dastjerdi et al., arXiv:2407.06150.
+      </p>
     </div>
   </section>
 
