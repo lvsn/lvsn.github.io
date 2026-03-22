@@ -397,8 +397,31 @@
   <!-- About -->
   <section>
     <h2>About</h2>
-    <p>
-      We propose the Laval PanDORA HDR Dataset, which accompanies the paper <em>PanDORA: Casual HDR Radiance Acquisition for Indoor Scenes</em>. The dataset comprises <strong>14 real-world indoor environments</strong> acquired using a portable rig equipped with two synchronized 360° cameras simultaneously recording at two exposure settings. For each scene, the dataset provides dual-exposure panoramic video frames, validity masks excluding the camera operator and the secondary camera, structure-from-motion reconstructions, and reference, unsaturated HDR panoramas obtained using an exposure-bracketing acquisition pipeline.
+    <p> 
+      We propose the Laval PanDORA HDR Dataset, which accompanies the paper:
+    <em>PanDORA: Casual HDR Radiance Acquisition for Indoor Scenes</em>. This dataset is designed to provide high-quality, spatially varying lighting data for researchers working on Image-based Lighting, HDR Novel View Synthesis, and Equirectangular Novel View Synthesis (including Gaussian Splatting). </p>
+
+    <br>
+  <h3>Key Features:</h3>
+  <ul>
+    <li>
+      <strong>14 Real-World Indoor Environments:</strong> Captured using a
+      custom portable rig for realistic lighting variety.
+    </li>
+    <li>
+      <strong>Dual-Exposure 360° Video:</strong> Synchronized footage recorded
+      simultaneously at two exposure settings.
+    </li>
+    <li>
+      <strong>Ground Truth HDR:</strong> Reference, unsaturated HDR panoramas
+      obtained via a rigorous exposure-bracketing pipeline.
+    </li>
+    <li>
+      <strong>Complete Metadata:</strong> Includes camera parameters,
+      Structure-from-Motion (SfM) reconstructions, and validity masks to
+      exclude the operator and secondary equipment.
+    </li>
+  </ul>
     </p>
     <figure class="apparatus">
       <img src="thumbnails/PanDORA_apparatus.png" alt="The PanDORA capture apparatus — two synchronized 360° cameras mounted on a portable monopod" />
