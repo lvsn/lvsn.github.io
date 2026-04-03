@@ -183,15 +183,40 @@
 	</center>
 
 	<center>
-		<table align=center width=850px>
-			<tr>
-				<td width=1000px>
-					<center>
-						<video src="./assets/teaser-website.mp4" autoplay muted playsinline loop style="width: 80%;">
-					</center>
-				</td>
-			</tr>
-		</table>
+
+    <div class="sample-container">
+        <p>
+            Here we show the full videos used to make fig. 1.
+        </p>
+        <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Llamas in a village</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Tropical beach</div></div>
+        <div style="text-align: center;">
+            <video controls loop muted preload="none" style="max-width: 100%;">
+                <source src="supp/synced_videos/teaser/teaser.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="video-grid" style="font-size: 13pt;">
+            <div class="video-cell">
+                <img src="supp/assets/teaser/pitch.svg" style="border: none; max-width: 100px;"/>
+                <p>
+                    Camera motion: Pitch from +80&deg; to -80&deg;, no translation.
+                </p>
+                <p>
+                    <strong>Prompt:</strong> <i>A quiet mountain village during snowfall as smoke rises from chimneys and lights glow along the snowy street. Many llamas are walking around in the street.</i>
+                </p>
+            </div>
+            <div class="video-cell">
+                <img src="supp/assets/teaser/roll.svg" style="border: none; max-width: 100px;"/>
+                <p>
+                    Camera motion: Roll from -90&deg; to 90&deg;, move forward by 8 meters.
+                </p>
+                <p>
+                    <strong>Prompt:</strong> <i>A tropical beach at sunrise with palm trees swaying gently while small waves roll onto the golden sand.</i>
+                </p>
+            </div>
+        </div>
+    </div>
+
 	</center>
 
 	<br>
