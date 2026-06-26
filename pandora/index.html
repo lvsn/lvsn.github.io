@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PanDORA: Casual HDR Radiance Acquisition for Indoor Scenes</title>
+  <title>PanDORA: Casual HDR Radiance Acquisition of Indoor Scenes for Image-based Lighting</title>
   <meta name="description" content="PanDORA is a PANoramic Dual-Observer Radiance Acquisition system for the casual capture of indoor scenes in high dynamic range.">
   <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
 
@@ -193,14 +193,13 @@
 
   <header class="page-header">
     <div class="container">
-      <h1>PanDORA: Casual HDR Radiance Acquisition for Indoor Scenes</h1>
+      <h1>PanDORA: Casual HDR Radiance Acquisition of Indoor Scenes for Image-based Lighting</h1>
 
       <p class="authors">
         <a href="https://mrkarimid.github.io/">Mohammad Reza Karimi Dastjerdi</a> &nbsp;&middot;&nbsp;
         <a href="https://www.linkedin.com/in/dominique-tanguay-gaudreau-072101322/">Dominique Tanguay-Gaudreau</a> &nbsp;&middot;&nbsp;
         <a href="https://lefreud.github.io/">Frédéric Fortier-Chouinard</a> &nbsp;&middot;&nbsp;
         <a href="https://yannickhold.com/">Yannick Hold-Geoffroy</a> &nbsp;&middot;&nbsp;
-        <a href="https://www.arc.ulaval.ca/enseignants-personnel/professeurs/claude-mh-demers">Claude Demers</a> &nbsp;&middot;&nbsp;
         <a href="https://people.engr.tamu.edu/nimak/index.html/">Nima Kalantari</a> &nbsp;&middot;&nbsp;
         <a href="https://vision.gel.ulaval.ca/~jflalonde//">Jean-François Lalonde</a>
       </p>
@@ -231,7 +230,7 @@
     <div class="container">
       <h2>Abstract</h2>
       <div class="abstract-box">
-        Most novel view synthesis methods such as NeRF are unable to capture the true high dynamic range (HDR) radiance of scenes since they are typically trained on photos captured with standard low dynamic range (LDR) cameras. While the traditional exposure bracketing approach which captures several images at different exposures has recently been adapted to the multi-view case, we find such methods to fall short of capturing the full dynamic range of indoor scenes, which includes very bright light sources. In this paper, we present PanDORA: a PANoramic Dual-Observer Radiance Acquisition system for the casual capture of indoor scenes in high dynamic range. Our proposed system comprises two 360° cameras rigidly attached to a portable tripod. The cameras simultaneously acquire two 360° videos: one at a regular exposure and the other at a very fast exposure, allowing a user to simply wave the apparatus casually around the scene in a matter of minutes. The resulting images are fed to a NeRF-based algorithm that reconstructs the scene's full high dynamic range. Compared to HDR baselines from previous work, our approach reconstructs the full HDR radiance of indoor scenes without sacrificing the visual quality while retaining the ease of capture from recent NeRF-like approaches.
+        Most novel view synthesis methods---including Neural Radiance Fields (NeRF)---struggle to capture the high dynamic range (HDR) radiance required for realistic image-based lighting (IBL). This limitation stems from a reliance on low dynamic range (LDR) imagery, which fails to capture the intensity of light sources found in indoor environments. While exposure bracketing can recover this range, it is often too slow for practical, large-scale acquisition. In this work, we introduce PanDORA: PANoramic Dual-Observer Radiance Acquisition, a system specifically designed for the fast and affordable capture of high-quality HDR radiance maps for IBL. Our approach utilizes two 360° cameras mounted on a portable monopod to simultaneously record videos at different exposures. These videos are processed by our proposed two-stage NeRF-based algorithm featuring a novel self-calibrating pipeline to estimate camera parameters. This pipeline produces non-saturated HDR radiance fields that accurately capture the radiance of a scene. When evaluated on a new dataset of real indoor environments featuring HDR ground truth lighting, PanDORA demonstrates superior fidelity in reconstructing the peak intensities necessary for downstream rendering tasks, providing a scalable and efficient solution for capturing real-world IBLs.
       </div>
     </div>
   </section>
@@ -241,8 +240,8 @@
       <h2>Citation</h2>
       <div class="citation-box">
         <pre>@misc{dastjerdi2025pandoracasualhdrradiance,
-  title         = {PanDORA: Casual HDR Radiance Acquisition for Indoor Scenes},
-  author        = {Mohammad Reza Karimi Dastjerdi and Dominique Tanguay-Gaudreau and Fr&#xe9;d&#xe9;ric Fortier-Chouinard and Yannick Hold-Geoffroy and Claude Demers and Nima Kalantari and Jean-Fran&#xe7;ois Lalonde},
+  title         = {PanDORA: Casual HDR Radiance Acquisition of Indoor Scenes for Image-based Lighting},
+  author        = {Mohammad Reza Karimi Dastjerdi and Dominique Tanguay-Gaudreau and Fr&#xe9;d&#xe9;ric Fortier-Chouinard and Yannick Hold-Geoffroy and Nima Kalantari and Jean-Fran&#xe7;ois Lalonde},
   year          = {2025},
   eprint        = {2407.06150},
   archivePrefix = {arXiv},
