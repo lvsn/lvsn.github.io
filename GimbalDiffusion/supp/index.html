@@ -205,14 +205,19 @@
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
+            font-size: 0.92em;
         }
         th, td {
-            padding: 12px;
-            text-align: center;
+            padding: 10px 12px;
+            text-align: left;
+            vertical-align: top;
             border: 1px solid #ddd;
+            line-height: 1.35;
         }
         th {
             font-weight: bold;
+            background-color: #f1f5f9;
+            color: #2c3e50;
         }
         tr:nth-child(even) {
             background-color: #f9f9f9;
@@ -229,6 +234,11 @@
         }
         .scene table {
             table-layout: fixed;
+        }
+        .scene table th,
+        .scene table td {
+            text-align: center;
+            vertical-align: middle;
         }
         .scene table .pitch-label {
             width: 50px;
@@ -261,6 +271,55 @@
             color: #666;
             text-align: center;
         }
+        .wide-table-wrap {
+            overflow-x: auto;
+            margin: 18px 0;
+            border: 1px solid #ddd;
+            border-radius: 0;
+            background: white;
+        }
+        .wide-table {
+            min-width: 1250px;
+            margin: 0;
+            border-collapse: collapse;
+            font-size: 0.92em;
+        }
+        .realestate-table {
+            min-width: 900px;
+        }
+        .wide-table th {
+            background-color: #f1f5f9;
+            color: #2c3e50;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        .wide-table th,
+        .wide-table td {
+            padding: 10px 12px;
+            text-align: left;
+            vertical-align: top;
+            border: 1px solid #ddd;
+            line-height: 1.35;
+        }
+        .wide-table td:first-child {
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .wide-table .compact {
+            white-space: nowrap;
+        }
+        .backbone-section table th {
+            background-color: #f1f5f9 !important;
+            color: #2c3e50;
+        }
+        .backbone-section table th,
+        .backbone-section table td {
+            text-align: left !important;
+            vertical-align: top;
+            padding: 10px 12px !important;
+            line-height: 1.35;
+        }
         
     </style>
 </head>
@@ -275,8 +334,9 @@
             <option value="definition">Full definition of &phi;(·) and &psi;(·) (extends eq. 2)</option>
             <option value="datasets-details">Dataset details and statistics (extends sec. 3.2 and 4.3)</option>
             <option value="look-down">Additional details on the "look down" prompt (extends sec. 3.3)</option>
-            <option value="camera-architecture">Camera control architecture (extends sec. 4.2)</option>
+            <option value="backbones-camera-encodings">Backbones and camera encodings (extends sec. 4.2)</option>
             <option value="panorama-comparison">Comparison against panorama generation methods (extends sec. 2)</option>
+            <option value="realestate10k-results">Quantitative results on RealEstate10K (extends sec. 4.3)</option>
             <option value="prompt-engineering">Details of the AC3D baseline prompt engineering (extends sec. 4.4)</option>
             <option value="entanglement-benchmark">Additional results on the prompt-camera entanglement benchmark (extends sec. 4.6 and fig. 6)</option>
             <option value="qualitative">Additional qualitative results (extends fig. 5)</option>
@@ -294,8 +354,9 @@
             <li><a href="#definition">Full definition of &phi;(&middot;) and &psi;(&middot;) (extends eq. 2)</a></li>
             <li><a href="#datasets-details">Dataset details and statistics (extends sec. 3.2 and 4.3)</a></li>
             <li><a href="#look-down">Additional details on the "look down" prompt (extends sec. 3.3)</a></li>
-            <li><a href="#camera-architecture">Camera control architecture (extends sec. 4.2)</a></li>
+            <li><a href="#backbones-camera-encodings">Backbones and camera encodings (extends sec. 4.2)</a></li>
             <li><a href="#panorama-comparison">Comparison against panorama generation methods (extends sec. 2)</a></li>
+            <li><a href="#realestate10k-results">Quantitative results on RealEstate10K (extends sec. 4.3)</a></li>
             <li><a href="#prompt-engineering">Details of the AC3D baseline prompt engineering (extends sec. 4.4)</a></li>
             <li><a href="#entanglement-benchmark">Additional results on the prompt-camera entanglement benchmark (extends sec. 4.6 and fig. 6)</a></li>
             <li><a href="#qualitative">Additional qualitative results (extends fig. 5)</a></li>
@@ -386,6 +447,8 @@
         <p>
             Here we show training data samples, complementing fig. 4. Each sample displays the video alongside camera trajectory visualizations from three perspectives: top view, side view, and a 3D view.
             The cameras are color-coded to represent their position in time: the first camera is <span style="color: purple; font-weight: bold;">purple</span> and the last one is <span style="color: red; font-weight: bold;">red</span>.
+            To improve the speed of the panorama cropping pipeline used during dataset construction, we re-implemented functions from the
+            <a href="https://github.com/soravux/skylibs">Skylibs library</a> in PyTorch with CUDA support.
         </p>
 
         <!-- Sample 1: Rw3yipdLRD4_51s_61s_idx7 -->
@@ -859,47 +922,131 @@ else:
         
     </div>
 
-    <h2 id="camera-architecture">Camera control architecture (extends sec. 4.2)</h2>
-    <div class="sample-container">
+    <h2 id="backbones-camera-encodings">Backbones and camera encodings (extends sec. 4.2)</h2>
+    <div class="sample-container backbone-section">
         <p>
-            Our lightweight camera control encoder module is composed of the following modules:
-            <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+            We trained the following backbone and camera-conditioning variants. For all backbones, classifier-free guidance (CFG)
+            is applied only to the text conditioning, and not to the camera conditioning. All methods use a batch size of 1 per GPU
+            and generate 49 frames per video. The training clips are sampled with stride 2 from the original videos, i.e. half of
+            the original frames are skipped, so a 30 FPS video becomes 15 FPS.
+        </p>
+
+        <div class="wide-table-wrap">
+            <table class="wide-table">
                 <thead>
-                    <tr style="background-color: #f8f9fa;">
-                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd; font-weight: bold;">Layer</th>
-                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd; font-weight: bold;">Parameters</th>
+                    <tr>
+                        <th>Backbone</th>
+                        <th>Camera representation</th>
+                        <th>Camera encoder</th>
+                        <th>Trained modules</th>
+                        <th>Training resolution</th>
+                        <th>LR</th>
+                        <th>GPUs used</th>
+                        <th>Iterations</th>
+                        <th>Other details</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td style="padding: 12px; border: 1px solid #ddd;">PixelUnshuffle</td>
-                        <td style="padding: 12px; border: 1px solid #ddd;">downscale_factor=16</td>
-                    </tr>
-                    <tr style="background-color: #f9f9f9;">
-                        <td style="padding: 12px; border: 1px solid #ddd;">Conv2d</td>
-                        <td style="padding: 12px; border: 1px solid #ddd;">in_channels=24×256, out_channels=128, kernel_size=2, stride=2, padding=0</td>
+                        <td>WAN 2.1 1.3B</td>
+                        <td>Pl&uuml;cker</td>
+                        <td>Large camera encoder</td>
+                        <td>Full finetuning</td>
+                        <td class="compact">480&times;832</td>
+                        <td class="compact">1e-5</td>
+                        <td class="compact">8 H200</td>
+                        <td class="compact">30K</td>
+                        <td>
+                            Reuses the
+                            <a href="https://huggingface.co/alibaba-pai/Wan2.1-Fun-V1.1-1.3B-Control-Camera/blob/main/README_en.md">Wan2.1-Fun-V1.1-1.3B-Control-Camera</a>
+                            implementation, except that we remove the first-frame encoder. See also the
+                            <a href="https://github.com/modelscope/DiffSynth-Studio/blob/main/examples/wanvideo/model_training/lora/Wan2.1-Fun-V1.1-1.3B-Control-Camera.sh">DiffSynth-Studio training script</a>.
+                        </td>
                     </tr>
                     <tr>
-                        <td style="padding: 12px; border: 1px solid #ddd;">GroupNorm</td>
-                        <td style="padding: 12px; border: 1px solid #ddd;">num_groups=8, num_channels=128</td>
-                    </tr>
-                    <tr style="background-color: #f9f9f9;">
-                        <td style="padding: 12px; border: 1px solid #ddd;">ReLU</td>
-                        <td style="padding: 12px; border: 1px solid #ddd;">—</td>
+                        <td>WAN 2.2 5B</td>
+                        <td>Pl&uuml;cker</td>
+                        <td>Lightweight camera encoder</td>
+                        <td>Full finetuning</td>
+                        <td class="compact">480&times;736</td>
+                        <td class="compact">1e-5</td>
+                        <td class="compact">8 H200</td>
+                        <td class="compact">30K</td>
+                        <td>
+                            Uses the lightweight custom encoder detailed below to reduce the parameter count of the camera-conditioning branch.
+                        </td>
                     </tr>
                     <tr>
-                        <td style="padding: 12px; border: 1px solid #ddd;">Conv2d</td>
-                        <td style="padding: 12px; border: 1px solid #ddd;">in_channels=128, out_channels=out_dim, kernel_size=1, stride=1, padding=0 (zero initialized weights and biases)</td>
+                        <td>WAN 2.1 1.3B</td>
+                        <td>UCPE</td>
+                        <td>UCPE module</td>
+                        <td>UCPE module only</td>
+                        <td class="compact">480&times;832</td>
+                        <td class="compact">1e-4</td>
+                        <td class="compact">8 H200</td>
+                        <td class="compact">24K</td>
+                        <td>
+                            Starts from the original <a href="https://github.com/chengzhag/UCPE">chengzhag/UCPE</a> implementation
+                            and reuses the same architecture. The rest of the DiT is frozen.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CogVideoX 2B</td>
+                        <td>Pl&uuml;cker</td>
+                        <td>ControlNet camera encoder</td>
+                        <td>ControlNet</td>
+                        <td class="compact">480&times;720</td>
+                        <td class="compact">1e-4</td>
+                        <td class="compact">4 H100</td>
+                        <td class="compact">10K</td>
+                        <td>
+                            Starts from the original AC3D implementation (<a href="https://github.com/lefreud/ac3d/">lefreud/ac3d</a>)
+                            and uses the same training-noise truncation and biasing as in the original paper.
+                        </td>
                     </tr>
                 </tbody>
             </table>
-            All layers except the last one are randomly initialized.
-            The last layer's features are added as a residual link after the DiT's patchify layer. 
+        </div>
+
+        <h3>Lightweight camera encoder architecture</h3>
+        <p>
+            The lightweight camera control encoder module used for the WAN 2.2 5B variant is composed of the following modules:
         </p>
-
-        
+        <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+            <thead>
+                <tr style="background-color: #f8f9fa;">
+                    <th style="padding: 12px; text-align: left; border: 1px solid #ddd; font-weight: bold;">Layer</th>
+                    <th style="padding: 12px; text-align: left; border: 1px solid #ddd; font-weight: bold;">Parameters</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="padding: 12px; border: 1px solid #ddd;">PixelUnshuffle</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">downscale_factor=16</td>
+                </tr>
+                <tr style="background-color: #f9f9f9;">
+                    <td style="padding: 12px; border: 1px solid #ddd;">Conv2d</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">in_channels=24&times;256, out_channels=128, kernel_size=2, stride=2, padding=0</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border: 1px solid #ddd;">GroupNorm</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">num_groups=8, num_channels=128</td>
+                </tr>
+                <tr style="background-color: #f9f9f9;">
+                    <td style="padding: 12px; border: 1px solid #ddd;">ReLU</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">-</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border: 1px solid #ddd;">Conv2d</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">in_channels=128, out_channels=out_dim, kernel_size=1, stride=1, padding=0 (zero initialized weights and biases)</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            All layers except the last one are randomly initialized. The last layer's features are added as a residual link after
+            the DiT's patchify layer.
+        </p>
     </div>
-
 
     <h2 id="panorama-comparison">Comparison against panorama generation methods (extends sec. 2)</h2>
     <div class="sample-container">
@@ -1052,79 +1199,72 @@ else:
         </p>
     </div>
 
-    <h2>Quantitative results on RealEstate10K</h2>
+    <h2 id="realestate10k-results">Quantitative results on RealEstate10K (extends sec. 4.3)</h2>
     <div class="sample-container">
-        <p> 
-                <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Method</th>
-                    <th>PitchErr $\downarrow$</th>
-                    <th>GravityErr $\downarrow$</th>
-                    <th>RotErr $\downarrow$</th>
-                    <th>TransErr $\downarrow$</th>
-                    <th>CLIP $\uparrow$</th>
-                    <th>FID $\downarrow$</th>
-                    <th>FVD $\downarrow$</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>UCPE</td>
-                    <td>5.62</td>
-                    <td>6.58</td>
-                    <td>2.18</td>
-                    <td class="best">0.43</td>
-                    <td class="second-best">25.53</td>
-                    <td>79.86</td>
-                    <td>716.80</td>
-                </tr>
-                <tr>
-                    <td>AC3D + cam. text.</td>
-                    <td>5.26</td>
-                    <td>6.08</td>
-                    <td>2.42</td>
-                    <td>0.63</td>
-                    <td class="best">26.32</td>
-                    <td>79.23</td>
-                    <td>686.58</td>
-                </tr>
-                <tr>
-                    <td>PreciseCam + WAN-I2V-CC</td>
-                    <td>9.46</td>
-                    <td>10.30</td>
-                    <td class="best">1.86</td>
-                    <td>0.75</td>
-                    <td>25.33</td>
-                    <td>91.79</td>
-                    <td>724.36</td>
-                </tr>
-                <tr>
-                    <td>Ours (WAN)</td>
-                    <td class="best">4.94</td>
-                    <td class="second-best">5.96</td>
-                    <td>4.42</td>
-                    <td>0.75</td>
-                    <td>24.33</td>
-                    <td>82.27</td>
-                    <td>757.63</td>
-                </tr>
-                <tr>
-                    <td>UCPE (ours 24000 iters, lr 1e-4, norm 1)</td>
-                    <td class="second-best">5.08</td>
-                    <td class="best">5.87</td>
-                    <td class="second-best">2.11</td>
-                    <td class="second-best">0.51</td>
-                    <td>25.13</td>
-                    <td class="second-best">78.53</td>
-                    <td>713.73</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        <p>
+            The main paper evaluation focuses on evaluating performance on extreme trajectories using SpatialVID-extreme.
+            Here, we compare our method with the UCPE encoding on RealEstate10K, a standard benchmark with minimal camera movement.
+            Our method still reaches the lowest pitch error, gravity error and is competitive on all other metrics.
         </p>
-        <div></div>
+        <div class="wide-table-wrap">
+            <table class="wide-table realestate-table">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>PitchErr $\downarrow$</th>
+                        <th>GravityErr $\downarrow$</th>
+                        <th>RotErr $\downarrow$</th>
+                        <th>TransErr $\downarrow$</th>
+                        <th>CLIP $\uparrow$</th>
+                        <th>FID $\downarrow$</th>
+                        <th>FVD $\downarrow$</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>UCPE</td>
+                        <td>5.62</td>
+                        <td>6.58</td>
+                        <td>2.18</td>
+                        <td>0.43</td>
+                        <td>25.53</td>
+                        <td>79.86</td>
+                        <td>716.80</td>
+                    </tr>
+                    <tr>
+                        <td>AC3D + cam. text.</td>
+                        <td>5.26</td>
+                        <td>6.08</td>
+                        <td>2.42</td>
+                        <td>0.63</td>
+                        <td>26.32</td>
+                        <td>79.23</td>
+                        <td>686.58</td>
+                    </tr>
+                    <tr>
+                        <td>PreciseCam + WAN-I2V-CC</td>
+                        <td>9.46</td>
+                        <td>10.30</td>
+                        <td>1.86</td>
+                        <td>0.75</td>
+                        <td>25.33</td>
+                        <td>91.79</td>
+                        <td>724.36</td>
+                    </tr>
+                    <tr>
+                        <td>Ours (UCPE encoding)</td>
+                        <td>5.08</td>
+                        <td>5.87</td>
+                        <td>2.11</td>
+                        <td>0.51</td>
+                        <td>25.13</td>
+                        <td>78.53</td>
+                        <td>713.73</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <h2 id="prompt-engineering">Details of the AC3D baseline prompt engineering (extends sec. 4.4)</h2>
     <div class="sample-container">
