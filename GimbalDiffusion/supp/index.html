@@ -377,6 +377,17 @@
         <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam+Gen3C</div></div>
         <div style="text-align: center;">
             <video controls loop muted preload="none" style="max-width: 100%;">
+                <source src="synced_videos/extreme_rotation/rocky_canyon_overlook.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="prompt">
+           <strong>Prompt: </strong>A dramatic canyon landscape with towering red rock cliffs carved by a winding river far below, warm sunset light illuminating layered rock formations, sparse desert vegetation clinging to the edges of the cliffs, vast open sky with glowing clouds above the horizon, rugged stone textures and dry shrubs in the foreground, ultra-detailed, cinematic lighting, natural colors, photorealistic, 35mm photography, depth of field, high dynamic range
+        </div>
+        <br>
+        <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam+Gen3C</div></div>
+        <div style="text-align: center;">
+            <video controls loop muted preload="none" style="max-width: 100%;">
                 <source src="synced_videos/extreme_rotation/dining_room.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -394,17 +405,6 @@
         </div>
         <div class="prompt">
            <strong>Prompt: </strong>A wide alpine meadow filled with bright wildflowers in bloom beneath towering snow-capped mountains, clear blue sky stretching above the peaks, a narrow stream winding gently through the grassy field, soft spring sunlight illuminating colorful flowers in the foreground, distant pine forests along the slopes, peaceful high-altitude landscape, ultra-detailed, cinematic lighting, natural colors, photorealistic, 35mm photography, depth of field, high dynamic range.
-        </div>
-        <br>
-        <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam+Gen3C</div></div>
-        <div style="text-align: center;">
-            <video controls loop muted preload="none" style="max-width: 100%;">
-                <source src="synced_videos/extreme_rotation/rocky_canyon_overlook.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        <div class="prompt">
-           <strong>Prompt: </strong>A dramatic canyon landscape with towering red rock cliffs carved by a winding river far below, warm sunset light illuminating layered rock formations, sparse desert vegetation clinging to the edges of the cliffs, vast open sky with glowing clouds above the horizon, rugged stone textures and dry shrubs in the foreground, ultra-detailed, cinematic lighting, natural colors, photorealistic, 35mm photography, depth of field, high dynamic range
         </div>
     </div>
 
@@ -1192,10 +1192,10 @@ else:
             This cropping results in significant detail loss, discarding 86.1% and 95.8% of pixels for 90° and 45° fields of view, respectively. 
             The reduction in high-frequency details affects CLIP alignment and FID scores, even though both models are trained on similar data.
             We train ours on a subset of PanoVid, while PanoWAN uses the entire dataset.
-            At 90&deg; FOV, we observe a decrease in prompt alignment (CLIP score of 20.63 vs. 19.46) 
-            and image quality (FID score of 115.58 vs. 123.10). When using a narrower FOV of 45&deg;,
-            these differences are more pronounced, with CLIP scores of 18.54 versus 16.82 and FID scores
-            of 122.43 versus 142.81 for PanoWAN.
+            At 90&deg; FOV, we observe a decrease in prompt alignment (CLIP score of 21.25 vs. 19.46)
+            and image quality (FID score of 112.47 vs. 123.10). When using a narrower FOV of 45&deg;,
+            these differences are more pronounced, with CLIP scores of 19.45 versus 16.82 and FID scores
+            of 110.46 versus 142.81 for PanoWAN.
         </p>
     </div>
 
