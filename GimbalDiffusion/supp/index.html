@@ -418,16 +418,16 @@
         <span class="nav-title">Supplementary material</span>
         <select id="section-dropdown" onchange="if(this.value){document.getElementById(this.value).scrollIntoView({behavior:'smooth'});this.selectedIndex=0;}">
             <option value="" selected disabled>Jump to section…</option>
-            <option value="extreme-rotation">Extreme rotation handling (extends fig. 2)</option>
             <option value="teaser">Teaser videos (extends fig. 1)</option>
-            <option value="training">Training set examples (extends fig. 4)</option>
-            <option value="definition">Full definition of &phi;(·) and &psi;(·) (extends eq. 2)</option>
+            <option value="extreme-rotation">Extreme rotation handling (extends fig. 2)</option>
+            <option value="training">Training set examples (extends sec. 4.1 and fig. 4)</option>
+            <option value="definition">Full definition of &phi;(·) and &psi;(·) (extends eq. 4)</option>
             <option value="datasets-details">Dataset details and statistics (extends sec. 3.2 and 4.3)</option>
             <option value="look-down">Additional details on the "look down" prompt (extends sec. 3.3)</option>
             <option value="backbones-camera-encodings">Backbones and camera encodings (extends sec. 4.2)</option>
             <option value="panorama-comparison">Comparison against panorama generation methods (extends sec. 2)</option>
+            <option value="prompt-engineering">Details of the AC3D baseline prompt engineering (extends sec. 4.2)</option>
             <option value="realestate10k-results">Quantitative results on RealEstate10K (extends sec. 4.3)</option>
-            <option value="prompt-engineering">Details of the AC3D baseline prompt engineering (extends sec. 4.4)</option>
             <option value="entanglement-benchmark">Additional results on the prompt-camera entanglement benchmark (extends sec. 4.6 and fig. 6)</option>
             <option value="qualitative">Additional qualitative results (extends fig. 5)</option>
         </select>
@@ -438,16 +438,16 @@
     <nav class="toc-nav">
         <h3>Table of Contents</h3>
         <ol>
-            <li><a href="#extreme-rotation">Extreme rotation handling (extends fig. 2)</a></li>
             <li><a href="#teaser">Teaser videos (extends fig. 1)</a></li>
-            <li><a href="#training">Training set examples (extends fig. 4)</a></li>
-            <li><a href="#definition">Full definition of &phi;(&middot;) and &psi;(&middot;) (extends eq. 2)</a></li>
+            <li><a href="#extreme-rotation">Extreme rotation handling (extends fig. 2)</a></li>
+            <li><a href="#training">Training set examples (extends sec. 4.1 and fig. 4)</a></li>
+            <li><a href="#definition">Full definition of &phi;(&middot;) and &psi;(&middot;) (extends eq. 4)</a></li>
             <li><a href="#datasets-details">Dataset details and statistics (extends sec. 3.2 and 4.3)</a></li>
             <li><a href="#look-down">Additional details on the "look down" prompt (extends sec. 3.3)</a></li>
             <li><a href="#backbones-camera-encodings">Backbones and camera encodings (extends sec. 4.2)</a></li>
             <li><a href="#panorama-comparison">Comparison against panorama generation methods (extends sec. 2)</a></li>
+            <li><a href="#prompt-engineering">Details of the AC3D baseline prompt engineering (extends sec. 4.2)</a></li>
             <li><a href="#realestate10k-results">Quantitative results on RealEstate10K (extends sec. 4.3)</a></li>
-            <li><a href="#prompt-engineering">Details of the AC3D baseline prompt engineering (extends sec. 4.4)</a></li>
             <li><a href="#entanglement-benchmark">Additional results on the prompt-camera entanglement benchmark (extends sec. 4.6 and fig. 6)</a></li>
             <li><a href="#qualitative">Additional qualitative results (extends fig. 5)</a></li>
         </ol>
@@ -456,46 +456,6 @@
     <p>
         This supplementary material complements the main paper by providing full videos, technical details and additional results.
     </p>
-    </div>
-
-
-    <h2 id="extreme-rotation">Extreme rotation handling (extends fig. 2)</h2>
-    <div class="sample-container">
-        <p>
-            Here we show the full video used to make the "backflip" rotation (with no translation) from fig. 2, along with two additional examples of that same motion. On top is overlaid the input camera rotation in dark grey. Notice how only our method achieves a full 360&deg; looping rotation.
-        </p>
-        <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam+Gen3C</div></div>
-        <div style="text-align: center;">
-            <video controls loop muted preload="none" style="max-width: 100%;">
-                <source src="synced_videos/extreme_rotation/rocky_canyon_overlook.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        <div class="prompt">
-           <strong>Prompt: </strong>A dramatic canyon landscape with towering red rock cliffs carved by a winding river far below, warm sunset light illuminating layered rock formations, sparse desert vegetation clinging to the edges of the cliffs, vast open sky with glowing clouds above the horizon, rugged stone textures and dry shrubs in the foreground, ultra-detailed, cinematic lighting, natural colors, photorealistic, 35mm photography, depth of field, high dynamic range
-        </div>
-        <br>
-        <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam+Gen3C</div></div>
-        <div style="text-align: center;">
-            <video controls loop muted preload="none" style="max-width: 100%;">
-                <source src="synced_videos/extreme_rotation/dining_room.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        <div class="prompt">
-           <strong>Prompt: </strong>A dining room with a long wooden table surrounded by chairs. A chandelier hangs above the table.
-        </div>
-        <br>
-        <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam+Gen3C</div></div>
-        <div style="text-align: center;">
-            <video controls loop muted preload="none" style="max-width: 100%;">
-                <source src="synced_videos/extreme_rotation/alpine_meadow_spring.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        <div class="prompt">
-           <strong>Prompt: </strong>A wide alpine meadow filled with bright wildflowers in bloom beneath towering snow-capped mountains, clear blue sky stretching above the peaks, a narrow stream winding gently through the grassy field, soft spring sunlight illuminating colorful flowers in the foreground, distant pine forests along the slopes, peaceful high-altitude landscape, ultra-detailed, cinematic lighting, natural colors, photorealistic, 35mm photography, depth of field, high dynamic range.
-        </div>
     </div>
 
     <h2 id="teaser">Teaser videos (extends fig. 1)</h2>
@@ -532,7 +492,46 @@
         </div>
     </div>
 
-    <h2 id="training">Training set examples (extends fig. 4)</h2>
+    <h2 id="extreme-rotation">Extreme rotation handling (extends fig. 2)</h2>
+    <div class="sample-container">
+        <p>
+            Here we show the full video used to make the "backflip" rotation (with no translation) from fig. 2, along with two additional examples of that same motion. On top is overlaid the input camera rotation in dark gray. Notice how only our method achieves a full 360&deg; looping rotation.
+        </p>
+        <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam+GEN3C</div></div>
+        <div style="text-align: center;">
+            <video controls loop muted preload="none" style="max-width: 100%;">
+                <source src="synced_videos/extreme_rotation/rocky_canyon_overlook.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="prompt">
+           <strong>Prompt: </strong>A dramatic canyon landscape with towering red rock cliffs carved by a winding river far below, warm sunset light illuminating layered rock formations, sparse desert vegetation clinging to the edges of the cliffs, vast open sky with glowing clouds above the horizon, rugged stone textures and dry shrubs in the foreground, ultra-detailed, cinematic lighting, natural colors, photorealistic, 35mm photography, depth of field, high dynamic range
+        </div>
+        <br>
+        <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam+GEN3C</div></div>
+        <div style="text-align: center;">
+            <video controls loop muted preload="none" style="max-width: 100%;">
+                <source src="synced_videos/extreme_rotation/dining_room.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="prompt">
+           <strong>Prompt: </strong>A dining room with a long wooden table surrounded by chairs. A chandelier hangs above the table.
+        </div>
+        <br>
+        <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam+GEN3C</div></div>
+        <div style="text-align: center;">
+            <video controls loop muted preload="none" style="max-width: 100%;">
+                <source src="synced_videos/extreme_rotation/alpine_meadow_spring.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="prompt">
+           <strong>Prompt: </strong>A wide alpine meadow filled with bright wildflowers in bloom beneath towering snow-capped mountains, clear blue sky stretching above the peaks, a narrow stream winding gently through the grassy field, soft spring sunlight illuminating colorful flowers in the foreground, distant pine forests along the slopes, peaceful high-altitude landscape, ultra-detailed, cinematic lighting, natural colors, photorealistic, 35mm photography, depth of field, high dynamic range.
+        </div>
+    </div>
+
+    <h2 id="training">Training set examples (extends sec. 4.1 and fig. 4)</h2>
     <div class="sample-container">
         <p>
             Here we show training data samples, complementing fig. 4. Each sample displays the video alongside camera trajectory visualizations from three perspectives: top view, side view, and a 3D view.
@@ -777,11 +776,11 @@
     </div>
 
 
-    <h2 id="definition">Full definition of $\varphi(\cdot)$ and $\psi(\cdot)$ (extends eq. 2)</h2>
+    <h2 id="definition">Full definition of $\varphi(\cdot)$ and $\psi(\cdot)$ (extends eq. 4)</h2>
     <div class="sample-container">
         <h3>Obtaining absolute camera poses</h3>
         <p>
-            For completeness, here we repeat equation 2, which computes the absolute camera extrinsics:
+            For completeness, here we repeat equation 4, which computes the absolute camera extrinsics:
         
         $$
         \begin{gather}
@@ -1344,77 +1343,10 @@ else:
         </p>
     </div>
 
-    <h2 id="realestate10k-results">Quantitative results on RealEstate10K (extends sec. 4.3)</h2>
+    <h2 id="prompt-engineering">Details of the AC3D baseline prompt engineering (extends sec. 4.2)</h2>
     <div class="sample-container">
         <p>
-            The main paper evaluation focuses on evaluating performance on extreme trajectories using SpatialVID-extreme.
-            Here, we compare our method with the UCPE encoding on RealEstate10K, a standard benchmark with minimal camera movement.
-            Our method still reaches the lowest pitch error, gravity error and is competitive on all other metrics.
-        </p>
-        <div class="wide-table-wrap">
-            <table class="wide-table realestate-table">
-                <thead>
-                    <tr>
-                        <th>Method</th>
-                        <th>PitchErr $\downarrow$</th>
-                        <th>GravityErr $\downarrow$</th>
-                        <th>RotErr $\downarrow$</th>
-                        <th>TransErr $\downarrow$</th>
-                        <th>CLIP $\uparrow$</th>
-                        <th>FID $\downarrow$</th>
-                        <th>FVD $\downarrow$</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>UCPE</td>
-                        <td>5.62</td>
-                        <td>6.58</td>
-                        <td>2.18</td>
-                        <td>0.43</td>
-                        <td>25.53</td>
-                        <td>79.86</td>
-                        <td>716.80</td>
-                    </tr>
-                    <tr>
-                        <td>AC3D + cam. text.</td>
-                        <td>5.26</td>
-                        <td>6.08</td>
-                        <td>2.42</td>
-                        <td>0.63</td>
-                        <td>26.32</td>
-                        <td>79.23</td>
-                        <td>686.58</td>
-                    </tr>
-                    <tr>
-                        <td>PreciseCam + WAN-I2V-CC</td>
-                        <td>9.46</td>
-                        <td>10.30</td>
-                        <td>1.86</td>
-                        <td>0.75</td>
-                        <td>25.33</td>
-                        <td>91.79</td>
-                        <td>724.36</td>
-                    </tr>
-                    <tr>
-                        <td>Ours (UCPE encoding)</td>
-                        <td>5.08</td>
-                        <td>5.87</td>
-                        <td>2.11</td>
-                        <td>0.51</td>
-                        <td>25.13</td>
-                        <td>78.53</td>
-                        <td>713.73</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <h2 id="prompt-engineering">Details of the AC3D baseline prompt engineering (extends sec. 4.4)</h2>
-    <div class="sample-container">
-        <p>
-            For the AC3D baselines, we provide the model with the absolute camera orientation through text, as mentioned in sec. 4.4 of the paper. Here, we show the code used to generate
+            For the AC3D baselines, we provide the model with the absolute camera orientation through text, as mentioned in sec. 4.2 of the paper. Here, we show the code used to generate
             these camera descriptions.
             We first take the absolute camera extrinsics \(E_\text{abs}\) for the video and convert them to Euler angles.
             We then describe textually only the first frame's pitch and roll and the last frame's yaw, pitch, and roll. Please click below for the full implementation.
@@ -1519,6 +1451,73 @@ else:
             After obtaining the camera description, we concatenate it after the regular prompt. Refer to the qualitative results at the end of the supplementary material for examples of camera descriptions.
         </p>
     </div>
+
+    <h2 id="realestate10k-results">Quantitative results on RealEstate10K (extends sec. 4.3)</h2>
+    <div class="sample-container">
+        <p>
+            The main paper evaluation focuses on performance on extreme trajectories using SpatialVID-extreme.
+            Here, we compare our method with the UCPE encoding on RealEstate10K, a standard benchmark with minimal camera movement.
+            Our method still reaches the lowest pitch and gravity errors and is competitive on all other metrics.
+        </p>
+        <div class="wide-table-wrap">
+            <table class="wide-table realestate-table">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>PitchErr $\downarrow$</th>
+                        <th>GravityErr $\downarrow$</th>
+                        <th>RotErr $\downarrow$</th>
+                        <th>TransErr $\downarrow$</th>
+                        <th>CLIP $\uparrow$</th>
+                        <th>FID $\downarrow$</th>
+                        <th>FVD $\downarrow$</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>UCPE</td>
+                        <td>5.62</td>
+                        <td>6.58</td>
+                        <td>2.18</td>
+                        <td>0.43</td>
+                        <td>25.53</td>
+                        <td>79.86</td>
+                        <td>716.80</td>
+                    </tr>
+                    <tr>
+                        <td>AC3D + cam. text.</td>
+                        <td>5.26</td>
+                        <td>6.08</td>
+                        <td>2.42</td>
+                        <td>0.63</td>
+                        <td>26.32</td>
+                        <td>79.23</td>
+                        <td>686.58</td>
+                    </tr>
+                    <tr>
+                        <td>PreciseCam + WAN-I2V-CC</td>
+                        <td>9.46</td>
+                        <td>10.30</td>
+                        <td>1.86</td>
+                        <td>0.75</td>
+                        <td>25.33</td>
+                        <td>91.79</td>
+                        <td>724.36</td>
+                    </tr>
+                    <tr>
+                        <td>Ours (UCPE encoding)</td>
+                        <td>5.08</td>
+                        <td>5.87</td>
+                        <td>2.11</td>
+                        <td>0.51</td>
+                        <td>25.13</td>
+                        <td>78.53</td>
+                        <td>713.73</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
     
     <h2 id="entanglement-benchmark">Additional results on the prompt-camera entanglement benchmark (extends sec. 4.6 and fig. 6)</h2>
 
@@ -1551,7 +1550,7 @@ else:
 
         <h3 id="commercial-t2i-entanglement">Commercial text-to-image models</h3>
         <p>
-            Early results indicate that commerical text-to-image model, in this case ChatGPT Images 2.0, also entangle camera orientation with scene description. Here, we queries the model with the same scene description and changed only the appended camera-orientation instruction: an extreme high-angle shot (&minus;90&deg; pitch), an eye-level shot (0&deg;), or an extreme low-angle shot (+90&deg; pitch).
+            Early results indicate that a commercial text-to-image model, in this case ChatGPT Images 2.0, also entangles camera orientation with scene description. Here, we query the model with the same scene description and change only the appended camera-orientation instruction: an extreme high-angle shot (&minus;90&deg; pitch), an eye-level shot (0&deg;), or an extreme low-angle shot (+90&deg; pitch).
         </p>
         <div class="commercial-t2i-grid">
             <div class="commercial-t2i-cell">
@@ -1568,7 +1567,7 @@ else:
             </div>
         </div>
         <p>
-            Despite the explicit extreme-angle instructions, the &minus;90&deg; result still includes the sky, while the +90&deg; retains the ground instead generating a straight upward view.
+            Despite the explicit extreme-angle instructions, the &minus;90&deg; result still includes the sky, while the +90&deg; retains the ground instead of generating a straight upward view.
         </p>
 
         <h3>Additional qualitative results (extends fig. 6.a)</h3>
