@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Supplementary material - GimbalDiffusion</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Supplementary material with full videos, technical details, and additional results.">
     <script>
         MathJax = {
             tex: {
@@ -319,6 +321,29 @@
         .realestate-table {
             min-width: 900px;
         }
+        .realestate-table tbody tr:nth-child(even),
+        .realestate-table tbody tr:hover {
+            background-color: transparent;
+        }
+        .realestate-table th:not(:first-child),
+        .realestate-table td:not(:first-child) {
+            text-align: right;
+            white-space: nowrap;
+        }
+        .realestate-table .group-row td {
+            background-color: white;
+            border-top: 2px solid #cfcfcf;
+            border-bottom: 0;
+            color: #333;
+            font-style: italic;
+            font-weight: normal;
+            padding-top: 14px;
+            padding-bottom: 6px;
+            text-align: left;
+        }
+        .realestate-table .best {
+            font-weight: bold;
+        }
         .wide-table th {
             background-color: #f1f5f9;
             color: #2c3e50;
@@ -373,6 +398,10 @@
             color: #495057;
             line-height: 1.4;
         }
+        .commercial-t2i-cell .prompt {
+            margin-top: 12px;
+            text-align: left;
+        }
         @media (max-width: 800px) {
             .commercial-t2i-grid {
                 grid-template-columns: 1fr;
@@ -420,14 +449,16 @@
             <option value="" selected disabled>Jump to section…</option>
             <option value="teaser">Teaser videos (extends fig. 1)</option>
             <option value="extreme-rotation">Extreme rotation handling (extends fig. 2)</option>
+            <option value="translations-zooms">Translations and zooms</option>
             <option value="training">Training set examples (extends sec. 4.1 and fig. 4)</option>
             <option value="definition">Full definition of &phi;(·) and &psi;(·) (extends eq. 4)</option>
             <option value="datasets-details">Dataset details and statistics (extends sec. 3.2 and 4.3)</option>
-            <option value="look-down">Additional details on the "look down" prompt (extends sec. 3.3)</option>
-            <option value="backbones-camera-encodings">Backbones and camera encodings (extends sec. 4.2)</option>
+            <option value="look-down">Additional details on the "look-down" prompt (extends sec. 3.3)</option>
+            <option value="backbones-camera-encodings">Backbones and camera encodings (extends sec. 4.1 and 4.2)</option>
             <option value="panorama-comparison">Comparison against panorama generation methods (extends sec. 2)</option>
             <option value="prompt-engineering">Details of the AC3D baseline prompt engineering (extends sec. 4.2)</option>
             <option value="realestate10k-results">Quantitative results on RealEstate10K (extends sec. 4.3)</option>
+            <option value="absolute-rotation-ablation">Absolute rotation ablation (extends sec. 4.5)</option>
             <option value="entanglement-benchmark">Additional results on the prompt-camera entanglement benchmark (extends sec. 4.6 and fig. 6)</option>
             <option value="qualitative">Additional qualitative results (extends fig. 5)</option>
         </select>
@@ -440,14 +471,16 @@
         <ol>
             <li><a href="#teaser">Teaser videos (extends fig. 1)</a></li>
             <li><a href="#extreme-rotation">Extreme rotation handling (extends fig. 2)</a></li>
+            <li><a href="#translations-zooms">Translations and zooms</a></li>
             <li><a href="#training">Training set examples (extends sec. 4.1 and fig. 4)</a></li>
             <li><a href="#definition">Full definition of &phi;(&middot;) and &psi;(&middot;) (extends eq. 4)</a></li>
             <li><a href="#datasets-details">Dataset details and statistics (extends sec. 3.2 and 4.3)</a></li>
-            <li><a href="#look-down">Additional details on the "look down" prompt (extends sec. 3.3)</a></li>
-            <li><a href="#backbones-camera-encodings">Backbones and camera encodings (extends sec. 4.2)</a></li>
+            <li><a href="#look-down">Additional details on the "look-down" prompt (extends sec. 3.3)</a></li>
+            <li><a href="#backbones-camera-encodings">Backbones and camera encodings (extends sec. 4.1 and 4.2)</a></li>
             <li><a href="#panorama-comparison">Comparison against panorama generation methods (extends sec. 2)</a></li>
             <li><a href="#prompt-engineering">Details of the AC3D baseline prompt engineering (extends sec. 4.2)</a></li>
             <li><a href="#realestate10k-results">Quantitative results on RealEstate10K (extends sec. 4.3)</a></li>
+            <li><a href="#absolute-rotation-ablation">Absolute rotation ablation (extends sec. 4.5)</a></li>
             <li><a href="#entanglement-benchmark">Additional results on the prompt-camera entanglement benchmark (extends sec. 4.6 and fig. 6)</a></li>
             <li><a href="#qualitative">Additional qualitative results (extends fig. 5)</a></li>
         </ol>
@@ -472,7 +505,7 @@
         </div>
         <div class="video-grid" style="font-size: 13pt;">
             <div class="video-cell">
-                <img src="assets/teaser/pitch.svg" style="border: none; max-width: 100px;"/>
+                <img loading="lazy" decoding="async" src="assets/teaser/pitch.svg" style="border: none; max-width: 100px;"/>
                 <p>
                     Camera motion: Pitch from +80&deg; to -80&deg;, no translation.
                 </p>
@@ -481,7 +514,7 @@
                 </p>
             </div>
             <div class="video-cell">
-                <img src="assets/teaser/roll.svg" style="border: none; max-width: 100px;"/>
+                <img loading="lazy" decoding="async" src="assets/teaser/roll.svg" style="border: none; max-width: 100px;"/>
                 <p>
                     Camera motion: Roll from -90&deg; to 90&deg;, move forward by 8 meters.
                 </p>
@@ -495,7 +528,7 @@
     <h2 id="extreme-rotation">Extreme rotation handling (extends fig. 2)</h2>
     <div class="sample-container">
         <p>
-            Here we show the full video used to make the "backflip" rotation (with no translation) from fig. 2, along with two additional examples of that same motion. On top is overlaid the input camera rotation in dark gray. Notice how only our method achieves a full 360&deg; looping rotation.
+            Here we show the full video used to make the "backflip" rotation (with no translation) from fig. 2, along with two additional examples of that same motion. The input camera rotation is overlaid on top in dark gray. Notice how only our method achieves a full 360&deg; looping rotation.
         </p>
         <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam+GEN3C</div></div>
         <div style="text-align: center;">
@@ -531,6 +564,88 @@
         </div>
     </div>
 
+    <h2 id="translations-zooms">Translations and zooms</h2>
+    <div class="sample-container">
+        <p>
+            This example isolates translation and field-of-view changes. The 3D grid visualization is composited over the generated video: the white line represents the horizon, red grid lines indicate downward directions, blue grid lines indicate upward directions, and the camera moves within this 3D grid over time.
+        </p>
+        <div class="prompt">
+            <strong>Prompt: </strong>A medieval harbor at sunset with tall ships docking, gulls circling overhead, sailors unloading barrels of spice while amber light glints off varnished wood and gentle waves lap against stone piers.
+        </div>
+        <div class="wide-table-wrap">
+            <table class="wide-table">
+                <thead>
+                    <tr>
+                        <th>Camera pitch</th>
+                        <th>Translation right (+x)</th>
+                        <th>Translation down (+y)</th>
+                        <th>Translation forward (+z)</th>
+                        <th>Zoom-in<br><span style="font-weight: normal;">FOV 100&deg; to 30&deg;</span></th>
+                        <th>Zoom-out<br><span style="font-weight: normal;">FOV 30&deg; to 100&deg;</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Forward (0&deg;)</td>
+                        <td>
+                            <video controls loop muted preload="none">
+                                <source src="synced_videos/translations_zooms/medieval_trans_x_forward_trans.mp4" type="video/mp4">
+                            </video>
+                        </td>
+                        <td>
+                            <video controls loop muted preload="none">
+                                <source src="synced_videos/translations_zooms/medieval_trans_y_forward_trans.mp4" type="video/mp4">
+                            </video>
+                        </td>
+                        <td>
+                            <video controls loop muted preload="none">
+                                <source src="synced_videos/translations_zooms/medieval_trans_z_forward_trans.mp4" type="video/mp4">
+                            </video>
+                        </td>
+                        <td>
+                            <video controls loop muted preload="none">
+                                <source src="synced_videos/translations_zooms/medieval_zoom_in_100_to_30_forward_trans.mp4" type="video/mp4">
+                            </video>
+                        </td>
+                        <td>
+                            <video controls loop muted preload="none">
+                                <source src="synced_videos/translations_zooms/medieval_zoom_out_30_to_100_forward_trans.mp4" type="video/mp4">
+                            </video>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Down (-90&deg;)</td>
+                        <td>
+                            <video controls loop muted preload="none">
+                                <source src="synced_videos/translations_zooms/medieval_trans_x_down_trans.mp4" type="video/mp4">
+                            </video>
+                        </td>
+                        <td>
+                            <video controls loop muted preload="none">
+                                <source src="synced_videos/translations_zooms/medieval_trans_y_down_trans.mp4" type="video/mp4">
+                            </video>
+                        </td>
+                        <td>
+                            <video controls loop muted preload="none">
+                                <source src="synced_videos/translations_zooms/medieval_trans_z_down_trans.mp4" type="video/mp4">
+                            </video>
+                        </td>
+                        <td>
+                            <video controls loop muted preload="none">
+                                <source src="synced_videos/translations_zooms/medieval_zoom_in_100_to_30_down_trans.mp4" type="video/mp4">
+                            </video>
+                        </td>
+                        <td>
+                            <video controls loop muted preload="none">
+                                <source src="synced_videos/translations_zooms/medieval_zoom_out_30_to_100_down_trans.mp4" type="video/mp4">
+                            </video>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <h2 id="training">Training set examples (extends sec. 4.1 and fig. 4)</h2>
     <div class="sample-container">
         <p>
@@ -545,7 +660,7 @@
             <div class="prompt"><strong>Caption: </strong>The video begins with a view of a cozy, eclectic shop filled with various vintage and rustic items. A statue of a Native American figure, adorned with a colorful blanket and a beaded necklace, stands prominently on the right. The shop is well-lit, with warm lights casting a welcoming glow on the brick walls and wooden furniture. A Christmas tree decorated with lights is visible in the background, adding a festive touch to the scene. The camera pans slightly to the left, revealing more of the shop's interior, which includes shelves with framed pictures, lamps, and assorted decorative pieces. The statue remains the focal point as the camera moves, capturing the shop's eclectic charm and the cozy atmosphere. Looking down, we see a person holding a phone in their hand.</div>
             <div style="display: flex; gap: 10px; align-items: flex-start;">
             <div style="flex: 2;">
-                <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null Pitch Video</div></div>
+                <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null-pitch Video</div></div>
                 <video controls loop muted preload="none" style="max-width: 100%;">
                     <source src="synced_videos/training/Rw3yipdLRD4_51s_61s_idx7.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -553,15 +668,15 @@
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">Top View</div>
-                <img src="assets/training_data_samples/Rw3yipdLRD4_51s_61s_idx7_camera_top.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/Rw3yipdLRD4_51s_61s_idx7_camera_top.jpg" style="max-width: 100%;"/>
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">Side View</div>
-                <img src="assets/training_data_samples/Rw3yipdLRD4_51s_61s_idx7_camera_side.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/Rw3yipdLRD4_51s_61s_idx7_camera_side.jpg" style="max-width: 100%;"/>
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">3D View</div>
-                <img src="assets/training_data_samples/Rw3yipdLRD4_51s_61s_idx7_camera_3d.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/Rw3yipdLRD4_51s_61s_idx7_camera_3d.jpg" style="max-width: 100%;"/>
             </div>
         </div>
         </div>
@@ -571,7 +686,7 @@
             <div class="prompt"><strong>Caption: </strong>People walk under an archway in a historic city square. Looking down, we see a person walking on a cobblestone path.</div>
             <div style="display: flex; gap: 10px; align-items: flex-start;">
             <div style="flex: 2;">
-                <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null Pitch Video</div></div>
+                <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null-pitch Video</div></div>
                 <video controls loop muted preload="none" style="max-width: 100%;">
                     <source src="synced_videos/training/yH0dkpeWt2Q_56s_66s_idx9.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -579,15 +694,15 @@
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">Top View</div>
-                <img src="assets/training_data_samples/yH0dkpeWt2Q_56s_66s_idx9_camera_top.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/yH0dkpeWt2Q_56s_66s_idx9_camera_top.jpg" style="max-width: 100%;"/>
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">Side View</div>
-                <img src="assets/training_data_samples/yH0dkpeWt2Q_56s_66s_idx9_camera_side.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/yH0dkpeWt2Q_56s_66s_idx9_camera_side.jpg" style="max-width: 100%;"/>
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">3D View</div>
-                <img src="assets/training_data_samples/yH0dkpeWt2Q_56s_66s_idx9_camera_3d.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/yH0dkpeWt2Q_56s_66s_idx9_camera_3d.jpg" style="max-width: 100%;"/>
             </div>
         </div>
         </div>
@@ -597,7 +712,7 @@
             <div class="prompt"><strong>Caption: </strong>The video begins with a view of a modern, spacious living room featuring a sleek glass coffee table, a black floor lamp, and a brown sofa. The room is well-lit with natural light streaming through large windows, and a balcony with a white railing is visible above. In the background, a dining area with red chairs and a round table is partially visible. The camera slowly pans across the room, highlighting the minimalist decor and architectural details, including a large framed picture on the wall. As the camera moves, it reveals more of the room's features, such as a black spherical light fixture on the coffee table and a chessboard set on a stand. The video maintains a static view, focusing on the room's interior design and layout. Looking down, we see a glass bowl with apples on a table.</div>
             <div style="display: flex; gap: 10px; align-items: flex-start;">
             <div style="flex: 2;">
-                <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null Pitch Video</div></div>
+                <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null-pitch Video</div></div>
                 <video controls loop muted preload="none" style="max-width: 100%;">
                     <source src="synced_videos/training/rwvh8ZrNyt0_3s_13s_idx43.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -605,15 +720,15 @@
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">Top View</div>
-                <img src="assets/training_data_samples/rwvh8ZrNyt0_3s_13s_idx43_camera_top.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/rwvh8ZrNyt0_3s_13s_idx43_camera_top.jpg" style="max-width: 100%;"/>
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">Side View</div>
-                <img src="assets/training_data_samples/rwvh8ZrNyt0_3s_13s_idx43_camera_side.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/rwvh8ZrNyt0_3s_13s_idx43_camera_side.jpg" style="max-width: 100%;"/>
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">3D View</div>
-                <img src="assets/training_data_samples/rwvh8ZrNyt0_3s_13s_idx43_camera_3d.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/rwvh8ZrNyt0_3s_13s_idx43_camera_3d.jpg" style="max-width: 100%;"/>
             </div>
         </div>
         </div>
@@ -623,7 +738,7 @@
             <div class="prompt"><strong>Caption: </strong>People walk on an escalator in a busy indoor setting. Looking down, we see a person with a backpack on an escalator.</div>
             <div style="display: flex; gap: 10px; align-items: flex-start;">
             <div style="flex: 2;">
-                <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null Pitch Video</div></div>
+                <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null-pitch Video</div></div>
                 <video controls loop muted preload="none" style="max-width: 100%;">
                     <source src="synced_videos/training/_dVT08mTVE8_3s_13s_idx45.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -631,15 +746,15 @@
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">Top View</div>
-                <img src="assets/training_data_samples/_dVT08mTVE8_3s_13s_idx45_camera_top.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/_dVT08mTVE8_3s_13s_idx45_camera_top.jpg" style="max-width: 100%;"/>
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">Side View</div>
-                <img src="assets/training_data_samples/_dVT08mTVE8_3s_13s_idx45_camera_side.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/_dVT08mTVE8_3s_13s_idx45_camera_side.jpg" style="max-width: 100%;"/>
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">3D View</div>
-                <img src="assets/training_data_samples/_dVT08mTVE8_3s_13s_idx45_camera_3d.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/_dVT08mTVE8_3s_13s_idx45_camera_3d.jpg" style="max-width: 100%;"/>
             </div>
         </div>
         </div>
@@ -649,7 +764,7 @@
             <div class="prompt"><strong>Caption: </strong>Yellow aircraft with "REINO DE ESPAÑA 43032" flies over a rocky landscape.</div>
             <div style="display: flex; gap: 10px; align-items: flex-start;">
             <div style="flex: 2;">
-                <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null Pitch Video</div></div>
+                <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null-pitch Video</div></div>
                 <video controls loop muted preload="none" style="max-width: 100%;">
                     <source src="synced_videos/training/L9UTclyPIp4_177s_187s_idx52.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -657,15 +772,15 @@
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">Top View</div>
-                <img src="assets/training_data_samples/L9UTclyPIp4_177s_187s_idx52_camera_top.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/L9UTclyPIp4_177s_187s_idx52_camera_top.jpg" style="max-width: 100%;"/>
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">Side View</div>
-                <img src="assets/training_data_samples/L9UTclyPIp4_177s_187s_idx52_camera_side.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/L9UTclyPIp4_177s_187s_idx52_camera_side.jpg" style="max-width: 100%;"/>
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">3D View</div>
-                <img src="assets/training_data_samples/L9UTclyPIp4_177s_187s_idx52_camera_3d.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/L9UTclyPIp4_177s_187s_idx52_camera_3d.jpg" style="max-width: 100%;"/>
             </div>
         </div>
         </div>
@@ -675,7 +790,7 @@
             <div class="prompt"><strong>Caption: </strong>The video begins with a view of a wooden boardwalk alongside a river, where a tall ship with multiple masts is docked. The scene transitions to a bridge with cables, leading to a cityscape with modern buildings under a clear blue sky. The camera moves forward, capturing the river's surface and the bridge's structure. The view shifts to the riverbank, featuring a red brick building with a waterfront restaurant and a crane in the background. A person walks on the boardwalk, and the camera follows them, maintaining the focus on the river and the urban environment. Looking down, we see a person walking on a wooden deck while holding a phone.</div>
             <div style="display: flex; gap: 10px; align-items: flex-start;">
             <div style="flex: 2;">
-                <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null Pitch Video</div></div>
+                <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null-pitch Video</div></div>
                 <video controls loop muted preload="none" style="max-width: 100%;">
                     <source src="synced_videos/training/eTkin3-7Dpc_89s_99s_idx82.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -683,15 +798,15 @@
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">Top View</div>
-                <img src="assets/training_data_samples/eTkin3-7Dpc_89s_99s_idx82_camera_top.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/eTkin3-7Dpc_89s_99s_idx82_camera_top.jpg" style="max-width: 100%;"/>
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">Side View</div>
-                <img src="assets/training_data_samples/eTkin3-7Dpc_89s_99s_idx82_camera_side.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/eTkin3-7Dpc_89s_99s_idx82_camera_side.jpg" style="max-width: 100%;"/>
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">3D View</div>
-                <img src="assets/training_data_samples/eTkin3-7Dpc_89s_99s_idx82_camera_3d.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/eTkin3-7Dpc_89s_99s_idx82_camera_3d.jpg" style="max-width: 100%;"/>
             </div>
         </div>
         </div>
@@ -701,7 +816,7 @@
             <div class="prompt"><strong>Caption: </strong>A serene underwater scene unfolds, showcasing a vibrant coral reef bathed in the soft light of the ocean surface. The camera pans gently over the reef, highlighting its diverse textures and colors, with sunlight filtering through the water, creating a tranquil and ethereal atmosphere.</div>
             <div style="display: flex; gap: 10px; align-items: flex-start;">
             <div style="flex: 2;">
-                <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null Pitch Video</div></div>
+                <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null-pitch Video</div></div>
                 <video controls loop muted preload="none" style="max-width: 100%;">
                     <source src="synced_videos/training/9HDra9lZe3s_70s_80s_idx86.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -709,15 +824,15 @@
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">Top View</div>
-                <img src="assets/training_data_samples/9HDra9lZe3s_70s_80s_idx86_camera_top.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/9HDra9lZe3s_70s_80s_idx86_camera_top.jpg" style="max-width: 100%;"/>
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">Side View</div>
-                <img src="assets/training_data_samples/9HDra9lZe3s_70s_80s_idx86_camera_side.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/9HDra9lZe3s_70s_80s_idx86_camera_side.jpg" style="max-width: 100%;"/>
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">3D View</div>
-                <img src="assets/training_data_samples/9HDra9lZe3s_70s_80s_idx86_camera_3d.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/9HDra9lZe3s_70s_80s_idx86_camera_3d.jpg" style="max-width: 100%;"/>
             </div>
         </div>
         </div>
@@ -727,7 +842,7 @@
             <div class="prompt"><strong>Caption: </strong>The video captures a vibrant outdoor scene at a flower garden on a sunny day. A wide path runs through the garden, bordered by rows of red and purple flowers. People are scattered throughout the area, some walking along the path, while others gather in groups to admire the flowers. In the background, a cityscape with tall buildings is visible under a clear blue sky. A kite is flying in the sky, adding to the leisurely atmosphere. The camera moves along the path, providing a panoramic view of the garden and its visitors. Looking down, we see a person walking on a path surrounded by red and purple flowers.</div>
             <div style="display: flex; gap: 10px; align-items: flex-start;">
             <div style="flex: 2;">
-                <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null Pitch Video</div></div>
+                <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null-pitch Video</div></div>
                 <video controls loop muted preload="none" style="max-width: 100%;">
                     <source src="synced_videos/training/_EW8oxB7qJU_16s_26s_idx90.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -735,15 +850,15 @@
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">Top View</div>
-                <img src="assets/training_data_samples/_EW8oxB7qJU_16s_26s_idx90_camera_top.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/_EW8oxB7qJU_16s_26s_idx90_camera_top.jpg" style="max-width: 100%;"/>
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">Side View</div>
-                <img src="assets/training_data_samples/_EW8oxB7qJU_16s_26s_idx90_camera_side.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/_EW8oxB7qJU_16s_26s_idx90_camera_side.jpg" style="max-width: 100%;"/>
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">3D View</div>
-                <img src="assets/training_data_samples/_EW8oxB7qJU_16s_26s_idx90_camera_3d.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/_EW8oxB7qJU_16s_26s_idx90_camera_3d.jpg" style="max-width: 100%;"/>
             </div>
         </div>
         </div>
@@ -753,7 +868,7 @@
             <div class="prompt"><strong>Caption: </strong>Paragliding over a vast desert landscape with mountains in the distance.</div>
             <div style="display: flex; gap: 10px; align-items: flex-start;">
             <div style="flex: 2;">
-                <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null Pitch Video</div></div>
+                <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null-pitch Video</div></div>
                 <video controls loop muted preload="none" style="max-width: 100%;">
                     <source src="synced_videos/training/y4szxJL4REA_49s_59s_idx108.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -761,15 +876,15 @@
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">Top View</div>
-                <img src="assets/training_data_samples/y4szxJL4REA_49s_59s_idx108_camera_top.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/y4szxJL4REA_49s_59s_idx108_camera_top.jpg" style="max-width: 100%;"/>
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">Side View</div>
-                <img src="assets/training_data_samples/y4szxJL4REA_49s_59s_idx108_camera_side.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/y4szxJL4REA_49s_59s_idx108_camera_side.jpg" style="max-width: 100%;"/>
             </div>
             <div style="flex: 1; text-align: center;">
                 <div style="font-weight: bold; color: #495057; margin-bottom: 2px; font-size: 0.85em;">3D View</div>
-                <img src="assets/training_data_samples/y4szxJL4REA_49s_59s_idx108_camera_3d.jpg" style="max-width: 100%;"/>
+                <img loading="lazy" decoding="async" src="assets/training_data_samples/y4szxJL4REA_49s_59s_idx108_camera_3d.jpg" style="max-width: 100%;"/>
             </div>
         </div>
         </div>
@@ -790,16 +905,15 @@
         \end{gather}
         $$
         where $\mathbf{\tilde{u}}_0$ corresponds to the average up vector of the first frame, $\mathbf{R}_{\text{pano},f}$ corresponds to the sampled camera rotation for frame $f$ 
-        and $\mathbf{t}_{\text{rel},f}$ and $\mathbf{R}_{\text{rel},f}$ are the translation and rotational components of the relative camera poses respectively, derived from SfM.
+        and $\mathbf{t}_{\text{rel},f}$ and $\mathbf{R}_{\text{rel},f}$ are the translational and rotational components of the relative camera poses, respectively, and are derived from SfM.
         <!--We now show how we align the camera poses with the gravity by defining $\psi(\cdot)$ and remove the first frame's yaw by defining $\varphi(\cdot)$.-->
-        We now define exactly the function $\psi(\cdot)$, which aligns camera poses to the gravity, and $\varphi(\cdot)$, which rotates the poses so that the yaw is null for the first frame.
+        We now precisely define the function $\psi(\cdot)$, which aligns camera poses to gravity, and $\varphi(\cdot)$, which rotates the poses so that the yaw is null for the first frame.
         </p>
 
         <h3>Definition of the gravity alignment function $\psi(\cdot)$</h3>
 
-        We first need to have the average gravity up vector $\mathbf{\tilde{u}}_0$, normalized to have a unit length of 1.
-        We then obtain a full gravity alignment rotation matrix $\psi(\mathbf{\tilde{u}}_0)$ by computing the forward vector and right vectors in a similar fashion
-    as when computing a <a href="https://learnopengl.com/Getting-started/Camera">LookAt</a> matrix (fixing the up vector instead of the forward vector).
+        We first compute the average gravity up vector $\mathbf{\tilde{u}}_0$, normalized to unit length.
+        We then obtain a full gravity alignment rotation matrix $\psi(\mathbf{\tilde{u}}_0)$ by computing the forward and right vectors much as when computing a <a href="https://learnopengl.com/Getting-started/Camera">LookAt</a> matrix (fixing the up vector instead of the forward vector).
         We show the full derivation below.
 
 $$\begin{align*}
@@ -848,11 +962,11 @@ $$\begin{align*}
         </p>
         <div class="diversity-grid">
             <div class="diversity-cell">
-                <img src="assets/train_set_diversity/rotation_comparison.svg" >
+                <img loading="lazy" decoding="async" src="assets/train_set_diversity/rotation_comparison.svg" >
                 <p class="diversity-caption">Rotation diversity</p>
             </div>
             <div class="diversity-cell">
-                <img src="assets/train_set_diversity/translation_comparison.svg" >
+                <img loading="lazy" decoding="async" src="assets/train_set_diversity/translation_comparison.svg" >
                 <p class="diversity-caption">Translation diversity (top view)</p>
             </div>
         </div>
@@ -862,49 +976,48 @@ $$\begin{align*}
         <p>Here, we supply additional details and statistics on our evaluation benchmark, SpatialVID-extreme, extending sec. 4.3 of the paper.</p>
         <h4>Camera path randomization</h4>
         <p>
-            We randomly sample a start roll from \([-40°, 40°]\), and a start pitch from \([-90°, 90°]\).
+            We randomly sample a start roll from \([-40°, 40°]\) and a start pitch from \([-90°, 90°]\).
             The final roll and pitch are sampled the same way, and the end yaw is sampled from \([-180°, 180°]\).
-            The intermediate rotations are interpolated using spherical linear interpolation. Since the method used to compute absolute orientation metrics (Perspective Fields) is never trained
-            with rolls going beyond 45&deg; in magnitude, we resample a random rotation trajectory if an intermediate frame goes outside the roll bounds of \([-40°, 40°]\).
+            The intermediate rotations are interpolated using spherical linear interpolation. Since the method used to compute absolute orientation metrics (Perspective Fields) was never trained
+            on rolls beyond 45&deg; in magnitude, we resample a random rotation trajectory if an intermediate frame goes outside the roll bounds of \([-40°, 40°]\).
             Finally, we obtain the translations by estimating them from the original videos with ViPE. We then apply a global rotation to those translations around the yaw axis, with an angle sampled from \([0°, 360°]\),
-            in order to reduce the bias towards translations moving forward.
+            in order to reduce the bias toward forward translations.
         </p>
         <h4>Evaluation dataset statistics</h4>
         <p>
             Here we show that the original SpatialVID-HQ dataset provides limited diversity in absolute orientation and relative rotations. Our new evaluation benchmark, SpatialVID-extreme,
-            provides a broader coverage of Euler angles and total angular distance. 
+            provides broader coverage of Euler angles and total angular distance.
         </p>
         <div style="display: flex; flex-direction: column; align-items: center;">
-            <img src="assets/eval_dataset_stats/combined_comparison.svg" style="max-width: 90%; width: 1200px;">
+            <img loading="lazy" decoding="async" src="assets/eval_dataset_stats/combined_comparison.svg" style="max-width: 90%; width: 1200px;">
             <p style="margin-top: 15px; color: #666; font-style: italic;">Evaluation dataset statistics</p>
         </div>
     </div>
 
-    <h2 id="look-down">Additional details on the "look down" prompt (extends sec. 3.3)</h2>
+    <h2 id="look-down">Additional details on the "look-down" prompt (extends sec. 3.3)</h2>
     <div class="sample-container">
         <h3>Training details</h3>
         <p>
-            We start by showing an example sampled from the training data. In the training video (left), we can see part of the selfie stick used to hold the camera, but it is absent from the null pitch video (center),
+            We start by showing an example sampled from the training data. In the training video (left), we can see part of the selfie stick used to hold the camera, but it is absent from the null-pitch video (center),
             used for captioning. As explained in the paper, if undesirable elements are present in the training video (such as the selfie stick), but not in the caption, the model
             will learn to generate these as if they were normal scene content. To prevent this,
             we generate a third set of videos, this time looking straight down (right), and also caption them.
         </p>
-                <p>
-             In practice, we give the following instructions to the VLM to obtain the "look down" prompt:
-             <br><br>
+        <p>
+            In practice, we give the following instructions to the VLM to obtain the "look-down" prompt:
+        </p>
             <div class="prompt">Describe the content of this video in under 15 words. <br>
-    Start by mentionning that the video is taken looking down, e.g. "Looking down, we see ..." or "Below is a view of ...".</i>
-            </div>
+    Start by mentioning that the video is filmed looking down, e.g. "Looking down, we see ..." or "Below is a view of ...".</div>
         <p>
             We then simply concatenate the two prompts 50% of the time in the following way:
+        </p>
             <pre style="background-color: #f8f9fa; padding: 15px; border-radius: 4px; border-left: 4px solid #007bff; overflow-x: auto; margin-top: 15px;"><code style="font-family: 'Courier New', monospace; font-size: 0.9em; color: #212529;">
 if random.random() < 0.5:
     full_caption = caption_null_pitch + " " + caption_down
 else:
     full_caption = caption_null_pitch
             </code></pre>
-        </p>
-        <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Training video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null pitch video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Look down video</div></div>
+        <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Training video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Null-pitch video</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Look-down video</div></div>
         <div style="text-align: center;">
             <video controls loop muted preload="none" style="max-width: 100%;">
                 <source src="synced_videos/look_down/01_training_example.mp4" type="video/mp4">
@@ -918,27 +1031,32 @@ else:
         </div>
 
         <p>
-            With the "Look down" caption included, the full caption is:
+            With the "look-down" caption included, the full caption is:
+        </p>
             <div class="prompt">
                 The video begins with a view of a modern urban walkway lined with large buildings and greenery. The walkway is paved with stone tiles, and there are small patches of grass and plants along the sides. In the background, a set of stairs leads up to a higher level, where a few people are seen walking. The scene remains static for a moment before the camera pans slightly to the right, revealing more of the surrounding area. The video concludes with the camera still focused on the walkway, showing the same buildings and greenery in the background. Looking down, we see a person sweeping a patterned floor with a broom.
             </div>
-            Note that the VLM mistakenly identifies the selfie stick as a broom, but, in practice, we found this had no significant impact on the strategy.
+        <p>
+            Note that the VLM mistakenly identifies the selfie stick as a broom, but, in practice, we found this had no noticeable impact on the results.
         </p>
         <h3>Inference details</h3>
         <p>
-            At inference time, we keep the input (positive) prompt intact. In order to ensure that undesirable elements (e.g. hands, distortions) are absent from the generated video, we use the following prompt for the negative direction:
+            At inference time, we keep the input (positive) prompt intact. To ensure that undesirable elements (e.g. hands, distortions) are absent from the generated video, we use the following prompt for the negative direction:
+        </p>
             <div class="prompt">
                 Looking down, we see a person and a hand. Looking down, we see distortions. The video is low quality, worst quality, blurry, deformed, disfigured, distorted, extra limbs, cloned face.
             </div>
+        <p>
             Note that the choice of negative prompt can be adjusted at inference time based on user preferences without re-training the model.
         </p>
 
         <h3>Qualitative comparison</h3> 
         <p>
-            Here we show a few examples from our evaluation where training with the "look down" prompts removes
+            Here we show a few examples from our evaluation where training with the "look-down" prompts removes
             the first-person artefacts that otherwise appear when the camera points directly down. For each backbone,
-            the left video is trained with the look-down captions and the right video is trained without them. The same
-            prompt and negative prompt are used at inference.
+            the left video uses the model trained with the look-down captions and the right video the model trained without them. The same
+            prompt and negative prompt are used at inference. As mentioned in the paper, training on the "look-down" prompt is mostly beneficial when fully finetuning
+            a model, as seen in the results rows from WAN 2.2.
         </p>
 
         <!-- look-down ablation sample_id: SpatialVID-HQ-dataloader-00010-8a1cba95-f0fc-53c7-b584-20b93ff3e338 -->
@@ -997,10 +1115,10 @@ else:
 
         <h3>Quantitative comparison</h3>
         <p>
-            Across both backbones, the qualitative artefact removal comes from explicitly adding look-down captions during training.
-            Quantitatively, this also improves the camera-orientation metrics most directly related to looking downward: for WAN 2.2 5B,
-            pitch error drops from 11.87&deg; to 9.35&deg; and gravity error drops from 14.28&deg; to 11.67&deg;; for UCPE (WAN 2.1),
-            pitch error drops from 15.44&deg; to 13.98&deg; and gravity error drops from 18.42&deg; to 17.16&deg;.
+            Here, we show a quantitative analysis of the effect of the "look-down" prompts.
+            Again, training on "look-down" prompts mostly helps the fully finetuned WAN 2.2 model, as seen in the gravity error decrease and the CLIP score increase.
+            However, no clear effect is observed on the UCPE backbone, with a slightly better pitch error, but slightly worse scores on other metrics.
+            We attribute this discrepancy to the smaller number of trained parameter in UCPE, which makes it less prone to overfitting to artefacts (like a person walking).
         </p>
             <table>
                 <thead>
@@ -1020,24 +1138,24 @@ else:
                     <tr>
                         <td>WAN 2.2 5B</td>
                         <td>Without</td>
-                        <td>11.87</td>
-                        <td>14.28</td>
-                        <td>18.54</td>
-                        <td>0.73</td>
-                        <td>19.99</td>
-                        <td>114.40</td>
-                        <td>968.54</td>
+                        <td>11.97</td>
+                        <td>14.42</td>
+                        <td>14.87</td>
+                        <td>0.74</td>
+                        <td>19.78</td>
+                        <td>113.49</td>
+                        <td>994.50</td>
                     </tr>
                     <tr>
                         <td>WAN 2.2 5B</td>
                         <td>With</td>
-                        <td>9.35</td>
-                        <td>11.67</td>
-                        <td>15.96</td>
-                        <td>0.72</td>
-                        <td>20.63</td>
-                        <td>115.58</td>
-                        <td>981.01</td>
+                        <td>8.36</td>
+                        <td>10.54</td>
+                        <td>15.05</td>
+                        <td>0.74</td>
+                        <td>20.62</td>
+                        <td>115.96</td>
+                        <td>1014.40</td>
                     </tr>
                     <tr>
                         <td>UCPE (WAN 2.1)</td>
@@ -1066,12 +1184,12 @@ else:
         
     </div>
 
-    <h2 id="backbones-camera-encodings">Backbones and camera encodings (extends sec. 4.2)</h2>
+    <h2 id="backbones-camera-encodings">Backbones and camera encodings (extends sec. 4.1 and 4.2)</h2>
     <div class="sample-container backbone-section">
         <p>
             We trained the following backbone and camera-conditioning variants. For all backbones, classifier-free guidance (CFG)
             is applied only to the text conditioning, and not to the camera conditioning. All methods use a batch size of 1 per GPU
-            and generate 49 frames per video. The training clips are sampled with stride 2 from the original videos, i.e. half of
+            and generate 49 frames per video. The training clips are sampled with stride 2 from the original videos, i.e., half of
             the original frames are skipped, so a 30 FPS video becomes 15 FPS.
         </p>
 
@@ -1096,7 +1214,7 @@ else:
                         <td>Pl&uuml;cker</td>
                         <td>Large camera encoder</td>
                         <td>Full finetuning</td>
-                        <td class="compact">480&times;832</td>
+                        <td class="compact">832&times;480</td>
                         <td class="compact">1e-5</td>
                         <td class="compact">8 H200</td>
                         <td class="compact">30K</td>
@@ -1112,7 +1230,7 @@ else:
                         <td>Pl&uuml;cker</td>
                         <td>Lightweight camera encoder</td>
                         <td>Full finetuning</td>
-                        <td class="compact">480&times;736</td>
+                        <td class="compact">736&times;480</td>
                         <td class="compact">1e-5</td>
                         <td class="compact">8 H200</td>
                         <td class="compact">30K</td>
@@ -1125,7 +1243,7 @@ else:
                         <td>UCPE</td>
                         <td>UCPE module</td>
                         <td>UCPE module only</td>
-                        <td class="compact">480&times;832</td>
+                        <td class="compact">832&times;480</td>
                         <td class="compact">1e-4</td>
                         <td class="compact">8 H200</td>
                         <td class="compact">24K</td>
@@ -1139,7 +1257,7 @@ else:
                         <td>Pl&uuml;cker</td>
                         <td>ControlNet camera encoder</td>
                         <td>ControlNet</td>
-                        <td class="compact">480&times;720</td>
+                        <td class="compact">720&times;480</td>
                         <td class="compact">1e-4</td>
                         <td class="compact">4 H100</td>
                         <td class="compact">10K</td>
@@ -1154,7 +1272,7 @@ else:
 
         <h3>Lightweight camera encoder architecture</h3>
         <p>
-            The lightweight camera control encoder module used for the WAN 2.2 5B variant is composed of the following modules:
+            The lightweight camera control encoder used for the WAN 2.2 5B variant comprises the following layers:
         </p>
         <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
             <thead>
@@ -1187,7 +1305,7 @@ else:
             </tbody>
         </table>
         <p>
-            All layers except the last one are randomly initialized. The last layer's features are added as a residual link after
+            All layers except the last one are randomly initialized. The last layer's features are added as a residual connection after
             the DiT's patchify layer.
         </p>
     </div>
@@ -1195,7 +1313,7 @@ else:
     <h2 id="panorama-comparison">Comparison against panorama generation methods (extends sec. 2)</h2>
     <div class="sample-container">
         <p>
-            Panorama generation methods, such as PanoWAN [43] can generate realistic 360&deg; equirectangular videos. 
+            Panorama generation methods, such as PanoWAN [46], can generate realistic 360&deg; equirectangular videos.
             As mentioned in the paper, gravity-aligned camera control can be achieved by cropping the desired field of view out of the generated panorama, but this comes with several disadvantages:
             1) most of the panorama pixels are discarded, resulting in severe resolution degradation; 2) the desired concepts described in the prompt can be cropped out and thus not appear in the video; 
             and 3) current text-conditioned methods do not provide control over camera translation.
@@ -1205,7 +1323,7 @@ else:
             Here, we show an example where two concepts should be present in the generated image:
             <b>a house and a lake</b>. <br><br>
             We run both our method and PanoWAN on 4 different seeds and display the first generated frame.
-            When cropping a 90&deg; FOV into the generated panorama, notice that for 3 out of the 4 seeds (0, 1, 2),
+            When cropping a 90&deg; FOV from the generated panorama, notice that for 3 out of the 4 seeds (0, 1, 2),
             PanoWAN only includes either the lake or the house but not both.
             When cropping a 45&deg; FOV, all seeds lack either the house or the lake.
             Our method includes both elements, while also generating sharper details.
@@ -1231,39 +1349,39 @@ else:
             <tbody>
                 <tr>
                     <td style="padding: 4px; font-weight: bold;">Seed 0</td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/ours/house_lake4_fov_90_seed_0_out.jpg" style="max-width: 200px; width: 100%;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/ours/house_lake4_fov_45_seed_0_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/ours/house_lake4_fov_90_seed_0_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/ours/house_lake4_fov_45_seed_0_out.jpg" style="max-width: 200px; width: 100%;"></td>
                     <td style="border: none;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-default_raw/house_lake4_seed_0_out.jpg" style="max-width: 300px; width: 100%; display: block; margin: auto;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-cropped/house_lake4_fov_90_seed_0_out.jpg" style="max-width: 200px; width: 100%;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-cropped/house_lake4_fov_45_seed_0_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-default_raw/house_lake4_seed_0_out.jpg" style="max-width: 300px; width: 100%; display: block; margin: auto;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-cropped/house_lake4_fov_90_seed_0_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-cropped/house_lake4_fov_45_seed_0_out.jpg" style="max-width: 200px; width: 100%;"></td>
                 </tr>
                 <tr>
                     <td style="padding: 4px; font-weight: bold;">Seed 1</td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/ours/house_lake4_fov_90_seed_1_out.jpg" style="max-width: 200px; width: 100%;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/ours/house_lake4_fov_45_seed_1_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/ours/house_lake4_fov_90_seed_1_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/ours/house_lake4_fov_45_seed_1_out.jpg" style="max-width: 200px; width: 100%;"></td>
                     <td style="border: none;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-default_raw/house_lake4_seed_1_out.jpg" style="max-width: 300px; width: 100%; display: block; margin: auto;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-cropped/house_lake4_fov_90_seed_1_out.jpg" style="max-width: 200px; width: 100%;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-cropped/house_lake4_fov_45_seed_1_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-default_raw/house_lake4_seed_1_out.jpg" style="max-width: 300px; width: 100%; display: block; margin: auto;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-cropped/house_lake4_fov_90_seed_1_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-cropped/house_lake4_fov_45_seed_1_out.jpg" style="max-width: 200px; width: 100%;"></td>
                 </tr>
                 <tr>
                     <td style="padding: 4px; font-weight: bold;">Seed 2</td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/ours/house_lake4_fov_90_seed_2_out.jpg" style="max-width: 200px; width: 100%;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/ours/house_lake4_fov_45_seed_2_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/ours/house_lake4_fov_90_seed_2_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/ours/house_lake4_fov_45_seed_2_out.jpg" style="max-width: 200px; width: 100%;"></td>
                     <td style="border: none;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-default_raw/house_lake4_seed_2_out.jpg" style="max-width: 300px; width: 100%; display: block; margin: auto;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-cropped/house_lake4_fov_90_seed_2_out.jpg" style="max-width: 200px; width: 100%;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-cropped/house_lake4_fov_45_seed_2_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-default_raw/house_lake4_seed_2_out.jpg" style="max-width: 300px; width: 100%; display: block; margin: auto;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-cropped/house_lake4_fov_90_seed_2_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-cropped/house_lake4_fov_45_seed_2_out.jpg" style="max-width: 200px; width: 100%;"></td>
                 </tr>
                 <tr>
                     <td style="padding: 4px; font-weight: bold;">Seed 3</td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/ours/house_lake4_fov_90_seed_3_out.jpg" style="max-width: 200px; width: 100%;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/ours/house_lake4_fov_45_seed_3_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/ours/house_lake4_fov_90_seed_3_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/ours/house_lake4_fov_45_seed_3_out.jpg" style="max-width: 200px; width: 100%;"></td>
                     <td style="border: none;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-default_raw/house_lake4_seed_3_out.jpg" style="max-width: 300px; width: 100%; display: block; margin: auto;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-cropped/house_lake4_fov_90_seed_3_out.jpg" style="max-width: 200px; width: 100%;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-cropped/house_lake4_fov_45_seed_3_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-default_raw/house_lake4_seed_3_out.jpg" style="max-width: 300px; width: 100%; display: block; margin: auto;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-cropped/house_lake4_fov_90_seed_3_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-cropped/house_lake4_fov_45_seed_3_out.jpg" style="max-width: 200px; width: 100%;"></td>
                 </tr>
             </tbody>
         </table>
@@ -1291,39 +1409,39 @@ else:
             <tbody>
                 <tr>
                     <td style="padding: 4px; font-weight: bold;">Seed 0</td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/ours/temple_mountain_fov_90_seed_0_out.jpg" style="max-width: 200px; width: 100%;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/ours/temple_mountain_fov_45_seed_0_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/ours/temple_mountain_fov_90_seed_0_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/ours/temple_mountain_fov_45_seed_0_out.jpg" style="max-width: 200px; width: 100%;"></td>
                     <td style="border: none;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-default_raw/temple_mountain_seed_0_out.jpg" style="max-width: 300px; width: 100%; display: block; margin: auto;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-cropped/temple_mountain_fov_90_seed_0_out.jpg" style="max-width: 200px; width: 100%;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-cropped/temple_mountain_fov_45_seed_0_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-default_raw/temple_mountain_seed_0_out.jpg" style="max-width: 300px; width: 100%; display: block; margin: auto;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-cropped/temple_mountain_fov_90_seed_0_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-cropped/temple_mountain_fov_45_seed_0_out.jpg" style="max-width: 200px; width: 100%;"></td>
                 </tr>
                 <tr>
                     <td style="padding: 4px; font-weight: bold;">Seed 1</td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/ours/temple_mountain_fov_90_seed_1_out.jpg" style="max-width: 200px; width: 100%;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/ours/temple_mountain_fov_45_seed_1_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/ours/temple_mountain_fov_90_seed_1_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/ours/temple_mountain_fov_45_seed_1_out.jpg" style="max-width: 200px; width: 100%;"></td>
                     <td style="border: none;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-default_raw/temple_mountain_seed_1_out.jpg" style="max-width: 300px; width: 100%; display: block; margin: auto;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-cropped/temple_mountain_fov_90_seed_1_out.jpg" style="max-width: 200px; width: 100%;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-cropped/temple_mountain_fov_45_seed_1_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-default_raw/temple_mountain_seed_1_out.jpg" style="max-width: 300px; width: 100%; display: block; margin: auto;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-cropped/temple_mountain_fov_90_seed_1_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-cropped/temple_mountain_fov_45_seed_1_out.jpg" style="max-width: 200px; width: 100%;"></td>
                 </tr>
                 <tr>
                     <td style="padding: 4px; font-weight: bold;">Seed 2</td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/ours/temple_mountain_fov_90_seed_2_out.jpg" style="max-width: 200px; width: 100%;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/ours/temple_mountain_fov_45_seed_2_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/ours/temple_mountain_fov_90_seed_2_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/ours/temple_mountain_fov_45_seed_2_out.jpg" style="max-width: 200px; width: 100%;"></td>
                     <td style="border: none;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-default_raw/temple_mountain_seed_2_out.jpg" style="max-width: 300px; width: 100%; display: block; margin: auto;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-cropped/temple_mountain_fov_90_seed_2_out.jpg" style="max-width: 200px; width: 100%;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-cropped/temple_mountain_fov_45_seed_2_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-default_raw/temple_mountain_seed_2_out.jpg" style="max-width: 300px; width: 100%; display: block; margin: auto;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-cropped/temple_mountain_fov_90_seed_2_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-cropped/temple_mountain_fov_45_seed_2_out.jpg" style="max-width: 200px; width: 100%;"></td>
                 </tr>
                 <tr>
                     <td style="padding: 4px; font-weight: bold;">Seed 3</td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/ours/temple_mountain_fov_90_seed_3_out.jpg" style="max-width: 200px; width: 100%;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/ours/temple_mountain_fov_45_seed_3_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/ours/temple_mountain_fov_90_seed_3_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/ours/temple_mountain_fov_45_seed_3_out.jpg" style="max-width: 200px; width: 100%;"></td>
                     <td style="border: none;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-default_raw/temple_mountain_seed_3_out.jpg" style="max-width: 300px; width: 100%; display: block; margin: auto;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-cropped/temple_mountain_fov_90_seed_3_out.jpg" style="max-width: 200px; width: 100%;"></td>
-                    <td style="padding: 4px; "><img src="assets/pano_gen/panowan-cropped/temple_mountain_fov_45_seed_3_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-default_raw/temple_mountain_seed_3_out.jpg" style="max-width: 300px; width: 100%; display: block; margin: auto;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-cropped/temple_mountain_fov_90_seed_3_out.jpg" style="max-width: 200px; width: 100%;"></td>
+                    <td style="padding: 4px; "><img loading="lazy" decoding="async" src="assets/pano_gen/panowan-cropped/temple_mountain_fov_45_seed_3_out.jpg" style="max-width: 200px; width: 100%;"></td>
                 </tr>
             </tbody>
         </table>
@@ -1331,15 +1449,15 @@ else:
 
         <h3 style="margin-top: 30px;">Quantitative comparison</h3>
         <p>
-            Since PanoWAN produces full 360° panoramas at $896 \times 448$ resolution, 
+            Since PanoWAN produces full 360° panoramas at $448 \times 896$ resolution, 
             we must crop its outputs to create standard perspective images. 
             This cropping results in significant detail loss, discarding 86.1% and 95.8% of pixels for 90° and 45° fields of view, respectively. 
             The reduction in high-frequency details affects CLIP alignment and FID scores, even though both models are trained on similar data.
             We train ours on a subset of PanoVid, while PanoWAN uses the entire dataset.
-            At 90&deg; FOV, we observe a decrease in prompt alignment (CLIP score of 21.25 vs. 19.46)
-            and image quality (FID score of 112.47 vs. 123.10). When using a narrower FOV of 45&deg;,
-            these differences are more pronounced, with CLIP scores of 19.45 versus 16.82 and FID scores
-            of 110.46 versus 142.81 for PanoWAN.
+            At 90&deg; FOV, PanoWAN shows lower prompt alignment (CLIP 19.46 vs. our 21.25)
+            and image quality (FID 123.10 vs. our 112.47). When using a narrower FOV of 45&deg;,
+            these differences are more pronounced, with PanoWAN reaching a CLIP score of 16.82 versus our 19.45
+            and an FID of 142.81 versus our 110.46.
         </p>
     </div>
 
@@ -1349,7 +1467,7 @@ else:
             For the AC3D baselines, we provide the model with the absolute camera orientation through text, as mentioned in sec. 4.2 of the paper. Here, we show the code used to generate
             these camera descriptions.
             We first take the absolute camera extrinsics \(E_\text{abs}\) for the video and convert them to Euler angles.
-            We then describe textually only the first frame's pitch and roll and the last frame's yaw, pitch, and roll. Please click below for the full implementation.
+            We then textually describe only the first frame's pitch and roll, and the last frame's yaw, pitch, and roll. Please click below for the full implementation.
         </p>
         <details style="margin-top: 15px;">
             <summary style="cursor: pointer; color: #007bff; font-style: italic; font-weight: bold; user-select: none;">Click here to expand the full code</summary>
@@ -1444,11 +1562,11 @@ else:
     end_text = "The camera ends with " + ", ".join(end_parts)
     description_parts.append(end_text)
     
-    return ". ".join(description_parts)[:-1]
+    return ". ".join(description_parts)
         </code></pre>
         </details>
         <p>
-            After obtaining the camera description, we concatenate it after the regular prompt. Refer to the qualitative results at the end of the supplementary material for examples of camera descriptions.
+            After obtaining the camera description, we append it to the regular prompt. Refer to the qualitative results at the end of the supplementary material for examples of camera descriptions.
         </p>
     </div>
 
@@ -1456,66 +1574,123 @@ else:
     <div class="sample-container">
         <p>
             The main paper evaluation focuses on performance on extreme trajectories using SpatialVID-extreme.
-            Here, we compare our method with the UCPE encoding on RealEstate10K, a standard benchmark with minimal camera movement.
-            Our method still reaches the lowest pitch and gravity errors and is competitive on all other metrics.
+            Here, we evaluate our method (with the UCPE encoding) on a subset of 140 videos of RealEstate10K's test set, a standard benchmark with minimal camera movement, and compare it against prior work.
+            Our method still reaches the lowest pitch and gravity errors and is competitive on all other metrics. Note that AC3D was trained on RealEstate10K.
         </p>
         <div class="wide-table-wrap">
             <table class="wide-table realestate-table">
                 <thead>
                     <tr>
                         <th>Method</th>
-                        <th>PitchErr $\downarrow$</th>
-                        <th>GravityErr $\downarrow$</th>
-                        <th>RotErr $\downarrow$</th>
-                        <th>TransErr $\downarrow$</th>
-                        <th>CLIP $\uparrow$</th>
-                        <th>FID $\downarrow$</th>
-                        <th>FVD $\downarrow$</th>
+                        <th>PitchErr ↓</th>
+                        <th>GravityErr ↓</th>
+                        <th>RotErr ↓</th>
+                        <th>TransErr ↓</th>
+                        <th>CLIP ↑</th>
+                        <th>FID ↓</th>
+                        <th>FVD ↓</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <tr class="group-row">
+                        <td colspan="8">CogVideoX-2B + Plücker camera encoder + ControlNet</td>
+                    </tr>
+                    <tr>
+                        <td>AC3D + cam. text.</td>
+                        <td>5.58</td>
+                        <td>6.41</td>
+                        <td class="best">2.46</td>
+                        <td>0.63</td>
+                        <td class="best">26.26</td>
+                        <td class="best">79.28</td>
+                        <td class="best">658.90</td>
+                    </tr>
+                    <tr>
+                        <td>Ours</td>
+                        <td class="best">5.44</td>
+                        <td class="best">6.39</td>
+                        <td>4.48</td>
+                        <td class="best">0.56</td>
+                        <td>24.85</td>
+                        <td>81.17</td>
+                        <td>848.27</td>
+                    </tr>
+                    <tr class="group-row">
+                        <td colspan="8">WAN 2.1 1.3B + Plücker camera encoder + full finetuning</td>
+                    </tr>
+                    <tr>
+                        <td>PreciseCam+WAN-I2V-CC</td>
+                        <td>9.46</td>
+                        <td>10.30</td>
+                        <td class="best">1.86</td>
+                        <td>0.75</td>
+                        <td class="best">25.33</td>
+                        <td>91.79</td>
+                        <td class="best">724.36</td>
+                    </tr>
+                    <tr>
+                        <td>Ours</td>
+                        <td class="best">4.92</td>
+                        <td class="best">6.33</td>
+                        <td>6.01</td>
+                        <td class="best">0.66</td>
+                        <td>24.36</td>
+                        <td class="best">80.37</td>
+                        <td>841.48</td>
+                    </tr>
+                    <tr class="group-row">
+                        <td colspan="8">WAN 2.2 5B + Plücker camera encoder + full finetuning</td>
+                    </tr>
+                    <tr>
+                        <td>Ours</td>
+                        <td>5.08</td>
+                        <td>6.00</td>
+                        <td>4.29</td>
+                        <td>0.78</td>
+                        <td>24.38</td>
+                        <td>81.44</td>
+                        <td>756.76</td>
+                    </tr>
+                    <tr class="group-row">
+                        <td colspan="8">WAN 2.1 1.3B + UCPE encoding + UCPE module training</td>
+                    </tr>
                     <tr>
                         <td>UCPE</td>
                         <td>5.62</td>
                         <td>6.58</td>
                         <td>2.18</td>
-                        <td>0.43</td>
-                        <td>25.53</td>
+                        <td class="best">0.43</td>
+                        <td class="best">25.53</td>
                         <td>79.86</td>
                         <td>716.80</td>
                     </tr>
                     <tr>
-                        <td>AC3D + cam. text.</td>
-                        <td>5.26</td>
-                        <td>6.08</td>
-                        <td>2.42</td>
-                        <td>0.63</td>
-                        <td>26.32</td>
-                        <td>79.23</td>
-                        <td>686.58</td>
-                    </tr>
-                    <tr>
-                        <td>PreciseCam + WAN-I2V-CC</td>
-                        <td>9.46</td>
-                        <td>10.30</td>
-                        <td>1.86</td>
-                        <td>0.75</td>
-                        <td>25.33</td>
-                        <td>91.79</td>
-                        <td>724.36</td>
-                    </tr>
-                    <tr>
-                        <td>Ours (UCPE encoding)</td>
-                        <td>5.08</td>
-                        <td>5.87</td>
-                        <td>2.11</td>
+                        <td>Ours</td>
+                        <td class="best">5.08</td>
+                        <td class="best">5.87</td>
+                        <td class="best">2.11</td>
                         <td>0.51</td>
                         <td>25.13</td>
-                        <td>78.53</td>
-                        <td>713.73</td>
+                        <td class="best">78.53</td>
+                        <td class="best">713.73</td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+    
+    <h2 id="absolute-rotation-ablation">Absolute rotation ablation (extends sec. 4.5)</h2>
+    <div class="sample-container">
+        <p>
+            We compare our full model against the ablated variant trained without absolute rotations (with poses defined relative to the first frame). The 3D grid overlay shows the requested camera trajectory for both generated videos. Notice how removing the absolute rotations causes the model to generate a video with incorrect pitch and roll.
+        </p>
+        <div class="model-header" style="max-width: 1100px; margin: 0 auto;"><div>Ours</div><div>Ours w/o absolute rotations</div></div>
+        <video class="composite-video" controls loop muted preload="none" style="max-width: 1100px; margin: 0 auto;">
+            <source src="synced_videos/absolute_rotation_ablation/ours_vs_without_absolute_rotations.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="prompt">
+            <strong>Prompt: </strong>A vibrant urban landscape features two contrasting skyscrapers under a clear blue sky, blending modern and traditional architecture in a striking setting.
         </div>
     </div>
     
@@ -1526,53 +1701,56 @@ else:
         <h3>Additional quantitative results (extends fig. 6.b)</h3>
         <p>
             First, we report additional graphs showcasing the relationship between the prompt alignment and the input pitch angle,
-            via the CLIP score, where a higher score indicates a high correlation between the prompt and the image.
+            via the CLIP score, where a higher score indicates stronger agreement between the prompt and the image.
             We report the CLIP score computed between the generated image and the caption from the ground truth at the input pitch angle (left, same as in fig. 6.b) and from the forward-looking prompt (right).
-            We observe that our method (in <b style="color: orange;">orange</b>) comes closer to the ground truth values (in <b style="color: black;">black</b>) than
-            by training without null-pitch conditioning (in <b style="color: red;">red</b>) and other methods, across the range of pitch angles.
+            We observe that our method (in <b style="color: orange;">orange</b>) comes closer to the ground-truth values (in <b style="color: black;">black</b>) than
+            the variant trained without null-pitch conditioning (in <b style="color: red;">red</b>) and the other methods, across the full range of pitch angles.
         </p>
 
         <div class="video-grid" style="margin: auto;">
             <div class="video-cell" style="display: flex; flex-direction: column; align-items: center;">
-                <img src="assets/prompt_entanglement_bench/quant/clip_adjusted.png" style="max-width: 100%;" >
+                <img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/quant/clip_adjusted.png" style="max-width: 100%;" >
                 <p>CLIP computed between the caption from the ground truth (at the input pitch angle) and the generated image (absolute)</p>
             </div>
             <div class="video-cell" style="display: flex; flex-direction: column; align-items: center;">
-                <img src="assets/prompt_entanglement_bench/quant/clip_unadjusted.png"  style="max-width: 100%;" >
+                <img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/quant/clip_unadjusted.png"  style="max-width: 100%;" >
                 <p>CLIP computed between the input caption (forward looking) and the generated image (absolute)</p>
             </div>
         </div>
         <div class="video-grid" style="width: 600px; margin: auto;">
             <div class="video-cell" style="display: flex; flex-direction: column; align-items: center;">
-                <img src="assets/prompt_entanglement_bench/quant/legend.png" style="border: none;">
+                <img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/quant/legend.png" style="border: none;">
             </div>
         </div>
 
         <h3 id="commercial-t2i-entanglement">Commercial text-to-image models</h3>
         <p>
-            Early results indicate that a commercial text-to-image model, in this case ChatGPT Images 2.0, also entangles camera orientation with scene description. Here, we query the model with the same scene description and change only the appended camera-orientation instruction: an extreme high-angle shot (&minus;90&deg; pitch), an eye-level shot (0&deg;), or an extreme low-angle shot (+90&deg; pitch).
+            Early results indicate that a commercial text-to-image model, in this case ChatGPT Images 2.0, also entangles camera orientation with scene description. We use the same scene prompt as in fig. 6.a and prepend only the camera-angle instruction.
         </p>
         <div class="commercial-t2i-grid">
             <div class="commercial-t2i-cell">
-                <img src="assets/prompt_entanglement_bench/commercial_t2i/chagpt-image-2-down.png" alt="ChatGPT Images 2 output requested at minus 90 degrees pitch">
+                <img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/commercial_t2i/chagpt-image-2-down.png" alt="ChatGPT Images 2 output requested at minus 90 degrees pitch">
                 <p class="commercial-t2i-caption"><strong>Extreme high-angle shot</strong><br>(&minus;90&deg; pitch)</p>
+                <div class="prompt">Extreme high-angle shot (-90 degrees pitch). A dirt path winds through a lush, green forest with tall trees and dense shrubs. The sky is clear and blue, with a few scattered clouds. The path leads into the distance, surrounded by vibrant vegetation.</div>
             </div>
             <div class="commercial-t2i-cell">
-                <img src="assets/prompt_entanglement_bench/commercial_t2i/chagpt-image-2-forward.png" alt="ChatGPT Images 2 output requested at zero degrees pitch">
+                <img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/commercial_t2i/chagpt-image-2-forward.png" alt="ChatGPT Images 2 output requested at zero degrees pitch">
                 <p class="commercial-t2i-caption"><strong>Eye-level shot</strong><br>(0&deg; pitch)</p>
+                <div class="prompt">Eye-level shot (0 degree pitch). A dirt path winds through a lush, green forest with tall trees and dense shrubs. The sky is clear and blue, with a few scattered clouds. The path leads into the distance, surrounded by vibrant vegetation.</div>
             </div>
             <div class="commercial-t2i-cell">
-                <img src="assets/prompt_entanglement_bench/commercial_t2i/chagpt-image-2-up.png" alt="ChatGPT Images 2 output requested at plus 90 degrees pitch">
+                <img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/commercial_t2i/chagpt-image-2-up.png" alt="ChatGPT Images 2 output requested at plus 90 degrees pitch">
                 <p class="commercial-t2i-caption"><strong>Extreme low-angle shot</strong><br>(+90&deg; pitch)</p>
+                <div class="prompt">Extreme low-angle shot (+90 degree pitch). A dirt path winds through a lush, green forest with tall trees and dense shrubs. The sky is clear and blue, with a few scattered clouds. The path leads into the distance, surrounded by vibrant vegetation.</div>
             </div>
         </div>
         <p>
-            Despite the explicit extreme-angle instructions, the &minus;90&deg; result still includes the sky, while the +90&deg; retains the ground instead of generating a straight upward view.
+            We observe that when the camera is looking up, the entanglement between camera angle and scene content is present.
         </p>
 
         <h3>Additional qualitative results (extends fig. 6.a)</h3>
         <p>
-            Here, we randomly sampled 6 scenes out of the 20 scenes used in our benchmark. We show
+            Here, we randomly sampled 6 scenes out of the 20 used in our benchmark. We show
             the prompt and each method's output along with the ground truth, for 5 different pitch angles.
             Notice how our method more closely follows the input pitch angle, especially at extreme pitch angles (-90&deg; and 90&deg;).
             <br><br>Note that
@@ -1580,57 +1758,57 @@ else:
         </p>
 <div class="scene">
 <div class="prompt"><strong>Prompt:</strong> Two people are working at a desk with computers. The room has wooden beams on the ceiling and posters on the wall. One person is typing on a keyboard while the other looks at the screen. The workspace is cluttered with various items.</div>
-<table><tr><th>Pitch</th><th>Ground truth</th><th>Ours</th><th>w/o null pitch</th><th>UCPE</th><th>PreciseCam</th></tr>
-<tr><td class="pitch-label">90&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ground_truth_pitched_pitch_90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4-norm1_pitch_90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-default_pitch_90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_precisecam_pitch_90.jpg"></td></tr>
-<tr><td class="pitch-label">50&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ground_truth_pitched_pitch_50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4-norm1_pitch_50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-default_pitch_50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_precisecam_pitch_50.jpg"></td></tr>
-<tr><td class="pitch-label">0&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ground_truth_pitched_pitch_0.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4-norm1_pitch_0.png"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_0.png"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-default_pitch_0.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_precisecam_pitch_0.jpg"></td></tr>
-<tr><td class="pitch-label">-50&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ground_truth_pitched_pitch_-50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4-norm1_pitch_-50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-default_pitch_-50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_precisecam_pitch_-50.jpg"></td></tr>
-<tr><td class="pitch-label">-90&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ground_truth_pitched_pitch_-90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4-norm1_pitch_-90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-default_pitch_-90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/blender_institute_precisecam_pitch_-90.jpg"></td></tr>
+<table><tr><th>Pitch</th><th>Ground truth</th><th>Ours</th><th>w/o null-pitch</th><th>UCPE</th><th>PreciseCam</th></tr>
+<tr><td class="pitch-label">90&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ground_truth_pitched_pitch_90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4-norm1_pitch_90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-default_pitch_90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_precisecam_pitch_90.jpg"></td></tr>
+<tr><td class="pitch-label">50&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ground_truth_pitched_pitch_50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4-norm1_pitch_50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-default_pitch_50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_precisecam_pitch_50.jpg"></td></tr>
+<tr><td class="pitch-label">0&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ground_truth_pitched_pitch_0.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4-norm1_pitch_0.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_0.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-default_pitch_0.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_precisecam_pitch_0.jpg"></td></tr>
+<tr><td class="pitch-label">-50&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ground_truth_pitched_pitch_-50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4-norm1_pitch_-50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-default_pitch_-50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_precisecam_pitch_-50.jpg"></td></tr>
+<tr><td class="pitch-label">-90&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ground_truth_pitched_pitch_-90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4-norm1_pitch_-90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_ucpe-default_pitch_-90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/blender_institute_precisecam_pitch_-90.jpg"></td></tr>
 </table></div>
 <div class="scene">
 <div class="prompt"><strong>Prompt:</strong> The scene shows an abandoned concrete structure with graffiti on the walls and ceiling. Sunlight streams through large openings, illuminating the overgrown vegetation outside. The interior is dusty and empty, with visible cracks and decay. The graffiti includes the word "RAVE" in red.</div>
-<table><tr><th>Pitch</th><th>Ground truth</th><th>Ours</th><th>w/o null pitch</th><th>UCPE</th><th>PreciseCam</th></tr>
-<tr><td class="pitch-label">90&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ground_truth_pitched_pitch_90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-default_pitch_90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_precisecam_pitch_90.jpg"></td></tr>
-<tr><td class="pitch-label">50&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ground_truth_pitched_pitch_50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-default_pitch_50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_precisecam_pitch_50.jpg"></td></tr>
-<tr><td class="pitch-label">0&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ground_truth_pitched_pitch_0.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_0.png"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_0.png"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-default_pitch_0.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_precisecam_pitch_0.jpg"></td></tr>
-<tr><td class="pitch-label">-50&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ground_truth_pitched_pitch_-50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_-50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-default_pitch_-50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_precisecam_pitch_-50.jpg"></td></tr>
-<tr><td class="pitch-label">-90&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ground_truth_pitched_pitch_-90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_-90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-default_pitch_-90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_precisecam_pitch_-90.jpg"></td></tr>
+<table><tr><th>Pitch</th><th>Ground truth</th><th>Ours</th><th>w/o null-pitch</th><th>UCPE</th><th>PreciseCam</th></tr>
+<tr><td class="pitch-label">90&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ground_truth_pitched_pitch_90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-default_pitch_90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_precisecam_pitch_90.jpg"></td></tr>
+<tr><td class="pitch-label">50&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ground_truth_pitched_pitch_50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-default_pitch_50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_precisecam_pitch_50.jpg"></td></tr>
+<tr><td class="pitch-label">0&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ground_truth_pitched_pitch_0.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_0.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_0.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-default_pitch_0.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_precisecam_pitch_0.jpg"></td></tr>
+<tr><td class="pitch-label">-50&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ground_truth_pitched_pitch_-50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_-50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-default_pitch_-50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_precisecam_pitch_-50.jpg"></td></tr>
+<tr><td class="pitch-label">-90&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ground_truth_pitched_pitch_-90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_-90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_ucpe-default_pitch_-90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/abandoned_workshop_02_precisecam_pitch_-90.jpg"></td></tr>
 </table></div>
 <div class="scene">
 <div class="prompt"><strong>Prompt:</strong> A dirt path winds through a lush, green forest with tall trees and dense shrubs. The sky is clear and blue, with a few scattered clouds. The path leads into the distance, surrounded by vibrant vegetation.</div>
-<table><tr><th>Pitch</th><th>Ground truth</th><th>Ours</th><th>w/o null pitch</th><th>UCPE</th><th>PreciseCam</th></tr>
-<tr><td class="pitch-label">90&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ground_truth_pitched_pitch_90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-default_pitch_90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_precisecam_pitch_90.jpg"></td></tr>
-<tr><td class="pitch-label">50&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ground_truth_pitched_pitch_50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-default_pitch_50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_precisecam_pitch_50.jpg"></td></tr>
-<tr><td class="pitch-label">0&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ground_truth_pitched_pitch_0.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_0.png"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_0.png"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-default_pitch_0.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_precisecam_pitch_0.jpg"></td></tr>
-<tr><td class="pitch-label">-50&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ground_truth_pitched_pitch_-50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_-50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-default_pitch_-50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_precisecam_pitch_-50.jpg"></td></tr>
-<tr><td class="pitch-label">-90&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ground_truth_pitched_pitch_-90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_-90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-default_pitch_-90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/epping_forest_02_precisecam_pitch_-90.jpg"></td></tr>
+<table><tr><th>Pitch</th><th>Ground truth</th><th>Ours</th><th>w/o null-pitch</th><th>UCPE</th><th>PreciseCam</th></tr>
+<tr><td class="pitch-label">90&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ground_truth_pitched_pitch_90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-default_pitch_90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_precisecam_pitch_90.jpg"></td></tr>
+<tr><td class="pitch-label">50&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ground_truth_pitched_pitch_50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-default_pitch_50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_precisecam_pitch_50.jpg"></td></tr>
+<tr><td class="pitch-label">0&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ground_truth_pitched_pitch_0.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_0.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_0.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-default_pitch_0.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_precisecam_pitch_0.jpg"></td></tr>
+<tr><td class="pitch-label">-50&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ground_truth_pitched_pitch_-50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_-50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-default_pitch_-50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_precisecam_pitch_-50.jpg"></td></tr>
+<tr><td class="pitch-label">-90&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ground_truth_pitched_pitch_-90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4-norm1_pitch_-90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_ucpe-default_pitch_-90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/epping_forest_02_precisecam_pitch_-90.jpg"></td></tr>
 </table></div>
 <div class="scene">
 <div class="prompt"><strong>Prompt:</strong> A cozy room features a beige tufted sofa in the center, flanked by a Christmas tree and a white fireplace adorned with a wreath. To the right, a gray canopy tent and a small cloud-shaped decoration are visible. The room is illuminated by a chandelier and overhead lights, with sheer curtains on the left and decorative screens nearby.</div>
-<table><tr><th>Pitch</th><th>Ground truth</th><th>Ours</th><th>w/o null pitch</th><th>UCPE</th><th>PreciseCam</th></tr>
-<tr><td class="pitch-label">90&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ground_truth_pitched_pitch_90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-default_pitch_90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_precisecam_pitch_90.jpg"></td></tr>
-<tr><td class="pitch-label">50&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ground_truth_pitched_pitch_50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-default_pitch_50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_precisecam_pitch_50.jpg"></td></tr>
-<tr><td class="pitch-label">0&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ground_truth_pitched_pitch_0.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_0.png"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_0.png"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-default_pitch_0.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_precisecam_pitch_0.jpg"></td></tr>
-<tr><td class="pitch-label">-50&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ground_truth_pitched_pitch_-50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_-50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-default_pitch_-50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_precisecam_pitch_-50.jpg"></td></tr>
-<tr><td class="pitch-label">-90&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ground_truth_pitched_pitch_-90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_-90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-default_pitch_-90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_precisecam_pitch_-90.jpg"></td></tr>
+<table><tr><th>Pitch</th><th>Ground truth</th><th>Ours</th><th>w/o null-pitch</th><th>UCPE</th><th>PreciseCam</th></tr>
+<tr><td class="pitch-label">90&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ground_truth_pitched_pitch_90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-default_pitch_90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_precisecam_pitch_90.jpg"></td></tr>
+<tr><td class="pitch-label">50&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ground_truth_pitched_pitch_50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-default_pitch_50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_precisecam_pitch_50.jpg"></td></tr>
+<tr><td class="pitch-label">0&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ground_truth_pitched_pitch_0.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_0.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_0.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-default_pitch_0.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_precisecam_pitch_0.jpg"></td></tr>
+<tr><td class="pitch-label">-50&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ground_truth_pitched_pitch_-50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_-50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-default_pitch_-50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_precisecam_pitch_-50.jpg"></td></tr>
+<tr><td class="pitch-label">-90&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ground_truth_pitched_pitch_-90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_-90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_ucpe-default_pitch_-90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/christmas_photo_studio_04_precisecam_pitch_-90.jpg"></td></tr>
 </table></div>
 <div class="scene">
 <div class="prompt"><strong>Prompt:</strong> A large circular softbox light is positioned on the right side of a plain, white room. The softbox emits a bright, diffused light, illuminating the area around it. The ceiling and walls are smooth and unadorned, with visible wiring and a corner of the room slightly curved. The scene remains static, focusing solely on the lighting setup.</div>
-<table><tr><th>Pitch</th><th>Ground truth</th><th>Ours</th><th>w/o null pitch</th><th>UCPE</th><th>PreciseCam</th></tr>
-<tr><td class="pitch-label">90&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ground_truth_pitched_pitch_90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-default_pitch_90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_precisecam_pitch_90.jpg"></td></tr>
-<tr><td class="pitch-label">50&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ground_truth_pitched_pitch_50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-default_pitch_50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_precisecam_pitch_50.jpg"></td></tr>
-<tr><td class="pitch-label">0&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ground_truth_pitched_pitch_0.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_0.png"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_0.png"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-default_pitch_0.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_precisecam_pitch_0.jpg"></td></tr>
-<tr><td class="pitch-label">-50&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ground_truth_pitched_pitch_-50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_-50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-default_pitch_-50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_precisecam_pitch_-50.jpg"></td></tr>
-<tr><td class="pitch-label">-90&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ground_truth_pitched_pitch_-90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_-90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-default_pitch_-90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/studio_kominka_04_precisecam_pitch_-90.jpg"></td></tr>
+<table><tr><th>Pitch</th><th>Ground truth</th><th>Ours</th><th>w/o null-pitch</th><th>UCPE</th><th>PreciseCam</th></tr>
+<tr><td class="pitch-label">90&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ground_truth_pitched_pitch_90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-default_pitch_90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_precisecam_pitch_90.jpg"></td></tr>
+<tr><td class="pitch-label">50&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ground_truth_pitched_pitch_50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-default_pitch_50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_precisecam_pitch_50.jpg"></td></tr>
+<tr><td class="pitch-label">0&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ground_truth_pitched_pitch_0.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_0.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_0.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-default_pitch_0.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_precisecam_pitch_0.jpg"></td></tr>
+<tr><td class="pitch-label">-50&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ground_truth_pitched_pitch_-50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_-50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-default_pitch_-50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_precisecam_pitch_-50.jpg"></td></tr>
+<tr><td class="pitch-label">-90&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ground_truth_pitched_pitch_-90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4-norm1_pitch_-90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_ucpe-default_pitch_-90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/studio_kominka_04_precisecam_pitch_-90.jpg"></td></tr>
 </table></div>
 <div class="scene">
 <div class="prompt"><strong>Prompt:</strong> A spacious workshop with large windows and industrial equipment is shown. A blue metal structure dominates the foreground, surrounded by various tools and workbenches. In the background, a staircase leads to an upper level with a glass enclosure. The room is filled with scattered tools, machinery, and workstations, creating an organized yet busy atmosphere.</div>
-<table><tr><th>Pitch</th><th>Ground truth</th><th>Ours</th><th>w/o null pitch</th><th>UCPE</th><th>PreciseCam</th></tr>
-<tr><td class="pitch-label">90&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ground_truth_pitched_pitch_90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4-norm1_pitch_90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-default_pitch_90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_precisecam_pitch_90.jpg"></td></tr>
-<tr><td class="pitch-label">50&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ground_truth_pitched_pitch_50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4-norm1_pitch_50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-default_pitch_50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_precisecam_pitch_50.jpg"></td></tr>
-<tr><td class="pitch-label">0&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ground_truth_pitched_pitch_0.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4-norm1_pitch_0.png"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_0.png"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-default_pitch_0.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_precisecam_pitch_0.jpg"></td></tr>
-<tr><td class="pitch-label">-50&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ground_truth_pitched_pitch_-50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4-norm1_pitch_-50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-50.png"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-default_pitch_-50.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_precisecam_pitch_-50.jpg"></td></tr>
-<tr><td class="pitch-label">-90&deg;</td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ground_truth_pitched_pitch_-90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4-norm1_pitch_-90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-90.png"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-default_pitch_-90.jpg"></td><td><img src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_precisecam_pitch_-90.jpg"></td></tr>
+<table><tr><th>Pitch</th><th>Ground truth</th><th>Ours</th><th>w/o null-pitch</th><th>UCPE</th><th>PreciseCam</th></tr>
+<tr><td class="pitch-label">90&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ground_truth_pitched_pitch_90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4-norm1_pitch_90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-default_pitch_90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_precisecam_pitch_90.jpg"></td></tr>
+<tr><td class="pitch-label">50&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ground_truth_pitched_pitch_50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4-norm1_pitch_50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-default_pitch_50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_precisecam_pitch_50.jpg"></td></tr>
+<tr><td class="pitch-label">0&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ground_truth_pitched_pitch_0.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4-norm1_pitch_0.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_0.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-default_pitch_0.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_precisecam_pitch_0.jpg"></td></tr>
+<tr><td class="pitch-label">-50&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ground_truth_pitched_pitch_-50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4-norm1_pitch_-50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-default_pitch_-50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_precisecam_pitch_-50.jpg"></td></tr>
+<tr><td class="pitch-label">-90&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ground_truth_pitched_pitch_-90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4-norm1_pitch_-90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-default_pitch_-90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_precisecam_pitch_-90.jpg"></td></tr>
 </table></div>
 
     </div>
@@ -1640,34 +1818,34 @@ else:
         <p>
             We stratify the SpatialVID-extreme evaluation set into ten equal-count bins by total angular distance and randomly select one sample from each bin. Both comparisons use the same scenes in decreasing angular-distance order.
             The <span style="font-weight: bold;">black</span> overlay is the input 3D camera grid.
-            Every method video is downsampled from $720 \times 480$ to $360 \times 240$ before synchronization and horizontal concatenation.
+            Every method video is downsampled from $480 \times 720$ to $240 \times 360$ before synchronization and horizontal concatenation.
         </p>
         <div class="qualitative-tabs" role="tablist" aria-label="Qualitative comparison type">
             <button class="qualitative-tab-button" id="qualitative-baselines-tab" role="tab" aria-selected="true" aria-controls="qualitative-baselines-panel" data-qualitative-tab="baselines">Comparisons against baselines</button>
-            <button class="qualitative-tab-button" id="qualitative-backbones-tab" role="tab" aria-selected="false" aria-controls="qualitative-backbones-panel" data-qualitative-tab="backbones" tabindex="-1">Backbones comparisons</button>
+            <button class="qualitative-tab-button" id="qualitative-backbones-tab" role="tab" aria-selected="false" aria-controls="qualitative-backbones-panel" data-qualitative-tab="backbones" tabindex="-1">Backbone comparisons</button>
         </div>
     </div>
 
     <div class="qualitative-tab-panel" id="qualitative-baselines-panel" role="tabpanel" aria-labelledby="qualitative-baselines-tab">
         <div class="sample-container">
-            <p>Comparisons against the baselines from fig. 5. For “AC3D + cam. text.”, the camera prompt is additionally supplied to indicate absolute camera orientation.</p>
+            <p>Comparisons against the baselines from fig. 5. For "AC3D + cam. text.", the camera prompt is additionally supplied to indicate absolute camera orientation.</p>
         </div>
         <div class="sample-container">
             <div class="sample-header">
                 <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00094-7c736f48-8095-569a-b6be-2cfd7170c940</div>
                 <div style="margin-top: 8px; font-size: 1.05em; color: #2c3e50;"><strong>Total angular distance:</strong> 178.02&deg;</div>
                 <div class="prompt"><strong>Scene:</strong> A bright forest with towering green-leaved trees forming a dense canopy overhead.</div>
-                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with large tilt-up of 29 degrees, and a small Dutch angle tilted clockwise 13 degrees. The camera ends with pan of 180 degrees turned right, small tilt-down of 18 degrees, a small Dutch angle tilted counterclockwise 7 degree</div>
+                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with large tilt-up of 29 degrees, and a small Dutch angle tilted clockwise 13 degrees. The camera ends with pan of 180 degrees turned right, small tilt-down of 18 degrees, a small Dutch angle tilted counterclockwise 7 degrees</div>
             </div>
             <div class="trajectory-row">
                 <strong>GT Trajectory:</strong>
                 <div>
                     <div class="trajectory-label">Top</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00094-7c736f48-8095-569a-b6be-2cfd7170c940_gt_top.png" alt="GT top view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00094-7c736f48-8095-569a-b6be-2cfd7170c940_gt_top.png" alt="GT top view">
                 </div>
                 <div>
                     <div class="trajectory-label">Side</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00094-7c736f48-8095-569a-b6be-2cfd7170c940_gt_side.png" alt="GT side view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00094-7c736f48-8095-569a-b6be-2cfd7170c940_gt_side.png" alt="GT side view">
                 </div>
             </div>
             <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours (w/o null-pitch cond.)</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">AC3D + cam. text.</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + WAN-I2V-CC</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + GEN3C</div></div>
@@ -1739,17 +1917,17 @@ else:
                 <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00115-2c385976-bef2-52d2-9a05-79bc6f8e256c</div>
                 <div style="margin-top: 8px; font-size: 1.05em; color: #2c3e50;"><strong>Total angular distance:</strong> 149.74&deg;</div>
                 <div class="prompt"><strong>Scene:</strong> An evening view of the Eiffel Tower bathed in yellow light against a dark blue sky, framed by bare trees in a peaceful urban setting.</div>
-                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with large tilt-down of 36 degrees, and a large Dutch angle tilted counterclockwise 37 degrees. The camera ends with pan of 155 degrees turned right, small tilt-up of 9 degree</div>
+                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with large tilt-down of 36 degrees, and a large Dutch angle tilted counterclockwise 37 degrees. The camera ends with pan of 155 degrees turned right, small tilt-up of 9 degrees</div>
             </div>
             <div class="trajectory-row">
                 <strong>GT Trajectory:</strong>
                 <div>
                     <div class="trajectory-label">Top</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00115-2c385976-bef2-52d2-9a05-79bc6f8e256c_gt_top.png" alt="GT top view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00115-2c385976-bef2-52d2-9a05-79bc6f8e256c_gt_top.png" alt="GT top view">
                 </div>
                 <div>
                     <div class="trajectory-label">Side</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00115-2c385976-bef2-52d2-9a05-79bc6f8e256c_gt_side.png" alt="GT side view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00115-2c385976-bef2-52d2-9a05-79bc6f8e256c_gt_side.png" alt="GT side view">
                 </div>
             </div>
             <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours (w/o null-pitch cond.)</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">AC3D + cam. text.</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + WAN-I2V-CC</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + GEN3C</div></div>
@@ -1821,17 +1999,17 @@ else:
                 <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00101-3cfeecbb-ebcf-504d-bef4-a83049584189</div>
                 <div style="margin-top: 8px; font-size: 1.05em; color: #2c3e50;"><strong>Total angular distance:</strong> 135.15&deg;</div>
                 <div class="prompt"><strong>Scene:</strong> A rainy night on a quiet city street, where slick pavement reflects glowing lights and a lone car glides through the stillness, surrounded by dark trees and distant buildings.</div>
-                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts at extreme tilt-down of 47 degrees. The camera ends with pan of 129 degrees turned right, extreme tilt-down of 60 degrees, a small Dutch angle tilted counterclockwise 6 degree</div>
+                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts at extreme tilt-down of 47 degrees. The camera ends with pan of 129 degrees turned right, extreme tilt-down of 60 degrees, a small Dutch angle tilted counterclockwise 6 degrees</div>
             </div>
             <div class="trajectory-row">
                 <strong>GT Trajectory:</strong>
                 <div>
                     <div class="trajectory-label">Top</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00101-3cfeecbb-ebcf-504d-bef4-a83049584189_gt_top.png" alt="GT top view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00101-3cfeecbb-ebcf-504d-bef4-a83049584189_gt_top.png" alt="GT top view">
                 </div>
                 <div>
                     <div class="trajectory-label">Side</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00101-3cfeecbb-ebcf-504d-bef4-a83049584189_gt_side.png" alt="GT side view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00101-3cfeecbb-ebcf-504d-bef4-a83049584189_gt_side.png" alt="GT side view">
                 </div>
             </div>
             <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours (w/o null-pitch cond.)</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">AC3D + cam. text.</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + WAN-I2V-CC</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + GEN3C</div></div>
@@ -1903,17 +2081,17 @@ else:
                 <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00003-3ef36ee6-3152-5122-9f5a-a8880c4a5a1e</div>
                 <div style="margin-top: 8px; font-size: 1.05em; color: #2c3e50;"><strong>Total angular distance:</strong> 125.10&deg;</div>
                 <div class="prompt"><strong>Scene:</strong> A serene coastal bay features a small beach, rocky cliffs, and clustered buildings, framed by lush green hills under bright, natural lighting.</div>
-                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with extreme tilt-up of 50 degrees, and a large Dutch angle tilted counterclockwise 24 degrees. The camera ends with pan of 50 degrees turned right, extreme tilt-down of 69 degree</div>
+                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with extreme tilt-up of 50 degrees, and a large Dutch angle tilted counterclockwise 24 degrees. The camera ends with pan of 50 degrees turned right, extreme tilt-down of 69 degrees</div>
             </div>
             <div class="trajectory-row">
                 <strong>GT Trajectory:</strong>
                 <div>
                     <div class="trajectory-label">Top</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00003-3ef36ee6-3152-5122-9f5a-a8880c4a5a1e_gt_top.png" alt="GT top view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00003-3ef36ee6-3152-5122-9f5a-a8880c4a5a1e_gt_top.png" alt="GT top view">
                 </div>
                 <div>
                     <div class="trajectory-label">Side</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00003-3ef36ee6-3152-5122-9f5a-a8880c4a5a1e_gt_side.png" alt="GT side view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00003-3ef36ee6-3152-5122-9f5a-a8880c4a5a1e_gt_side.png" alt="GT side view">
                 </div>
             </div>
             <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours (w/o null-pitch cond.)</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">AC3D + cam. text.</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + WAN-I2V-CC</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + GEN3C</div></div>
@@ -1985,17 +2163,17 @@ else:
                 <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00087-2ec206f5-311e-5c33-9fc1-4baa3b400ec0</div>
                 <div style="margin-top: 8px; font-size: 1.05em; color: #2c3e50;"><strong>Total angular distance:</strong> 110.75&deg;</div>
                 <div class="prompt"><strong>Scene:</strong> A serene urban garden features white hydrangeas, a winding grass path, and a sleek concrete building, bathed in soft, diffused light that enhances its tranquil atmosphere.</div>
-                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts at small tilt-up of 7 degrees. The camera ends with pan of 119 degrees turned right, extreme tilt-up of 76 degrees, a large Dutch angle tilted counterclockwise 34 degree</div>
+                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts at small tilt-up of 7 degrees. The camera ends with pan of 119 degrees turned right, extreme tilt-up of 76 degrees, a large Dutch angle tilted counterclockwise 34 degrees</div>
             </div>
             <div class="trajectory-row">
                 <strong>GT Trajectory:</strong>
                 <div>
                     <div class="trajectory-label">Top</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00087-2ec206f5-311e-5c33-9fc1-4baa3b400ec0_gt_top.png" alt="GT top view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00087-2ec206f5-311e-5c33-9fc1-4baa3b400ec0_gt_top.png" alt="GT top view">
                 </div>
                 <div>
                     <div class="trajectory-label">Side</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00087-2ec206f5-311e-5c33-9fc1-4baa3b400ec0_gt_side.png" alt="GT side view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00087-2ec206f5-311e-5c33-9fc1-4baa3b400ec0_gt_side.png" alt="GT side view">
                 </div>
             </div>
             <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours (w/o null-pitch cond.)</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">AC3D + cam. text.</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + WAN-I2V-CC</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + GEN3C</div></div>
@@ -2067,17 +2245,17 @@ else:
                 <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00052-6fe06b69-8421-502c-8544-f287c630b1f4</div>
                 <div style="margin-top: 8px; font-size: 1.05em; color: #2c3e50;"><strong>Total angular distance:</strong> 93.71&deg;</div>
                 <div class="prompt"><strong>Scene:</strong> A modern yacht interior features a woman in a striped suit, a plush couch, a dining area, and elegant lighting through window blinds, evoking luxury and sophistication.</div>
-                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts at small tilt-up of 14 degrees. The camera ends with pan of 52 degrees turned right, extreme tilt-up of 83 degrees, a small Dutch angle tilted clockwise 15 degree</div>
+                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts at small tilt-up of 14 degrees. The camera ends with pan of 52 degrees turned right, extreme tilt-up of 83 degrees, a small Dutch angle tilted clockwise 15 degrees</div>
             </div>
             <div class="trajectory-row">
                 <strong>GT Trajectory:</strong>
                 <div>
                     <div class="trajectory-label">Top</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00052-6fe06b69-8421-502c-8544-f287c630b1f4_gt_top.png" alt="GT top view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00052-6fe06b69-8421-502c-8544-f287c630b1f4_gt_top.png" alt="GT top view">
                 </div>
                 <div>
                     <div class="trajectory-label">Side</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00052-6fe06b69-8421-502c-8544-f287c630b1f4_gt_side.png" alt="GT side view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00052-6fe06b69-8421-502c-8544-f287c630b1f4_gt_side.png" alt="GT side view">
                 </div>
             </div>
             <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours (w/o null-pitch cond.)</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">AC3D + cam. text.</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + WAN-I2V-CC</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + GEN3C</div></div>
@@ -2149,17 +2327,17 @@ else:
                 <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00053-1fb6f4f1-aec2-5bd7-a398-7c4f307181f4</div>
                 <div style="margin-top: 8px; font-size: 1.05em; color: #2c3e50;"><strong>Total angular distance:</strong> 85.77&deg;</div>
                 <div class="prompt"><strong>Scene:</strong> A serene pond with swans and cygnets, surrounded by stone edges and greenery, under an overcast sky, capturing quiet natural life.</div>
-                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with small tilt-up of 7 degrees, and a small Dutch angle tilted clockwise 6 degrees. The camera ends with pan of 80 degrees turned left, large tilt-up of 33 degree</div>
+                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with small tilt-up of 7 degrees, and a small Dutch angle tilted clockwise 6 degrees. The camera ends with pan of 80 degrees turned left, large tilt-up of 33 degrees</div>
             </div>
             <div class="trajectory-row">
                 <strong>GT Trajectory:</strong>
                 <div>
                     <div class="trajectory-label">Top</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00053-1fb6f4f1-aec2-5bd7-a398-7c4f307181f4_gt_top.png" alt="GT top view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00053-1fb6f4f1-aec2-5bd7-a398-7c4f307181f4_gt_top.png" alt="GT top view">
                 </div>
                 <div>
                     <div class="trajectory-label">Side</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00053-1fb6f4f1-aec2-5bd7-a398-7c4f307181f4_gt_side.png" alt="GT side view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00053-1fb6f4f1-aec2-5bd7-a398-7c4f307181f4_gt_side.png" alt="GT side view">
                 </div>
             </div>
             <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours (w/o null-pitch cond.)</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">AC3D + cam. text.</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + WAN-I2V-CC</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + GEN3C</div></div>
@@ -2231,17 +2409,17 @@ else:
                 <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00014-7f27d735-17bb-5ddd-97b0-d733d7dd93e4</div>
                 <div style="margin-top: 8px; font-size: 1.05em; color: #2c3e50;"><strong>Total angular distance:</strong> 79.50&deg;</div>
                 <div class="prompt"><strong>Scene:</strong> A narrow urban alleyway features a construction site with scaffolding, a low fence, and greenery, under an overcast sky, evoking an industrial and utilitarian atmosphere.</div>
-                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with large tilt-up of 35 degrees, and a small Dutch angle tilted clockwise 7 degrees. The camera ends with pan of 84 degrees turned left, small tilt-up of 12 degrees, a large Dutch angle tilted clockwise 35 degree</div>
+                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with large tilt-up of 35 degrees, and a small Dutch angle tilted clockwise 7 degrees. The camera ends with pan of 84 degrees turned left, small tilt-up of 12 degrees, a large Dutch angle tilted clockwise 35 degrees</div>
             </div>
             <div class="trajectory-row">
                 <strong>GT Trajectory:</strong>
                 <div>
                     <div class="trajectory-label">Top</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00014-7f27d735-17bb-5ddd-97b0-d733d7dd93e4_gt_top.png" alt="GT top view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00014-7f27d735-17bb-5ddd-97b0-d733d7dd93e4_gt_top.png" alt="GT top view">
                 </div>
                 <div>
                     <div class="trajectory-label">Side</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00014-7f27d735-17bb-5ddd-97b0-d733d7dd93e4_gt_side.png" alt="GT side view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00014-7f27d735-17bb-5ddd-97b0-d733d7dd93e4_gt_side.png" alt="GT side view">
                 </div>
             </div>
             <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours (w/o null-pitch cond.)</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">AC3D + cam. text.</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + WAN-I2V-CC</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + GEN3C</div></div>
@@ -2313,17 +2491,17 @@ else:
                 <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00021-3d3d0e82-2feb-5afa-ab61-4211c4868c98</div>
                 <div style="margin-top: 8px; font-size: 1.05em; color: #2c3e50;"><strong>Total angular distance:</strong> 53.60&deg;</div>
                 <div class="prompt"><strong>Scene:</strong> A luxurious breakfast tray floats in a clear pool, surrounded by modern outdoor lounges, exuding calm and opulence under bright sunlight.</div>
-                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with small tilt-up of 16 degrees, and a small Dutch angle tilted clockwise 16 degrees. The camera ends with pan of 55 degrees turned right, small tilt-up of 13 degrees, a small Dutch angle tilted counterclockwise 6 degree</div>
+                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with small tilt-up of 16 degrees, and a small Dutch angle tilted clockwise 16 degrees. The camera ends with pan of 55 degrees turned right, small tilt-up of 13 degrees, a small Dutch angle tilted counterclockwise 6 degrees</div>
             </div>
             <div class="trajectory-row">
                 <strong>GT Trajectory:</strong>
                 <div>
                     <div class="trajectory-label">Top</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00021-3d3d0e82-2feb-5afa-ab61-4211c4868c98_gt_top.png" alt="GT top view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00021-3d3d0e82-2feb-5afa-ab61-4211c4868c98_gt_top.png" alt="GT top view">
                 </div>
                 <div>
                     <div class="trajectory-label">Side</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00021-3d3d0e82-2feb-5afa-ab61-4211c4868c98_gt_side.png" alt="GT side view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00021-3d3d0e82-2feb-5afa-ab61-4211c4868c98_gt_side.png" alt="GT side view">
                 </div>
             </div>
             <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours (w/o null-pitch cond.)</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">AC3D + cam. text.</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + WAN-I2V-CC</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + GEN3C</div></div>
@@ -2395,17 +2573,17 @@ else:
                 <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00104-7dd684e9-01cb-5a54-845d-64348b4cd802</div>
                 <div style="margin-top: 8px; font-size: 1.05em; color: #2c3e50;"><strong>Total angular distance:</strong> 40.47&deg;</div>
                 <div class="prompt"><strong>Scene:</strong> A rugged mountain road winds through a dry, green landscape under bright sunlight, framed by steep slopes and scattered rocks, evoking a sense of natural beauty and isolation.</div>
-                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with small tilt-down of 18 degrees, and a small Dutch angle tilted counterclockwise 17 degrees. The camera ends with pan of 41 degrees turned right, small tilt-down of 12 degrees, a small Dutch angle tilted counterclockwise 11 degree</div>
+                <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with small tilt-down of 18 degrees, and a small Dutch angle tilted counterclockwise 17 degrees. The camera ends with pan of 41 degrees turned right, small tilt-down of 12 degrees, a small Dutch angle tilted counterclockwise 11 degrees</div>
             </div>
             <div class="trajectory-row">
                 <strong>GT Trajectory:</strong>
                 <div>
                     <div class="trajectory-label">Top</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00104-7dd684e9-01cb-5a54-845d-64348b4cd802_gt_top.png" alt="GT top view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00104-7dd684e9-01cb-5a54-845d-64348b4cd802_gt_top.png" alt="GT top view">
                 </div>
                 <div>
                     <div class="trajectory-label">Side</div>
-                    <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00104-7dd684e9-01cb-5a54-845d-64348b4cd802_gt_side.png" alt="GT side view">
+                    <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00104-7dd684e9-01cb-5a54-845d-64348b4cd802_gt_side.png" alt="GT side view">
                 </div>
             </div>
             <div style="display: flex; gap: 0; margin-bottom: 5px;"><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">Ours (w/o null-pitch cond.)</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">UCPE</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">AC3D + cam. text.</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + WAN-I2V-CC</div><div style="flex: 1; text-align: center; font-weight: bold; color: #495057;">PreciseCam + GEN3C</div></div>
@@ -2484,18 +2662,18 @@ else:
             <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00094-7c736f48-8095-569a-b6be-2cfd7170c940</div>
             <div class="rotation-amplitude"><strong>Total angular distance:</strong> 178.02&deg;</div>
             <div class="prompt"><strong>Scene:</strong> A bright forest with towering green-leaved trees forming a dense canopy overhead.</div>
-            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with large tilt-up of 29 degrees, and a small Dutch angle tilted clockwise 13 degrees. The camera ends with pan of 180 degrees turned right, small tilt-down of 18 degrees, a small Dutch angle tilted counterclockwise 7 degree</div>
+            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with large tilt-up of 29 degrees, and a small Dutch angle tilted clockwise 13 degrees. The camera ends with pan of 180 degrees turned right, small tilt-down of 18 degrees, a small Dutch angle tilted counterclockwise 7 degrees</div>
         </div>
 
         <div class="trajectory-row">
             <strong>GT Trajectory:</strong>
             <div>
                 <div class="trajectory-label">Top</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00094-7c736f48-8095-569a-b6be-2cfd7170c940_gt_top.png" alt="GT top view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00094-7c736f48-8095-569a-b6be-2cfd7170c940_gt_top.png" alt="GT top view">
             </div>
             <div>
                 <div class="trajectory-label">Side</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00094-7c736f48-8095-569a-b6be-2cfd7170c940_gt_side.png" alt="GT side view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00094-7c736f48-8095-569a-b6be-2cfd7170c940_gt_side.png" alt="GT side view">
             </div>
         </div>
 
@@ -2541,18 +2719,18 @@ else:
             <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00115-2c385976-bef2-52d2-9a05-79bc6f8e256c</div>
             <div class="rotation-amplitude"><strong>Total angular distance:</strong> 149.74&deg;</div>
             <div class="prompt"><strong>Scene:</strong> An evening view of the Eiffel Tower bathed in yellow light against a dark blue sky, framed by bare trees in a peaceful urban setting.</div>
-            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with large tilt-down of 36 degrees, and a large Dutch angle tilted counterclockwise 37 degrees. The camera ends with pan of 155 degrees turned right, small tilt-up of 9 degree</div>
+            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with large tilt-down of 36 degrees, and a large Dutch angle tilted counterclockwise 37 degrees. The camera ends with pan of 155 degrees turned right, small tilt-up of 9 degrees</div>
         </div>
 
         <div class="trajectory-row">
             <strong>GT Trajectory:</strong>
             <div>
                 <div class="trajectory-label">Top</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00115-2c385976-bef2-52d2-9a05-79bc6f8e256c_gt_top.png" alt="GT top view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00115-2c385976-bef2-52d2-9a05-79bc6f8e256c_gt_top.png" alt="GT top view">
             </div>
             <div>
                 <div class="trajectory-label">Side</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00115-2c385976-bef2-52d2-9a05-79bc6f8e256c_gt_side.png" alt="GT side view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00115-2c385976-bef2-52d2-9a05-79bc6f8e256c_gt_side.png" alt="GT side view">
             </div>
         </div>
 
@@ -2598,18 +2776,18 @@ else:
             <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00101-3cfeecbb-ebcf-504d-bef4-a83049584189</div>
             <div class="rotation-amplitude"><strong>Total angular distance:</strong> 135.15&deg;</div>
             <div class="prompt"><strong>Scene:</strong> A rainy night on a quiet city street, where slick pavement reflects glowing lights and a lone car glides through the stillness, surrounded by dark trees and distant buildings.</div>
-            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts at extreme tilt-down of 47 degrees. The camera ends with pan of 129 degrees turned right, extreme tilt-down of 60 degrees, a small Dutch angle tilted counterclockwise 6 degree</div>
+            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts at extreme tilt-down of 47 degrees. The camera ends with pan of 129 degrees turned right, extreme tilt-down of 60 degrees, a small Dutch angle tilted counterclockwise 6 degrees</div>
         </div>
 
         <div class="trajectory-row">
             <strong>GT Trajectory:</strong>
             <div>
                 <div class="trajectory-label">Top</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00101-3cfeecbb-ebcf-504d-bef4-a83049584189_gt_top.png" alt="GT top view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00101-3cfeecbb-ebcf-504d-bef4-a83049584189_gt_top.png" alt="GT top view">
             </div>
             <div>
                 <div class="trajectory-label">Side</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00101-3cfeecbb-ebcf-504d-bef4-a83049584189_gt_side.png" alt="GT side view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00101-3cfeecbb-ebcf-504d-bef4-a83049584189_gt_side.png" alt="GT side view">
             </div>
         </div>
 
@@ -2655,18 +2833,18 @@ else:
             <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00003-3ef36ee6-3152-5122-9f5a-a8880c4a5a1e</div>
             <div class="rotation-amplitude"><strong>Total angular distance:</strong> 125.10&deg;</div>
             <div class="prompt"><strong>Scene:</strong> A serene coastal bay features a small beach, rocky cliffs, and clustered buildings, framed by lush green hills under bright, natural lighting.</div>
-            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with extreme tilt-up of 50 degrees, and a large Dutch angle tilted counterclockwise 24 degrees. The camera ends with pan of 50 degrees turned right, extreme tilt-down of 69 degree</div>
+            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with extreme tilt-up of 50 degrees, and a large Dutch angle tilted counterclockwise 24 degrees. The camera ends with pan of 50 degrees turned right, extreme tilt-down of 69 degrees</div>
         </div>
 
         <div class="trajectory-row">
             <strong>GT Trajectory:</strong>
             <div>
                 <div class="trajectory-label">Top</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00003-3ef36ee6-3152-5122-9f5a-a8880c4a5a1e_gt_top.png" alt="GT top view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00003-3ef36ee6-3152-5122-9f5a-a8880c4a5a1e_gt_top.png" alt="GT top view">
             </div>
             <div>
                 <div class="trajectory-label">Side</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00003-3ef36ee6-3152-5122-9f5a-a8880c4a5a1e_gt_side.png" alt="GT side view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00003-3ef36ee6-3152-5122-9f5a-a8880c4a5a1e_gt_side.png" alt="GT side view">
             </div>
         </div>
 
@@ -2712,18 +2890,18 @@ else:
             <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00087-2ec206f5-311e-5c33-9fc1-4baa3b400ec0</div>
             <div class="rotation-amplitude"><strong>Total angular distance:</strong> 110.75&deg;</div>
             <div class="prompt"><strong>Scene:</strong> A serene urban garden features white hydrangeas, a winding grass path, and a sleek concrete building, bathed in soft, diffused light that enhances its tranquil atmosphere.</div>
-            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts at small tilt-up of 7 degrees. The camera ends with pan of 119 degrees turned right, extreme tilt-up of 76 degrees, a large Dutch angle tilted counterclockwise 34 degree</div>
+            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts at small tilt-up of 7 degrees. The camera ends with pan of 119 degrees turned right, extreme tilt-up of 76 degrees, a large Dutch angle tilted counterclockwise 34 degrees</div>
         </div>
 
         <div class="trajectory-row">
             <strong>GT Trajectory:</strong>
             <div>
                 <div class="trajectory-label">Top</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00087-2ec206f5-311e-5c33-9fc1-4baa3b400ec0_gt_top.png" alt="GT top view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00087-2ec206f5-311e-5c33-9fc1-4baa3b400ec0_gt_top.png" alt="GT top view">
             </div>
             <div>
                 <div class="trajectory-label">Side</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00087-2ec206f5-311e-5c33-9fc1-4baa3b400ec0_gt_side.png" alt="GT side view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00087-2ec206f5-311e-5c33-9fc1-4baa3b400ec0_gt_side.png" alt="GT side view">
             </div>
         </div>
 
@@ -2769,18 +2947,18 @@ else:
             <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00052-6fe06b69-8421-502c-8544-f287c630b1f4</div>
             <div class="rotation-amplitude"><strong>Total angular distance:</strong> 93.71&deg;</div>
             <div class="prompt"><strong>Scene:</strong> A modern yacht interior features a woman in a striped suit, a plush couch, a dining area, and elegant lighting through window blinds, evoking luxury and sophistication.</div>
-            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts at small tilt-up of 14 degrees. The camera ends with pan of 52 degrees turned right, extreme tilt-up of 83 degrees, a small Dutch angle tilted clockwise 15 degree</div>
+            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts at small tilt-up of 14 degrees. The camera ends with pan of 52 degrees turned right, extreme tilt-up of 83 degrees, a small Dutch angle tilted clockwise 15 degrees</div>
         </div>
 
         <div class="trajectory-row">
             <strong>GT Trajectory:</strong>
             <div>
                 <div class="trajectory-label">Top</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00052-6fe06b69-8421-502c-8544-f287c630b1f4_gt_top.png" alt="GT top view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00052-6fe06b69-8421-502c-8544-f287c630b1f4_gt_top.png" alt="GT top view">
             </div>
             <div>
                 <div class="trajectory-label">Side</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00052-6fe06b69-8421-502c-8544-f287c630b1f4_gt_side.png" alt="GT side view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00052-6fe06b69-8421-502c-8544-f287c630b1f4_gt_side.png" alt="GT side view">
             </div>
         </div>
 
@@ -2826,18 +3004,18 @@ else:
             <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00053-1fb6f4f1-aec2-5bd7-a398-7c4f307181f4</div>
             <div class="rotation-amplitude"><strong>Total angular distance:</strong> 85.77&deg;</div>
             <div class="prompt"><strong>Scene:</strong> A serene pond with swans and cygnets, surrounded by stone edges and greenery, under an overcast sky, capturing quiet natural life.</div>
-            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with small tilt-up of 7 degrees, and a small Dutch angle tilted clockwise 6 degrees. The camera ends with pan of 80 degrees turned left, large tilt-up of 33 degree</div>
+            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with small tilt-up of 7 degrees, and a small Dutch angle tilted clockwise 6 degrees. The camera ends with pan of 80 degrees turned left, large tilt-up of 33 degrees</div>
         </div>
 
         <div class="trajectory-row">
             <strong>GT Trajectory:</strong>
             <div>
                 <div class="trajectory-label">Top</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00053-1fb6f4f1-aec2-5bd7-a398-7c4f307181f4_gt_top.png" alt="GT top view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00053-1fb6f4f1-aec2-5bd7-a398-7c4f307181f4_gt_top.png" alt="GT top view">
             </div>
             <div>
                 <div class="trajectory-label">Side</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00053-1fb6f4f1-aec2-5bd7-a398-7c4f307181f4_gt_side.png" alt="GT side view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00053-1fb6f4f1-aec2-5bd7-a398-7c4f307181f4_gt_side.png" alt="GT side view">
             </div>
         </div>
 
@@ -2883,18 +3061,18 @@ else:
             <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00014-7f27d735-17bb-5ddd-97b0-d733d7dd93e4</div>
             <div class="rotation-amplitude"><strong>Total angular distance:</strong> 79.50&deg;</div>
             <div class="prompt"><strong>Scene:</strong> A narrow urban alleyway features a construction site with scaffolding, a low fence, and greenery, under an overcast sky, evoking an industrial and utilitarian atmosphere.</div>
-            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with large tilt-up of 35 degrees, and a small Dutch angle tilted clockwise 7 degrees. The camera ends with pan of 84 degrees turned left, small tilt-up of 12 degrees, a large Dutch angle tilted clockwise 35 degree</div>
+            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with large tilt-up of 35 degrees, and a small Dutch angle tilted clockwise 7 degrees. The camera ends with pan of 84 degrees turned left, small tilt-up of 12 degrees, a large Dutch angle tilted clockwise 35 degrees</div>
         </div>
 
         <div class="trajectory-row">
             <strong>GT Trajectory:</strong>
             <div>
                 <div class="trajectory-label">Top</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00014-7f27d735-17bb-5ddd-97b0-d733d7dd93e4_gt_top.png" alt="GT top view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00014-7f27d735-17bb-5ddd-97b0-d733d7dd93e4_gt_top.png" alt="GT top view">
             </div>
             <div>
                 <div class="trajectory-label">Side</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00014-7f27d735-17bb-5ddd-97b0-d733d7dd93e4_gt_side.png" alt="GT side view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00014-7f27d735-17bb-5ddd-97b0-d733d7dd93e4_gt_side.png" alt="GT side view">
             </div>
         </div>
 
@@ -2940,18 +3118,18 @@ else:
             <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00021-3d3d0e82-2feb-5afa-ab61-4211c4868c98</div>
             <div class="rotation-amplitude"><strong>Total angular distance:</strong> 53.60&deg;</div>
             <div class="prompt"><strong>Scene:</strong> A luxurious breakfast tray floats in a clear pool, surrounded by modern outdoor lounges, exuding calm and opulence under bright sunlight.</div>
-            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with small tilt-up of 16 degrees, and a small Dutch angle tilted clockwise 16 degrees. The camera ends with pan of 55 degrees turned right, small tilt-up of 13 degrees, a small Dutch angle tilted counterclockwise 6 degree</div>
+            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with small tilt-up of 16 degrees, and a small Dutch angle tilted clockwise 16 degrees. The camera ends with pan of 55 degrees turned right, small tilt-up of 13 degrees, a small Dutch angle tilted counterclockwise 6 degrees</div>
         </div>
 
         <div class="trajectory-row">
             <strong>GT Trajectory:</strong>
             <div>
                 <div class="trajectory-label">Top</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00021-3d3d0e82-2feb-5afa-ab61-4211c4868c98_gt_top.png" alt="GT top view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00021-3d3d0e82-2feb-5afa-ab61-4211c4868c98_gt_top.png" alt="GT top view">
             </div>
             <div>
                 <div class="trajectory-label">Side</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00021-3d3d0e82-2feb-5afa-ab61-4211c4868c98_gt_side.png" alt="GT side view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00021-3d3d0e82-2feb-5afa-ab61-4211c4868c98_gt_side.png" alt="GT side view">
             </div>
         </div>
 
@@ -2997,18 +3175,18 @@ else:
             <div class="sample-id">Sample: SpatialVID-HQ-dataloader-00104-7dd684e9-01cb-5a54-845d-64348b4cd802</div>
             <div class="rotation-amplitude"><strong>Total angular distance:</strong> 40.47&deg;</div>
             <div class="prompt"><strong>Scene:</strong> A rugged mountain road winds through a dry, green landscape under bright sunlight, framed by steep slopes and scattered rocks, evoking a sense of natural beauty and isolation.</div>
-            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with small tilt-down of 18 degrees, and a small Dutch angle tilted counterclockwise 17 degrees. The camera ends with pan of 41 degrees turned right, small tilt-down of 12 degrees, a small Dutch angle tilted counterclockwise 11 degree</div>
+            <div class="prompt"><strong>Camera motion (for AC3D):</strong> The camera starts with small tilt-down of 18 degrees, and a small Dutch angle tilted counterclockwise 17 degrees. The camera ends with pan of 41 degrees turned right, small tilt-down of 12 degrees, a small Dutch angle tilted counterclockwise 11 degrees</div>
         </div>
 
         <div class="trajectory-row">
             <strong>GT Trajectory:</strong>
             <div>
                 <div class="trajectory-label">Top</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00104-7dd684e9-01cb-5a54-845d-64348b4cd802_gt_top.png" alt="GT top view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00104-7dd684e9-01cb-5a54-845d-64348b4cd802_gt_top.png" alt="GT top view">
             </div>
             <div>
                 <div class="trajectory-label">Side</div>
-                <img class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00104-7dd684e9-01cb-5a54-845d-64348b4cd802_gt_side.png" alt="GT side view">
+                <img loading="lazy" decoding="async" class="trajectory-img" src="assets/qual/camera_trajectories/SpatialVID-HQ-dataloader-00104-7dd684e9-01cb-5a54-845d-64348b4cd802_gt_side.png" alt="GT side view">
             </div>
         </div>
 
