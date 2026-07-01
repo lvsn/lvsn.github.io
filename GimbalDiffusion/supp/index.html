@@ -1053,7 +1053,7 @@ else:
         <h3>Qualitative comparison</h3> 
         <p>
             Here we show a few examples from our evaluation where training with the "look-down" prompts removes
-            the first-person artefacts that otherwise appear when the camera points directly down. For each backbone,
+            the first-person artifacts that otherwise appear when the camera points directly down. For each backbone,
             the left video uses the model trained with the look-down captions and the right video the model trained without them. The same
             prompt and negative prompt are used at inference. As mentioned in the paper, training on the "look-down" prompt is mostly beneficial when fully finetuning
             a model, as seen in the results rows from WAN 2.2.
@@ -1118,7 +1118,7 @@ else:
             Here, we show a quantitative analysis of the effect of the "look-down" prompts.
             Again, training on "look-down" prompts mostly helps the fully finetuned WAN 2.2 model, as seen in the gravity error decrease and the CLIP score increase.
             However, no clear effect is observed on the UCPE backbone, with a slightly better pitch error, but slightly worse scores on other metrics.
-            We attribute this discrepancy to the smaller number of trained parameter in UCPE, which makes it less prone to overfitting to artefacts (like a person walking).
+            We attribute this discrepancy to the smaller number of trained parameter in UCPE, which makes it less prone to overfitting to artifacts (like a person walking).
         </p>
             <table>
                 <thead>
