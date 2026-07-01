@@ -402,6 +402,24 @@
             margin-top: 12px;
             text-align: left;
         }
+        .checkpoint-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 16px 0;
+        }
+        .checkpoint-control label {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .checkpoint-control select {
+            padding: 6px 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            background: white;
+            font-size: 1rem;
+        }
         @media (max-width: 800px) {
             .commercial-t2i-grid {
                 grid-template-columns: 1fr;
@@ -1756,6 +1774,14 @@ else:
             <br><br>Note that
             PreciseCam was trained on PolyHaven panoramas used in our benchmark.
         </p>
+        <div class="checkpoint-control">
+            <label for="prompt-checkpoint-select">GimbalDiffusion checkpoint</label>
+            <select id="prompt-checkpoint-select">
+                <option value="ucpe">UCPE + WAN-2.1 (default)</option>
+                <option value="wan22">WAN 2.2 5B</option>
+            </select>
+        </div>
+<div id="prompt-qualitative-results">
 <div class="scene">
 <div class="prompt"><strong>Prompt:</strong> Two people are working at a desk with computers. The room has wooden beams on the ceiling and posters on the wall. One person is typing on a keyboard while the other looks at the screen. The workspace is cluttered with various items.</div>
 <table><tr><th>Pitch</th><th>Ground truth</th><th>Ours</th><th>w/o null-pitch</th><th>UCPE</th><th>PreciseCam</th></tr>
@@ -1810,6 +1836,7 @@ else:
 <tr><td class="pitch-label">-50&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ground_truth_pitched_pitch_-50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4-norm1_pitch_-50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-50.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-default_pitch_-50.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_precisecam_pitch_-50.jpg"></td></tr>
 <tr><td class="pitch-label">-90&deg;</td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ground_truth_pitched_pitch_-90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4-norm1_pitch_-90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_-90.png"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_ucpe-default_pitch_-90.jpg"></td><td><img loading="lazy" decoding="async" src="assets/prompt_entanglement_bench/qual/aircraft_workshop_01_precisecam_pitch_-90.jpg"></td></tr>
 </table></div>
+</div>
 
     </div>
         
@@ -2677,7 +2704,7 @@ else:
             </div>
         </div>
 
-        <div class="model-header"><div>UCPE (default)</div><div>WAN 2.2 5B full finetuning + Plücker camera encoder</div><div>WAN 2.1 1.3B full finetuning + Plücker camera encoder</div><div>CogVideoX 2B + ControlNet + Plücker camera encoder</div></div>
+        <div class="model-header"><div>Ours (UCPE + WAN 2.1)</div><div>Ours (WAN 2.2 5B full finetuning + Plücker camera encoder)</div><div>Ours (WAN 2.1 1.3B full finetuning + Plücker camera encoder)</div><div>Ours (CogVideoX 2B + ControlNet + Plücker camera encoder)</div></div>
         <video class="composite-video" controls loop muted preload="none">
             <source src="synced_videos/qualitative/backbones/00094.mp4" type="video/mp4">
         </video>
@@ -2734,7 +2761,7 @@ else:
             </div>
         </div>
 
-        <div class="model-header"><div>UCPE (default)</div><div>WAN 2.2 5B full finetuning + Plücker camera encoder</div><div>WAN 2.1 1.3B full finetuning + Plücker camera encoder</div><div>CogVideoX 2B + ControlNet + Plücker camera encoder</div></div>
+        <div class="model-header"><div>Ours (UCPE + WAN 2.1)</div><div>Ours (WAN 2.2 5B full finetuning + Plücker camera encoder)</div><div>Ours (WAN 2.1 1.3B full finetuning + Plücker camera encoder)</div><div>Ours (CogVideoX 2B + ControlNet + Plücker camera encoder)</div></div>
         <video class="composite-video" controls loop muted preload="none">
             <source src="synced_videos/qualitative/backbones/00115.mp4" type="video/mp4">
         </video>
@@ -2791,7 +2818,7 @@ else:
             </div>
         </div>
 
-        <div class="model-header"><div>UCPE (default)</div><div>WAN 2.2 5B full finetuning + Plücker camera encoder</div><div>WAN 2.1 1.3B full finetuning + Plücker camera encoder</div><div>CogVideoX 2B + ControlNet + Plücker camera encoder</div></div>
+        <div class="model-header"><div>Ours (UCPE + WAN 2.1)</div><div>Ours (WAN 2.2 5B full finetuning + Plücker camera encoder)</div><div>Ours (WAN 2.1 1.3B full finetuning + Plücker camera encoder)</div><div>Ours (CogVideoX 2B + ControlNet + Plücker camera encoder)</div></div>
         <video class="composite-video" controls loop muted preload="none">
             <source src="synced_videos/qualitative/backbones/00101.mp4" type="video/mp4">
         </video>
@@ -2848,7 +2875,7 @@ else:
             </div>
         </div>
 
-        <div class="model-header"><div>UCPE (default)</div><div>WAN 2.2 5B full finetuning + Plücker camera encoder</div><div>WAN 2.1 1.3B full finetuning + Plücker camera encoder</div><div>CogVideoX 2B + ControlNet + Plücker camera encoder</div></div>
+        <div class="model-header"><div>Ours (UCPE + WAN 2.1)</div><div>Ours (WAN 2.2 5B full finetuning + Plücker camera encoder)</div><div>Ours (WAN 2.1 1.3B full finetuning + Plücker camera encoder)</div><div>Ours (CogVideoX 2B + ControlNet + Plücker camera encoder)</div></div>
         <video class="composite-video" controls loop muted preload="none">
             <source src="synced_videos/qualitative/backbones/00003.mp4" type="video/mp4">
         </video>
@@ -2905,7 +2932,7 @@ else:
             </div>
         </div>
 
-        <div class="model-header"><div>UCPE (default)</div><div>WAN 2.2 5B full finetuning + Plücker camera encoder</div><div>WAN 2.1 1.3B full finetuning + Plücker camera encoder</div><div>CogVideoX 2B + ControlNet + Plücker camera encoder</div></div>
+        <div class="model-header"><div>Ours (UCPE + WAN 2.1)</div><div>Ours (WAN 2.2 5B full finetuning + Plücker camera encoder)</div><div>Ours (WAN 2.1 1.3B full finetuning + Plücker camera encoder)</div><div>Ours (CogVideoX 2B + ControlNet + Plücker camera encoder)</div></div>
         <video class="composite-video" controls loop muted preload="none">
             <source src="synced_videos/qualitative/backbones/00087.mp4" type="video/mp4">
         </video>
@@ -2962,7 +2989,7 @@ else:
             </div>
         </div>
 
-        <div class="model-header"><div>UCPE (default)</div><div>WAN 2.2 5B full finetuning + Plücker camera encoder</div><div>WAN 2.1 1.3B full finetuning + Plücker camera encoder</div><div>CogVideoX 2B + ControlNet + Plücker camera encoder</div></div>
+        <div class="model-header"><div>Ours (UCPE + WAN 2.1)</div><div>Ours (WAN 2.2 5B full finetuning + Plücker camera encoder)</div><div>Ours (WAN 2.1 1.3B full finetuning + Plücker camera encoder)</div><div>Ours (CogVideoX 2B + ControlNet + Plücker camera encoder)</div></div>
         <video class="composite-video" controls loop muted preload="none">
             <source src="synced_videos/qualitative/backbones/00052.mp4" type="video/mp4">
         </video>
@@ -3019,7 +3046,7 @@ else:
             </div>
         </div>
 
-        <div class="model-header"><div>UCPE (default)</div><div>WAN 2.2 5B full finetuning + Plücker camera encoder</div><div>WAN 2.1 1.3B full finetuning + Plücker camera encoder</div><div>CogVideoX 2B + ControlNet + Plücker camera encoder</div></div>
+        <div class="model-header"><div>Ours (UCPE + WAN 2.1)</div><div>Ours (WAN 2.2 5B full finetuning + Plücker camera encoder)</div><div>Ours (WAN 2.1 1.3B full finetuning + Plücker camera encoder)</div><div>Ours (CogVideoX 2B + ControlNet + Plücker camera encoder)</div></div>
         <video class="composite-video" controls loop muted preload="none">
             <source src="synced_videos/qualitative/backbones/00053.mp4" type="video/mp4">
         </video>
@@ -3076,7 +3103,7 @@ else:
             </div>
         </div>
 
-        <div class="model-header"><div>UCPE (default)</div><div>WAN 2.2 5B full finetuning + Plücker camera encoder</div><div>WAN 2.1 1.3B full finetuning + Plücker camera encoder</div><div>CogVideoX 2B + ControlNet + Plücker camera encoder</div></div>
+        <div class="model-header"><div>Ours (UCPE + WAN 2.1)</div><div>Ours (WAN 2.2 5B full finetuning + Plücker camera encoder)</div><div>Ours (WAN 2.1 1.3B full finetuning + Plücker camera encoder)</div><div>Ours (CogVideoX 2B + ControlNet + Plücker camera encoder)</div></div>
         <video class="composite-video" controls loop muted preload="none">
             <source src="synced_videos/qualitative/backbones/00014.mp4" type="video/mp4">
         </video>
@@ -3133,7 +3160,7 @@ else:
             </div>
         </div>
 
-        <div class="model-header"><div>UCPE (default)</div><div>WAN 2.2 5B full finetuning + Plücker camera encoder</div><div>WAN 2.1 1.3B full finetuning + Plücker camera encoder</div><div>CogVideoX 2B + ControlNet + Plücker camera encoder</div></div>
+        <div class="model-header"><div>Ours (UCPE + WAN 2.1)</div><div>Ours (WAN 2.2 5B full finetuning + Plücker camera encoder)</div><div>Ours (WAN 2.1 1.3B full finetuning + Plücker camera encoder)</div><div>Ours (CogVideoX 2B + ControlNet + Plücker camera encoder)</div></div>
         <video class="composite-video" controls loop muted preload="none">
             <source src="synced_videos/qualitative/backbones/00021.mp4" type="video/mp4">
         </video>
@@ -3190,7 +3217,7 @@ else:
             </div>
         </div>
 
-        <div class="model-header"><div>UCPE (default)</div><div>WAN 2.2 5B full finetuning + Plücker camera encoder</div><div>WAN 2.1 1.3B full finetuning + Plücker camera encoder</div><div>CogVideoX 2B + ControlNet + Plücker camera encoder</div></div>
+        <div class="model-header"><div>Ours (UCPE + WAN 2.1)</div><div>Ours (WAN 2.2 5B full finetuning + Plücker camera encoder)</div><div>Ours (WAN 2.1 1.3B full finetuning + Plücker camera encoder)</div><div>Ours (CogVideoX 2B + ControlNet + Plücker camera encoder)</div></div>
         <video class="composite-video" controls loop muted preload="none">
             <source src="synced_videos/qualitative/backbones/00104.mp4" type="video/mp4">
         </video>
@@ -3255,6 +3282,43 @@ else:
                 const next = tabButtons[(current + delta + tabButtons.length) % tabButtons.length];
                 activateQualitativeTab(next.dataset.qualitativeTab, true);
             }));
+
+            const checkpointSelect = document.getElementById('prompt-checkpoint-select');
+            const promptQualitativeResults = document.getElementById('prompt-qualitative-results');
+            const checkpointFiles = {
+                ucpe: {
+                    ours: '_ucpe-ours-24000-lr-1e-4-norm1_pitch_',
+                    woNull: '_ucpe-ours-24000-lr-1e-4_without_null_pitch-norm1_pitch_',
+                    ext: '.png'
+                },
+                wan22: {
+                    ours: '_ours-wan_march1_panowan_8gpus_30000_05_looking_down_prob3_pitch_',
+                    woNull: '_ours-wan_march2_30k_iters_wo_null_pitch_neg_prompt_pitch_',
+                    ext: '.jpg'
+                }
+            };
+            function updatePromptCheckpoint(checkpoint) {
+                if (!promptQualitativeResults) return;
+                const files = checkpointFiles[checkpoint] || checkpointFiles.ucpe;
+                promptQualitativeResults.querySelectorAll('table tr').forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    if (cells.length < 4) return;
+                    const groundTruth = cells[1].querySelector('img');
+                    const ours = cells[2].querySelector('img');
+                    const woNull = cells[3].querySelector('img');
+                    if (!groundTruth || !ours || !woNull) return;
+                    const match = groundTruth.getAttribute('src').match(/qual\/(.+)_ground_truth_pitched_pitch_(-?\d+)\.jpg$/);
+                    if (!match) return;
+                    const [, scene, pitch] = match;
+                    const base = `assets/prompt_entanglement_bench/qual/${scene}`;
+                    ours.src = `${base}${files.ours}${pitch}${files.ext}`;
+                    woNull.src = `${base}${files.woNull}${pitch}${files.ext}`;
+                });
+            }
+            if (checkpointSelect) {
+                checkpointSelect.addEventListener('change', () => updatePromptCheckpoint(checkpointSelect.value));
+                updatePromptCheckpoint(checkpointSelect.value);
+            }
 
             const videos = document.querySelectorAll('video');
             const observer = new IntersectionObserver(entries => {
