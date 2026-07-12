@@ -137,11 +137,59 @@
 		height: 1px;
 		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 	}
+
+	.teaser-layout {
+		max-width: 980px;
+		margin: 0 auto;
+	}
+
+	.teaser-grid {
+		font-size: 13pt;
+		display: flex;
+		gap: 28px;
+		align-items: flex-start;
+		margin-top: 10px;
+	}
+
+	.teaser-cell {
+		flex: 1;
+		min-width: 0;
+		text-align: left;
+	}
+
+	.teaser-cell img {
+		border: none;
+		max-width: 100px;
+		display: block;
+		margin: 0 auto 10px auto;
+	}
+
+	@media (max-width: 900px) {
+		.teaser-grid {
+			flex-direction: column;
+			gap: 16px;
+		}
+	}
+
+	
+
+	pre {
+		background-color: #eee;
+		padding: 16px;
+		text-align: justify;
+		display: block;
+		font-family: monospace;
+		white-space: pre-wrap;
+		word-wrap: break-word;
+		margin: 1em 0px;
+	}
+
 </style>
 
 <html>
 
 <head>
+	<meta charset="UTF-8">
 	<title>GimbalDiffusion: Gravity-Aware Camera Control for Video Generation</title>
 	<!-- <meta name="description" content="GimbalDiffusion: Gravity-Aware Camera Control for Video Generation."> -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -180,27 +228,104 @@
 			<tr>
 			</tr>
 		</table>
+		  
+		  <hr> 
+		  
+		  <table align=center width=875px>
+	  		  <table align=center width=700px> 
+	  		  	<tr>  
+	  	              <td align=center width=150px>
+	  					<center>
+	  						<span style="font-size:20px">Accepted at the <a href='https://eccv.ecva.net/'>European Conference on Computer Vision (ECCV)</a>, 2026!</span>
+		  		  		</center>
+		  		  	  </td>   
+	  			  <tr>
+	  			  <tr>  
+	  			  <tr>
+	  			  
+			  </table>
+			</table> 
+
+	  <hr> 
 	</center>
 
 	<center>
-		<table align=center width=850px>
-			<tr>
-				<td width=1000px>
-					<center>
-						<video src="./assets/teaser-website.mp4" autoplay muted playsinline loop style="width: 80%;">
-					</center>
-				</td>
-			</tr>
-		</table>
+
+    <div class="sample-container">
+		<div class="teaser-layout">
+			
+			<div style="text-align: center;">
+				<video id="teaser-video" autoplay loop muted preload="none" style="width: 100%; max-width: 100%;">
+					<source id="teaser-video-source" src="supp/synced_videos/teaser/teaser.mp4" data-path="supp/synced_videos/teaser/teaser.mp4" type="video/mp4">
+					Your browser does not support the video tag.
+				</video>
+			</div>
+			<div class="teaser-grid">
+				<div class="teaser-cell">
+					
+                <p>
+                    <i>"A quiet mountain village during snowfall as smoke rises from chimneys and lights glow along the snowy street. Many llamas are walking around in the street."</i>
+                </p>
+					<img src="supp/assets/teaser/pitch.svg" data-path="supp/assets/teaser/pitch.svg"/>
+                <p>
+                    Camera motion: Pitch from +80&deg; to -80&deg;, no translation.
+                </p>
+            </div>
+			<div class="teaser-cell">
+                <p>
+                   <i>"A tropical beach at sunrise with palm trees swaying gently while small waves roll onto the golden sand."</i>
+                </p>
+				<img src="supp/assets/teaser/roll.svg" data-path="supp/assets/teaser/roll.svg"/>
+                <p>
+                    Camera motion: Roll from -90&deg; to 90&deg;, move forward by 8 meters.
+                </p>
+            </div>
+			</div>
+		</div>
+        </div>
+
+	<script type="text/javascript">
+		(function () {
+			var marker = "/GimbalDiffusion";
+			var path = window.location.pathname;
+			var prefix = "./";
+			var markerIndex = path.indexOf(marker);
+
+			if (markerIndex !== -1) {
+				prefix = path.substring(0, markerIndex + marker.length);
+				if (prefix.charAt(prefix.length - 1) !== "/") {
+					prefix += "/";
+				}
+			}
+
+			var assetNodes = document.querySelectorAll("[data-path]");
+			for (var i = 0; i < assetNodes.length; i++) {
+				var node = assetNodes[i];
+				var relativePath = node.getAttribute("data-path");
+				node.setAttribute("src", prefix + relativePath);
+			}
+
+			var teaserVideo = document.getElementById("teaser-video");
+			if (teaserVideo) {
+				teaserVideo.load();
+			}
+		})();
+	</script>
+
 	</center>
 
 	<br>
 	<hr>
 	<table align=center width=800px>
 		<tr>
-			<td align=center width=120px>
+			<td align=center width=80px>
 				<center>
 					<span style="font-size:24px"><a href='https://arxiv.org/abs/2512.09112'>[Paper]</a></span><br>
+				</center>
+			</td>
+			<td align=center width=120px>
+				<center>
+					<span style="font-size:24px"><a href='https://github.com/lvsn/GimbalDiffusion'>[Code (coming soon)]</a></span><br>
 				</center>
 			</td>
 			<td align=center width=120px>
@@ -219,36 +344,28 @@
 		</center>
 		<tr>
 			<td>
-				Recent progress in text-to-video generation has achieved remarkable realism, yet fine-grained control over
-				camera motion and orientation remains elusive. Existing approaches typically encode camera trajectories
-				through relative or ambiguous representations, limiting explicit geometric control. We introduce
-				GimbalDiffusion, a framework that enables camera control grounded in physical-world coordinates, using
-				gravity as a global reference. Instead of describing motion relative to previous frames, our method defines 
-				camera trajectories in an absolute coordinate system, allowing precise and interpretable control over camera
-				parameters without requiring an initial reference frame. We leverage panoramic 360-degree videos to construct
-				a wide variety of camera trajectories, well beyond the predominantly straight, forward-facing trajectories 
-				seen in conventional video data. To further enhance camera guidance, we introduce null-pitch conditioning, 
-				an annotation strategy that reduces the model's reliance on text content when conflicting with camera 
-				specifications (e.g., generating grass while the camera points towards the sky). Finally, we establish 
-				a benchmark for camera-aware video generation by rebalancing SpatialVID-HQ for comprehensive evaluation 
-				under wide camera pitch variation. Together, these contributions advance the controllability and robustness
-				of text-to-video models, enabling precise, gravity-aligned camera manipulation within generative frameworks.
+				Recent progress in text-to-video generation has achieved remarkable realism, yet fine-grained control over camera motion and orientation remains elusive, especially with extreme trajectories (e.g., a 180-degree turnaround, or looking directly up or down). Existing approaches typically encode camera trajectories using relative or ambiguous representations, limiting precise geometric control and offering limited support for large rotations. We introduce GimbalDiffusion, a framework that enables camera control grounded in physical-world coordinates, using gravity as a global reference. Instead of describing motion relative to previous frames, our method defines camera trajectories in an absolute coordinate system, allowing accurate, interpretable control over camera parameters. Using panoramic 360-degree videos for training, we cover the full sphere of possible viewpoints, including combinations of extreme pitch and roll that are out-of-distribution of conventional video data. To improve camera guidance, we introduce null-pitch conditioning, a strategy that prevents the model from overriding camera specifications in the presence of conflicting prompt content (e.g., generating grass while the camera points toward the sky). Finally, we propose new benchmarks to evaluate gravity-aware camera-controlled video generation, assessing models' ability to generate extreme camera angles and quantify their input prompt entanglement.
 			</td>
 		</tr>
 	</table>
 	<br>
 	<hr>
-	<!--
+
 		  <table align=center width=875px>
 				<center><h1>Citation</h1></center>
 				<tr>
 					<td>
-						<pre><code>TODO</code></pre>
+						<pre><code>@inproceedings{fortierchouinard2026gimbaldiffusion,
+  title     = {GimbalDiffusion: Gravity-Aware Camera Control for Video Generation},
+  author    = {Fortier-Chouinard, Fr{\'e}d{\'e}ric and Hold-Geoffroy, Yannick and Deschaintre, Valentin and Gadelha, Matheus and Lalonde, Jean-Fran{\c{c}}ois},
+  booktitle = {European Conference on Computer Vision (ECCV)},
+  year      = {2026}
+}</code></pre>
 					</td>
 				</tr>
 			</table>
 				<br>
-		<hr>-->
+		<hr>
 
 		<br>
 	<div class="card mb-4 shadow-sm text-center">

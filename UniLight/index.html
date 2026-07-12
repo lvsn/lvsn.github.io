@@ -66,6 +66,14 @@
       font-size: 1.1rem;
     }
 
+    .highlight-badge {
+      background: linear-gradient(90deg, #ff6b6b 0%, #f9ca24 33%, #6ab04c 66%, #22a6b3 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
+    }
+
     .publication-links {
       margin-top: 10px;
     }
@@ -682,14 +690,14 @@
             </div>
 
             <div class="is-size-5 publication-venue">
-              <span class="author-block">preprint</span>
+              <span class="author-block">CVPR 2026 <span class="highlight-badge">Highlight</span></span>
             </div>
 
             <div class="column has-text-centered">
               <div class="publication-links">
                 <!-- PDF Link. -->
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/2512.04267v1" class="external-link button is-normal is-rounded is-dark">
+                  <a href="https://arxiv.org/abs/2512.04267" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="ai ai-arxiv"></i>
                     </span>
@@ -713,7 +721,7 @@
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Code (coming soon)</span>
+                  <span>Code</span>
                   </a>
                 </span>
                 <!-- Supp Link. -->
@@ -724,6 +732,15 @@
                       <i class="fas fa-photo-video"></i>
                   </span>
                   <span>Supp</span>
+                  </a>
+                </span>
+                <!-- Poster Link. -->
+                <span class="link-block">
+                  <a href="./static/binary/UniLightPoster.pdf" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Poster</span>
                   </a>
                 </span>
                 <!-- Data Link. -->
@@ -859,7 +876,7 @@
       <div class="content has-text-centered">
         <h2 class="title is-3">Lighting Control</h2>
         <div class="content has-text-justified is-size-6">
-          <img src="./static/images/relighting_pipeline_vert.svg" alt="LuxRemix Pipeline" style="width: 100%;">
+          <img src="./static/images/relighting_pipeline_vert.png" alt="LuxRemix Pipeline" style="width: 100%;">
           <p>
 UniLight embeddings enable light editing and control in X->RGB image synthesis. The input image is first decomposed to intrinsic maps (depth, normals, albedo), and then relit using an X->RGB diffusion model conditioned on UniLight embeddings, which supports various lighting modalities.          </p>
         </div>
@@ -884,11 +901,11 @@ UniLight embeddings enable light editing and control in X->RGB image synthesis. 
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
       <div class="bibtex-section">
-        <pre><code>@article{zhang2025unilight,
+        <pre><code>@inproceedings{zhang2026unilight,
   title={UniLight: A Unified Representation for Lighting},
   author={Zhang, Zitian and Georgiev, Iliyan and Fischer, Michael and Hold-Geoffroy, Yannick and Lalonde, Jean-Fran{\c{c}}ois and Deschaintre, Valentin},
-  journal={arXiv preprint arXiv:2512.04267},
-  year={2025}
+  booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year = {2026}
 }</code></pre>
       </div>
     </div>
