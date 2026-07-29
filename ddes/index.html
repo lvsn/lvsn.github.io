@@ -1,0 +1,275 @@
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+		font-weight: 300;
+		font-size: 18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1100px;
+	}
+
+	h1 {
+		font-size: 32px;
+		font-weight: 300;
+	}
+
+	a:link,
+	a:visited {
+		color: #1367a7;
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: #208799;
+	}
+
+	hr {
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+
+	pre {
+		background-color: #eee;
+		padding: 16px;
+		display: block;
+		font-family: monospace;
+		white-space: pre-wrap;
+		word-wrap: break-word;
+		margin: 1em 0px;
+		font-size: 14px;
+		border-radius: 6px;
+	}
+
+	table.results-table {
+		border-collapse: collapse;
+		width: 100%;
+		font-size: 16px;
+	}
+
+	table.results-table th,
+	table.results-table td {
+		border: 1px solid #ccc;
+		padding: 8px 14px;
+		text-align: center;
+	}
+
+	table.results-table th {
+		background-color: #f0f0f0;
+		font-weight: 600;
+	}
+
+	table.results-table tr:nth-child(even) {
+		background-color: #f8f8f8;
+	}
+
+	.venue-badge {
+		display: inline-block;
+		background-color: #1367a7;
+		color: white;
+		padding: 4px 14px;
+		border-radius: 14px;
+		font-size: 16px;
+		font-weight: 400;
+		margin-top: 8px;
+	}
+</style>
+
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>DDES: Dimensional Distribution Emotion State</title>
+	<meta name="description"
+		content="DDES represents image emotion as a 2D probability heatmap over valence-arousal space and unifies three complementary emotion representations — heatmap, point, and categorical distribution — through shared conversion equations, enabling multi-dataset training across heterogeneous annotation formats.">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+	<br>
+	<center>
+		<div style="text-align:center">
+			<span style="font-size:32px">Dimensional Distribution Emotion State:<br>Leveraging Valence and Arousal as a Common Embedding Space for Visual Emotion Analysis</span>
+		</div>
+
+		<br>
+		<div class="venue-badge">CVPR Workshops 2026</div>
+		<br><br>
+
+		<table align=center width=70%>
+			<tr>
+				<td align=center>
+					<center>
+						<span style="font-size:20px">Émile Bergeron</span>&nbsp;&nbsp;&nbsp;&nbsp;
+						<span style="font-size:20px">Tadagbé Dhossou</span>&nbsp;&nbsp;&nbsp;&nbsp;
+						<span style="font-size:20px">Sébastien Tremblay</span>&nbsp;&nbsp;&nbsp;&nbsp;
+						<span style="font-size:20px"><a href="http://www.jflalonde.ca/">Jean-François Lalonde</a></span>
+					</center>
+					<br>
+					<center>
+						<span style="font-size:18px">Université Laval &mdash; LVSN</span>
+					</center>
+				</td>
+			</tr>
+		</table>
+	</center>
+
+	<hr>
+
+	<table align=center width=600px>
+		<tr>
+			<td align=center width=150px>
+				<center>
+					<span style="font-size:24px"><a href='https://arxiv.org/abs/2605.26262'>[Paper]</a></span>
+				</center>
+			</td>
+			<td align=center width=150px>
+				<center>
+					<span style="font-size:24px"><a href='https://github.com/echoes22/DDES'>[Code]</a></span>
+				</center>
+			</td>
+			<td align=center width=150px>
+				<center>
+					<span style="font-size:24px"><a href='./assets/bibtex.txt'>[Bibtex]</a></span>
+				</center>
+			</td>
+		</tr>
+	</table>
+
+	<hr>
+
+	<table align=center width=875px>
+		<center>
+			<h1>Abstract</h1>
+		</center>
+		<tr>
+			<td>
+				Visual emotion analysis is hampered by the fragmentation of annotation formats across datasets: some use
+				categorical labels, others record valence-arousal coordinates, and others provide probability
+				distributions over emotion categories. We introduce <em>Dimensional Distribution Emotion State</em>
+				(DDES), a unified representation that encodes image emotion as a 28&times;28 probability heatmap over
+				the valence-arousal (V-A) plane. DDES subsumes and interconverts with two complementary forms
+				&mdash; a Dimensional Emotion State (DES, a V-A point) and a Categorical Emotion State (CES, an
+				N-class distribution) &mdash; through a small set of closed-form equations. This common embedding
+				space lets a single training loop jointly supervise on heterogeneous datasets and eliminates the need
+				for dataset-specific model heads. Three model variants (DDES-Net, CES-Net, DES-Net) are trained on
+				ArtEmis, D-ViSA, and EmoSet and evaluated on WikiArt-Emotion and EEMO-Bench, achieving competitive or
+				superior performance to prior work across all benchmarks.
+			</td>
+		</tr>
+	</table>
+
+	<hr>
+
+	<table align=center width=875px>
+		<center>
+			<h1>Three Emotion Representations</h1>
+		</center>
+		<tr>
+			<td>
+				<p>
+					DDES unifies three emotion representations that commonly appear across visual emotion datasets,
+					connected by bidirectional conversion equations:
+				</p>
+				<ul>
+					<li><strong>DDES</strong> &mdash; a 28&times;28 log-probability heatmap over the valence-arousal
+						plane, used as the canonical form.</li>
+					<li><strong>DES</strong> (Dimensional Emotion State) &mdash; a single (valence, arousal) point
+						in [&minus;1,&nbsp;1]².</li>
+					<li><strong>CES</strong> (Categorical Emotion State) &mdash; an N-class probability distribution
+						over discrete emotion labels.</li>
+				</ul>
+				<p>
+					The conversion equations allow any model to be supervised on any dataset, regardless of annotation
+					format. For example, a DDES-Net output can be converted to a CES prediction by bilinear-sampling the
+					heatmap at emotion anchor coordinates in V-A space (Eq.&nbsp;4), while a CES prediction converts to
+					DES via a weighted average over anchor positions (Eq.&nbsp;1).
+				</p>
+			</td>
+		</tr>
+	</table>
+
+	<hr>
+
+	<table align=center width=875px>
+		<center>
+			<h1>Results</h1>
+		</center>
+		<tr>
+			<td>
+				<p>Combined training on ArtEmis + D-ViSA + EmoSet (Table 3 of the paper). Models are evaluated on
+					in-distribution datasets (ArtEmis, D-ViSA) and held-out benchmarks (WikiArt-Emotion, EEMO-Bench).
+				</p>
+				<table class="results-table">
+					<thead>
+						<tr>
+							<th>Model</th>
+							<th>ArtEmis Top-1 &uarr;</th>
+							<th>ArtEmis &tau; &uarr;</th>
+							<th>D-ViSA Pearson V &uarr;</th>
+							<th>EEMO Pearson V &uarr;</th>
+							<th>WikiArt Top-1 &uarr;</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>DDES-Net</strong></td>
+							<td>0.414</td>
+							<td>0.343</td>
+							<td>0.372</td>
+							<td>0.453</td>
+							<td>0.141</td>
+						</tr>
+						<tr>
+							<td><strong>CES-Net</strong></td>
+							<td>0.409</td>
+							<td>&mdash;</td>
+							<td>0.408</td>
+							<td>0.565</td>
+							<td>0.088</td>
+						</tr>
+						<tr>
+							<td><strong>DES-Net</strong></td>
+							<td>&mdash;</td>
+							<td>&mdash;</td>
+							<td>0.388</td>
+							<td>&mdash;</td>
+							<td>0.071</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+	<hr>
+
+	<table align=center width=875px>
+		<center>
+			<h1>Citation</h1>
+		</center>
+		<tr>
+			<td>
+				<pre>@InProceedings{Bergeron_2026_CVPR,
+    author    = {Bergeron, Emile and Dhossou, Tadagb\'e and Tremblay, S\'ebastien and Lalonde, Jean-Fran\c{c}ois},
+    title     = {Dimensional Distribution Emotion State: Leveraging Valence and Arousal as a Common Embedding Space for Visual Emotion Analysis},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
+    month     = {June},
+    year      = {2026},
+    pages     = {5234-5241}
+}</pre>
+			</td>
+		</tr>
+	</table>
+
+	<hr>
+
+	<div style="text-align: center; padding-bottom: 30px;">
+		<span style="font-size:16px; color: #666;">
+			This research was supported by NSERC. Computing resources were provided by the Digital Research Alliance of
+			Canada.
+		</span>
+	</div>
+
+</body>
+</html>
