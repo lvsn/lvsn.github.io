@@ -1,0 +1,8 @@
+@InProceedings{Bergeron_2026_CVPR,
+    author    = {Bergeron, Emile and Dhossou, Tadagb\'e and Tremblay, S\'ebastien and Lalonde, Jean-Fran\c{c}ois},
+    title     = {Dimensional Distribution Emotion State: Leveraging Valence and Arousal as a Common Embedding Space for Visual Emotion Analysis},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
+    month     = {June},
+    year      = {2026},
+    pages     = {5234-5241}
+}

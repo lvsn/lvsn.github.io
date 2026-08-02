@@ -1,0 +1,305 @@
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+		font-weight: 300;
+		font-size: 18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1100px;
+	}
+
+	h1 {
+		font-size: 32px;
+		font-weight: 300;
+	}
+
+	a:link,
+	a:visited {
+		color: #1367a7;
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: #208799;
+	}
+
+	hr {
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+
+	pre {
+		background-color: #eee;
+		padding: 16px;
+		display: block;
+		font-family: monospace;
+		white-space: pre-wrap;
+		word-wrap: break-word;
+		margin: 1em 0px;
+		font-size: 14px;
+		border-radius: 6px;
+	}
+
+	.results-wrap {
+		overflow-x: auto;
+	}
+
+	table.results {
+		border-collapse: collapse;
+		width: 100%;
+		font-size: 16px;
+		font-variant-numeric: tabular-nums;
+	}
+
+	table.results th,
+	table.results td {
+		border: 1px solid #ccc;
+		padding: 8px 14px;
+		text-align: center;
+		vertical-align: middle;
+	}
+
+	table.results th {
+		background-color: #f0f0f0;
+		font-weight: 600;
+	}
+
+	table.results tbody tr:nth-child(even) td {
+		background-color: #f8f8f8;
+	}
+
+	table.results td:first-child {
+		text-align: left;
+	}
+
+	.venue-badge {
+		display: inline-block;
+		background-color: #1367a7;
+		color: white;
+		padding: 4px 14px;
+		border-radius: 14px;
+		font-size: 16px;
+		font-weight: 400;
+		margin-top: 8px;
+	}
+</style>
+
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>DDES: Dimensional Distribution Emotion State</title>
+	<meta name="description"
+		content="We introduce DDES, a unified emotion representation that encodes image emotion as a 2D probability heatmap over the valence-arousal plane, enabling multi-dataset training across heterogeneous annotation formats.">
+</head>
+
+<body>
+	<br>
+	<center>
+		<div style="text-align:center">
+			<span style="font-size:32px">Dimensional Distribution Emotion State:<br>Leveraging Valence and Arousal as a Common Embedding Space for Visual Emotion Analysis</span>
+		</div>
+
+		<br>
+		<div class="venue-badge">CVPR Workshops 2026</div>
+		<br><br>
+
+		<table align=center width=70%>
+			<tr>
+				<td align=center>
+					<center>
+						<span style="font-size:20px">Émile Bergeron</span>&nbsp;&nbsp;&nbsp;&nbsp;
+						<span style="font-size:20px">Tadagbé Dhossou</span>&nbsp;&nbsp;&nbsp;&nbsp;
+						<span style="font-size:20px">Sébastien Tremblay</span>&nbsp;&nbsp;&nbsp;&nbsp;
+						<span style="font-size:20px"><a href="http://www.jflalonde.ca/">Jean-François Lalonde</a></span>
+					</center>
+					<br>
+					<center>
+						<span style="font-size:18px">Université Laval &mdash; LVSN</span>
+					</center>
+				</td>
+			</tr>
+		</table>
+	</center>
+
+	<hr>
+
+	<table align=center width=600px>
+		<tr>
+			<td align=center width=150px>
+				<center>
+					<span style="font-size:24px"><a href='https://arxiv.org/abs/2605.26262'>[Paper]</a></span>
+				</center>
+			</td>
+			<td align=center width=150px>
+				<center>
+					<span style="font-size:24px"><a href='https://github.com/echoes22/DDES'>[Code]</a></span>
+				</center>
+			</td>
+			<td align=center width=150px>
+				<center>
+					<span style="font-size:24px"><a href='./assets/bibtex.txt'>[Bibtex]</a></span>
+				</center>
+			</td>
+		</tr>
+	</table>
+
+	<hr>
+
+	<table align=center width=875px>
+		<center>
+			<h1>Abstract</h1>
+		</center>
+		<tr>
+			<td>
+				Museums are important sites for the dissemination of culture and art. They are institutions rooted in
+				history and tradition; their exhibitions are often designed to highlight these aspects. Recently, a new
+				approach is being explored in the field: emotion-based exhibitions. These exhibitions are designed
+				specifically to elicit emotions in the visitors, in order to maximize engagement, and as a way to
+				democratize access to art and attract a wider, more diverse audience. To do so, the emotional content of
+				the artworks must first be extracted, however, manually annotating the artworks by experts is a
+				prohibitively labor-intensive process, and risks introducing the personal bias of curators. To assist
+				the museum curators in their design of these exhibitions, we wish to develop a tool that can predict the
+				emotional response evoked by a work of art. In this article, we leverage a continuous bi-dimensional
+				emotion space to enhance emotion representations and the training process of deep learning models.
+				Drawing inspiration from existing categorical and dimensional emotion representations, we introduce a
+				new representation, <em>Dimensional Distribution Emotion State</em> (DDES), along with a pipeline for
+				multi-dataset training. We show that DDES provides multiple advantages compared to widely used
+				representations while exhibiting similar baseline performance.
+			</td>
+		</tr>
+	</table>
+
+	<hr>
+
+	<table align=center width=875px>
+		<center>
+			<h1>Three Emotion Representations</h1>
+		</center>
+		<tr>
+			<td>
+				<p>
+					DDES unifies three emotion representations that commonly appear across visual emotion datasets,
+					connected by bidirectional conversion equations:
+				</p>
+				<ul>
+					<li><strong>DDES</strong> &mdash; a 28&times;28 log-probability heatmap over the valence-arousal
+						plane, used as the canonical form.</li>
+					<li><strong>DES</strong> (Dimensional Emotion State) &mdash; a single (valence, arousal) point
+						in [&minus;1,&nbsp;1]&sup2;.</li>
+					<li><strong>CES</strong> (Categorical Emotion State) &mdash; an N-class probability distribution
+						over discrete emotion labels.</li>
+				</ul>
+				<p>
+					The conversion equations allow any model to be supervised on any dataset, regardless of annotation
+					format. A DDES-Net output converts to a CES prediction by bilinear-sampling the heatmap at emotion
+					anchor coordinates in V-A space (Eq.&nbsp;4), while a CES prediction converts to DES via a weighted
+					average over anchor positions (Eq.&nbsp;1).
+				</p>
+			</td>
+		</tr>
+	</table>
+
+	<hr>
+
+	<table align=center width=875px>
+		<center>
+			<h1>Results</h1>
+		</center>
+		<tr>
+			<td>
+				<p>Combined training on ArtEmis + D-ViSA + EmoSet (Table 3 of the paper). Models are evaluated on
+					in-distribution datasets and held-out benchmarks (WikiArt-Emotion, EEmo-Bench).
+				</p>
+				<div class="results-wrap">
+					<table class="results">
+						<thead>
+							<tr>
+								<th rowspan="2">Model</th>
+								<th colspan="2">ArtEmis</th>
+								<th colspan="2">D-ViSA</th>
+								<th>EmoSet</th>
+								<th colspan="3">EEmo-Bench</th>
+								<th colspan="3">WikiArt-Emotion</th>
+							</tr>
+							<tr>
+								<th>Acc &uarr;</th>
+								<th>&tau; &uarr;</th>
+								<th>r<sub>v</sub> &uarr;</th>
+								<th>r<sub>a</sub> &uarr;</th>
+								<th>RMSE &darr;</th>
+								<th>Acc &uarr;</th>
+								<th>r<sub>v</sub> &uarr;</th>
+								<th>r<sub>a</sub> &uarr;</th>
+								<th>Acc* &uarr;</th>
+								<th>Acc &uarr;</th>
+								<th>&tau; &uarr;</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><strong>CES-Net</strong></td>
+								<td>38.9</td><td>0.32</td>
+								<td>0.42</td><td>0.05</td>
+								<td>0.61</td>
+								<td>60.2</td><td>0.59</td><td>0.12</td>
+								<td>18.9</td><td>8.6</td><td>0.07</td>
+							</tr>
+							<tr>
+								<td><strong>DES-Net</strong></td>
+								<td>24.1</td><td>0.19</td>
+								<td>0.38</td><td>0.06</td>
+								<td>0.60</td>
+								<td>50.1</td><td>0.58</td><td>0.23</td>
+								<td>15.8</td><td>7.6</td><td>0.13</td>
+							</tr>
+							<tr>
+								<td><strong>DDES-Net</strong></td>
+								<td>33.6</td><td>0.30</td>
+								<td>0.43</td><td>0.09</td>
+								<td>0.55</td>
+								<td>39.4</td><td>0.47</td><td>0.32</td>
+								<td>21.2</td><td>10.5</td><td>0.18</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<p style="font-size:14px; color:#666; margin-top:8px;">
+					Acc* = accuracy in the 8-class ArtEmis space; Acc = accuracy in the 20-class WikiArt-Emotion space.
+					r<sub>v</sub>/r<sub>a</sub> = Pearson correlation for valence/arousal.
+				</p>
+			</td>
+		</tr>
+	</table>
+
+	<hr>
+
+	<table align=center width=875px>
+		<center>
+			<h1>Citation</h1>
+		</center>
+		<tr>
+			<td>
+				<pre>@InProceedings{Bergeron_2026_CVPR,
+    author    = {Bergeron, Emile and Dhossou, Tadagb\'e and Tremblay, S\'ebastien and Lalonde, Jean-Fran\c{c}ois},
+    title     = {Dimensional Distribution Emotion State: Leveraging Valence and Arousal as a Common Embedding Space for Visual Emotion Analysis},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
+    month     = {June},
+    year      = {2026},
+    pages     = {5234-5241}
+}</pre>
+			</td>
+		</tr>
+	</table>
+
+	<hr>
+
+	<div style="text-align: center; padding-bottom: 30px;">
+		<span style="font-size:16px; color: #666;">
+			This research was supported by NSERC. Computing resources were provided by the Digital Research Alliance of Canada.
+		</span>
+	</div>
+
+</body>
+</html>
