@@ -402,24 +402,6 @@
             margin-top: 12px;
             text-align: left;
         }
-        .checkpoint-control {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin: 16px 0;
-        }
-        .checkpoint-control label {
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        .checkpoint-control select {
-            padding: 6px 10px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            background: white;
-            font-size: 1rem;
-        }
         @media (max-width: 800px) {
             .commercial-t2i-grid {
                 grid-template-columns: 1fr;
@@ -1135,7 +1117,7 @@ else:
         <p>
             Here, we show a quantitative analysis of the effect of the "look-down" prompts.
             Again, training on "look-down" prompts mostly helps the fully finetuned WAN 2.2 model, as seen in the gravity error decrease and the CLIP score increase.
-            However, no clear effect is observed on the UCPE backbone, with a slightly better pitch error, but slightly worse scores on other metrics.
+            However, a smaller effect is observed on the UCPE backbone, with a slightly better pitch error, but slightly worse scores on other metrics.
             We attribute this discrepancy to the smaller number of trained parameter in UCPE, which makes it less prone to overfitting to artifacts (like a person walking).
         </p>
             <table>
@@ -1156,13 +1138,13 @@ else:
                     <tr>
                         <td>WAN 2.2 5B</td>
                         <td>Without</td>
-                        <td>11.97</td>
-                        <td>14.42</td>
-                        <td>14.87</td>
+                        <td>11.20</td>
+                        <td>13.54</td>
+                        <td>16.67</td>
                         <td>0.74</td>
-                        <td>19.78</td>
-                        <td>113.49</td>
-                        <td>994.50</td>
+                        <td>20.23</td>
+                        <td>114.66</td>
+                        <td>999.05</td>
                     </tr>
                     <tr>
                         <td>WAN 2.2 5B</td>
@@ -1178,24 +1160,24 @@ else:
                     <tr>
                         <td>UCPE (WAN 2.1)</td>
                         <td>Without</td>
-                        <td>15.44</td>
-                        <td>18.42</td>
-                        <td>12.01</td>
-                        <td>0.46</td>
-                        <td>21.47</td>
-                        <td>109.65</td>
-                        <td>899.68</td>
+                        <td>15.69</td>
+                        <td>18.67</td>
+                        <td>11.80</td>
+                        <td>0.48</td>
+                        <td>21.67</td>
+                        <td>112.34</td>
+                        <td>957.66</td>
                     </tr>
                     <tr>
                         <td>UCPE (WAN 2.1)</td>
                         <td>With</td>
-                        <td>13.98</td>
-                        <td>17.16</td>
-                        <td>12.12</td>
+                        <td>13.95</td>
+                        <td>16.95</td>
+                        <td>12.26</td>
                         <td>0.46</td>
-                        <td>21.25</td>
-                        <td>112.47</td>
-                        <td>978.13</td>
+                        <td>21.50</td>
+                        <td>114.0</td>
+                        <td>997.9</td>
                     </tr>
                 </tbody>
             </table>
@@ -1206,8 +1188,7 @@ else:
     <div class="sample-container backbone-section">
         <p>
             We trained the following backbone and camera-conditioning variants. For all backbones, classifier-free guidance (CFG)
-            is applied only to the text conditioning, and not to the camera conditioning. All methods use a batch size of 1 per GPU
-            and generate 49 frames per video. The training clips are sampled with stride 2 from the original videos, i.e., half of
+            is applied only to the text conditioning, and not to the camera conditioning. All methods generate 49 frames per video. The training clips are sampled with stride 2 from the original videos, i.e., half of
             the original frames are skipped, so a 30 FPS video becomes 15 FPS.
         </p>
 
@@ -1222,6 +1203,8 @@ else:
                         <th>Training resolution</th>
                         <th>LR</th>
                         <th>GPUs used</th>
+                        <th>Per-GPU batch size</th>
+                        <th>Gradient accumulation</th>
                         <th>Iterations</th>
                         <th>Other details</th>
                     </tr>
@@ -1235,6 +1218,8 @@ else:
                         <td class="compact">832&times;480</td>
                         <td class="compact">1e-5</td>
                         <td class="compact">8 H200</td>
+                        <td class="compact">1</td>
+                        <td class="compact">1</td>
                         <td class="compact">30K</td>
                         <td>
                             Reuses the
@@ -1251,6 +1236,8 @@ else:
                         <td class="compact">736&times;480</td>
                         <td class="compact">1e-5</td>
                         <td class="compact">8 H200</td>
+                        <td class="compact">1</td>
+                        <td class="compact">1</td>
                         <td class="compact">30K</td>
                         <td>
                             Uses the lightweight custom encoder detailed below to reduce the parameter count of the camera-conditioning branch.
@@ -1264,6 +1251,8 @@ else:
                         <td class="compact">832&times;480</td>
                         <td class="compact">1e-4</td>
                         <td class="compact">8 H200</td>
+                        <td class="compact">1</td>
+                        <td class="compact">1</td>
                         <td class="compact">24K</td>
                         <td>
                             Starts from the original <a href="https://github.com/chengzhag/UCPE">chengzhag/UCPE</a> implementation
@@ -1278,6 +1267,8 @@ else:
                         <td class="compact">720&times;480</td>
                         <td class="compact">1e-4</td>
                         <td class="compact">4 H100</td>
+                        <td class="compact">2</td>
+                        <td class="compact">2</td>
                         <td class="compact">10K</td>
                         <td>
                             Starts from the original AC3D implementation (<a href="https://github.com/lefreud/ac3d/">lefreud/ac3d</a>)
@@ -1472,10 +1463,10 @@ else:
             This cropping results in significant detail loss, discarding 86.1% and 95.8% of pixels for 90° and 45° fields of view, respectively. 
             The reduction in high-frequency details affects CLIP alignment and FID scores, even though both models are trained on similar data.
             We train ours on a subset of PanoVid, while PanoWAN uses the entire dataset.
-            At 90&deg; FOV, PanoWAN shows lower prompt alignment (CLIP 19.46 vs. our 21.25)
-            and image quality (FID 123.10 vs. our 112.47). When using a narrower FOV of 45&deg;,
-            these differences are more pronounced, with PanoWAN reaching a CLIP score of 16.82 versus our 19.45
-            and an FID of 142.81 versus our 110.46.
+            At 90&deg; FOV, PanoWAN shows lower prompt alignment (CLIP 19.41 vs. our 21.53)
+            and image quality (FID 122.92 vs. our 114.04). When using a narrower FOV of 45&deg;,
+            these differences are more pronounced, with PanoWAN reaching a CLIP score of 16.77 versus our 19.61
+            and an FID of 143.04 versus our 114.82.
         </p>
     </div>
 
@@ -1592,8 +1583,8 @@ else:
     <div class="sample-container">
         <p>
             The main paper evaluation focuses on performance on extreme trajectories using SpatialVID-extreme.
-            Here, we evaluate our method (with the UCPE encoding) on a subset of 140 videos of RealEstate10K's test set, a standard benchmark with minimal camera movement, and compare it against prior work.
-            Our method still reaches the lowest pitch and gravity errors and is competitive on all other metrics. Note that AC3D was trained on RealEstate10K.
+            Here, we evaluate our method across the AC3D, WAN 2.1, WAN 2.2, and UCPE variants on a subset of 140 videos of RealEstate10K's test set, a standard benchmark with minimal camera movement, and compare it against prior work.
+            Our variants are competitive across the reported metrics. Note that AC3D was trained on RealEstate10K.
         </p>
         <div class="wide-table-wrap">
             <table class="wide-table realestate-table">
@@ -1620,18 +1611,18 @@ else:
                         <td class="best">2.46</td>
                         <td>0.63</td>
                         <td class="best">26.26</td>
-                        <td class="best">79.28</td>
+                        <td>79.28</td>
                         <td class="best">658.90</td>
                     </tr>
                     <tr>
                         <td>Ours</td>
-                        <td class="best">5.44</td>
-                        <td class="best">6.39</td>
-                        <td>4.48</td>
-                        <td class="best">0.56</td>
-                        <td>24.85</td>
-                        <td>81.17</td>
-                        <td>848.27</td>
+                        <td class="best">4.63</td>
+                        <td class="best">5.62</td>
+                        <td>4.11</td>
+                        <td class="best">0.51</td>
+                        <td>24.97</td>
+                        <td class="best">75.88</td>
+                        <td>837.11</td>
                     </tr>
                     <tr class="group-row">
                         <td colspan="8">WAN 2.1 1.3B + Plücker camera encoder + full finetuning</td>
@@ -1641,20 +1632,20 @@ else:
                         <td>9.46</td>
                         <td>10.30</td>
                         <td class="best">1.86</td>
-                        <td>0.75</td>
+                        <td class="best">0.75</td>
                         <td class="best">25.33</td>
                         <td>91.79</td>
                         <td class="best">724.36</td>
                     </tr>
                     <tr>
                         <td>Ours</td>
-                        <td class="best">4.92</td>
-                        <td class="best">6.33</td>
-                        <td>6.01</td>
-                        <td class="best">0.66</td>
-                        <td>24.36</td>
-                        <td class="best">80.37</td>
-                        <td>841.48</td>
+                        <td class="best">5.59</td>
+                        <td class="best">6.98</td>
+                        <td>5.99</td>
+                        <td>0.76</td>
+                        <td>24.29</td>
+                        <td class="best">84.33</td>
+                        <td>811.40</td>
                     </tr>
                     <tr class="group-row">
                         <td colspan="8">WAN 2.2 5B + Plücker camera encoder + full finetuning</td>
@@ -1679,18 +1670,18 @@ else:
                         <td>2.18</td>
                         <td class="best">0.43</td>
                         <td class="best">25.53</td>
-                        <td>79.86</td>
-                        <td>716.80</td>
+                        <td class="best">79.86</td>
+                        <td class="best">716.80</td>
                     </tr>
                     <tr>
                         <td>Ours</td>
-                        <td class="best">5.08</td>
-                        <td class="best">5.87</td>
-                        <td class="best">2.11</td>
-                        <td>0.51</td>
-                        <td>25.13</td>
-                        <td class="best">78.53</td>
-                        <td class="best">713.73</td>
+                        <td class="best">5.38</td>
+                        <td class="best">6.22</td>
+                        <td class="best">2.18</td>
+                        <td>0.53</td>
+                        <td>25.25</td>
+                        <td>81.02</td>
+                        <td>743.87</td>
                     </tr>
                 </tbody>
             </table>
@@ -1721,8 +1712,8 @@ else:
             First, we report additional graphs showcasing the relationship between the prompt alignment and the input pitch angle,
             via the CLIP score, where a higher score indicates stronger agreement between the prompt and the image.
             We report the CLIP score computed between the generated image and the caption from the ground truth at the input pitch angle (left, same as in fig. 6.b) and from the forward-looking prompt (right).
-            We observe that our method (in <b style="color: orange;">orange</b>) comes closer to the ground-truth values (in <b style="color: black;">black</b>) than
-            the variant trained without null-pitch conditioning (in <b style="color: red;">red</b>) and the other methods, across the full range of pitch angles.
+            We observe that our method comes closer to the ground-truth values than
+            the variant trained without null-pitch conditioning and the other methods, across the full range of pitch angles.
         </p>
 
         <div class="video-grid" style="margin: auto;">
@@ -2710,11 +2701,11 @@ else:
         </video>
         <div class="metrics-grid">
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>9.2125</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>10.0886</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>10.2068</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>0.8939</td></tr>
-<tr><td>CLIP ↑</td><td>23.8044</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>15.3769</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>15.9191</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>34.4431</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>0.8506</td></tr>
+<tr><td>CLIP ↑</td><td>23.9114</td></tr>
 </table></div>
 <div><table class="metrics-table">
 <tr><td>PitchErr (abs.) ↓</td><td>5.2914</td></tr>
@@ -2731,11 +2722,11 @@ else:
 <tr><td>CLIP ↑</td><td>23.4687</td></tr>
 </table></div>
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>18.3141</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>20.9294</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>18.2107</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>1.1853</td></tr>
-<tr><td>CLIP ↑</td><td>23.6947</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>16.7216</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>18.9763</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>20.7150</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>1.1624</td></tr>
+<tr><td>CLIP ↑</td><td>23.9334</td></tr>
 </table></div>
 
         </div>
@@ -2767,11 +2758,11 @@ else:
         </video>
         <div class="metrics-grid">
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>10.5314</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>12.1192</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>37.4392</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>0.4248</td></tr>
-<tr><td>CLIP ↑</td><td>20.6619</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>5.7198</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>6.0947</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>33.3435</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>0.4691</td></tr>
+<tr><td>CLIP ↑</td><td>20.5574</td></tr>
 </table></div>
 <div><table class="metrics-table">
 <tr><td>PitchErr (abs.) ↓</td><td>3.3704</td></tr>
@@ -2788,11 +2779,11 @@ else:
 <tr><td>CLIP ↑</td><td>13.4428</td></tr>
 </table></div>
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>33.8885</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>35.6779</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>17.3528</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>0.8736</td></tr>
-<tr><td>CLIP ↑</td><td>17.0510</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>11.4574</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>13.4420</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>16.3998</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>0.7784</td></tr>
+<tr><td>CLIP ↑</td><td>17.1352</td></tr>
 </table></div>
 
         </div>
@@ -2824,11 +2815,11 @@ else:
         </video>
         <div class="metrics-grid">
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>9.2411</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>11.7102</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>28.1187</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>1.0968</td></tr>
-<tr><td>CLIP ↑</td><td>24.2255</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>10.6962</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>11.6371</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>27.4300</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>0.7451</td></tr>
+<tr><td>CLIP ↑</td><td>23.8904</td></tr>
 </table></div>
 <div><table class="metrics-table">
 <tr><td>PitchErr (abs.) ↓</td><td>7.7952</td></tr>
@@ -2845,11 +2836,11 @@ else:
 <tr><td>CLIP ↑</td><td>18.6111</td></tr>
 </table></div>
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>7.7377</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>8.4908</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>25.9083</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>0.6504</td></tr>
-<tr><td>CLIP ↑</td><td>22.2977</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>4.7536</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>6.0728</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>21.9182</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>0.7296</td></tr>
+<tr><td>CLIP ↑</td><td>19.0156</td></tr>
 </table></div>
 
         </div>
@@ -2881,11 +2872,11 @@ else:
         </video>
         <div class="metrics-grid">
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>8.9875</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>12.8998</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>16.5456</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>0.4205</td></tr>
-<tr><td>CLIP ↑</td><td>17.3378</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>10.6286</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>13.5971</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>20.5139</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>0.4020</td></tr>
+<tr><td>CLIP ↑</td><td>18.5840</td></tr>
 </table></div>
 <div><table class="metrics-table">
 <tr><td>PitchErr (abs.) ↓</td><td>14.8495</td></tr>
@@ -2902,11 +2893,11 @@ else:
 <tr><td>CLIP ↑</td><td>19.9358</td></tr>
 </table></div>
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>15.3302</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>19.7146</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>27.2227</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>0.4932</td></tr>
-<tr><td>CLIP ↑</td><td>17.3580</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>15.4470</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>20.7385</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>31.9818</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>0.5118</td></tr>
+<tr><td>CLIP ↑</td><td>17.6189</td></tr>
 </table></div>
 
         </div>
@@ -2938,11 +2929,11 @@ else:
         </video>
         <div class="metrics-grid">
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>21.7744</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>23.2666</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>18.6535</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>0.3305</td></tr>
-<tr><td>CLIP ↑</td><td>17.4882</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>17.1886</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>18.4284</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>14.1481</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>0.2905</td></tr>
+<tr><td>CLIP ↑</td><td>18.5388</td></tr>
 </table></div>
 <div><table class="metrics-table">
 <tr><td>PitchErr (abs.) ↓</td><td>10.4099</td></tr>
@@ -2959,11 +2950,11 @@ else:
 <tr><td>CLIP ↑</td><td>20.5242</td></tr>
 </table></div>
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>18.0116</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>21.6371</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>11.7204</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>0.3835</td></tr>
-<tr><td>CLIP ↑</td><td>19.7295</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>18.9495</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>21.2413</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>10.9901</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>0.3858</td></tr>
+<tr><td>CLIP ↑</td><td>19.5941</td></tr>
 </table></div>
 
         </div>
@@ -2995,11 +2986,11 @@ else:
         </video>
         <div class="metrics-grid">
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>49.8691</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>50.3017</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>21.8804</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>0.4517</td></tr>
-<tr><td>CLIP ↑</td><td>26.5318</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>41.0320</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>41.8460</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>26.0763</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>0.2895</td></tr>
+<tr><td>CLIP ↑</td><td>26.1177</td></tr>
 </table></div>
 <div><table class="metrics-table">
 <tr><td>PitchErr (abs.) ↓</td><td>7.4933</td></tr>
@@ -3016,11 +3007,11 @@ else:
 <tr><td>CLIP ↑</td><td>22.6525</td></tr>
 </table></div>
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>17.5632</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>19.0641</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>30.7826</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>1.1333</td></tr>
-<tr><td>CLIP ↑</td><td>20.5578</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>19.2940</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>20.5296</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>26.5976</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>1.0345</td></tr>
+<tr><td>CLIP ↑</td><td>21.2926</td></tr>
 </table></div>
 
         </div>
@@ -3052,11 +3043,11 @@ else:
         </video>
         <div class="metrics-grid">
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>16.4533</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>16.9498</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>7.5299</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>1.0478</td></tr>
-<tr><td>CLIP ↑</td><td>24.3162</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>14.5118</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>14.7364</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>9.0066</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>1.1319</td></tr>
+<tr><td>CLIP ↑</td><td>24.1748</td></tr>
 </table></div>
 <div><table class="metrics-table">
 <tr><td>PitchErr (abs.) ↓</td><td>5.1981</td></tr>
@@ -3073,11 +3064,11 @@ else:
 <tr><td>CLIP ↑</td><td>25.2566</td></tr>
 </table></div>
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>6.0841</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>7.6243</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>18.7605</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>0.7931</td></tr>
-<tr><td>CLIP ↑</td><td>20.7305</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>6.3920</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>7.8709</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>15.6597</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>0.8171</td></tr>
+<tr><td>CLIP ↑</td><td>22.0711</td></tr>
 </table></div>
 
         </div>
@@ -3109,11 +3100,11 @@ else:
         </video>
         <div class="metrics-grid">
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>4.9023</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>12.6036</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>11.4505</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>0.1723</td></tr>
-<tr><td>CLIP ↑</td><td>19.5443</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>6.0467</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>17.8527</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>7.8935</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>0.0965</td></tr>
+<tr><td>CLIP ↑</td><td>19.3947</td></tr>
 </table></div>
 <div><table class="metrics-table">
 <tr><td>PitchErr (abs.) ↓</td><td>7.7572</td></tr>
@@ -3130,11 +3121,11 @@ else:
 <tr><td>CLIP ↑</td><td>19.7761</td></tr>
 </table></div>
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>8.6562</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>13.6878</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>11.4708</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>0.4992</td></tr>
-<tr><td>CLIP ↑</td><td>21.9223</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>11.2009</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>16.0613</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>13.6567</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>0.3729</td></tr>
+<tr><td>CLIP ↑</td><td>19.5995</td></tr>
 </table></div>
 
         </div>
@@ -3166,11 +3157,11 @@ else:
         </video>
         <div class="metrics-grid">
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>27.5571</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>28.8083</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>3.1285</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>0.3285</td></tr>
-<tr><td>CLIP ↑</td><td>18.2450</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>29.2400</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>30.2717</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>3.0532</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>0.3086</td></tr>
+<tr><td>CLIP ↑</td><td>17.8092</td></tr>
 </table></div>
 <div><table class="metrics-table">
 <tr><td>PitchErr (abs.) ↓</td><td>3.2331</td></tr>
@@ -3187,11 +3178,11 @@ else:
 <tr><td>CLIP ↑</td><td>20.5843</td></tr>
 </table></div>
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>12.3109</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>13.4724</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>11.2262</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>0.4271</td></tr>
-<tr><td>CLIP ↑</td><td>18.4841</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>9.7256</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>11.0397</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>12.6267</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>0.3999</td></tr>
+<tr><td>CLIP ↑</td><td>18.3470</td></tr>
 </table></div>
 
         </div>
@@ -3223,11 +3214,11 @@ else:
         </video>
         <div class="metrics-grid">
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>1.5652</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>20.7034</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>6.9452</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>0.5595</td></tr>
-<tr><td>CLIP ↑</td><td>22.6332</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>2.2159</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>23.0888</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>7.9221</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>0.5204</td></tr>
+<tr><td>CLIP ↑</td><td>23.3576</td></tr>
 </table></div>
 <div><table class="metrics-table">
 <tr><td>PitchErr (abs.) ↓</td><td>9.0527</td></tr>
@@ -3244,11 +3235,11 @@ else:
 <tr><td>CLIP ↑</td><td>21.5585</td></tr>
 </table></div>
 <div><table class="metrics-table">
-<tr><td>PitchErr (abs.) ↓</td><td>14.9296</td></tr>
-<tr><td>GravityErr (abs.) ↓</td><td>24.7263</td></tr>
-<tr><td>RotErr (rel.) ↓</td><td>9.8283</td></tr>
-<tr><td>TransErr (rel.) ↓</td><td>0.2251</td></tr>
-<tr><td>CLIP ↑</td><td>20.9372</td></tr>
+<tr><td>PitchErr (abs.) ↓</td><td>19.7638</td></tr>
+<tr><td>GravityErr (abs.) ↓</td><td>30.9858</td></tr>
+<tr><td>RotErr (rel.) ↓</td><td>11.0361</td></tr>
+<tr><td>TransErr (rel.) ↓</td><td>0.3545</td></tr>
+<tr><td>CLIP ↑</td><td>23.9893</td></tr>
 </table></div>
 
         </div>
