@@ -164,6 +164,37 @@
 		margin: 0 auto 10px auto;
 	}
 
+	.resource-links {
+		display: flex;
+		justify-content: center;
+		gap: 14px;
+		margin: 28px auto;
+	}
+
+	.resource-links a {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 12px 18px;
+		border: 1px solid #d9e3ec;
+		border-radius: 12px;
+		background: #f8fbfd;
+		font-size: 19px;
+		font-weight: 500;
+		box-shadow: 0 2px 8px rgba(19, 103, 167, 0.08);
+		transition: transform 0.15s ease, box-shadow 0.15s ease;
+	}
+
+	.resource-links a:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 5px 14px rgba(19, 103, 167, 0.16);
+	}
+
+	.resource-links .icon {
+		font-size: 24px;
+		line-height: 1;
+	}
+
 	@media (max-width: 900px) {
 		.teaser-grid {
 			flex-direction: column;
@@ -314,27 +345,13 @@
 
 	</center>
 
-	<br>
 	<hr>
-	<table align=center width=800px>
-		<tr>
-			<td align=center width=80px>
-				<center>
-					<span style="font-size:24px"><a href='https://arxiv.org/abs/2512.09112'>[Paper]</a></span><br>
-				</center>
-			</td>
-			<td align=center width=120px>
-				<center>
-					<span style="font-size:24px"><a href='https://github.com/lvsn/GimbalDiffusion'>[Code (coming soon)]</a></span><br>
-				</center>
-			</td>
-			<td align=center width=120px>
-				<center>
-					<span style="font-size:24px"><a href='./supp/index.html'>[Supplementary & Videos]</a></span><br>
-				</center>
-			</td>
-		<tr>
-	</table>
+	<nav class="resource-links" aria-label="Project resources">
+		<a href="https://arxiv.org/abs/2512.09112"><span class="icon" aria-hidden="true">📄</span>Paper</a>
+		<a href="https://github.com/lvsn/GimbalDiffusion"><span class="icon" aria-hidden="true">💻</span>Code</a>
+		<a href="https://huggingface.co/collections/lefreud/gimbaldiffusion"><span class="icon" aria-hidden="true">🤗</span>Checkpoints &amp; Datasets</a>
+		<a href="./supp/index.html"><span class="icon" aria-hidden="true">🎬</span>Supplementary &amp; Videos</a>
+	</nav>
 	<hr>
 
 
