@@ -195,6 +195,13 @@
 		line-height: 1;
 	}
 
+	.video-embed {
+		width: 875px;
+		max-width: 100%;
+		aspect-ratio: 16 / 9;
+		border: 0;
+	}
+
 	@media (max-width: 900px) {
 		.teaser-grid {
 			flex-direction: column;
@@ -354,7 +361,6 @@
 	</nav>
 	<hr>
 
-
 	<table align=center width=875px>
 		<center>
 			<h1>Abstract</h1>
@@ -365,6 +371,16 @@
 			</td>
 		</tr>
 	</table>
+	<br>
+	<hr>
+
+	<section style="text-align: center;" aria-labelledby="video-heading">
+		<h1 id="video-heading">Video</h1>
+		<iframe class="video-embed" src="https://www.youtube-nocookie.com/embed/q5NvqQA_FUA?origin=https%3A%2F%2Flvsn.github.io"
+			title="GimbalDiffusion video" loading="lazy"
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+			referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+	</section>
 	<br>
 	<hr>
 
