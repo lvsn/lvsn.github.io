@@ -1,0 +1,180 @@
+{
+  "scene": "14n_copyroom1",
+  "dir_id": 6,
+  "gt_probe": "assets/images/inspector/gt_probe.jpg",
+  "gt_dir": {
+    "x": 0.7005486943,
+    "y": 0.4369759182,
+    "z": 0.5641662644
+  },
+  "models": [
+    {
+      "model": "SDXL",
+      "nickname": "SD 2.0 Inpaint",
+      "category": "Inpainting",
+      "probe": "assets/images/inspector/SDXL_probe.png",
+      "est_dir": {
+        "x": 0.3275538981,
+        "y": 0.365670532,
+        "z": 0.8712023497
+      },
+      "angular_error": 28.3
+    },
+    {
+      "model": "FLUX",
+      "nickname": "FLUX.1 Fill [dev]",
+      "category": "Inpainting",
+      "probe": "assets/images/inspector/FLUX_probe.png",
+      "est_dir": {
+        "x": 0.4897810817,
+        "y": 0.6520937085,
+        "z": 0.5786952972
+      },
+      "angular_error": 17.3
+    },
+    {
+      "model": "Qwen",
+      "nickname": "Qwen Edit",
+      "category": "Editing",
+      "probe": "assets/images/inspector/Qwen_probe.png",
+      "est_dir": {
+        "x": 0.5040363669,
+        "y": 0.591802001,
+        "z": 0.6290609241
+      },
+      "angular_error": 14.8
+    },
+    {
+      "model": "Kolors",
+      "nickname": "Kolors",
+      "category": "Inpainting",
+      "probe": "assets/images/inspector/Kolors_probe.png",
+      "est_dir": {
+        "x": -0.069573909,
+        "y": 0.8192802072,
+        "z": 0.5691567063
+      },
+      "angular_error": 50.9
+    },
+    {
+      "model": "HiDream",
+      "nickname": "HiDream",
+      "category": "Editing",
+      "probe": "assets/images/inspector/HiDream_probe.png",
+      "est_dir": {
+        "x": 0.0781744495,
+        "y": 0.6398112774,
+        "z": 0.7645457983
+      },
+      "angular_error": 40.0
+    },
+    {
+      "model": "FLUX2Dev_editing",
+      "nickname": "FLUX.2 [dev]",
+      "category": "Editing",
+      "probe": "assets/images/inspector/FLUX2Dev_editing_probe.png",
+      "est_dir": {
+        "x": 0.4319245517,
+        "y": 0.5214092135,
+        "z": 0.7359167337
+      },
+      "angular_error": 19.0
+    },
+    {
+      "model": "FLUX2Klein9B_editing",
+      "nickname": "FLUX.2 [klein] 9B",
+      "category": "Editing",
+      "probe": "assets/images/inspector/FLUX2Klein9B_editing_probe.png",
+      "est_dir": {
+        "x": 0.5623190403,
+        "y": 0.4502983093,
+        "z": 0.6935623884
+      },
+      "angular_error": 10.9
+    },
+    {
+      "model": "ZImageTurbo",
+      "nickname": "Z-Image Turbo",
+      "category": "Inpainting",
+      "probe": "assets/images/inspector/ZImageTurbo_probe.png",
+      "est_dir": {
+        "x": 0.5493825674,
+        "y": 0.4363751709,
+        "z": 0.712569654
+      },
+      "angular_error": 12.2
+    },
+    {
+      "model": "HunyuanImage",
+      "nickname": "Hunyuan 2.1",
+      "category": "Inpainting",
+      "probe": "assets/images/inspector/HunyuanImage_probe.png",
+      "est_dir": {
+        "x": 0.7292564511,
+        "y": 0.5353116393,
+        "z": 0.4261765182
+      },
+      "angular_error": 9.9
+    },
+    {
+      "model": "SD35",
+      "nickname": "SD 3.5",
+      "category": "Inpainting",
+      "probe": "assets/images/inspector/SD35_probe.png",
+      "est_dir": {
+        "x": -0.4496740699,
+        "y": 0.571198225,
+        "z": 0.6866773963
+      },
+      "angular_error": 71.2
+    },
+    {
+      "model": "NanoBanana1",
+      "nickname": "Nano Banana 1",
+      "category": "Editing",
+      "probe": "assets/images/inspector/NanoBanana1_probe.png",
+      "est_dir": {
+        "x": 0.6542372704,
+        "y": 0.5161592364,
+        "z": 0.5527687073
+      },
+      "angular_error": 5.3
+    },
+    {
+      "model": "NanoBanana2",
+      "nickname": "Nano Banana 2",
+      "category": "Editing",
+      "probe": "assets/images/inspector/NanoBanana2_probe.png",
+      "est_dir": {
+        "x": 0.6093474627,
+        "y": 0.5148071051,
+        "z": 0.6030501127
+      },
+      "angular_error": 7.2
+    },
+    {
+      "model": "Firefly5",
+      "nickname": "Firefly 5",
+      "category": "Editing",
+      "probe": "assets/images/inspector/Firefly5_probe.png",
+      "est_dir": {
+        "x": 0.6483656764,
+        "y": 0.6720414758,
+        "z": 0.3577459157
+      },
+      "angular_error": 18.2
+    },
+    {
+      "model": "Photoshop",
+      "nickname": "Photoshop",
+      "category": "Inpainting",
+      "probe": "assets/images/inspector/Photoshop_probe.png",
+      "est_dir": {
+        "x": 0.2989355028,
+        "y": 0.5669593811,
+        "z": 0.7675901651
+      },
+      "angular_error": 27.1
+    }
+  ]
+}

@@ -1,24 +1,1134 @@
 <!DOCTYPE html>
+<!--
+  Remaining: update Paper button href once arXiv link is available.
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shedding Light</title>
+<title>Shedding Light: A Benchmark for Evaluating Lighting Understanding in Generative Image Models</title>
+<meta name="description" content="Do generative image models truly understand lighting? We benchmark 16 models by measuring how accurately they reproduce ground-truth illumination in direction, colour, and radiance distribution.">
+<meta name="author" content="Justine Giroux, Jack Oliver Hilliard, Yannick Hold-Geoffroy, Javier Vazquez-Corral, Jean-François Lalonde">
+<meta property="og:title" content="Shedding Light: Lighting Understanding in Generative Models">
+<meta property="og:description" content="A benchmark evaluating 16 generative models on lighting accuracy using 23,023 images across 1,006 scenes.">
+<link rel="canonical" href="https://lvsn.github.io/SheddingLight/">
+<meta property="og:url" content="https://lvsn.github.io/SheddingLight/">
+<meta property="og:image" content="https://lvsn.github.io/SheddingLight/assets/figures_dark/teaser_dark_cropped.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shedding Light: Lighting Understanding in Generative Models">
+<meta name="twitter:description" content="A benchmark evaluating 16 generative models on lighting accuracy.">
+<meta name="twitter:image" content="https://lvsn.github.io/SheddingLight/assets/figures_dark/teaser_dark_cropped.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
 <style>
-  body {
-    margin: 0; min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    background: #111; color: #e2e8f0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-  h1 { font-size: 1.5rem; font-weight: 400; margin-bottom: .5rem; }
-  p { color: #9ca3af; font-size: .95rem; }
+:root {
+  --bg: #111111;
+  --bg-alt: #1a1a1a;
+  --bg-card: #1a1a1a;
+  --text: #e2e8f0;
+  --text-muted: #9ca3af;
+  --accent: #929ec6;
+  --accent-dim: #525b7a;
+  --accent-soft: rgba(146,158,198,0.12);
+  --border: #2a2a2a;
+  --font-serif: 'Charter','Bitstream Charter','Georgia',serif;
+  --font-sans: -apple-system,BlinkMacSystemFont,'Segoe UI','Inter',Roboto,sans-serif;
+  --font-mono: 'SF Mono','Fira Code','Fira Mono',monospace;
+  --max-w: 960px;
+  --max-w-wide: 1140px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);color:var(--text);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
+
+/* ── Hero ── */
+.hero{padding:3rem 1.5rem 2rem;text-align:center;border-bottom:1px solid var(--border)}
+.hero .venue{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:.2rem .7rem;border-radius:20px;margin-bottom:1rem}
+.hero h1{font-family:var(--font-serif);font-size:clamp(1.4rem,3.5vw,2.1rem);font-weight:700;max-width:820px;margin:0 auto 1rem;line-height:1.25;letter-spacing:-.02em}
+.author-list{margin:0 auto .3rem;font-size:.9rem;line-height:1.8;white-space:nowrap}
+@media(max-width:700px){.author-list{white-space:normal}}
+.author-list .name{font-weight:600;white-space:nowrap}
+.author-list sup{font-size:.65em;color:var(--accent);font-weight:700}
+.affiliations{font-size:.8rem;color:var(--text-muted);max-width:700px;margin:.2rem auto 0;line-height:1.6}
+.affiliations sup{font-size:.7em;color:var(--accent);font-weight:700}
+.hero-links{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-top:1.2rem}
+.hero-links a{display:inline-flex;align-items:center;gap:.3rem;padding:.45rem .9rem;border-radius:7px;font-size:.82rem;font-weight:600;text-decoration:none;transition:all .15s}
+.btn-primary{background:var(--accent);color:#111}
+.btn-primary:hover{opacity:.85}
+.btn-outline{border:1.5px solid var(--border);color:var(--text-muted)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.btn-icon{width:15px;height:15px;fill:currentColor}
+
+/* ── Nav ── */
+.nav{position:sticky;top:0;background:rgba(17,17,17,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:100}
+.nav-inner{max-width:var(--max-w-wide);margin:0 auto;display:flex;gap:1.5rem;padding:.5rem 1.5rem;overflow-x:auto}
+.nav a{font-size:.8rem;font-weight:500;color:var(--text-muted);text-decoration:none;white-space:nowrap;transition:color .15s}
+.nav a:hover{color:var(--accent)}
+
+/* ── Typography ── */
+.prose{font-family:var(--font-serif);font-size:.95rem;line-height:1.75;color:var(--text-muted)}
+.prose strong{color:var(--text)}
+.lead{font-family:var(--font-serif);font-size:1.15rem;line-height:1.75;color:var(--text)}
+
+/* ── Sections ── */
+.container{max-width:var(--max-w);margin:0 auto;padding:0 1.5rem}
+.container-wide{max-width:var(--max-w-wide);margin:0 auto;padding:0 1.5rem}
+section{padding:2.5rem 0}
+section+section{border-top:1px solid var(--border)}
+.section-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+h2{font-family:var(--font-serif);font-size:1.45rem;font-weight:700;margin-bottom:.7rem;letter-spacing:-.01em}
+h3{font-size:1rem;font-weight:600;margin-bottom:.4rem}
+p{margin-bottom:.8rem}
+p.muted{color:var(--text-muted)}
+
+/* ── Teaser & pipeline ── */
+.teaser-wrap{max-width:var(--max-w-wide);margin:0 auto;padding:.8rem 0 0}
+.teaser-img{width:100%;display:block}
+.stat-row{display:flex;gap:2rem;flex-wrap:wrap;margin:1.2rem 0 0;justify-content:center}
+.stat-item{text-align:center}
+.stat-item .stat-num{font-size:2rem;font-weight:800;color:var(--accent);line-height:1}
+.stat-item .stat-label{font-size:.78rem;color:var(--text-muted);margin-top:.3rem;letter-spacing:.02em}
+
+/* ── Method ── */
+.prompt-box{background:var(--bg-alt);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:6px;padding:.6rem 1rem;font-style:italic;font-size:.88rem;color:var(--text-muted);margin:1rem 0}
+.figure-wrap{margin:.8rem 0;text-align:center}
+.figure-wrap img{max-width:100%;border-radius:6px}
+.figure-label{font-size:.85rem;font-weight:600;color:var(--text-muted);margin:0 0 .3rem;letter-spacing:.03em}
+.figure-caption{font-size:.8rem;color:var(--text-muted);margin-top:.5rem;font-style:italic;margin-left:auto;margin-right:auto;line-height:1.5;white-space:nowrap;overflow-x:auto}
+@media(max-width:700px){.figure-caption{white-space:normal}}
+
+/* ── Demo ── */
+.demo-scene-selector{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem}
+.demo-scene-btn{padding:.35rem .9rem;border:1.5px solid var(--border);border-radius:6px;background:transparent;color:var(--text-muted);font-size:.82rem;cursor:pointer;transition:all .15s;font-weight:500}
+.demo-scene-btn:hover{border-color:var(--accent);color:var(--accent)}
+.demo-scene-btn.active{background:var(--accent);color:#111;border-color:var(--accent)}
+
+.demo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;margin-top:.8rem}
+.demo-card{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.img-compare{position:relative;width:100%;aspect-ratio:3/2;overflow:hidden;cursor:col-resize;user-select:none;-webkit-user-select:none}
+.img-compare img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:fill;pointer-events:none}
+.img-compare .img-top{clip-path:inset(0 0 0 0)}
+.img-compare .slider-line{position:absolute;top:0;bottom:0;width:2px;background:white;z-index:3;pointer-events:none}
+.img-compare .slider-handle{position:absolute;top:50%;width:28px;height:28px;border-radius:50%;background:white;border:2px solid var(--accent);transform:translate(-50%,-50%);z-index:4;pointer-events:none;display:flex;align-items:center;justify-content:center}
+.img-compare .slider-handle::before{content:'';display:block;width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-right:5px solid var(--accent);margin-right:2px}
+.img-compare .slider-handle::after{content:'';display:block;width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:5px solid var(--accent);margin-left:2px}
+.img-compare .label-gt,.img-compare .label-gen{position:absolute;top:6px;padding:2px 8px;border-radius:4px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;z-index:5;pointer-events:none}
+.img-compare .label-gt{left:6px;background:rgba(233,155,116,.85);color:#111}
+.img-compare .label-gen{right:6px;background:rgba(67,88,160,.85);color:#e2e8f0}
+.demo-card-bottom{padding:.5rem}
+.demo-probes{display:flex;gap:.4rem;justify-content:center;margin-bottom:.4rem}
+.demo-probe-img{width:calc(50% - .2rem);aspect-ratio:1;border-radius:50%;object-fit:cover;border:2px solid var(--border)}
+.demo-probe-img.gt-border{border-color:#e99b74}
+.demo-probe-img.gen-border{border-color:#4358a0}
+.demo-card-info{text-align:center}
+.demo-card-label{font-size:.78rem;font-weight:600;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.demo-card-sublabel{font-size:.7rem;color:var(--text-muted)}
+.probe-legend{display:flex;gap:1.5rem;flex-wrap:wrap;font-size:.78rem;color:var(--text-muted);margin-top:.8rem;padding:.6rem .8rem;background:var(--bg-alt);border-radius:6px;border:1px solid var(--border)}
+.probe-legend-item{display:flex;align-items:center;gap:.35rem}
+
+/* ── Finding cards (original style) ── */
+.findings-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.5rem;margin-bottom:.8rem}
+.finding-card{background:var(--bg-card);border:1.5px solid var(--border);border-radius:8px;padding:.45rem .7rem;cursor:pointer;transition:all .2s}
+.finding-card:hover{border-color:var(--accent);transform:translateY(-1px)}
+.finding-card.active{border-color:var(--accent);background:var(--accent-soft)}
+.finding-card.dimmed{opacity:.4}
+.finding-card-icon{font-size:1.1rem;margin-bottom:.15rem}
+.finding-card-title{font-size:.78rem;font-weight:700;line-height:1.2;margin-bottom:.15rem;color:var(--text)}
+.finding-card.active .finding-card-title{color:var(--accent)}
+.finding-card-desc{font-size:.68rem;color:var(--text-muted);line-height:1.35}
+
+.finding-subtabs{display:flex;gap:.4rem;margin-bottom:.35rem}
+.finding-subtabs-spacer{height:calc(1.75rem + .35rem)}
+.finding-subtab{padding:.25rem .6rem;border:1.5px solid var(--border);border-radius:6px;background:transparent;color:var(--text-muted);font-size:.75rem;cursor:pointer;transition:all .15s;font-weight:500}
+.finding-subtab:hover{border-color:var(--accent);color:var(--accent)}
+.finding-subtab.active{background:var(--accent);color:#111;border-color:var(--accent)}
+.finding-subview{display:none}
+.finding-subview.active{display:block}
+
+.finding-detail{display:none}
+.finding-detail.active{display:block}
+.finding-explanation{background:var(--bg-alt);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:6px;padding:.6rem .9rem;margin-bottom:.6rem;font-family:var(--font-serif);font-size:.95rem;line-height:1.75;color:var(--text-muted)}
+.finding-explanation strong{color:var(--text)}
+
+.results-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:700px){.results-grid-2{grid-template-columns:1fr}}
+
+/* ── Bibtex ── */
+.bibtex-block{background:var(--bg-alt);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem;font-family:var(--font-mono);font-size:.76rem;line-height:1.6;overflow-x:auto;position:relative;color:var(--text-muted);white-space:pre}
+.copy-btn{position:absolute;top:.4rem;right:.4rem;padding:.2rem .5rem;background:var(--accent);color:#111;border:none;border-radius:5px;font-size:.7rem;cursor:pointer;font-weight:600}
+.copy-btn:hover{opacity:.85}
+
+footer{padding:1.5rem;text-align:center;font-size:.75rem;color:var(--text-muted);border-top:1px solid var(--border)}
+footer a{color:var(--accent);text-decoration:none}
+
+/* ── Pipeline flow overview ── */
+.pipeline-flow{display:flex;align-items:center;gap:0;margin:1.2rem 0;justify-content:center}
+.pipeline-node{flex:1 1 0;text-align:center;cursor:pointer;transition:all .2s;position:relative;min-width:0}
+.pipeline-node img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:6px;border:2px solid var(--border);transition:all .2s;display:block}
+.pipeline-node.is-probe img{width:70%;aspect-ratio:1;border-radius:50%;object-fit:cover;margin:0 auto}
+.pipeline-node:hover img{border-color:var(--accent)}
+.pipeline-node.active img{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.pipeline-node-label{font-size:.68rem;font-weight:600;color:var(--text-muted);margin-top:.3rem;white-space:nowrap;transition:color .2s}
+.pipeline-node.active .pipeline-node-label{color:var(--accent)}
+.pipeline-arrow{flex:0 0 auto;padding:0 .2rem;user-select:none;margin-bottom:1rem;display:flex;align-items:center}
+.pipeline-arrow svg{width:24px;height:20px}
+.pipeline-detail{margin-top:.8rem;padding:.8rem 1rem;background:var(--bg-alt);border:1px solid var(--border);border-radius:8px;display:none;animation:fadeIn .25s ease}
+.pipeline-detail.active{display:block}
+.pipeline-detail-inner{display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap}
+.pipeline-detail-img{flex:0 0 auto}
+.pipeline-detail-img img{max-width:420px;max-height:280px;border-radius:6px;display:block}
+.pipeline-detail-img img.probe-lg{width:160px;height:160px;border-radius:50%;border:3px solid var(--border)}
+.pipeline-detail-img img.gt-ring{border-color:#e99b74}
+.pipeline-detail-img img.est-ring{border-color:#4358a0}
+.pipeline-detail-text{flex:1;min-width:220px}
+.pipeline-detail-text h4{font-size:.9rem;margin-bottom:.3rem}
+.pipeline-detail-text p{font-family:var(--font-serif);font-size:.88rem;color:var(--text-muted);line-height:1.6;margin-bottom:.4rem}
+.pipeline-detail-text strong{color:var(--text)}
+.pipeline-arrow-legend{display:flex;gap:1.5rem;font-size:.78rem;color:var(--text-muted);margin-top:.4rem}
+.pipeline-arrow-legend .swatch{display:inline-block;width:24px;height:3px;border-radius:2px;vertical-align:middle;margin-right:.3rem}
+.pipeline-probes-row{display:flex;gap:.8rem;align-items:center}
+.pipeline-probes-row .probe-pair{text-align:center}
+.pipeline-probes-row .probe-pair img{width:120px;height:120px;border-radius:50%;border:3px solid var(--border)}
+.pipeline-probes-row .probe-pair .probe-label{font-size:.7rem;color:var(--text-muted);margin-top:.25rem}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* ── Probe inspector ── */
+.inspector-wrap{margin-top:1.5rem}
+.inspector-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.6rem;margin-top:.8rem}
+.inspector-card{background:var(--bg-card);border:1.5px solid var(--border);border-radius:8px;padding:.5rem;cursor:pointer;transition:all .2s;text-align:center}
+.inspector-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.inspector-card.active{border-color:var(--accent);background:var(--accent-soft)}
+.inspector-card.cat-inpainting{border-left:3px solid #7a9ec4}
+.inspector-card.cat-editing{border-left:3px solid #c49a7a}
+.inspector-probe-thumb{width:80px;height:80px;border-radius:50%;object-fit:cover;margin:0 auto .3rem;display:block;border:2px solid var(--border)}
+.inspector-card.active .inspector-probe-thumb{border-color:var(--accent)}
+.inspector-card-name{font-size:.72rem;font-weight:600;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.inspector-card-ae{font-size:.68rem;color:var(--text-muted)}
+.inspector-detail{display:none;margin-top:1rem;padding:1rem;background:var(--bg-alt);border:1px solid var(--border);border-radius:8px}
+.inspector-detail.active{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;justify-content:center}
+.inspector-probe-large{position:relative;width:220px;height:220px;flex-shrink:0}
+.inspector-probe-large img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.inspector-probe-large canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
+.inspector-info{flex:1;min-width:200px}
+.inspector-info h3{font-size:1rem;margin-bottom:.3rem}
+.inspector-ae-big{font-size:2rem;font-weight:800;color:var(--accent);line-height:1}
+.inspector-ae-label{font-size:.78rem;color:var(--text-muted)}
+
+@media(max-width:640px){.hero{padding:2rem 1rem 1.5rem}section{padding:1.5rem 0}.demo-grid{grid-template-columns:1fr 1fr}.findings-cards{grid-template-columns:1fr 1fr}.pipeline-vis{grid-template-columns:1fr}.inspector-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}}
 </style>
 </head>
 <body>
-  <div style="text-align:center">
-    <h1>Shedding Light</h1>
-    <p>Coming soon.</p>
+
+<!-- ════════════════ HERO ════════════════ -->
+<header class="hero">
+  <div class="venue">ACM Transactions on Graphics (TOG)</div>
+  <h1>Shedding Light: A Benchmark for Evaluating Lighting Understanding in Generative Image Models</h1>
+  <div class="author-list">
+    <span class="name">Justine Giroux</span><sup>1*</sup>,
+    <span class="name">Jack Oliver Hilliard</span><sup>1*</sup>,
+    <span class="name">Yannick Hold-Geoffroy</span><sup>2</sup>,
+    <span class="name">Javier Vazquez-Corral</span><sup>3,4</sup>,
+    <span class="name">Jean-Fran&ccedil;ois Lalonde</span><sup>1</sup>
   </div>
+  <div class="affiliations">
+    <sup>1</sup>Universit&eacute; Laval &nbsp;&nbsp;
+    <sup>2</sup>Adobe Research &nbsp;&nbsp;
+    <sup>3</sup>Computer Vision Center &nbsp;&nbsp;
+    <sup>4</sup>Universitat Aut&ograve;noma de Barcelona
+  </div>
+  <div style="font-size:.72rem;color:var(--text-muted);margin-top:.3rem">* Equal contribution</div>
+  <div class="hero-links">
+    <a href="#" class="btn-primary" onclick="return false">
+      <svg class="btn-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8" fill="none" stroke="#111" stroke-width="2"/></svg>
+      Paper (coming soon)
+    </a>
+    <a href="https://huggingface.co/datasets/JueGiroux/SheddingLightBenchmark" class="btn-outline">
+      <svg class="btn-icon" viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      Data
+    </a>
+    <a href="https://github.com/JustineGiroux/SheddingLightBenchmark" class="btn-outline">
+      <svg class="btn-icon" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" fill="currentColor"/></svg>
+      Code
+    </a>
+  </div>
+</header>
+
+<nav class="nav"><div class="nav-inner">
+  <a href="#abstract">Abstract</a>
+  <a href="#results">Results</a>
+  <a href="#method">Method &amp; Explore</a>
+  <a href="#demo">Examples</a>
+  <a href="#citation">Citation</a>
+</div></nav>
+
+<!-- Teaser -->
+<div class="teaser-wrap">
+  <img src="assets/figures_dark/teaser_dark_cropped.png" alt="16 generative models tasked with rendering light probes" class="teaser-img">
+</div>
+
+<!-- ════════════════ TAGLINE ════════════════ -->
+<section id="tagline" style="padding:2.5rem 0 2rem;border:none">
+  <div class="container-wide" style="text-align:center">
+    <p class="lead" style="max-width:800px;margin:0 auto 1.8rem">
+      Do generative image models truly understand lighting? We benchmark <strong>16 models</strong> by asking them to inpaint light probes into real photographs, then measure how accurately the generated probes reproduce the ground-truth illumination in direction, colour, and radiance distribution.
+    </p>
+    <div class="stat-row" style="margin-top:0;gap:3rem">
+      <div class="stat-item"><div class="stat-num">16</div><div class="stat-label">Models evaluated</div></div>
+      <div class="stat-item"><div class="stat-num" id="stat-gt-images">23,023</div><div class="stat-label">Ground-truth images</div></div>
+      <div class="stat-item"><div class="stat-num">1,006</div><div class="stat-label">Indoor scenes</div></div>
+      <div class="stat-item"><div class="stat-num">24</div><div class="stat-label">Lighting directions</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ ABSTRACT ════════════════ -->
+<section id="abstract">
+  <div class="container-wide">
+    <div class="section-label">Abstract</div>
+    <p class="prose">
+      Accurate modelling of illumination is central to realistic image synthesis and scene understanding. Yet, there is little exploration into whether image generative models truly understand lighting in a physically accurate manner. This work proposes a benchmark to assess the lighting understanding and harmonisation capabilities of generative models. Our key insight is that evaluating lighting understanding only requires testing how well models insert novel objects into real photographs whilst maintaining consistent illumination. We use a multi-illumination dataset with images containing simple objects serving as &ldquo;light probes&rdquo;, and prompt models to inpaint the same object onto the original image, then compare the generated results against the ground-truth light probes. We estimate the lighting direction, colour and radiance distribution from the inpainted probes, providing a quantitative measure of illumination accuracy and photometric realism.
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════ RESULTS & KEY FINDINGS ════════════════ -->
+<section id="results">
+  <div class="container-wide">
+    <div class="section-label">Results &amp; Key Findings</div>
+    <h2>Quantitative Evaluation</h2>
+    <p class="prose">Click a finding to see the supporting figure with the relevant conclusion highlighted.</p>
+
+    <div class="findings-cards" id="findingsCards">
+      <div class="finding-card" data-finding="no-improvement">
+        <div class="finding-card-icon">&#x1F4C5;</div>
+        <div class="finding-card-title">No improvement over time</div>
+        <div class="finding-card-desc">Despite rapid progress in image generation, lighting accuracy has not improved across model generations.</div>
+      </div>
+      <div class="finding-card" data-finding="closed">
+        <div class="finding-card-icon">&#x1F512;</div>
+        <div class="finding-card-title">Closed &ne; better</div>
+        <div class="finding-card-desc">Closed-source models do not outperform open-weight models. The best results come from open models.</div>
+      </div>
+      <div class="finding-card" data-finding="approach">
+        <div class="finding-card-icon">&#x2696;</div>
+        <div class="finding-card-title">No superior approach</div>
+        <div class="finding-card-desc">Neither inpainting nor editing dominates. The two best models use different paradigms.</div>
+      </div>
+      <div class="finding-card" data-finding="scale">
+        <div class="finding-card-icon">&#x1F4CF;</div>
+        <div class="finding-card-title">Scale doesn't help</div>
+        <div class="finding-card-desc">Doubling model parameters (4B&rarr;9B&rarr;32B) yields less than 1&deg; improvement in angular error.</div>
+      </div>
+      <div class="finding-card" data-finding="perceptual">
+        <div class="finding-card-icon">&#x1F441;</div>
+        <div class="finding-card-title">Perceptually plausible</div>
+        <div class="finding-card-desc">Most errors fall below human perceptual thresholds (&lt;30&deg;), making them visually undetectable.</div>
+      </div>
+      <div class="finding-card" data-finding="bias">
+        <div class="finding-card-icon">&#x2600;</div>
+        <div class="finding-card-title">Front-lighting bias</div>
+        <div class="finding-card-desc">Models systematically prefer frontal lighting, with error increasing for extreme azimuth and elevation.</div>
+      </div>
+      <div class="finding-card" data-finding="colour">
+        <div class="finding-card-icon">&#x1F3A8;</div>
+        <div class="finding-card-title">Colour accuracy</div>
+        <div class="finding-card-desc">Colour error (&Delta;E) is weakly correlated with directional error &mdash; models can get direction right but colour wrong.</div>
+      </div>
+      <div class="finding-card" data-finding="distribution">
+        <div class="finding-card-icon">&#x1F4CA;</div>
+        <div class="finding-card-title">Radiance distribution</div>
+        <div class="finding-card-desc">KL divergence of radiance distributions corroborates the light direction and colour results &mdash; the same models lead across all three measures.</div>
+      </div>
+      <div class="finding-card" data-finding="survivorship">
+        <div class="finding-card-icon">&#x1F50D;</div>
+        <div class="finding-card-title">Survivorship bias</div>
+        <div class="finding-card-desc">Models with lower probe survival rates also have higher angular error &mdash; the bias works against weaker models.</div>
+      </div>
+      <div class="finding-card" data-finding="spatial">
+        <div class="finding-card-icon">&#x1F4CD;</div>
+        <div class="finding-card-title">Spatial consistency</div>
+        <div class="finding-card-desc">Models reproduce correct spatial lighting variation across positions &mdash; not just applying uniform illumination.</div>
+      </div>
+    </div>
+
+    <!-- Default figure (shown when no finding selected) -->
+    <div class="finding-detail active" id="fd-default">
+      <div class="finding-subtabs-spacer"></div>
+      <div class="finding-explanation">
+        <strong>Distribution of angular error in estimated light direction.</strong> Models sorted by release date. Inpainting models in blue, editing models in orange; lighter shades indicate closed-source. Click a finding above to highlight a specific pattern.
+      </div>
+      <div class="figure-wrap">
+        <img src="assets/figures_dark/angular_error_direction_lumiere_specular_boxenplot.png"
+            
+             alt="Angular error distributions" loading="lazy">
+      </div>
+    </div>
+
+    <!-- No improvement over time -->
+    <div class="finding-detail" id="fd-no-improvement">
+      <div class="finding-subtabs" id="noImprovementTabs">
+        <button class="finding-subtab active" data-subview="trend">Trend</button>
+        <button class="finding-subtab" data-subview="families">Model families</button>
+      </div>
+      <div class="finding-subview active" id="sv-trend">
+        <div class="finding-explanation">
+          <strong>Lighting accuracy has stayed mostly constant with time.</strong> Models appear in publication order. Despite years of development and training on ever larger datasets, there is no clear downward trend in angular error. FLUX.1 Fill (Nov 2024) remains the most accurate, while later FLUX.2 variants are worse.
+        </div>
+        <div class="figure-wrap">
+          <img src="assets/figures_dark/boxenplot_time_trend.png"
+              
+               alt="Angular error — time trend" loading="lazy">
+        </div>
+      </div>
+      <div class="finding-subview" id="sv-families">
+        <div class="finding-explanation">
+          <strong>No improvement within model families.</strong> FLUX.1 Fill outperforms all later FLUX.2 variants (4B, 9B, [dev]), despite more parameters and later release dates. Similarly, Nano Banana 2 does not improve over Nano Banana 1.
+        </div>
+        <div class="figure-wrap">
+          <img src="assets/figures_dark/boxenplot_family_highlight.png"
+              
+               alt="Angular error — model families" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <!-- Closed != better -->
+    <div class="finding-detail" id="fd-closed">
+      <div class="finding-subtabs-spacer"></div>
+      <div class="finding-explanation">
+        <strong>Closed-source models do not outperform open-weight models.</strong> The best closed models (Nano Banana 1 at 13.64&deg;, Nano Banana 2 at 13.62&deg;) are still slightly worse than the best open models (FLUX.1 Fill at 11.40&deg;, Z-Image Turbo at 11.91&deg;).
+      </div>
+      <div class="figure-wrap">
+        <img src="assets/figures_dark/boxenplot_closed_highlight.png"
+            
+             alt="Angular error &mdash; closed vs open" loading="lazy">
+      </div>
+    </div>
+
+    <!-- No superior approach -->
+    <div class="finding-detail" id="fd-approach">
+      <div class="finding-subtabs-spacer"></div>
+      <div class="finding-explanation">
+        <strong>Neither inpainting nor editing is superior.</strong> The two best models use different approaches: FLUX.1 Fill (inpainting, 11.40&deg;) and Z-Image Turbo (text-based editing, 11.91&deg;).
+      </div>
+      <div class="figure-wrap">
+        <img src="assets/figures_dark/boxenplot_approach_highlight.png"
+
+             alt="Angular error &mdash; by approach" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Scale doesn't help -->
+    <div class="finding-detail" id="fd-scale">
+      <div class="finding-subtabs" id="scaleTabs">
+        <button class="finding-subtab active" data-subview="params">Parameters</button>
+        <button class="finding-subtab" data-subview="flux">FLUX family</button>
+      </div>
+      <div class="finding-subview active" id="sv-params">
+        <div class="finding-explanation">
+          <strong>No correlation between parameter count and lighting accuracy.</strong> A regression through median angular error vs. number of parameters shows no significant relationship.
+        </div>
+        <div class="figure-wrap">
+          <img src="assets/figures_dark/median_angular_error_vs_parameters.png"
+
+               alt="Angular error vs parameters" loading="lazy">
+        </div>
+      </div>
+      <div class="finding-subview" id="sv-flux">
+        <div class="finding-explanation">
+          <strong>Within the FLUX family, scaling parameters yields diminishing returns.</strong> FLUX.2 [klein] 4B and 9B differ by only 0.92&deg;. FLUX.2 [dev] with 32B parameters improves by just 0.45&deg; more.
+        </div>
+        <div class="figure-wrap">
+          <img src="assets/figures_dark/boxenplot_scale_highlight.png"
+
+               alt="Angular error &mdash; FLUX family" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <!-- Perceptually plausible -->
+    <div class="finding-detail" id="fd-perceptual">
+      <div class="finding-subtabs-spacer"></div>
+      <div class="finding-explanation">
+        <strong>Most errors fall below human perceptual thresholds.</strong> Psychophysical studies suggest thresholds of ~30&deg; for synthetic stimuli and 30&ndash;40&deg; for real scenes. The majority of model medians fall well below these bounds.
+      </div>
+      <div class="figure-wrap">
+        <img src="assets/figures_dark/boxenplot_perceptual.png"
+
+             alt="Angular error &mdash; perceptual thresholds" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Front-lighting bias -->
+    <div class="finding-detail" id="fd-bias">
+      <div class="finding-subtabs-spacer"></div>
+      <div class="finding-explanation">
+        <strong>Models prefer frontal lighting directions.</strong> Angular error increases systematically as the ground-truth light direction deviates from centre in both azimuth and elevation.
+      </div>
+      <div class="figure-wrap">
+        <p class="figure-label">Azimuth</p>
+        <img src="assets/figures_dark/comparison_azimuth_per_model.jpg"
+
+             alt="Azimuth analysis" loading="lazy">
+      </div>
+      <div class="figure-wrap">
+        <p class="figure-label">Elevation</p>
+        <img src="assets/figures_dark/comparison_elevation_per_model.jpg"
+
+             alt="Elevation analysis" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Colour accuracy -->
+    <div class="finding-detail" id="fd-colour">
+      <div class="finding-subtabs-spacer"></div>
+      <div class="finding-explanation">
+        <strong>Colour accuracy analysis.</strong> &Delta;E<sub>ab</sub> colour difference between ground-truth and inpainted probes, computed in the chroma (a*, b*) channels of Lab space to mitigate albedo/intensity ambiguity.
+      </div>
+      <div class="figure-wrap">
+        <img src="assets/figures_dark/delta_E_ab_mean_boxenplot.png"
+            
+             alt="Colour error" loading="lazy">
+      </div>
+      <div class="figure-wrap">
+        <img src="assets/figures_dark/correlation_LD_colour.png"
+            
+             alt="LD vs colour" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Survivorship bias -->
+    <div class="finding-detail" id="fd-survivorship">
+      <div class="finding-subtabs-spacer"></div>
+      <div class="finding-explanation">
+        <strong>Survivorship bias does not favour weaker models.</strong> Models with lower probe survival rates also tend to produce higher angular error among their surviving probes. The bias works <em>against</em> these models.
+      </div>
+      <div class="figure-wrap">
+        <img src="assets/figures_dark/survivorship_bias_scatter.png"
+            
+             alt="Median AE vs number of probes" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Spatial consistency -->
+    <div class="finding-detail" id="fd-spatial">
+      <div class="finding-subtabs-spacer"></div>
+      <div class="finding-explanation">
+        <strong>Models reproduce spatially varying illumination.</strong> The plot shows &Delta;(Inp)&nbsp;&minus;&nbsp;&Delta;(GT): the difference between inpainted and ground-truth spatial variation. Values near zero mean the model faithfully reproduces the scene&rsquo;s spatial lighting gradient; positive means it over-varies, negative means it under-varies.
+      </div>
+      <div class="figure-wrap">
+        <img src="assets/figures_dark/spatial_variation_dual_probe_delta_agreement.png"
+
+             alt="Spatial variation analysis" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Radiance distribution -->
+    <div class="finding-detail" id="fd-distribution">
+      <div class="finding-subtabs-spacer"></div>
+      <div class="finding-explanation">
+        <strong>Radiance distribution similarity corroborates our main results.</strong> The models with the most accurate light direction and colour estimates also have the lowest distributional divergence.
+      </div>
+      <div class="figure-wrap">
+        <img src="assets/figures_dark/spatial_kl_vs_joint_entropy_per_model.png"
+            
+             alt="KL divergence" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ METHOD ════════════════ -->
+<section id="method">
+  <div class="container-wide">
+    <div class="section-label">Method</div>
+    <h2>Pipeline Overview</h2>
+    <p class="prose">Given an image containing real light probes, we mask the probes and prompt a generative model to inpaint diffuse grey spheres. The generated probes are detected, cropped, and their lighting parameters estimated through inverse rendering. We compare against the ground truth across three measures: angular error in light direction, &Delta;E<sub>ab</sub> colour error, and KL divergence of radiance distributions.</p>
+
+    <!-- Pipeline flow overview -->
+    <div class="pipeline-flow" id="pipelineFlow">
+      <div class="pipeline-node active" data-step="0">
+        <img src="assets/images/pipeline_steps/step_original.jpg" alt="Original scene">
+        <div class="pipeline-node-label">1. Original</div>
+      </div>
+      <div class="pipeline-arrow"><svg viewBox="0 0 24 16"><polygon points="14,1 22,8 14,15 14,10 2,10 2,6 14,6" fill="var(--text-muted)"/></svg></div>
+      <div class="pipeline-node" data-step="1">
+        <img src="assets/images/pipeline_steps/step_masked.jpg" alt="Masked">
+        <div class="pipeline-node-label">2. Mask</div>
+      </div>
+      <div class="pipeline-arrow"><svg viewBox="0 0 24 16"><polygon points="14,1 22,8 14,15 14,10 2,10 2,6 14,6" fill="var(--text-muted)"/></svg></div>
+      <div class="pipeline-node" data-step="2">
+        <img src="assets/images/pipeline_steps/step_inpainted.jpg" alt="Inpainted">
+        <div class="pipeline-node-label">3. Inpaint</div>
+      </div>
+      <div class="pipeline-arrow"><svg viewBox="0 0 24 16"><polygon points="14,1 22,8 14,15 14,10 2,10 2,6 14,6" fill="var(--text-muted)"/></svg></div>
+      <div class="pipeline-node" data-step="3">
+        <img src="assets/images/pipeline_steps/step_detected.jpg" alt="Detected">
+        <div class="pipeline-node-label">4. Detect</div>
+      </div>
+      <div class="pipeline-arrow"><svg viewBox="0 0 24 16"><polygon points="14,1 22,8 14,15 14,10 2,10 2,6 14,6" fill="var(--text-muted)"/></svg></div>
+      <div class="pipeline-node is-probe" data-step="4">
+        <img src="assets/images/pipeline_steps/step_inpainted_probe_ld.png" alt="Estimate LD">
+        <div class="pipeline-node-label">5. Estimate</div>
+      </div>
+      <div class="pipeline-arrow"><svg viewBox="0 0 24 16"><polygon points="14,1 22,8 14,15 14,10 2,10 2,6 14,6" fill="var(--text-muted)"/></svg></div>
+      <div class="pipeline-node is-probe" data-step="5">
+        <img src="assets/images/pipeline_steps/step_compare_ld.png" alt="Compare">
+        <div class="pipeline-node-label">6. Compare</div>
+      </div>
+    </div>
+
+    <!-- Expanded detail for clicked pipeline step -->
+    <div class="pipeline-detail" id="pipelineDetail">
+      <div class="pipeline-detail-inner" id="pipelineDetailInner"></div>
+    </div>
+
+    <!-- Explore: scene selector + model grid -->
+    <h3 style="margin-top:1.4rem">Explore Results</h3>
+    <p class="prose" style="margin-bottom:.6rem">Select a scene, then click any model to inspect its generated probe and estimated light direction against the ground truth.</p>
+    <div class="pipeline-arrow-legend" style="margin-bottom:.8rem">
+      <span><span class="swatch" style="background:#e99b74"></span>GT light direction</span>
+      <span><span class="swatch" style="background:#4358a0"></span>Estimated light direction</span>
+      <span><span class="swatch" style="background:#7a9ec4"></span>Inpainting model</span>
+      <span><span class="swatch" style="background:#c49a7a"></span>Editing model</span>
+    </div>
+    <div class="demo-scene-selector" id="exploreSceneBtns"></div>
+    <div class="inspector-grid" id="exploreGrid"></div>
+    <div class="inspector-detail" id="exploreDetail">
+      <div class="inspector-probe-large">
+        <img id="expProbeGT" src="" alt="GT probe">
+        <canvas id="expCanvasGT" width="220" height="220"></canvas>
+      </div>
+      <div class="inspector-probe-large">
+        <img id="expProbeEst" src="" alt="Estimated probe">
+        <canvas id="expCanvasEst" width="220" height="220"></canvas>
+      </div>
+      <div class="inspector-info">
+        <h3 id="expModelName"></h3>
+        <div style="font-size:.78rem;color:var(--text-muted);margin-bottom:.5rem" id="expCategory"></div>
+        <div class="inspector-ae-big" id="expAE"></div>
+        <div class="inspector-ae-label">angular error</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════ INPAINTED IMAGES ════════════════ -->
+<section id="demo">
+  <div class="container-wide">
+    <div class="section-label">Qualitative Examples</div>
+    <h2>Generated vs. Ground-Truth Images</h2>
+    <p class="prose">Drag the slider to compare ground-truth (left) and generated (right) images. Below each pair, the probes show ground-truth (orange border) and generated (blue border) light probes with estimated light directions.</p>
+
+    <div class="probe-legend" style="margin-top:0;margin-bottom:.8rem">
+      <div class="probe-legend-item">
+        <svg width="14" height="14" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="#e99b74" stroke-width="2"/></svg>
+        <span>Ground-truth probe</span>
+      </div>
+      <div class="probe-legend-item">
+        <svg width="14" height="14" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="#4358a0" stroke-width="2"/></svg>
+        <span>Generated probe</span>
+      </div>
+    </div>
+
+    <div class="demo-scene-selector" id="demoSceneBtns"></div>
+    <div class="demo-grid" id="demoGrid"></div>
+  </div>
+</section>
+
+<!-- ════════════════ CITATION ════════════════ -->
+<section id="citation">
+  <div class="container-wide">
+    <div class="section-label">Citation</div>
+    <h2>BibTeX</h2>
+    <p class="muted">If you find our work useful, please consider citing:</p>
+    <div class="bibtex-block" id="bibtex"><button class="copy-btn" onclick="copyBibtex()">Copy</button>
+@article{giroux2026shedding,
+  title     = {Shedding Light: A Benchmark for Evaluating Lighting
+               Understanding in Generative Image Models},
+  author    = {Giroux, Justine and Hilliard, Jack Oliver and
+               Hold-Geoffroy, Yannick and Vazquez-Corral, Javier
+               and Lalonde, Jean-Fran{\c{c}}ois},
+  journal   = {ACM Transactions on Graphics (TOG)},
+  volume    = {45},
+  number    = {6},
+  articleno = {227},
+  numpages  = {25},
+  year      = {2026},
+  month     = dec,
+  doi       = {10.1145/3842579},
+}</div>
+  </div>
+</section>
+
+<!-- ════════════════ ACKNOWLEDGEMENTS ════════════════ -->
+<section id="acknowledgements">
+  <div class="container-wide">
+    <div class="section-label">Acknowledgements</div>
+    <p class="prose">This work uses the <a href="https://projects.csail.mit.edu/illumination/" style="color:var(--accent)">Multi-Illumination dataset</a> for ground-truth scene images and lighting calibration.</p>
+    <p class="prose">This research was supported by NSERC grant RGPIN 2020-04799 and an NSERC PhD scholarship to JG. JVC was supported by Grants PID2024-162555OB-I00, AIA2025-163919-C52 funded by MCIN/AEI/10.13039/501100011033 and by ERDF &ldquo;A way of making Europe&rdquo;, the Generalitat de Catalunya CERCA Program, and the 2025 Leonardo Grant for Scientific Research and Cultural Creation from the BBVA Foundation. The BBVA Foundation accepts no responsibility for the opinions, statements and contents included in the project and/or the results thereof, which are entirely the responsibility of the authors. Compute support was provided by Digital Research Alliance of Canada (RRG 5299).</p>
+  </div>
+</section>
+
+<footer>
+  <p>Shedding Light &copy; 2026 &nbsp;&middot;&nbsp; <a href="https://www.ulaval.ca">Universit&eacute; Laval</a></p>
+</footer>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+// PIPELINE FLOW — click to expand detail
+// ══════════════════════════════════════════════════════════════════
+
+const PIPELINE_STEPS = [
+  { title:'Original Scene',
+    desc:'Real photographs from the <a href="https://projects.csail.mit.edu/illumination/" style="color:var(--accent)"><strong>Multi-Illumination</strong></a> dataset contain calibrated light probes: a diffuse grey sphere and a chrome sphere, illuminated under 25 controlled lighting directions.',
+    img:'assets/images/pipeline_steps/step_original.jpg' },
+  { title:'Mask Probes',
+    desc:'We detect and mask both light probes in every image, producing a mask that tells the generative model where to inpaint.',
+    img:'assets/images/pipeline_steps/step_masked.jpg' },
+  { title:'Inpaint',
+    desc:'The masked image and a text prompt are fed to the model. It must generate new diffuse grey spheres whose shading reflects the scene’s true illumination.',
+    img:'assets/images/pipeline_steps/step_inpainted.jpg',
+    extra:'<div class=”prompt-box” style=”margin-top:.5rem”>”Inpaint two perfectly round light grey matte spheres, fully visible, with smooth, uniform Lambertian shading that accurately responds to the existing scene lighting. The spheres are directly in front of the camera and appear in front of everything. There should be two spheres over the two circular grey masks in the image.”</div>' },
+  { title:'Detect & Crop',
+    desc:'SAM3 segments the inpainted spheres. The diffuse probe is cropped to a 256×256 image for lighting analysis.',
+    img:'assets/images/pipeline_steps/step_detected.jpg' },
+  { title:'Estimate Lighting',
+    desc:'Inverse rendering fits a Lambertian illumination model to each probe, recovering the dominant light direction as a 3D unit vector. The ground truth is obtained from the specular highlight on the chrome probe.',
+    probes:[
+      {src:'assets/images/pipeline_steps/step_gt_probe_ld.png', label:'GT light direction', ring:'gt'},
+      {src:'assets/images/pipeline_steps/step_inpainted_probe_ld.png', label:'Estimated direction', ring:'est'}
+    ]},
+  { title:'Compare',
+    desc:'The angular error between the estimated and ground-truth light directions quantifies how well the model understood the scene lighting. In this example, FLUX.1 Fill achieves 15.6° angular error.',
+    probes:[
+      {src:'assets/images/pipeline_steps/step_compare_ld.png', label:'Both directions overlaid', ring:'accent'}
+    ]},
+];
+
+let activePipelineStep = 0;
+
+function showPipelineDetail(stepIdx) {
+  const nodes = document.querySelectorAll('#pipelineFlow .pipeline-node');
+  nodes.forEach((n, i) => n.classList.toggle('active', i === stepIdx));
+
+  const detail = document.getElementById('pipelineDetail');
+  const inner = document.getElementById('pipelineDetailInner');
+  const step = PIPELINE_STEPS[stepIdx];
+
+  if (activePipelineStep === stepIdx && detail.classList.contains('active')) {
+    detail.classList.remove('active');
+    nodes[stepIdx].classList.remove('active');
+    activePipelineStep = -1;
+    return;
+  }
+  activePipelineStep = stepIdx;
+
+  let html = '';
+  if (step.img) {
+    html += `<div class="pipeline-detail-img"><img src="${step.img}" alt="${step.title}"></div>`;
+  }
+  if (step.probes) {
+    html += '<div class="pipeline-probes-row">';
+    for (const p of step.probes) {
+      const ringCls = p.ring === 'gt' ? ' gt-ring' : p.ring === 'est' ? ' est-ring' : '';
+      html += `<div class="probe-pair"><img src="${p.src}" alt="${p.label}" class="probe-lg${ringCls}"><div class="probe-label">${p.label}</div></div>`;
+    }
+    html += '</div>';
+  }
+  html += `<div class="pipeline-detail-text"><h4>${step.title}</h4><p>${step.desc}</p>`;
+  if (step.extra) html += step.extra;
+  if (step.probes) {
+    html += '<div class="pipeline-arrow-legend"><span><span class="swatch" style="background:#e99b74"></span>Ground truth</span><span><span class="swatch" style="background:#4358a0"></span>Estimated</span></div>';
+  }
+  html += '</div>';
+
+  inner.innerHTML = html;
+  detail.classList.add('active');
+}
+
+document.querySelectorAll('#pipelineFlow .pipeline-node').forEach((node, i) => {
+  node.addEventListener('click', () => showPipelineDetail(i));
+});
+
+// Auto-show first step
+showPipelineDetail(0);
+
+// ══════════════════════════════════════════════════════════════════
+// EXPLORE — multi-scene model grid with LD arrows
+// ══════════════════════════════════════════════════════════════════
+
+let exploreData = null;
+let currentExploreScene = 0;
+let selectedExploreModel = null;
+
+function drawLDArrow(canvas, lx, ly, lz, color, lineWidth) {
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+  const cx = w / 2, cy = h / 2;
+  const r = w * 0.38;
+  const ax = cx + lx * r;
+  const ay = cy - ly * r;
+
+  const angle = Math.atan2(ay - cy, ax - cx);
+  const headLen = 12;
+
+  ctx.strokeStyle = color;
+  ctx.lineWidth = lineWidth;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(cx, cy);
+  ctx.lineTo(ax, ay);
+  ctx.stroke();
+
+  // Filled triangle arrowhead
+  const hx1 = ax - headLen * Math.cos(angle - 0.4);
+  const hy1 = ay - headLen * Math.sin(angle - 0.4);
+  const hx2 = ax - headLen * Math.cos(angle + 0.4);
+  const hy2 = ay - headLen * Math.sin(angle + 0.4);
+
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(ax, ay);
+  ctx.lineTo(hx1, hy1);
+  ctx.lineTo(hx2, hy2);
+  ctx.closePath();
+  ctx.fill();
+
+  // Center dot
+  ctx.fillStyle = color;
+  ctx.beginPath(); ctx.arc(cx, cy, 4, 0, Math.PI * 2); ctx.fill();
+}
+
+async function initExplore() {
+  try {
+    const res = await fetch('assets/images/explore/explore_data.json');
+    exploreData = await res.json();
+  } catch (e) {
+    console.warn('Explore data not available:', e);
+    return;
+  }
+
+  buildExploreSceneBtns();
+  buildExploreGrid();
+}
+
+function buildExploreSceneBtns() {
+  const el = document.getElementById('exploreSceneBtns');
+  if (!el || !exploreData) return;
+  el.innerHTML = exploreData.scenes.map((s, i) =>
+    `<button class="demo-scene-btn${i === 0 ? ' active' : ''}" data-idx="${i}">${s.label}</button>`
+  ).join('');
+  el.querySelectorAll('.demo-scene-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      el.querySelectorAll('.demo-scene-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentExploreScene = parseInt(btn.dataset.idx);
+      selectedExploreModel = null;
+      buildExploreGrid();
+    });
+  });
+}
+
+function buildExploreGrid() {
+  const grid = document.getElementById('exploreGrid');
+  if (!grid || !exploreData) return;
+  grid.innerHTML = '';
+
+  const scene = exploreData.scenes[currentExploreScene];
+  const models = scene.models.filter(m => m.probe && m.est_dir);
+
+  for (const m of models) {
+    const card = document.createElement('div');
+    card.className = 'inspector-card cat-' + (m.category || '').toLowerCase();
+    card.dataset.model = m.model;
+
+    const thumb = document.createElement('img');
+    thumb.className = 'inspector-probe-thumb';
+    thumb.src = m.probe;
+    thumb.alt = m.nickname;
+    thumb.loading = 'lazy';
+
+    const name = document.createElement('div');
+    name.className = 'inspector-card-name';
+    name.textContent = m.nickname;
+
+    const ae = document.createElement('div');
+    ae.className = 'inspector-card-ae';
+    ae.textContent = m.angular_error != null ? m.angular_error + '°' : '—';
+
+    card.appendChild(thumb);
+    card.appendChild(name);
+    card.appendChild(ae);
+
+    card.addEventListener('click', () => selectExploreModel(m.model));
+    grid.appendChild(card);
+  }
+
+  // Hide detail when switching scenes
+  document.getElementById('exploreDetail').classList.remove('active');
+
+  // Auto-select first
+  if (models.length > 0) {
+    selectExploreModel(models[0].model);
+  }
+}
+
+function selectExploreModel(modelName) {
+  if (!exploreData) return;
+  const scene = exploreData.scenes[currentExploreScene];
+  const m = scene.models.find(d => d.model === modelName);
+  if (!m) return;
+
+  selectedExploreModel = modelName;
+
+  document.querySelectorAll('#exploreGrid .inspector-card').forEach(c => {
+    c.classList.toggle('active', c.dataset.model === modelName);
+  });
+
+  const detail = document.getElementById('exploreDetail');
+  detail.classList.add('active');
+
+  // GT probe + arrow
+  const gtImg = document.getElementById('expProbeGT');
+  gtImg.src = scene.gt_probe;
+  const gtCanvas = document.getElementById('expCanvasGT');
+  gtCanvas.getContext('2d').clearRect(0, 0, 220, 220);
+  drawLDArrow(gtCanvas, scene.gt_dir.x, scene.gt_dir.y, scene.gt_dir.z, '#e99b74', 2.5);
+
+  // Estimated probe + arrow
+  const estImg = document.getElementById('expProbeEst');
+  estImg.src = m.probe;
+  const estCanvas = document.getElementById('expCanvasEst');
+  estCanvas.getContext('2d').clearRect(0, 0, 220, 220);
+  if (m.est_dir) {
+    drawLDArrow(estCanvas, m.est_dir.x, m.est_dir.y, m.est_dir.z, '#4358a0', 2.5);
+  }
+
+  // Info
+  document.getElementById('expModelName').textContent = m.nickname;
+  document.getElementById('expCategory').textContent = m.category || '';
+  document.getElementById('expAE').textContent = m.angular_error != null ? m.angular_error + '°' : '—';
+}
+
+// ══════════════════════════════════════════════════════════════════
+// FINDINGS CARDS
+// ══════════════════════════════════════════════════════════════════
+
+let activeFinding = null;
+
+document.querySelectorAll('.finding-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const finding = card.dataset.finding;
+
+    if (activeFinding === finding) {
+      activeFinding = null;
+      document.querySelectorAll('.finding-card').forEach(c => { c.classList.remove('active'); c.classList.remove('dimmed'); });
+      document.querySelectorAll('.finding-detail').forEach(d => d.classList.remove('active'));
+      document.getElementById('fd-default').classList.add('active');
+      return;
+    }
+
+    activeFinding = finding;
+
+    document.querySelectorAll('.finding-card').forEach(c => {
+      if (c.dataset.finding === finding) {
+        c.classList.add('active');
+        c.classList.remove('dimmed');
+      } else {
+        c.classList.remove('active');
+        c.classList.add('dimmed');
+      }
+    });
+
+    document.querySelectorAll('.finding-detail').forEach(d => d.classList.remove('active'));
+    const detail = document.getElementById('fd-' + finding);
+    if (detail) detail.classList.add('active');
+  });
+});
+
+// Sub-tabs within findings
+document.querySelectorAll('.finding-subtabs').forEach(tabGroup => {
+  tabGroup.querySelectorAll('.finding-subtab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const parent = tab.closest('.finding-detail');
+      parent.querySelectorAll('.finding-subtab').forEach(t => t.classList.remove('active'));
+      parent.querySelectorAll('.finding-subview').forEach(v => v.classList.remove('active'));
+      tab.classList.add('active');
+      const target = parent.querySelector('#sv-' + tab.dataset.subview);
+      if (target) target.classList.add('active');
+    });
+  });
+});
+
+// Background click to deselect findings
+document.getElementById('results').addEventListener('click', e => {
+  if (activeFinding === null) return;
+  if (e.target.closest('.finding-card') || e.target.closest('.finding-detail')) return;
+  activeFinding = null;
+  document.querySelectorAll('.finding-card').forEach(c => { c.classList.remove('active'); c.classList.remove('dimmed'); });
+  document.querySelectorAll('.finding-detail').forEach(d => d.classList.remove('active'));
+  document.getElementById('fd-default').classList.add('active');
+});
+
+// ══════════════════════════════════════════════════════════════════
+// BIBTEX COPY
+// ══════════════════════════════════════════════════════════════════
+
+function copyBibtex() {
+  const t = document.getElementById('bibtex').textContent.replace('Copy','').trim();
+  navigator.clipboard.writeText(t).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════
+// DEMO — synced image comparison sliders
+// ══════════════════════════════════════════════════════════════════
+
+const DEMO_SCENES = [
+  { name:'Bedroom', id:'joy_bedroom18_2',
+    gt_image:'assets/images/results/gt_images_masks/group_0_real_image_joy_bedroom18_2.jpg',
+    gt_probe:'assets/images/results/gt_probes_LD/group_0_real_probe_joy_bedroom18_2.jpg',
+    models:[
+      {name:'SD 1.0 Inpaint',cat:'Inpainting',image:'assets/images/results/inpainted_images_masks/group_0_SDXLInpaint_608313082563526_gen_image_joy_bedroom18_2.jpg',probe:'assets/images/results/inpainted_probes_LD/group_0_SDXLInpaint_608313082563526_gen_probe_joy_bedroom18_2.jpg'},
+      {name:'SD 2.0 Inpaint',cat:'Inpainting',image:'assets/images/results/inpainted_images_masks/group_0_SDXL_608313082563526_gen_image_joy_bedroom18_2.jpg',probe:'assets/images/results/inpainted_probes_LD/group_0_SDXL_608313082563526_gen_probe_joy_bedroom18_2.jpg'},
+      {name:'SD 3.5',cat:'Inpainting',image:'assets/images/results/inpainted_images_masks/group_0_SD35_608313082563526_gen_image_joy_bedroom18_2.jpg',probe:'assets/images/results/inpainted_probes_LD/group_0_SD35_608313082563526_gen_probe_joy_bedroom18_2.jpg'},
+      {name:'Kolors',cat:'Inpainting',image:'assets/images/results/inpainted_images_masks/group_0_Kolors_608313082563526_gen_image_joy_bedroom18_2.jpg',probe:'assets/images/results/inpainted_probes_LD/group_0_Kolors_608313082563526_gen_probe_joy_bedroom18_2.jpg'},
+    ]},
+  { name:'Copy Room', id:'14n_copyroom1_9',
+    gt_image:'assets/images/results/gt_images_masks/group_1_real_image_14n_copyroom1_9.jpg',
+    gt_probe:'assets/images/results/gt_probes_LD/group_1_real_probe_14n_copyroom1_9.jpg',
+    models:[
+      {name:'FLUX.1 Fill',cat:'Inpainting',image:'assets/images/results/inpainted_images_masks/group_1_FLUX_608313082563526_gen_image_14n_copyroom1_9.jpg',probe:'assets/images/results/inpainted_probes_LD/group_1_FLUX_608313082563526_gen_probe_14n_copyroom1_9.jpg'},
+      {name:'HiDream',cat:'Editing',image:'assets/images/results/inpainted_images_masks/group_1_HiDream_608313082563526_gen_image_14n_copyroom1_9.jpg',probe:'assets/images/results/inpainted_probes_LD/group_1_HiDream_608313082563526_gen_probe_14n_copyroom1_9.jpg'},
+      {name:'Nano Banana 1',cat:'Editing',image:'assets/images/results/inpainted_images_masks/group_1_NanoBanana1_0_gen_image_14n_copyroom1_9.jpg',probe:'assets/images/results/inpainted_probes_LD/group_1_NanoBanana1_0_gen_probe_14n_copyroom1_9.jpg'},
+      {name:'Hunyuan 2.1',cat:'Inpainting',image:'assets/images/results/inpainted_images_masks/group_1_HunyuanImage_608313082563526_gen_image_14n_copyroom1_9.jpg',probe:'assets/images/results/inpainted_probes_LD/group_1_HunyuanImage_608313082563526_gen_probe_14n_copyroom1_9.jpg'},
+    ]},
+  { name:'Living Room', id:'summer_living5_0',
+    gt_image:'assets/images/results/gt_images_masks/group_2_real_image_summer_living5_0.jpg',
+    gt_probe:'assets/images/results/gt_probes_LD/group_2_real_probe_summer_living5_0.jpg',
+    models:[
+      {name:'FLUX.2 [dev]',cat:'Inpainting',image:'assets/images/results/inpainted_images_masks/group_2_FLUX2Dev_608313082563526_gen_image_summer_living5_0.jpg',probe:'assets/images/results/inpainted_probes_LD/group_2_FLUX2Dev_608313082563526_gen_probe_summer_living5_0.jpg'},
+      {name:'Qwen Edit',cat:'Editing',image:'assets/images/results/inpainted_images_masks/group_2_Qwen_608313082563526_gen_image_summer_living5_0.jpg',probe:'assets/images/results/inpainted_probes_LD/group_2_Qwen_608313082563526_gen_probe_summer_living5_0.jpg'},
+      {name:'Z-Image Turbo',cat:'Inpainting',image:'assets/images/results/inpainted_images_masks/group_2_ZImageTurbo_608313082563526_gen_image_summer_living5_0.jpg',probe:'assets/images/results/inpainted_probes_LD/group_2_ZImageTurbo_608313082563526_gen_probe_summer_living5_0.jpg'},
+      {name:'Firefly 5',cat:'Editing',image:'assets/images/results/inpainted_images_masks/group_2_Firefly5_42_gen_image_summer_living5_0.jpg',probe:'assets/images/results/inpainted_probes_LD/group_2_Firefly5_42_gen_probe_summer_living5_0.jpg'},
+    ]},
+  { name:'Laser Room', id:'main_d424-14_4',
+    gt_image:'assets/images/results/gt_images_masks/group_3_real_image_main_d424-14_4.jpg',
+    gt_probe:'assets/images/results/gt_probes_LD/group_3_real_probe_main_d424-14_4.jpg',
+    models:[
+      {name:'FLUX.2 [klein] 4B',cat:'Inpainting',image:'assets/images/results/inpainted_images_masks/group_3_FLUX2_608313082563526_gen_image_main_d424-14_4.jpg',probe:'assets/images/results/inpainted_probes_LD/group_3_FLUX2_608313082563526_gen_probe_main_d424-14_4.jpg'},
+      {name:'FLUX.2 [klein] 9B',cat:'Inpainting',image:'assets/images/results/inpainted_images_masks/group_3_FLUX2Klein9B_608313082563526_gen_image_main_d424-14_4.jpg',probe:'assets/images/results/inpainted_probes_LD/group_3_FLUX2Klein9B_608313082563526_gen_probe_main_d424-14_4.jpg'},
+      {name:'Photoshop',cat:'Inpainting',image:'assets/images/results/inpainted_images_masks/group_3_Photoshop_1_gen_image_main_d424-14_4.jpg',probe:'assets/images/results/inpainted_probes_LD/group_3_Photoshop_1_gen_probe_main_d424-14_4.jpg'},
+      {name:'Nano Banana 2',cat:'Editing',image:'assets/images/results/inpainted_images_masks/group_3_NanoBanana2_0_gen_image_main_d424-14_4.jpg',probe:'assets/images/results/inpainted_probes_LD/group_3_NanoBanana2_0_gen_probe_main_d424-14_4.jpg'},
+    ]},
+];
+
+let currentDemoScene = 0;
+let sliderPos = 50;
+
+function buildDemoSceneBtns() {
+  const el = document.getElementById('demoSceneBtns');
+  if (!el) return;
+  el.innerHTML = DEMO_SCENES.map((s,i) =>
+    `<button class="demo-scene-btn${i===0?' active':''}" data-idx="${i}">${s.name}</button>`
+  ).join('');
+  el.querySelectorAll('.demo-scene-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      el.querySelectorAll('.demo-scene-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentDemoScene = parseInt(btn.dataset.idx);
+      buildDemoGrid();
+    });
+  });
+}
+
+function makeCompareCard(gtImage, genImage, gtProbe, genProbe, label, sublabel) {
+  const card = document.createElement('div');
+  card.className = 'demo-card';
+
+  const compare = document.createElement('div');
+  compare.className = 'img-compare';
+
+  const imgBottom = document.createElement('img');
+  imgBottom.src = genImage; imgBottom.alt = label;
+  const imgTop = document.createElement('img');
+  imgTop.className = 'img-top'; imgTop.src = gtImage; imgTop.alt = 'Ground truth';
+
+  const sliderLine = document.createElement('div'); sliderLine.className = 'slider-line';
+  const sliderHandle = document.createElement('div'); sliderHandle.className = 'slider-handle';
+
+  const lblGT = document.createElement('div'); lblGT.className = 'label-gt'; lblGT.textContent = 'GT';
+  const lblGen = document.createElement('div'); lblGen.className = 'label-gen'; lblGen.textContent = 'Generated';
+  compare.appendChild(lblGT); compare.appendChild(lblGen);
+  compare.appendChild(imgBottom); compare.appendChild(imgTop);
+  compare.appendChild(sliderLine); compare.appendChild(sliderHandle);
+
+  const bottom = document.createElement('div'); bottom.className = 'demo-card-bottom';
+  const probes = document.createElement('div'); probes.className = 'demo-probes';
+  const pGT = document.createElement('img'); pGT.className = 'demo-probe-img gt-border'; pGT.src = gtProbe; pGT.alt = 'GT probe'; pGT.loading = 'lazy';
+  const pGen = document.createElement('img'); pGen.className = 'demo-probe-img gen-border'; pGen.src = genProbe; pGen.alt = label + ' probe'; pGen.loading = 'lazy';
+  probes.appendChild(pGT); probes.appendChild(pGen);
+
+  const info = document.createElement('div'); info.className = 'demo-card-info';
+  info.innerHTML = `<div class="demo-card-label">${label}</div><div class="demo-card-sublabel">${sublabel}</div>`;
+  bottom.appendChild(probes); bottom.appendChild(info);
+  card.appendChild(compare); card.appendChild(bottom);
+
+  function updateSlider(pct) {
+    const p = Math.max(0, Math.min(100, pct));
+    imgTop.style.clipPath = `inset(0 ${100 - p}% 0 0)`;
+    sliderLine.style.left = p + '%'; sliderHandle.style.left = p + '%';
+  }
+  function onMove(clientX) {
+    const rect = compare.getBoundingClientRect();
+    sliderPos = ((clientX - rect.left) / rect.width) * 100;
+    syncAllSliders();
+  }
+  compare.addEventListener('mousedown', e => {
+    e.preventDefault(); onMove(e.clientX);
+    const move = ev => onMove(ev.clientX);
+    const up = () => { document.removeEventListener('mousemove', move); document.removeEventListener('mouseup', up); };
+    document.addEventListener('mousemove', move); document.addEventListener('mouseup', up);
+  });
+  compare.addEventListener('touchstart', e => {
+    e.preventDefault(); onMove(e.touches[0].clientX);
+    const move = ev => onMove(ev.touches[0].clientX);
+    const end = () => { compare.removeEventListener('touchmove', move); compare.removeEventListener('touchend', end); };
+    compare.addEventListener('touchmove', move); compare.addEventListener('touchend', end);
+  }, {passive: false});
+  compare._updateSlider = updateSlider;
+  updateSlider(sliderPos);
+  return card;
+}
+
+function syncAllSliders() {
+  document.querySelectorAll('.img-compare').forEach(c => {
+    if (c._updateSlider) c._updateSlider(sliderPos);
+  });
+}
+
+function buildDemoGrid() {
+  const scene = DEMO_SCENES[currentDemoScene];
+  const grid = document.getElementById('demoGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  for (const m of scene.models) {
+    grid.appendChild(makeCompareCard(scene.gt_image, m.image, scene.gt_probe, m.probe, m.name, m.cat));
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════════
+
+buildDemoSceneBtns();
+buildDemoGrid();
+initExplore();
+</script>
 </body>
 </html>

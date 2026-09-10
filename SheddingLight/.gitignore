@@ -1,0 +1,13 @@
+# Development files — not deployed
+Figures_website.ipynb
+submit_figures.sh
+logs/
+IDEA_LOG.md
+__pycache__/
+*.pyc
+
+# Development artifacts
+index_full.html
+
+# Old/fallback figures (dark-only site)
+# assets/figures/

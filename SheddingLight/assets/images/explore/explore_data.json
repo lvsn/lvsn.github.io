@@ -1,0 +1,1034 @@
+{
+  "scenes": [
+    {
+      "scene": "main_experiment108",
+      "dir_id": 7,
+      "label": "Lab 108 - dir 7",
+      "key": "main_experiment108_7",
+      "gt_probe": "assets/images/explore/gt_main_experiment108_7.png",
+      "gt_dir": {
+        "x": -0.3893573287,
+        "y": 0.672526295,
+        "z": 0.6293721102
+      },
+      "models": [
+        {
+          "model": "SDXL",
+          "nickname": "SDXL",
+          "category": "comfyui",
+          "probe": "assets/images/explore/SDXL_main_experiment108_7.png",
+          "est_dir": {
+            "x": -0.6613971591,
+            "y": 0.729504168,
+            "z": 0.1742911041
+          },
+          "angular_error": 30.93
+        },
+        {
+          "model": "FLUX",
+          "nickname": "FLUX.1",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX_main_experiment108_7.png",
+          "est_dir": {
+            "x": -0.6895501018,
+            "y": 0.529070735,
+            "z": 0.4945755005
+          },
+          "angular_error": 20.68
+        },
+        {
+          "model": "Qwen",
+          "nickname": "Qwen",
+          "category": "comfyui",
+          "probe": "assets/images/explore/Qwen_main_experiment108_7.png",
+          "est_dir": {
+            "x": -0.1430591792,
+            "y": 0.3075817227,
+            "z": -0.9407058954
+          },
+          "angular_error": 109.24
+        },
+        {
+          "model": "Kolors",
+          "nickname": "Kolors",
+          "category": "comfyui",
+          "probe": "assets/images/explore/Kolors_main_experiment108_7.png",
+          "est_dir": {
+            "x": -0.7264929414,
+            "y": 0.5822800398,
+            "z": 0.3649083078
+          },
+          "angular_error": 25.29
+        },
+        {
+          "model": "HiDream",
+          "nickname": "HiDream",
+          "category": "comfyui",
+          "probe": "assets/images/explore/HiDream_main_experiment108_7.png",
+          "est_dir": {
+            "x": -0.8425076604,
+            "y": 0.3232453167,
+            "z": 0.4309215248
+          },
+          "angular_error": 35.25
+        },
+        {
+          "model": "SDXLInpaint",
+          "nickname": "SDXL Inpaint",
+          "category": "comfyui",
+          "probe": "assets/images/explore/SDXLInpaint_main_experiment108_7.png",
+          "est_dir": {
+            "x": -0.8040373325,
+            "y": 0.5653364658,
+            "z": 0.1841703355
+          },
+          "angular_error": 35.98
+        },
+        {
+          "model": "FLUX2_editing",
+          "nickname": "FLUX.2 Edit",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX2_editing_main_experiment108_7.png",
+          "est_dir": {
+            "x": -0.6236415505,
+            "y": 0.6405683756,
+            "z": 0.4480439126
+          },
+          "angular_error": 17.14
+        },
+        {
+          "model": "FLUX2Dev_editing",
+          "nickname": "FLUX.2 Dev Edit",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX2Dev_editing_main_experiment108_7.png",
+          "est_dir": {
+            "x": -0.6305000186,
+            "y": 0.701261878,
+            "z": 0.3327183127
+          },
+          "angular_error": 22.1
+        },
+        {
+          "model": "FLUX2Klein9B_editing",
+          "nickname": "FLUX.2 Klein 9B",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX2Klein9B_editing_main_experiment108_7.png",
+          "est_dir": {
+            "x": -0.6680435538,
+            "y": 0.4579506218,
+            "z": 0.5865143538
+          },
+          "angular_error": 20.41
+        },
+        {
+          "model": "ZImageTurbo",
+          "nickname": "Z-Image Turbo",
+          "category": "comfyui",
+          "probe": "assets/images/explore/ZImageTurbo_main_experiment108_7.png",
+          "est_dir": {
+            "x": -0.7634114027,
+            "y": 0.2221564949,
+            "z": 0.6065060496
+          },
+          "angular_error": 34.07
+        },
+        {
+          "model": "HunyuanImage",
+          "nickname": "Hunyuan Image",
+          "category": "comfyui",
+          "probe": "assets/images/explore/HunyuanImage_main_experiment108_7.png",
+          "est_dir": {
+            "x": -0.8110099435,
+            "y": 0.5643991232,
+            "z": 0.1540017277
+          },
+          "angular_error": 37.6
+        },
+        {
+          "model": "SD35",
+          "nickname": "SD 3.5",
+          "category": "comfyui",
+          "probe": "assets/images/explore/SD35_main_experiment108_7.png",
+          "est_dir": {
+            "x": -0.8035169244,
+            "y": 0.0891084671,
+            "z": 0.5885747671
+          },
+          "angular_error": 41.99
+        },
+        {
+          "model": "NanoBanana1",
+          "nickname": "NanoBanana v1",
+          "category": "api",
+          "probe": "assets/images/explore/NanoBanana1_main_experiment108_7.png",
+          "est_dir": {
+            "x": -0.6334326863,
+            "y": 0.7185060978,
+            "z": 0.2872490287
+          },
+          "angular_error": 24.41
+        },
+        {
+          "model": "NanoBanana2",
+          "nickname": "NanoBanana v2",
+          "category": "api",
+          "probe": "assets/images/explore/NanoBanana2_main_experiment108_7.png",
+          "est_dir": {
+            "x": -0.3959646225,
+            "y": 0.6427458525,
+            "z": 0.6558123827
+          },
+          "angular_error": 2.31
+        },
+        {
+          "model": "Firefly5",
+          "nickname": "Firefly 5",
+          "category": "api",
+          "probe": "assets/images/explore/Firefly5_main_experiment108_7.png",
+          "est_dir": {
+            "x": -0.3243887722,
+            "y": 0.7998087406,
+            "z": 0.5050523281
+          },
+          "angular_error": 10.87
+        },
+        {
+          "model": "Photoshop",
+          "nickname": "Photoshop",
+          "category": "api",
+          "probe": "assets/images/explore/Photoshop_main_experiment108_7.png",
+          "est_dir": {
+            "x": -0.552059114,
+            "y": 0.6302680373,
+            "z": 0.5458872914
+          },
+          "angular_error": 10.77
+        }
+      ]
+    },
+    {
+      "scene": "main_experiment108",
+      "dir_id": 8,
+      "label": "Lab 108 - dir 8",
+      "key": "main_experiment108_8",
+      "gt_probe": "assets/images/explore/gt_main_experiment108_8.png",
+      "gt_dir": {
+        "x": 0.007584005,
+        "y": 0.4929603227,
+        "z": 0.8700187372
+      },
+      "models": [
+        {
+          "model": "SDXL",
+          "nickname": "SDXL",
+          "category": "comfyui",
+          "probe": "assets/images/explore/SDXL_main_experiment108_8.png",
+          "est_dir": {
+            "x": -0.3339165151,
+            "y": 0.6509151459,
+            "z": 0.6817691326
+          },
+          "angular_error": 24.29
+        },
+        {
+          "model": "FLUX",
+          "nickname": "FLUX.1",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX_main_experiment108_8.png",
+          "est_dir": {
+            "x": -0.341895014,
+            "y": 0.4264194071,
+            "z": 0.8374212384
+          },
+          "angular_error": 20.58
+        },
+        {
+          "model": "Qwen",
+          "nickname": "Qwen",
+          "category": "comfyui",
+          "probe": "assets/images/explore/Qwen_main_experiment108_8.png",
+          "est_dir": {
+            "x": 0.0213464703,
+            "y": -0.3555966318,
+            "z": -0.9343957901
+          },
+          "angular_error": 171.14
+        },
+        {
+          "model": "Kolors",
+          "nickname": "Kolors",
+          "category": "comfyui",
+          "probe": "assets/images/explore/Kolors_main_experiment108_8.png",
+          "est_dir": {
+            "x": -0.2727150619,
+            "y": 0.5225233436,
+            "z": 0.8078341484
+          },
+          "angular_error": 16.6
+        },
+        {
+          "model": "HiDream",
+          "nickname": "HiDream",
+          "category": "comfyui",
+          "probe": "assets/images/explore/HiDream_main_experiment108_8.png",
+          "est_dir": {
+            "x": -0.2975793779,
+            "y": 0.5155598521,
+            "z": 0.8035202026
+          },
+          "angular_error": 18.02
+        },
+        {
+          "model": "SDXLInpaint",
+          "nickname": "SDXL Inpaint",
+          "category": "comfyui",
+          "probe": "assets/images/explore/SDXLInpaint_main_experiment108_8.png",
+          "est_dir": {
+            "x": -0.4766316116,
+            "y": 0.6198435426,
+            "z": 0.6233909726
+          },
+          "angular_error": 32.4
+        },
+        {
+          "model": "FLUX2_editing",
+          "nickname": "FLUX.2 Edit",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX2_editing_main_experiment108_8.png",
+          "est_dir": {
+            "x": -0.3095094562,
+            "y": 0.5597890615,
+            "z": 0.768661201
+          },
+          "angular_error": 19.55
+        },
+        {
+          "model": "FLUX2Dev_editing",
+          "nickname": "FLUX.2 Dev Edit",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX2Dev_editing_main_experiment108_8.png",
+          "est_dir": {
+            "x": -0.0316099674,
+            "y": 0.6160945892,
+            "z": 0.7870376706
+          },
+          "angular_error": 8.81
+        },
+        {
+          "model": "FLUX2Klein9B_editing",
+          "nickname": "FLUX.2 Klein 9B",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX2Klein9B_editing_main_experiment108_8.png",
+          "est_dir": {
+            "x": -0.3237413466,
+            "y": 0.4802713394,
+            "z": 0.8151877522
+          },
+          "angular_error": 19.35
+        },
+        {
+          "model": "ZImageTurbo",
+          "nickname": "Z-Image Turbo",
+          "category": "comfyui",
+          "probe": "assets/images/explore/ZImageTurbo_main_experiment108_8.png",
+          "est_dir": {
+            "x": -0.1704161167,
+            "y": 0.3728669286,
+            "z": 0.9121012092
+          },
+          "angular_error": 12.56
+        },
+        {
+          "model": "HunyuanImage",
+          "nickname": "Hunyuan Image",
+          "category": "comfyui",
+          "probe": "assets/images/explore/HunyuanImage_main_experiment108_8.png",
+          "est_dir": {
+            "x": -0.8754113317,
+            "y": 0.3727195263,
+            "z": 0.307790637
+          },
+          "angular_error": 63.58
+        },
+        {
+          "model": "SD35",
+          "nickname": "SD 3.5",
+          "category": "comfyui",
+          "probe": "assets/images/explore/SD35_main_experiment108_8.png",
+          "est_dir": {
+            "x": -0.4210016131,
+            "y": 0.8326004744,
+            "z": 0.3599084616
+          },
+          "angular_error": 43.91
+        },
+        {
+          "model": "NanoBanana1",
+          "nickname": "NanoBanana v1",
+          "category": "api",
+          "probe": "assets/images/explore/NanoBanana1_main_experiment108_8.png",
+          "est_dir": {
+            "x": -0.2159407884,
+            "y": 0.4528541565,
+            "z": 0.8650391102
+          },
+          "angular_error": 13.04
+        },
+        {
+          "model": "NanoBanana2",
+          "nickname": "NanoBanana v2",
+          "category": "api",
+          "probe": "assets/images/explore/NanoBanana2_main_experiment108_8.png",
+          "est_dir": {
+            "x": -0.1792965382,
+            "y": 0.6626404524,
+            "z": 0.7271590829
+          },
+          "angular_error": 16.68
+        },
+        {
+          "model": "Firefly5",
+          "nickname": "Firefly 5",
+          "category": "api",
+          "probe": "assets/images/explore/Firefly5_main_experiment108_8.png",
+          "est_dir": {
+            "x": -0.2578208148,
+            "y": 0.7853636742,
+            "z": 0.5627896786
+          },
+          "angular_error": 28.97
+        },
+        {
+          "model": "Photoshop",
+          "nickname": "Photoshop",
+          "category": "api",
+          "probe": "assets/images/explore/Photoshop_main_experiment108_8.png",
+          "est_dir": {
+            "x": -0.1412809342,
+            "y": 0.4236739576,
+            "z": 0.8947290182
+          },
+          "angular_error": 9.52
+        }
+      ]
+    },
+    {
+      "scene": "main_experiment108",
+      "dir_id": 11,
+      "label": "Lab 108 - dir 11",
+      "key": "main_experiment108_11",
+      "gt_probe": "assets/images/explore/gt_main_experiment108_11.png",
+      "gt_dir": {
+        "x": -0.3499158739,
+        "y": 0.4839262085,
+        "z": 0.8021061687
+      },
+      "models": [
+        {
+          "model": "SDXL",
+          "nickname": "SDXL",
+          "category": "comfyui",
+          "probe": "assets/images/explore/SDXL_main_experiment108_11.png",
+          "est_dir": {
+            "x": -0.7701462507,
+            "y": 0.5318576694,
+            "z": 0.3521395028
+          },
+          "angular_error": 35.97
+        },
+        {
+          "model": "FLUX",
+          "nickname": "FLUX.1",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX_main_experiment108_11.png",
+          "est_dir": {
+            "x": -0.5924863815,
+            "y": 0.3894087076,
+            "z": 0.7052097917
+          },
+          "angular_error": 15.97
+        },
+        {
+          "model": "Qwen",
+          "nickname": "Qwen",
+          "category": "comfyui",
+          "probe": "assets/images/explore/Qwen_main_experiment108_11.png",
+          "est_dir": {
+            "x": 0.2866787314,
+            "y": -0.1957230419,
+            "z": -0.9378207922
+          },
+          "angular_error": 161.31
+        },
+        {
+          "model": "Kolors",
+          "nickname": "Kolors",
+          "category": "comfyui",
+          "probe": "assets/images/explore/Kolors_main_experiment108_11.png",
+          "est_dir": {
+            "x": -0.6856079698,
+            "y": 0.3326628506,
+            "z": 0.6475160718
+          },
+          "angular_error": 23.03
+        },
+        {
+          "model": "HiDream",
+          "nickname": "HiDream",
+          "category": "comfyui",
+          "probe": "assets/images/explore/HiDream_main_experiment108_11.png",
+          "est_dir": {
+            "x": -0.6181401014,
+            "y": 0.4370650649,
+            "z": 0.6533581614
+          },
+          "angular_error": 17.85
+        },
+        {
+          "model": "SDXLInpaint",
+          "nickname": "SDXL Inpaint",
+          "category": "comfyui",
+          "probe": "assets/images/explore/SDXLInpaint_main_experiment108_11.png",
+          "est_dir": {
+            "x": -0.8792877197,
+            "y": 0.3302325308,
+            "z": 0.3432195485
+          },
+          "angular_error": 42.03
+        },
+        {
+          "model": "FLUX2_editing",
+          "nickname": "FLUX.2 Edit",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX2_editing_main_experiment108_11.png",
+          "est_dir": {
+            "x": -0.5856229663,
+            "y": 0.5631241202,
+            "z": 0.5830411315
+          },
+          "angular_error": 19.08
+        },
+        {
+          "model": "FLUX2Dev_editing",
+          "nickname": "FLUX.2 Dev Edit",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX2Dev_editing_main_experiment108_11.png",
+          "est_dir": {
+            "x": -0.5741658807,
+            "y": 0.5126468539,
+            "z": 0.6383781433
+          },
+          "angular_error": 16.05
+        },
+        {
+          "model": "FLUX2Klein9B_editing",
+          "nickname": "FLUX.2 Klein 9B",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX2Klein9B_editing_main_experiment108_11.png",
+          "est_dir": {
+            "x": -0.637432754,
+            "y": 0.3962702751,
+            "z": 0.6607944965
+          },
+          "angular_error": 19.12
+        },
+        {
+          "model": "ZImageTurbo",
+          "nickname": "Z-Image Turbo",
+          "category": "comfyui",
+          "probe": "assets/images/explore/ZImageTurbo_main_experiment108_11.png",
+          "est_dir": {
+            "x": -0.6138486862,
+            "y": 0.2750789821,
+            "z": 0.7399467826
+          },
+          "angular_error": 19.71
+        },
+        {
+          "model": "HunyuanImage",
+          "nickname": "Hunyuan Image",
+          "category": "comfyui",
+          "probe": "assets/images/explore/HunyuanImage_main_experiment108_11.png",
+          "est_dir": {
+            "x": -0.8529015183,
+            "y": 0.390876323,
+            "z": 0.3460847735
+          },
+          "angular_error": 40.08
+        },
+        {
+          "model": "SD35",
+          "nickname": "SD 3.5",
+          "category": "comfyui",
+          "probe": "assets/images/explore/SD35_main_experiment108_11.png",
+          "est_dir": {
+            "x": -0.8004211783,
+            "y": 0.417116195,
+            "z": 0.4305112064
+          },
+          "angular_error": 34.18
+        },
+        {
+          "model": "NanoBanana1",
+          "nickname": "NanoBanana v1",
+          "category": "api",
+          "probe": "assets/images/explore/NanoBanana1_main_experiment108_11.png",
+          "est_dir": {
+            "x": -0.6448302865,
+            "y": 0.5098029971,
+            "z": 0.5694689751
+          },
+          "angular_error": 21.7
+        },
+        {
+          "model": "NanoBanana2",
+          "nickname": "NanoBanana v2",
+          "category": "api",
+          "probe": "assets/images/explore/NanoBanana2_main_experiment108_11.png",
+          "est_dir": {
+            "x": -0.5289204717,
+            "y": 0.5106040835,
+            "z": 0.6778839231
+          },
+          "angular_error": 12.6
+        },
+        {
+          "model": "Firefly5",
+          "nickname": "Firefly 5",
+          "category": "api",
+          "probe": "assets/images/explore/Firefly5_main_experiment108_11.png",
+          "est_dir": {
+            "x": -0.6131480932,
+            "y": 0.506334722,
+            "z": 0.6063616872
+          },
+          "angular_error": 18.92
+        },
+        {
+          "model": "Photoshop",
+          "nickname": "Photoshop",
+          "category": "api",
+          "probe": "assets/images/explore/Photoshop_main_experiment108_11.png",
+          "est_dir": {
+            "x": -0.3669751883,
+            "y": 0.4035638273,
+            "z": 0.8381320834
+          },
+          "angular_error": 5.14
+        }
+      ]
+    },
+    {
+      "scene": "summer_living6",
+      "dir_id": 11,
+      "label": "Living Room - dir 11",
+      "key": "summer_living6_11",
+      "gt_probe": "assets/images/explore/gt_summer_living6_11.png",
+      "gt_dir": {
+        "x": -0.748664936,
+        "y": 0.5976736884,
+        "z": 0.286857065
+      },
+      "models": [
+        {
+          "model": "SDXL",
+          "nickname": "SDXL",
+          "category": "comfyui",
+          "probe": "assets/images/explore/SDXL_summer_living6_11.png",
+          "est_dir": {
+            "x": -0.5546586514,
+            "y": 0.5765114427,
+            "z": 0.5999902487
+          },
+          "angular_error": 21.26
+        },
+        {
+          "model": "FLUX",
+          "nickname": "FLUX.1",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX_summer_living6_11.png",
+          "est_dir": {
+            "x": -0.6441348791,
+            "y": 0.5943041444,
+            "z": 0.4815524518
+          },
+          "angular_error": 12.69
+        },
+        {
+          "model": "Qwen",
+          "nickname": "Qwen",
+          "category": "comfyui",
+          "probe": "assets/images/explore/Qwen_summer_living6_11.png",
+          "est_dir": {
+            "x": -0.5388407111,
+            "y": 0.630395174,
+            "z": 0.5587956905
+          },
+          "angular_error": 19.87
+        },
+        {
+          "model": "Kolors",
+          "nickname": "Kolors",
+          "category": "comfyui",
+          "probe": "assets/images/explore/Kolors_summer_living6_11.png",
+          "est_dir": {
+            "x": -0.6057949066,
+            "y": 0.7302721143,
+            "z": 0.3157770932
+          },
+          "angular_error": 11.31
+        },
+        {
+          "model": "HiDream",
+          "nickname": "HiDream",
+          "category": "comfyui",
+          "probe": "assets/images/explore/HiDream_summer_living6_11.png",
+          "est_dir": {
+            "x": -0.5444579124,
+            "y": 0.386392653,
+            "z": 0.7444906831
+          },
+          "angular_error": 31.56
+        },
+        {
+          "model": "SDXLInpaint",
+          "nickname": "SDXL Inpaint",
+          "category": "comfyui",
+          "probe": "assets/images/explore/SDXLInpaint_summer_living6_11.png",
+          "est_dir": {
+            "x": -0.6453730464,
+            "y": 0.6942354441,
+            "z": 0.318638742
+          },
+          "angular_error": 8.31
+        },
+        {
+          "model": "FLUX2_editing",
+          "nickname": "FLUX.2 Edit",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX2_editing_summer_living6_11.png",
+          "est_dir": {
+            "x": -0.6546294093,
+            "y": 0.5906490088,
+            "z": 0.4717986286
+          },
+          "angular_error": 11.92
+        },
+        {
+          "model": "FLUX2Dev_editing",
+          "nickname": "FLUX.2 Dev Edit",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX2Dev_editing_summer_living6_11.png",
+          "est_dir": {
+            "x": -0.4969314933,
+            "y": 0.5121477246,
+            "z": 0.7005453706
+          },
+          "angular_error": 28.47
+        },
+        {
+          "model": "FLUX2Klein9B_editing",
+          "nickname": "FLUX.2 Klein 9B",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX2Klein9B_editing_summer_living6_11.png",
+          "est_dir": {
+            "x": -0.6061342955,
+            "y": 0.5493545532,
+            "z": 0.5751615763
+          },
+          "angular_error": 18.72
+        },
+        {
+          "model": "ZImageTurbo",
+          "nickname": "Z-Image Turbo",
+          "category": "comfyui",
+          "probe": "assets/images/explore/ZImageTurbo_summer_living6_11.png",
+          "est_dir": {
+            "x": -0.6689193845,
+            "y": 0.5393866897,
+            "z": 0.5114771724
+          },
+          "angular_error": 14.09
+        },
+        {
+          "model": "HunyuanImage",
+          "nickname": "Hunyuan Image",
+          "category": "comfyui",
+          "probe": "assets/images/explore/HunyuanImage_summer_living6_11.png",
+          "est_dir": {
+            "x": -0.7061936855,
+            "y": 0.4703065157,
+            "z": 0.5292468071
+          },
+          "angular_error": 15.93
+        },
+        {
+          "model": "SD35",
+          "nickname": "SD 3.5",
+          "category": "comfyui",
+          "probe": "assets/images/explore/SD35_summer_living6_11.png",
+          "est_dir": {
+            "x": -0.287625879,
+            "y": 0.8590857387,
+            "z": 0.4233710468
+          },
+          "angular_error": 31.76
+        },
+        {
+          "model": "NanoBanana1",
+          "nickname": "NanoBanana v1",
+          "category": "api",
+          "probe": "assets/images/explore/NanoBanana1_summer_living6_11.png",
+          "est_dir": {
+            "x": -0.6463182569,
+            "y": 0.6355015039,
+            "z": 0.4223867953
+          },
+          "angular_error": 9.98
+        },
+        {
+          "model": "NanoBanana2",
+          "nickname": "NanoBanana v2",
+          "category": "api",
+          "probe": "assets/images/explore/NanoBanana2_summer_living6_11.png",
+          "est_dir": {
+            "x": -0.6207716465,
+            "y": 0.6413339376,
+            "z": 0.4509249926
+          },
+          "angular_error": 12.2
+        },
+        {
+          "model": "Firefly5",
+          "nickname": "Firefly 5",
+          "category": "api",
+          "probe": "assets/images/explore/Firefly5_summer_living6_11.png",
+          "est_dir": {
+            "x": -0.3854547739,
+            "y": 0.3677610159,
+            "z": 0.8462721109
+          },
+          "angular_error": 41.31
+        },
+        {
+          "model": "Photoshop",
+          "nickname": "Photoshop",
+          "category": "api",
+          "probe": "assets/images/explore/Photoshop_summer_living6_11.png",
+          "est_dir": {
+            "x": -0.7179217935,
+            "y": 0.42704615,
+            "z": 0.5497452021
+          },
+          "angular_error": 18.12
+        }
+      ]
+    },
+    {
+      "scene": "kingston_smallbathroom3",
+      "dir_id": 15,
+      "label": "Bathroom - dir 15",
+      "key": "kingston_smallbathroom3_dir15",
+      "gt_probe": "assets/images/explore/gt_kingston_smallbathroom3_dir15.png",
+      "gt_dir": {
+        "x": 0.5888857305,
+        "y": 0.6430361425,
+        "z": 0.4896101672
+      },
+      "models": [
+        {
+          "model": "SDXL",
+          "nickname": "SDXL",
+          "category": "comfyui",
+          "probe": "assets/images/explore/SDXL_kingston_smallbathroom3_dir15.png",
+          "est_dir": {
+            "x": -0.0879062191,
+            "y": 0.2791162431,
+            "z": 0.9562252164
+          },
+          "angular_error": 53.42
+        },
+        {
+          "model": "FLUX",
+          "nickname": "FLUX.1",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX_kingston_smallbathroom3_dir15.png",
+          "est_dir": {
+            "x": 0.3478428721,
+            "y": 0.6958494186,
+            "z": 0.6283302903
+          },
+          "angular_error": 16.27
+        },
+        {
+          "model": "Qwen",
+          "nickname": "Qwen",
+          "category": "comfyui",
+          "probe": "assets/images/explore/Qwen_kingston_smallbathroom3_dir15.png",
+          "est_dir": {
+            "x": 0.2648789287,
+            "y": 0.8031826019,
+            "z": 0.5336074233
+          },
+          "angular_error": 20.98
+        },
+        {
+          "model": "Kolors",
+          "nickname": "Kolors",
+          "category": "comfyui",
+          "probe": "assets/images/explore/Kolors_kingston_smallbathroom3_dir15.png",
+          "est_dir": {
+            "x": 0.8186487556,
+            "y": 0.5452335477,
+            "z": 0.1803734303
+          },
+          "angular_error": 22.93
+        },
+        {
+          "model": "HiDream",
+          "nickname": "HiDream",
+          "category": "comfyui",
+          "probe": "assets/images/explore/HiDream_kingston_smallbathroom3_dir15.png",
+          "est_dir": {
+            "x": 0.3384337425,
+            "y": 0.6166055799,
+            "z": 0.7108166218
+          },
+          "angular_error": 19.3
+        },
+        {
+          "model": "SDXLInpaint",
+          "nickname": "SDXL Inpaint",
+          "category": "comfyui",
+          "probe": "assets/images/explore/SDXLInpaint_kingston_smallbathroom3_dir15.png",
+          "est_dir": {
+            "x": 0.6551665068,
+            "y": 0.5151308179,
+            "z": 0.5526275039
+          },
+          "angular_error": 9.02
+        },
+        {
+          "model": "FLUX2_editing",
+          "nickname": "FLUX.2 Edit",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX2_editing_kingston_smallbathroom3_dir15.png",
+          "est_dir": {
+            "x": 0.0936505273,
+            "y": 0.8089718819,
+            "z": 0.5803394914
+          },
+          "angular_error": 30.74
+        },
+        {
+          "model": "FLUX2Dev_editing",
+          "nickname": "FLUX.2 Dev Edit",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX2Dev_editing_kingston_smallbathroom3_dir15.png",
+          "est_dir": {
+            "x": 0.0972706452,
+            "y": 0.5019540787,
+            "z": 0.8594071269
+          },
+          "angular_error": 36.79
+        },
+        {
+          "model": "FLUX2Klein9B_editing",
+          "nickname": "FLUX.2 Klein 9B",
+          "category": "comfyui",
+          "probe": "assets/images/explore/FLUX2Klein9B_editing_kingston_smallbathroom3_dir15.png",
+          "est_dir": {
+            "x": 0.3081848323,
+            "y": 0.6963915825,
+            "z": 0.6481211185
+          },
+          "angular_error": 18.81
+        },
+        {
+          "model": "ZImageTurbo",
+          "nickname": "Z-Image Turbo",
+          "category": "comfyui",
+          "probe": "assets/images/explore/ZImageTurbo_kingston_smallbathroom3_dir15.png",
+          "est_dir": {
+            "x": 0.4451025426,
+            "y": 0.5694607496,
+            "z": 0.6910848618
+          },
+          "angular_error": 14.84
+        },
+        {
+          "model": "HunyuanImage",
+          "nickname": "Hunyuan Image",
+          "category": "comfyui",
+          "probe": "assets/images/explore/HunyuanImage_kingston_smallbathroom3_dir15.png",
+          "est_dir": {
+            "x": 0.3057592511,
+            "y": -0.2103875726,
+            "z": -0.9285732508
+          },
+          "angular_error": 114.2
+        },
+        {
+          "model": "SD35",
+          "nickname": "SD 3.5",
+          "category": "comfyui",
+          "probe": "assets/images/explore/SD35_kingston_smallbathroom3_dir15.png",
+          "est_dir": {
+            "x": -0.0180724151,
+            "y": 0.969949007,
+            "z": 0.2426360101
+          },
+          "angular_error": 42.96
+        },
+        {
+          "model": "NanoBanana1",
+          "nickname": "NanoBanana v1",
+          "category": "api",
+          "probe": "assets/images/explore/NanoBanana1_kingston_smallbathroom3_dir15.png",
+          "est_dir": {
+            "x": 0.2794333398,
+            "y": 0.6682986617,
+            "z": 0.6894156337
+          },
+          "angular_error": 21.28
+        },
+        {
+          "model": "NanoBanana2",
+          "nickname": "NanoBanana v2",
+          "category": "api",
+          "probe": "assets/images/explore/NanoBanana2_kingston_smallbathroom3_dir15.png",
+          "est_dir": {
+            "x": 0.3944744766,
+            "y": 0.7433937192,
+            "z": 0.5401440859
+          },
+          "angular_error": 12.89
+        },
+        {
+          "model": "Firefly5",
+          "nickname": "Firefly 5",
+          "category": "api",
+          "probe": "assets/images/explore/Firefly5_kingston_smallbathroom3_dir15.png",
+          "est_dir": {
+            "x": 0.0013342263,
+            "y": 0.516064167,
+            "z": 0.8565488458
+          },
+          "angular_error": 41.24
+        },
+        {
+          "model": "Photoshop",
+          "nickname": "Photoshop",
+          "category": "api",
+          "probe": "assets/images/explore/Photoshop_kingston_smallbathroom3_dir15.png",
+          "est_dir": {
+            "x": 0.1924740225,
+            "y": -0.1393682957,
+            "z": 0.9713547826
+          },
+          "angular_error": 60.05
+        }
+      ]
+    }
+  ]
+}
