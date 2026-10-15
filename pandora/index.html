@@ -158,6 +158,84 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
+    /* ── Presentation ── */
+    .presentation {
+      padding: 56px 24px;
+      background: #fff;
+      border-top: 1px solid #e0e6ed;
+    }
+
+    .presentation h2 {
+      font-size: 1.55rem;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 24px;
+      color: #111;
+    }
+
+    .video-wrapper {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding-bottom: 50.625%; /* 900/16*9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-wrapper a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .video-wrapper a img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(20, 20, 20, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.18s, transform 0.18s;
+    }
+
+    .video-wrapper a:hover .play-button {
+      background: #1367a7;
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    .play-button svg {
+      width: 26px;
+      height: 26px;
+      fill: #fff;
+      margin-left: 4px;
+    }
+
     /* ── Citation ── */
     .citation {
       padding: 56px 24px;
@@ -246,6 +324,20 @@
       <h2>Abstract</h2>
       <div class="abstract-box">
         Most novel view synthesis methods---including Neural Radiance Fields (NeRF)---struggle to capture the high dynamic range (HDR) radiance required for realistic image-based lighting (IBL). This limitation stems from a reliance on low dynamic range (LDR) imagery, which fails to capture the intensity of light sources found in indoor environments. While exposure bracketing can recover this range, it is often too slow for practical, large-scale acquisition. In this work, we introduce PanDORA: PANoramic Dual-Observer Radiance Acquisition, a system specifically designed for the fast and affordable capture of high-quality HDR radiance maps for IBL. Our approach utilizes two 360° cameras mounted on a portable monopod to simultaneously record videos at different exposures. These videos are processed by our proposed two-stage NeRF-based algorithm featuring a novel self-calibrating pipeline to estimate camera parameters. This pipeline produces non-saturated HDR radiance fields that accurately capture the radiance of a scene. When evaluated on a new dataset of real indoor environments featuring HDR ground truth lighting, PanDORA demonstrates superior fidelity in reconstructing the peak intensities necessary for downstream rendering tasks, providing a scalable and efficient solution for capturing real-world IBLs.
+      </div>
+    </div>
+  </section>
+
+  <section class="presentation">
+    <div class="container">
+      <h2>Presentation</h2>
+      <div class="video-wrapper">
+        <a href="https://youtu.be/UjRYWDF5-NY?t=2236" target="_blank" rel="noopener">
+          <img src="./assets/video_thumbnail.png" alt="PanDORA presentation video thumbnail">
+          <span class="play-button">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </a>
       </div>
     </div>
   </section>
